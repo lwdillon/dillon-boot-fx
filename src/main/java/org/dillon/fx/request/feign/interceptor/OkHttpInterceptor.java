@@ -50,7 +50,6 @@ public class OkHttpInterceptor implements Interceptor {
             MvvmFX.getNotificationCenter().publish("message", code, msg);
 
         }
-        MvvmFX.getNotificationCenter().publish("message", code, msg);
         //生成新的response返回，网络请求的response如果取出之后，直接返回将会抛出异常
         return responseNew;
     }

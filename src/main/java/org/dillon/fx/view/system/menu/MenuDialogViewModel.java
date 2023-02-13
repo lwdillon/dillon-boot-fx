@@ -1,5 +1,10 @@
 package org.dillon.fx.view.system.menu;
 
+import cn.hutool.json.JSONArray;
+import cn.hutool.json.JSONUtil;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.ruoyi.common.core.web.domain.AjaxResult;
 import de.saxsys.mvvmfx.SceneLifecycle;
 import de.saxsys.mvvmfx.ViewModel;
 import de.saxsys.mvvmfx.utils.commands.Action;
@@ -7,11 +12,15 @@ import de.saxsys.mvvmfx.utils.commands.Command;
 import de.saxsys.mvvmfx.utils.commands.DelegateCommand;
 import de.saxsys.mvvmfx.utils.mapping.ModelWrapper;
 import de.saxsys.mvvmfx.utils.notifications.WeakNotificationObserver;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.LongProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import org.dillon.fx.request.Request;
+import org.dillon.fx.request.feign.client.SysMenuFeign;
 import org.dillon.fx.vo.SysMenu;
+
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * 菜单对话框视图模型
@@ -21,6 +30,7 @@ import org.dillon.fx.vo.SysMenu;
  */
 public class MenuDialogViewModel implements ViewModel, SceneLifecycle {
     public final static String ON_CLOSE = "close";
+    private ObservableList<SysMenu> allMenuData = FXCollections.observableArrayList();
 
     /**
      * 包装器
@@ -28,17 +38,33 @@ public class MenuDialogViewModel implements ViewModel, SceneLifecycle {
     private ModelWrapper<SysMenu> wrapper = new ModelWrapper<>();
 
     private Command addCommand;
+    private Command edtCommand;
+    private Command menuListCommand;
+
+    private ObjectProperty<SysMenu> selectSysMenu = new SimpleObjectProperty<>(new SysMenu());
 
 
     public void initialize() {
+
         addCommand = new DelegateCommand(() -> new Action() {
             @Override
             protected void action() throws Exception {
                 add();
             }
         }, true); //Async
+        edtCommand = new DelegateCommand(() -> new Action() {
+            @Override
+            protected void action() throws Exception {
+                edit();
+            }
+        }, true); //Async
+        menuListCommand = new DelegateCommand(() -> new Action() {
+            @Override
+            protected void action() throws Exception {
+                menuList();
+            }
+        }, true); //Async
     }
-
 
 
     /**
@@ -170,6 +196,17 @@ public class MenuDialogViewModel implements ViewModel, SceneLifecycle {
         return wrapper.field("status", SysMenu::getStatus, SysMenu::setStatus, "0");
     }
 
+    public SysMenu getSelectSysMenu() {
+        return selectSysMenu.get();
+    }
+
+    public ObjectProperty<SysMenu> selectSysMenuProperty() {
+        return selectSysMenu;
+    }
+
+    public void setSelectSysMenu(SysMenu selectSysMenu) {
+        this.selectSysMenu.set(selectSysMenu);
+    }
 
     @Override
     public void onViewAdded() {
@@ -181,14 +218,43 @@ public class MenuDialogViewModel implements ViewModel, SceneLifecycle {
 
     }
 
+    public Command getMenuListCommand() {
+        return menuListCommand;
+    }
+
+    public ObservableList<SysMenu> getAllMenuData() {
+        return allMenuData;
+    }
+
     public Command getAddCommand() {
         return addCommand;
     }
 
+    public Command getEdtCommand() {
+        return edtCommand;
+    }
+
     private void add() {
         wrapper.commit();
-        SysMenu sysMenu = wrapper.get();
+        Request.connector(SysMenuFeign.class).add(wrapper.get());
         publish(ON_CLOSE);
 
+    }
+
+    private void edit() {
+        wrapper.commit();
+        Request.connector(SysMenuFeign.class).edit(wrapper.get());
+        publish(ON_CLOSE);
+    }
+
+    private void menuList() {
+        JsonObject routers = Request.connector(SysMenuFeign.class).list(new HashMap<>());
+
+        JsonArray array = routers.getAsJsonArray(AjaxResult.DATA_TAG);
+
+        JSONArray objects = JSONUtil.parseArray(array.toString());
+        List<SysMenu> menus = JSONUtil.toList(objects, SysMenu.class);
+        allMenuData.addAll(menus);
+        publish("menuList");
     }
 }

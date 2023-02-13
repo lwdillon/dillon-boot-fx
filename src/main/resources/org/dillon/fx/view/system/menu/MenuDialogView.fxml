@@ -34,7 +34,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <ComboBox fx:id="parentIdCombo" maxWidth="1.7976931348623157E308" prefWidth="150.0" GridPane.columnIndex="1" GridPane.columnSpan="3" />
+                <TextField fx:id="parentIdCombo" maxWidth="1.7976931348623157E308" prefWidth="150.0" GridPane.columnIndex="1" GridPane.columnSpan="3" />
                 <HBox alignment="CENTER_LEFT" spacing="7.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="1">
                     <children>
                         <RadioButton fx:id="menuTypeRadio1" mnemonicParsing="false" text="目录">

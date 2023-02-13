@@ -1,25 +1,40 @@
 package org.dillon.fx.view.system.menu;
 
+import atlantafx.base.controls.Popover;
+import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.ObjectUtil;
 import de.saxsys.mvvmfx.FxmlView;
 import de.saxsys.mvvmfx.InjectViewModel;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.TextField;
+import javafx.geometry.Bounds;
+import javafx.geometry.Insets;
+import javafx.scene.Node;
+import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.util.Callback;
+import org.dillon.fx.view.main.QuickConfigMenu;
+import org.dillon.fx.vo.SysMenu;
+import org.kordamp.ikonli.feather.Feather;
+import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.net.URL;
+import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
+
+import static atlantafx.base.controls.Popover.ArrowLocation.TOP_CENTER;
 
 public class MenuDialogView implements FxmlView<MenuDialogViewModel>, Initializable {
 
     @InjectViewModel
     private MenuDialogViewModel viewModel;
     @FXML
-    private ComboBox parentIdCombo;
+    private TextField parentIdCombo;
 
     @FXML
     private RadioButton menuTypeRadio1;
@@ -35,7 +50,7 @@ public class MenuDialogView implements FxmlView<MenuDialogViewModel>, Initializa
     private TextField menuNameField;
 
     @FXML
-    private Spinner ordNumFeild;
+    private Spinner<Integer> ordNumFeild;
 
     @FXML
     private RadioButton frameRadio1;
@@ -73,32 +88,106 @@ public class MenuDialogView implements FxmlView<MenuDialogViewModel>, Initializa
     @FXML
     private RadioButton statusRadio2;
 
+    private TreeView<SysMenu> menuTreeView;
+
+    private Popover menuTreePopover;
+
+    @FXML
+    private ToggleGroup group1;
+
+    @FXML
+    private ToggleGroup group2;
+
+    @FXML
+    private ToggleGroup group3;
+
+    @FXML
+    private ToggleGroup group4;
+
+    @FXML
+    private ToggleGroup group5;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        menuTreeView = new TreeView<SysMenu>();
+        menuTreeView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            viewModel.setSelectSysMenu(newValue.getValue());
+            if (menuTreePopover != null) {
+                menuTreePopover.hide();
+            }
 
+        });
 
-        menuTypeRadio1.selectedProperty().bind(Bindings.createBooleanBinding(
-                () -> ObjectUtil.contains("M", viewModel.menuTypeProperty().getValue()), viewModel.menuTypeProperty())
+        parentIdCombo.setEditable(false);
+        parentIdCombo.setOnMouseClicked(event -> showMenuTreePopover(parentIdCombo));
+        parentIdCombo.textProperty().bind(Bindings.createStringBinding(
+                () -> viewModel.selectSysMenuProperty().getValue().getMenuName(), viewModel.selectSysMenuProperty())
         );
-        menuTypeRadio2.selectedProperty().bind(Bindings.createBooleanBinding(
-                () -> ObjectUtil.contains("C", viewModel.menuTypeProperty().getValue()), viewModel.menuTypeProperty())
-        );
-        menuTypeRadio3.selectedProperty().bind(Bindings.createBooleanBinding(
-                () -> ObjectUtil.contains("F", viewModel.menuTypeProperty().getValue()), viewModel.menuTypeProperty())
-        );
+        menuTreeView.setCellFactory(new Callback<TreeView<SysMenu>, TreeCell<SysMenu>>() {
+            @Override
+            public TreeCell<SysMenu> call(TreeView<SysMenu> param) {
+                return new TreeCell<>() {
+                    @Override
+                    protected void updateItem(SysMenu item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setText(null);
+                            setGraphic(null);
+                        } else {
+                            setGraphic(new Label(item.getMenuName()));
+                        }
+                    }
+                };
+            }
+        });
+
+        group1.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
+            if (group1.getSelectedToggle() != null) {
+                viewModel.menuTypeProperty().setValue(group1.getSelectedToggle().getUserData().toString());
+            }
+        });
+
+        menuTypeRadio1.setUserData("M");
+        menuTypeRadio2.setUserData("C");
+        menuTypeRadio3.setUserData("F");
+        viewModel.menuTypeProperty().addListener((observable, oldValue, newValue) -> {
+            if (ObjectUtil.equals("M", newValue)) {
+                menuTypeRadio1.setSelected(true);
+            } else if (ObjectUtil.contains("C", newValue)) {
+                menuTypeRadio2.setSelected(true);
+            } else {
+                menuTypeRadio3.setSelected(true);
+            }
+        });
+
 
         iconField.textProperty().bindBidirectional(viewModel.iconProperty());
 
 
         menuNameField.textProperty().bindBidirectional(viewModel.menuNameProperty());
 
+        ordNumFeild.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, Integer.MAX_VALUE, 0));
+        viewModel.orderNumProperty().addListener((observable, oldValue, newValue) -> {
+            ordNumFeild.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, Integer.MAX_VALUE, newValue.intValue()));
+        });
+        ordNumFeild.valueProperty().addListener((observable, oldValue, newValue) -> viewModel.orderNumProperty().setValue(newValue));
 
-//        ordNumFeild..(viewModel.orderNumProperty());
+        frameRadio1.setUserData("0");
+        frameRadio2.setUserData("1");
+        group2.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
+            if (group2.getSelectedToggle() != null) {
+                viewModel.isFrameProperty().setValue(group2.getSelectedToggle().getUserData().toString());
+            }
+        });
 
+        viewModel.isFrameProperty().addListener((observable, oldValue, newValue) -> {
+            if (ObjectUtil.contains("0", newValue)) {
+                frameRadio1.setSelected(true);
+            } else {
+                frameRadio2.setSelected(true);
+            }
+        });
 
-        frameRadio1.selectedProperty().bind(Bindings.createBooleanBinding(
-                () -> ObjectUtil.contains("0", viewModel.menuTypeProperty().getValue()), viewModel.isFrameProperty())
-        );
 
         pathField.textProperty().bindBidirectional(viewModel.pathProperty());
 
@@ -108,18 +197,116 @@ public class MenuDialogView implements FxmlView<MenuDialogViewModel>, Initializa
 
         queryField.textProperty().bindBidirectional(viewModel.queryProperty());
 
-        cacheRadio1.selectedProperty().bind(Bindings.createBooleanBinding(
-                () -> ObjectUtil.contains("0", viewModel.menuTypeProperty().getValue()), viewModel.isCacheProperty())
-        );
+        cacheRadio1.setUserData("0");
+        cacheRadio2.setUserData("1");
+        group3.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
+            if (group3.getSelectedToggle() != null) {
+                viewModel.isCacheProperty().setValue(group3.getSelectedToggle().getUserData().toString());
+            }
+        });
+        viewModel.isCacheProperty().addListener((observable, oldValue, newValue) -> {
+            if (ObjectUtil.contains("0", newValue)) {
+                cacheRadio1.setSelected(true);
+            } else {
+                cacheRadio2.setSelected(true);
+            }
+        });
 
-        visibleRadio1.selectedProperty().bind(Bindings.createBooleanBinding(
-                () -> ObjectUtil.contains("0", viewModel.menuTypeProperty().getValue()), viewModel.visibleProperty())
-        );
 
-        statusRadio1.selectedProperty().bind(Bindings.createBooleanBinding(
-                () -> ObjectUtil.contains("0", viewModel.menuTypeProperty().getValue()), viewModel.statusProperty())
-        );
+        visibleRadio1.setUserData("0");
+        visibleRadio2.setUserData("1");
+        group4.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
+            if (group4.getSelectedToggle() != null) {
+                viewModel.visibleProperty().setValue(group4.getSelectedToggle().getUserData().toString());
+            }
+        });
+
+
+        viewModel.visibleProperty().addListener((observable, oldValue, newValue) -> {
+            if (ObjectUtil.contains("0", newValue)) {
+                visibleRadio1.setSelected(true);
+            } else {
+                visibleRadio2.setSelected(true);
+            }
+        });
+
+
+        statusRadio1.setUserData("0");
+        statusRadio2.setUserData("1");
+        group5.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
+            if (group5.getSelectedToggle() != null) {
+                viewModel.statusProperty().setValue(group5.getSelectedToggle().getUserData().toString());
+            }
+        });
+        viewModel.statusProperty().addListener((observable, oldValue, newValue) -> {
+            if (ObjectUtil.contains("0", newValue)) {
+                statusRadio1.setSelected(true);
+            } else {
+                statusRadio2.setSelected(true);
+            }
+        });
+
+        viewModel.subscribe("menuList", (key, payload) -> {
+            createRoot();
+        });
 
 
     }
+
+    private TreeItem selItem = null;
+
+    private void createRoot() {
+        SysMenu rootMenu = new SysMenu();
+        rootMenu.setMenuId(0L);
+        rootMenu.setMenuName("主类目");
+        var root = new TreeItem<SysMenu>(rootMenu);
+        menuTreeView.setRoot(root);
+        root.setExpanded(true);
+        selItem=root;
+        Map<Long, List<SysMenu>> groupMap = viewModel.getAllMenuData().stream().collect(Collectors.groupingBy(SysMenu::getParentId));
+        List<SysMenu> firstList = groupMap.get(0L);
+        if (CollUtil.isNotEmpty(firstList)) {
+            firstList.forEach(bean -> {
+                var group = new TreeItem<>(bean);
+                root.getChildren().add(group);
+                if (ObjectUtil.equals(viewModel.getSelectSysMenu().getMenuName(), bean.getMenuName())) {
+                    selItem=group;
+                }
+                List<SysMenu> childs = groupMap.get(bean.getMenuId());
+                if (CollUtil.isNotEmpty(childs)) {
+                    generateTree(group, childs, groupMap);
+                }
+            });
+        }
+        menuTreeView.getSelectionModel().select(selItem);
+
+    }
+
+    private void generateTree(TreeItem<SysMenu> parent, List<SysMenu> sysMenuList, Map<Long, List<SysMenu>> groupMap) {
+        sysMenuList.forEach(bean -> {
+            var group = new TreeItem<>(bean);
+            parent.getChildren().add(group);
+            List<SysMenu> childs = groupMap.get(bean.getMenuId());
+            if (ObjectUtil.equals(viewModel.getSelectSysMenu().getMenuName(), bean.getMenuName())) {
+                selItem=group;
+            }
+            if (CollUtil.isNotEmpty(childs)) {
+                generateTree(group, childs, groupMap);
+            }
+        });
+    }
+
+
+    private void showMenuTreePopover(Node source) {
+        if (menuTreePopover == null) {
+            menuTreePopover = new Popover(menuTreeView);
+            menuTreePopover.setHeaderAlwaysVisible(false);
+            menuTreePopover.setDetachable(false);
+            menuTreePopover.setArrowLocation(TOP_CENTER);
+        }
+        menuTreeView.setPrefWidth(parentIdCombo.getWidth() - 40);
+//        Bounds bounds = source.localToScreen(source.getBoundsInLocal());
+        menuTreePopover.show(source);
+    }
+
 }

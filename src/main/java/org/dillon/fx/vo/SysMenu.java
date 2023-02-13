@@ -39,19 +39,19 @@ public class SysMenu extends BaseEntity
     private String query;
 
     /** 是否为外链（0是 1否） */
-    private String isFrame;
+    private String isFrame="1";
 
     /** 是否缓存（0缓存 1不缓存） */
-    private String isCache;
+    private String isCache="0";
 
     /** 类型（M目录 C菜单 F按钮） */
-    private String menuType;
+    private String menuType="M";
 
     /** 显示状态（0显示 1隐藏） */
-    private String visible;
+    private String visible="0";
     
     /** 菜单状态（0正常 1停用） */
-    private String status;
+    private String status="0";
 
     /** 权限字符串 */
     private String perms;

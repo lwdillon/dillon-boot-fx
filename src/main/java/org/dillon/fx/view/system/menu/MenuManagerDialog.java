@@ -15,11 +15,12 @@ public class MenuManagerDialog extends OverlayDialog {
 
     public MenuManagerDialog(ViewTuple<MenuDialogView, MenuDialogViewModel> viewTuple, SysMenu sysMenu, boolean isEdit) {
         MenuDialogViewModel menuDialogViewModel = viewTuple.getViewModel();
-        menuDialogViewModel.setSysMenu(sysMenu);
+        menuDialogViewModel.setSysMenu(isEdit?sysMenu:new SysMenu());
+        menuDialogViewModel.setSelectSysMenu(sysMenu);
         menuDialogViewModel.subscribe(ON_CLOSE, new WeakNotificationObserver((key, payload) -> {
             close();
         }));
-
+        menuDialogViewModel.getMenuListCommand().execute();
         setId("theme-repo-manager-dialog");
         setContent(viewTuple.getView());
 
@@ -30,6 +31,7 @@ public class MenuManagerDialog extends OverlayDialog {
         saveBtn.visibleProperty().bind(addBtn.visibleProperty().not());
         saveBtn.managedProperty().bind(saveBtn.visibleProperty());
         addBtn.setOnAction(event -> menuDialogViewModel.getAddCommand().execute());
+        saveBtn.setOnAction(event -> menuDialogViewModel.getEdtCommand().execute());
 
 
         footerBox.getChildren().addAll(addBtn, saveBtn);

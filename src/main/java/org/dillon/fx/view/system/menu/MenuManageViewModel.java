@@ -12,6 +12,8 @@ import de.saxsys.mvvmfx.ViewModel;
 import de.saxsys.mvvmfx.utils.commands.Action;
 import de.saxsys.mvvmfx.utils.commands.Command;
 import de.saxsys.mvvmfx.utils.commands.DelegateCommand;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
@@ -28,6 +30,7 @@ import java.util.Map;
 
 public class MenuManageViewModel implements ViewModel, SceneLifecycle {
     public final static String OPEN_ALERT = "OPEN_ALERT";
+    public final static String REFRESH = "refresh";
 
     private ObservableList<SysMenu> allData = FXCollections.observableArrayList();
     private StringProperty text = new SimpleStringProperty();
@@ -80,6 +83,7 @@ public class MenuManageViewModel implements ViewModel, SceneLifecycle {
         });
     }
 
+
     /**
      * 获取菜单列表
      */
@@ -90,10 +94,20 @@ public class MenuManageViewModel implements ViewModel, SceneLifecycle {
 
         JsonArray array = routers.getAsJsonArray(AjaxResult.DATA_TAG);
 
-        JSONArray objects =JSONUtil.parseArray(array.toString());
+        JSONArray objects = JSONUtil.parseArray(array.toString());
         List<SysMenu> mapList = JSONUtil.toList(objects, SysMenu.class);
         allData.addAll(mapList);
 
+    }
+
+    public void remove(Long menuId) {
+        new DelegateCommand(() -> new Action() {
+            @Override
+            protected void action() throws Exception {
+                Request.connector(SysMenuFeign.class).remove(menuId);
+                publish(REFRESH);
+            }
+        }, true).execute();
     }
 
 

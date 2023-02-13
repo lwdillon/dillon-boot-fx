@@ -9,6 +9,7 @@ import atlantafx.base.theme.Tweaks;
 import cn.hutool.json.JSON;
 import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONObject;
+import cn.hutool.json.JSONUtil;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -69,6 +70,7 @@ public class SideMenu extends StackPane {
                             setText(null);
                             setGraphic(null);
                         } else {
+
                             Label label = new Label(item.getJSONObject("meta").getStr("title"));
                             label.setMaxWidth(Double.MAX_VALUE);
                             FontIcon icon = FontIcon.of(Feather.CHEVRON_DOWN);

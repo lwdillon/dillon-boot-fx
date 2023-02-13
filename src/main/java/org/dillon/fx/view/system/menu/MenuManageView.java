@@ -28,6 +28,7 @@ import java.util.stream.Collectors;
 
 import static atlantafx.base.theme.Styles.ACCENT;
 import static atlantafx.base.theme.Styles.FLAT;
+import static org.dillon.fx.view.system.menu.MenuManageViewModel.REFRESH;
 
 public class MenuManageView implements FxmlView<MenuManageViewModel>, Initializable {
 
@@ -65,7 +66,9 @@ public class MenuManageView implements FxmlView<MenuManageViewModel>, Initializa
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         viewModel.getListCommand().execute();
-
+        viewModel.subscribe(REFRESH,(key,p)->{
+            viewModel.getListCommand().execute();
+        });
         var ring = new RingProgressIndicator(0, false);
         ring.setMinSize(45, 45);
         ring.progressProperty().bind(Bindings.createDoubleBinding(
@@ -102,13 +105,15 @@ public class MenuManageView implements FxmlView<MenuManageViewModel>, Initializa
                        } else {
 
                            Button addBut = new Button("新增");
-                           addBut.setOnAction(event -> showAdd(null));
+                           addBut.setOnAction(event -> showEditDialog(getTableRow().getItem(),false));
                            addBut.setGraphic(FontIcon.of(Feather.PLUS));
                            addBut.getStyleClass().addAll(FLAT, ACCENT);
                            Button editBut = new Button("修改");
+                           editBut.setOnAction(event -> showEditDialog(getTableRow().getItem(),true));
                            editBut.setGraphic(FontIcon.of(Feather.EDIT));
                            editBut.getStyleClass().addAll(FLAT, ACCENT);
                            Button remBut = new Button("删除");
+                           remBut.setOnAction(event -> viewModel.remove(getTableRow().getItem().getMenuId()));
                            remBut.setGraphic(FontIcon.of(Feather.TRASH));
                            remBut.getStyleClass().addAll(FLAT, ACCENT);
                            HBox box = new HBox(addBut, editBut, remBut);
@@ -176,12 +181,10 @@ public class MenuManageView implements FxmlView<MenuManageViewModel>, Initializa
         return overlay;
     }
 
-    private void showAdd(SysMenu sysMenu) {
+    private void showEditDialog(SysMenu sysMenu,boolean isEdit) {
 
         ViewTuple<MenuDialogView, MenuDialogViewModel> load = FluentViewLoader.fxmlView(MenuDialogView.class).load();
-        SysMenu sysMenu1=   new SysMenu();
-        sysMenu1.setMenuName("aaaaaa");
-        MenuManagerDialog themeRepoManagerDialog = new MenuManagerDialog(load,sysMenu1,false);
+        MenuManagerDialog themeRepoManagerDialog = new MenuManagerDialog(load,sysMenu,isEdit);
         themeRepoManagerDialog.setTitle("添加菜单");
         getOverlay().setContent(themeRepoManagerDialog, HPos.CENTER);
 
