@@ -10,7 +10,7 @@ javafx权限管理系统UI
 * 前端技术栈:
   * 应用程序结构 [mvvmFX](https://github.com/sialcasa/mvvmFX) ([文档](https://github.com/sialcasa/mvvmFX/wiki))
   * 主题 [atlantafx](https://github.com/mkpaz/atlantafx) ([文档](https://mkpaz.github.io/atlantafx/))
-  * 组件库 [MaterialFX](https://github.com/palexdev/MaterialFX)
+  * 组件库 [MaterialFX](https://github.com/palexdev/MaterialFX)（组件都是用原生的，暂时不用MaterialFX，等待作者重构完成！）
   * 图标库 [ikonli](https://github.com/kordamp/ikonli) ([文档](https://kordamp.org/ikonli/))
   * 动画库 [AnimateFX](https://github.com/Typhon0/AnimateFX) ([文档](https://github.com/Typhon0/AnimateFX/wiki))
 
