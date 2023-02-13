@@ -21,7 +21,7 @@ public class Request {
 
     private static final Map<String, FeignAPI> CONNECTORS = new ConcurrentHashMap<>();
 
-    private static String API_URL = "http://127.0.0.1:8080";
+    private static String API_URL = System.getProperty("app.server.url");
     private final static int CONNECT_TIME_OUT_MILLIS = 3000;
     private final static int READ_TIME_OUT_MILLIS = 90000;
     private static GsonDecoder gsonDecoder;
