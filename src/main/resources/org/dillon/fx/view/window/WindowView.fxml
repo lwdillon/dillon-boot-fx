@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane fx:id="rootPane" prefHeight="455.0" prefWidth="539.0" styleClass="window-view" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.dillon.fx.view.window.WindowView">
+    <children>
+        <Pane fx:id="backgroundPane" prefHeight="200.0" prefWidth="200.0" />
+        <Pane fx:id="backgroundImgPane" prefHeight="200.0" prefWidth="200.0" />
+        <StackPane fx:id="contentPane" prefHeight="150.0" prefWidth="200.0" />
+      <BorderPane pickOnBounds="false" StackPane.alignment="TOP_RIGHT">
+         <right>
+            <VBox fx:id="messagePane" alignment="TOP_CENTER" minWidth="240.0" pickOnBounds="false" prefHeight="200.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets top="60.0" />
+               </padding>
+            </VBox>
+         </right>
+      </BorderPane>
+    </children>
+</StackPane>

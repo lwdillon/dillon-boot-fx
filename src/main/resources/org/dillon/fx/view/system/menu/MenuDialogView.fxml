@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefHeight="425.0" prefWidth="682.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.dillon.fx.view.system.menu.MenuDialogView">
+    <children>
+        <GridPane hgap="10.0" prefHeight="418.0" prefWidth="610.0" VBox.vgrow="ALWAYS">
+            <columnConstraints>
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="167.0" minWidth="10.0" prefWidth="40.0" />
+                <ColumnConstraints hgrow="ALWAYS" maxWidth="308.0" minWidth="10.0" prefWidth="200.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="222.0" minWidth="10.0" prefWidth="40.0" />
+                <ColumnConstraints hgrow="ALWAYS" maxWidth="293.0" minWidth="10.0" prefWidth="200.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <ComboBox fx:id="parentIdCombo" maxWidth="1.7976931348623157E308" prefWidth="150.0" GridPane.columnIndex="1" GridPane.columnSpan="3" />
+                <HBox alignment="CENTER_LEFT" spacing="7.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="1">
+                    <children>
+                        <RadioButton fx:id="menuTypeRadio1" mnemonicParsing="false" text="目录">
+                            <toggleGroup>
+                                <ToggleGroup fx:id="group1" />
+                            </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="menuTypeRadio2" mnemonicParsing="false" text="菜单" toggleGroup="$group1" />
+                        <RadioButton fx:id="menuTypeRadio3" mnemonicParsing="false" text="按钮" toggleGroup="$group1" />
+                    </children>
+                </HBox>
+                <TextField fx:id="iconField" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="2" />
+                <Spinner fx:id="ordNumFeild" prefHeight="26.0" prefWidth="244.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                <Label text="显示排序" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                <TextField fx:id="menuNameField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                <TextField fx:id="pathField" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                <Label text="路由地址" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                <HBox alignment="CENTER_LEFT" spacing="7.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                    <children>
+                        <Group>
+                            <children>
+                                <RadioButton fx:id="frameRadio1" mnemonicParsing="false" text="是">
+                                    <toggleGroup>
+                                        <ToggleGroup fx:id="group2" />
+                                    </toggleGroup>
+                                </RadioButton>
+                                <RadioButton fx:id="frameRadio2" layoutX="43.0" mnemonicParsing="false" text="否" toggleGroup="$group2" />
+                            </children>
+                        </Group>
+                    </children>
+                </HBox>
+                <Label text="组件路径" GridPane.rowIndex="5" />
+                <TextField fx:id="componentField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                <Label text="权限字符" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                <TextField fx:id="permsField" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                <Label text="路由参数" GridPane.rowIndex="6" />
+                <TextField fx:id="queryField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                <Label text="是否缓存" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                <HBox alignment="CENTER_LEFT" spacing="7.0" GridPane.columnIndex="3" GridPane.rowIndex="6">
+                    <children>
+                        <RadioButton fx:id="cacheRadio1" mnemonicParsing="false" text="是">
+                            <toggleGroup>
+                                <ToggleGroup fx:id="group3" />
+                            </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="cacheRadio2" mnemonicParsing="false" text="否" toggleGroup="$group3" />
+                    </children>
+                </HBox>
+                <Label text="显示状态" GridPane.rowIndex="7" />
+                <HBox alignment="CENTER_LEFT" spacing="7.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                    <children>
+                        <RadioButton fx:id="visibleRadio1" mnemonicParsing="false" text="显示">
+                            <toggleGroup>
+                                <ToggleGroup fx:id="group4" />
+                            </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="visibleRadio2" mnemonicParsing="false" text="隐藏" toggleGroup="$group4" />
+                    </children>
+                </HBox>
+                <Label text="菜单状态" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+                <HBox alignment="CENTER_LEFT" spacing="7.0" GridPane.columnIndex="3" GridPane.rowIndex="7">
+                    <children>
+                        <RadioButton fx:id="statusRadio1" mnemonicParsing="false" text="正常">
+                            <toggleGroup>
+                                <ToggleGroup fx:id="group5" />
+                            </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="statusRadio2" mnemonicParsing="false" text="停用" toggleGroup="$group5" />
+                    </children>
+                </HBox>
+                <Label text="上级菜单" />
+                <Label text="菜单类型" GridPane.rowIndex="1" />
+                <Label text="菜单图标" GridPane.rowIndex="2" />
+                <Label text="菜单名称" GridPane.rowIndex="3" />
+                <Label text=" 是否外链" GridPane.rowIndex="4" />
+            </children>
+        </GridPane>
+
+    </children>
+    <padding>
+        <Insets right="10.0" />
+    </padding>
+
+</VBox>

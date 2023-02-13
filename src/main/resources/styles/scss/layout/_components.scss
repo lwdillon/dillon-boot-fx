@@ -1,0 +1,212 @@
+// SPDX-License-Identifier: MIT
+
+.mfx-text-field {
+  -fx-background-color: transparent;
+  -fx-border-color: -color-border-default;
+
+  > .text-field {
+    -fx-highlight-fill: #32076e; /* Selected text highlight */
+    -fx-prompt-text-fill: -color-fg-subtle; /* Prompt text color */
+  }
+}
+
+.sample-block {
+  -fx-spacing: 1em;
+
+  > .title {
+    -fx-font-weight: bold;
+  }
+}
+
+.popover .date-picker-popup {
+  -color-date-border: transparent;
+  -color-date-bg: transparent;
+  -color-date-day-bg: transparent;
+  -color-date-month-year-bg: transparent;
+  -color-date-day-bg-hover: -color-bg-subtle;
+}
+
+/*******************************************************************************
+*                                                                              *
+* JFX List View                                                                *
+*                                                                              *
+*******************************************************************************/
+
+.jfx-list-cell {
+  -fx-background-insets: 0.0;
+  -fx-text-fill: BLACK;
+}
+
+.jfx-list-cell:odd,
+.jfx-list-cell:even {
+  -fx-background-color: -color-bg-default;
+}
+
+.jfx-list-cell:filled:hover,
+.jfx-list-cell:selected .label {
+  -fx-text-fill: black;
+}
+
+.jfx-list-cell .jfx-rippler {
+  -jfx-rippler-fill: #5264AE;
+}
+
+.jfx-list-cell:odd:selected > .jfx-rippler > StackPane,
+.jfx-list-cell:even:selected > .jfx-rippler > StackPane {
+  -fx-background-color: rgba(0.0, 0.0, 255.0, 0.2);
+}
+
+.jfx-list-view {
+  -fx-background-insets: 0.0;
+  -jfx-cell-horizontal-margin: 0.0;
+  -jfx-cell-vertical-margin: 5.0;
+  -jfx-vertical-gap: 10.0;
+  -jfx-expanded: false;
+}
+
+.custom-jfx-list-view .jfx-list-cell:odd:selected > .jfx-rippler > StackPane,
+.custom-jfx-list-view .jfx-list-cell:even:selected > .jfx-rippler > StackPane {
+  -fx-background-color: rgba(255, 0, 0, 0.2);
+}
+
+.custom-jfx-list-view {
+  -fx-background-insets: 0.0;
+  -jfx-cell-horizontal-margin: 0.0;
+  -jfx-cell-vertical-margin: 5.0;
+  -jfx-expanded: false;
+  //-fx-max-width: 200.0px;
+  /* important to hide the list change of height */
+  -fx-background-color: TRANSPARENT;
+}
+
+.custom-jfx-list-view .jfx-rippler {
+  -jfx-rippler-fill: RED;
+}
+
+
+.custom-jfx-list-view-icon,
+.jfx-list-cell:selected .label .custom-jfx-list-view-icon {
+  /*-fx-text-fill: #5264AE;*/
+  -fx-fill: #5264AE;
+  -fx-padding: 0.0 10.0 0.0 5.0;
+  -fx-cursor: hand;
+}
+
+.custom-jfx-list-view-icon-container {
+  -fx-pref-width: 40px;
+}
+
+.custom-jfx-list-view .sublist-item {
+  -fx-border-color: #e0e0e0;
+  -fx-border-width: 1 0 1 0;
+}
+
+.custom-jfx-list-view .jfx-list-cell .sublist-header > .drop-icon {
+  -fx-background-color: GRAY;
+}
+
+.custom-jfx-list-view .jfx-list-cell:filled:hover .sublist-header > .drop-icon {
+  -fx-background-color: BLACK;
+}
+
+/*******************************************************************************/
+/*******************************************************************************/
+/*******************************************************************************/
+/*******************************************************************************/
+/*******************************************************************************/
+/*******************************************************************************/
+/*******************************************************************************
+*                                                                              *
+* JFX SUBLIST IMPORTANT                                                        *
+*                                                                              *
+*******************************************************************************/
+.sublist .scroll-bar:vertical .increment-arrow,
+.sublist .scroll-bar:vertical .decrement-arrow,
+.sublist .scroll-bar:vertical .increment-button,
+.sublist .scroll-bar:vertical .decrement-button {
+  -fx-padding: 0;
+}
+
+.sublist .scroll-bar:vertical .track,
+.sublist .scroll-bar:vertical .thumb {
+  -fx-background-color: -color-bg-default;
+}
+
+.sublist {
+  -fx-background-color: TRANSPARENT;
+}
+
+.sublist .jfx-list-cell:odd:selected > .jfx-rippler > StackPane,
+.sublist .jfx-list-cell:even:selected > .jfx-rippler > StackPane {
+  -fx-background-color: rgba(255, 0, 0, 0.2);
+}
+
+.sublist .jfx-list-cell {
+  -fx-background-insets: 0.0;
+  -fx-text-fill: BLACK;
+}
+
+.sublist-header {
+  -fx-alignment: center-left;
+}
+
+.sublist-header .sub-label {
+  -fx-padding: 0 0 0 12;
+}
+
+.tree-table-view > .column-header-background .column-header .label {
+  -fx-text-fill: -color-header-fg;
+  -fx-alignment: CENTER;
+  -fx-padding: 0 0.5em 0 0.5em;
+}
+
+
+.message {
+  -color-message-bg: -color-bg-default;
+  -color-message-fg: -color-fg-default;
+  -fx-background-color: -color-message-bg;
+  -fx-border-color: -color-message-fg;
+  -fx-border-width: 0 0 0 5px;
+  -fx-pref-width: 600px;
+  -fx-alignment: TOP_LEFT;
+}
+
+.message > .header {
+  -fx-font-weight: bold;
+}
+
+.message Text {
+  -fx-fill: -color-message-fg;
+}
+
+.message > .button {
+  -color-button-fg: -color-message-fg;
+}
+
+.message.info, .msg-icon.info {
+  -color-message-bg: -color-accent-subtle;
+  -color-message-fg: -color-accent-fg;
+  -fx-text-fill: -color-accent-fg;
+  -fx-icon-color: -color-accent-fg;
+}
+
+.message.success,.msg-icon.success {
+  -color-message-bg: -color-success-subtle;
+  -color-message-fg: -color-success-fg;
+  -fx-text-fill: -color-success-fg;
+  -fx-icon-color: -color-success-fg;
+}
+
+.message.warning,.msg-icon.warning {
+  -color-message-bg: -color-warning-subtle;
+  -color-message-fg: -color-warning-fg;
+  -fx-text-fill: -color-warning-fg;
+  -fx-icon-color: -color-warning-fg;
+}
+
+.message.danger, .msg-icon.danger {
+  -color-message-bg: -color-danger-subtle;
+  -color-message-fg: -color-danger-fg;
+  -fx-text-fill: -color-danger-fg;
+  -fx-icon-color: -color-danger-fg;
+}

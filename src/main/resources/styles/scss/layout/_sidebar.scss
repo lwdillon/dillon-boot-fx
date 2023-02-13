@@ -1,0 +1,72 @@
+// SPDX-License-Identifier: MIT
+
+#sidebar {
+  -fx-padding: 0 0 5px 0;
+  -fx-background-color: -color-bg-inset;
+  -fx-border-color: -color-border-default;
+  -fx-border-width: 0 0px 0 0;
+
+  #search-form {
+    -fx-padding: 5px;
+    -fx-border-color: -color-border-muted;
+    -fx-border-width: 0 0 0px 0;
+  }
+
+  .nav-menu {
+    -fx-padding: 0 5px 0 5px;
+
+    > .caption {
+      -fx-padding: 5px 0 5px 6px;
+      -fx-font-weight: bold;
+      -fx-text-fill: -color-fg-muted;
+    }
+
+     .nav-link {
+      -fx-padding: 5px 5px 5px 5px;
+      -fx-pref-height: 45px;
+      -fx-min-height: 45px;
+      > .tag {
+        -fx-background-color: -color-accent-emphasis;
+        -fx-text-fill: -color-fg-emphasis;
+        -fx-padding: 2px;
+        -fx-background-radius: 4px;
+      }
+
+      &:hover {
+        -fx-background-color: -color-accent-muted;
+        -fx-background-radius: 6px;
+      }
+
+      &:selected {
+        -fx-text-fill: red;
+        -fx-font-weight: bold;
+      }
+    }
+  }
+
+
+  .sub-link-box > .nav-link {
+    -fx-padding: 5px 5px 5px 35px;
+    -fx-pref-height: 45px;
+    -fx-min-height: 45px;
+
+    > .tag {
+      -fx-background-color: -color-accent-emphasis;
+      -fx-text-fill: -color-fg-emphasis;
+      -fx-padding: 2px;
+      -fx-background-radius: 4px;
+    }
+
+    &:hover {
+      -fx-background-color: -color-accent-muted;
+      -fx-background-radius: 6px;
+    }
+
+    &:selected {
+      -fx-text-fill: red;
+      -fx-font-weight: bold;
+    }
+  }
+
+}
+

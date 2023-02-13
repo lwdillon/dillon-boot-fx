@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXCheckbox?>
+<?import io.github.palexdev.materialfx.controls.MFXPasswordField?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.effect.Reflection?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.dillon.fx.view.loginregister.LoginRegisterView">
+   <children>
+      <StackPane id="login-pane" fx:id="rootPane" prefHeight="525.0" prefWidth="887.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox id="login-context-pane" fx:id="registerPane" maxHeight="369.0" maxWidth="630.0" prefHeight="369.0" prefWidth="530.0" visible="false">
+               <children>
+                  <VBox id="register-info-pane" alignment="TOP_CENTER" HBox.hgrow="ALWAYS">
+                     <children>
+                        <VBox alignment="TOP_CENTER" prefHeight="356.0" prefWidth="310.0" spacing="30.0" VBox.vgrow="ALWAYS">
+                           <children>
+                              <Label text="XXX系统">
+                                 <font>
+                                    <Font size="48.0" />
+                                 </font>
+                                 <effect>
+                                    <Reflection fraction="0.57" topOffset="-10.0" topOpacity="0.26" />
+                                 </effect>
+                              </Label>
+                              <Label text="欢迎访问">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fx:id="registerImageView" fitHeight="167.0" fitWidth="254.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS" />
+                           </children>
+                           <padding>
+                              <Insets top="40.0" />
+                           </padding>
+                        </VBox>
+                        <Label text="©中国.xxx" />
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" />
+                     </padding>
+                  </VBox>
+                  <VBox id="login-text-pane" alignment="CENTER" maxWidth="300.0" prefWidth="300.0" spacing="10.0">
+                     <children>
+                        <Label text="注 册">
+                           <font>
+                              <Font name="System Bold" size="36.0" />
+                           </font>
+                        </Label>
+                        <MFXTextField id="validatedField" fx:id="usrNameTextField1" floatMode="BORDER" floatingText="用户名" maxWidth="1.7976931348623157E308" prefHeight="45.0" prefWidth="237.0">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </MFXTextField>
+                        <MFXPasswordField id="validatedField" fx:id="pwdTextField1" floatMode="BORDER" floatingText="密码" maxWidth="1.7976931348623157E308" prefHeight="40.0">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </MFXPasswordField>
+                        <MFXPasswordField id="validatedField" fx:id="pwdTextField11" floatMode="BORDER" floatingText="确认密码" maxWidth="1.7976931348623157E308" prefHeight="40.0">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </MFXPasswordField>
+                        <MFXButton id="register-button" fx:id="registerBut" buttonType="RAISED" maxWidth="1.7976931348623157E308" prefHeight="40.0" text="注 册">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </MFXButton>
+                        <HBox alignment="CENTER_LEFT" />
+                        <HBox alignment="BOTTOM_CENTER" VBox.vgrow="ALWAYS">
+                           <children>
+                              <Label prefHeight="40.0" text="已有账号去" textFill="#00000091" />
+                              <Hyperlink fx:id="loginLink" prefHeight="40.0" text="登录">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Hyperlink>
+                           </children>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="20.0" right="20.0" top="40.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox id="login-context-pane" fx:id="loginPane" maxHeight="369.0" maxWidth="630.0" prefHeight="369.0" prefWidth="530.0">
+               <children>
+                  <VBox id="login-info-pane" alignment="TOP_CENTER" HBox.hgrow="ALWAYS">
+                     <children>
+                        <VBox alignment="TOP_CENTER" spacing="30.0" VBox.vgrow="ALWAYS">
+                           <children>
+                              <Label text="XXX系统">
+                                 <font>
+                                    <Font size="48.0" />
+                                 </font>
+                                 <effect>
+                                    <Reflection fraction="0.57" topOffset="-10.0" topOpacity="0.26" />
+                                 </effect>
+                              </Label>
+                              <Label text="欢迎访问">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fx:id="logoImageView" fitHeight="167.0" fitWidth="254.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS" />
+                           </children>
+                           <padding>
+                              <Insets top="40.0" />
+                           </padding>
+                        </VBox>
+                        <Label text="©中国.xxx" />
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" />
+                     </padding>
+                  </VBox>
+                  <VBox id="login-text-pane" alignment="CENTER" maxWidth="300.0" prefWidth="300.0" spacing="10.0">
+                     <children>
+                        <Label text="登 录">
+                           <font>
+                              <Font name="System Bold" size="36.0" />
+                           </font>
+                        </Label>
+                        <ProgressBar fx:id="bar" maxWidth="1.7976931348623157E308" minHeight="10.0" progress="1.0" />
+                        <MFXTextField id="login-text" fx:id="usrNameTextField" floatMode="BORDER" floatingText="用户名" maxWidth="1.7976931348623157E308" prefHeight="40.0">
+                           <font>
+                              <Font size="16.0" />
+                           </font></MFXTextField>
+                        <MFXPasswordField id="login-text" fx:id="pwdTextField" floatMode="BORDER" floatingText="密码" maxWidth="1.7976931348623157E308" prefHeight="40.0">
+                           <font>
+                              <Font size="16.0" />
+                           </font></MFXPasswordField>
+                        <AnchorPane maxWidth="40.0">
+                           <children>
+                              <MFXTextField id="login-text" fx:id="vefCodeTextField" floatMode="BORDER" floatingText="验证码" prefHeight="40.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </MFXTextField>
+                              <ImageView fx:id="codeImeageView" fitHeight="34.0" fitWidth="80.0" layoutX="170.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="170.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="6.0" />
+                           </children>
+                        </AnchorPane>
+                        <Label fx:id="msg" alignment="CENTER" maxWidth="1.7976931348623157E308" style="-fx-text-fill: red;" text="aa" />
+                        <MFXButton id="login-button" fx:id="loginBut" buttonType="RAISED" maxWidth="1.7976931348623157E308" prefHeight="40.0" text="登   录">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </MFXButton>
+                        <HBox alignment="CENTER_LEFT">
+                           <children>
+                              <MFXCheckbox text="记住密码" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="BOTTOM_CENTER" VBox.vgrow="ALWAYS">
+                           <children>
+                              <Label prefHeight="40.0" text="还没有账号?" textFill="#00000091" />
+                              <Hyperlink fx:id="registerLink" prefHeight="40.0" text="注册">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Hyperlink>
+                           </children>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="20.0" right="20.0" top="40.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </StackPane>
+      <MFXButton fx:id="closeBut" contentDisplay="GRAPHIC_ONLY" style="-fx-background-color: red;" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <graphic>
+            <FontIcon iconColor="#fcfafa" iconLiteral="fth-x" iconSize="18" />
+         </graphic>
+      </MFXButton>
+   </children>
+</AnchorPane>

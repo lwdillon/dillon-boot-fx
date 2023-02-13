@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<VBox fx:id="root" alignment="TOP_CENTER" maxHeight="380.0" maxWidth="300.0" prefHeight="380.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.dillon.fx.view.config.UserInfoView">
+    <children>
+        <Button fx:id="iconBut" alignment="CENTER" contentDisplay="CENTER" maxHeight="120.0" maxWidth="120.0" minHeight="120.0" minWidth="120.0" prefHeight="120.0" prefWidth="120.0">
+            <graphic>
+                <FontIcon iconLiteral="fth-user" />
+            </graphic>
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin>
+        </Button>
+        <Separator prefWidth="200.0" />
+        <HBox alignment="CENTER_LEFT" prefHeight="38.0" prefWidth="286.0">
+            <children>
+                <Label text="用户名称">
+                    <graphic>
+                        <FontIcon iconLiteral="fth-user" />
+                    </graphic>
+                </Label>
+                <Label fx:id="userName" alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="admin" HBox.hgrow="ALWAYS" />
+            </children>
+        </HBox>
+        <Separator prefWidth="200.0" />
+        <HBox alignment="CENTER_LEFT" prefHeight="38.0" prefWidth="286.0">
+            <children>
+                <Label fx:id="phonenumber" text="手机号码">
+                    <graphic>
+                        <FontIcon iconLiteral="fth-smartphone" />
+                    </graphic>
+                </Label>
+                <Label fx:id="phonenumber" alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="185xxxxxx99" HBox.hgrow="ALWAYS" />
+            </children>
+        </HBox>
+        <Separator prefWidth="200.0" />
+        <HBox alignment="CENTER_LEFT" prefHeight="38.0" prefWidth="286.0">
+            <children>
+                <Label text="用户邮箱">
+                    <graphic>
+                        <FontIcon iconLiteral="fth-mail" />
+                    </graphic>
+                </Label>
+                <Label fx:id="email" alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="admin@163.com" HBox.hgrow="ALWAYS" />
+            </children>
+        </HBox>
+        <Separator prefWidth="200.0" />
+        <HBox alignment="CENTER_LEFT" prefHeight="38.0" prefWidth="286.0">
+            <children>
+                <Label text="所属部门">
+                    <graphic>
+                        <FontIcon iconLiteral="fth-users" />
+                    </graphic>
+                </Label>
+                <Label fx:id="dept" alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="董事长/研发部门" HBox.hgrow="ALWAYS" />
+            </children>
+        </HBox>
+        <Separator prefWidth="200.0" />
+        <HBox alignment="CENTER_LEFT" prefHeight="38.0" prefWidth="286.0">
+            <children>
+                <Label text="所属角色">
+                    <graphic>
+                        <FontIcon iconLiteral="fth-user-check" />
+                    </graphic>
+                </Label>
+                <Label fx:id="roles" alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="超级管理员" HBox.hgrow="ALWAYS" />
+            </children>
+        </HBox>
+        <Separator prefWidth="200.0" />
+        <HBox alignment="CENTER_LEFT" prefHeight="38.0" prefWidth="286.0">
+            <children>
+                <Label text="创建日期">
+                    <graphic>
+                        <FontIcon iconLiteral="fth-calendar" />
+                    </graphic>
+                </Label>
+                <Label fx:id="createDate" alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="2022-09-25 12:08" HBox.hgrow="ALWAYS" />
+            </children>
+        </HBox>
+        <Separator prefWidth="200.0" />
+        <Button fx:id="loginOutBut" maxWidth="1.7976931348623157E308" text="退出">
+            <graphic>
+                <FontIcon iconLiteral="fth-log-out" />
+            </graphic>
+            <VBox.margin>
+                <Insets top="7.0" />
+            </VBox.margin>
+        </Button>
+    </children>
+    <opaqueInsets>
+        <Insets />
+    </opaqueInsets>
+    <padding>
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+    </padding>
+</VBox>

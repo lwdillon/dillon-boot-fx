@@ -1,0 +1,170 @@
+
+#decorator-button, #decorator-button-close {
+  -fx-background-color: transparent;
+}
+
+#decorator-button:hover {
+  -fx-background-color: -color-button-bg-hover;
+}
+
+#decorator-button-close:hover {
+  -fx-background-color: -color-danger-emphasis;
+}
+
+#userBut .ikonli-font-icon {
+  -fx-icon-size: 90px;
+}
+
+.theme-icon {
+  -fx-background-color: -color-fg-default;
+  -size: 16;
+  -fx-min-height: -size;
+  -fx-min-width: -size;
+  -fx-max-height: -size;
+  -fx-max-width: -size;
+  -fx-shape: "M679.36 901.12h-312a112.32 112.32 0 0 1-115.2-109.12v-288a67.2 67.2 0 0 1-56.64-17.28l-94.4-85.76a64 64 0 0 1-20.48-46.08 64 64 0 0 1 20.48-45.76l168.96-156.48a68.48 68.48 0 0 1 64-15.04 123.2 123.2 0 0 1 32-4.48h68.48l2.88 28.8a82.56 82.56 0 0 0 84.8 69.44A82.24 82.24 0 0 0 608 161.92l2.88-28.8h68.48a123.52 123.52 0 0 1 32 4.48 68.16 68.16 0 0 1 64 15.04l168.96 156.48a61.76 61.76 0 0 1 20.48 45.76 64 64 0 0 1-20.48 46.08l-94.08 87.04a67.2 67.2 0 0 1-56.64 17.28v288a112.64 112.64 0 0 1-114.24 107.84zM316.16 374.4v417.6a48.64 48.64 0 0 0 51.2 45.12h312a48.64 48.64 0 0 0 51.52-45.12v-416l72 66.88a4.8 4.8 0 0 0 5.12 0l93.12-86.4-167.68-156.8a5.12 5.12 0 0 0-4.8 0l-13.44 7.68-14.4-5.76a54.4 54.4 0 0 0-21.44-4.16h-13.76a147.52 147.52 0 0 1-142.08 98.24 147.52 147.52 0 0 1-142.4-98.24h-13.76a55.68 55.68 0 0 0-21.44 4.16l-14.08 5.76-11.84-8a5.12 5.12 0 0 0-4.8 0l-170.56 156.48 94.08 85.44a5.44 5.44 0 0 0 5.44 0z";
+}
+
+.minus-icon {
+  -fx-background-color: -color-fg-default;
+  -size: 12;
+  -fx-min-height: 2;
+  -fx-min-width: -size;
+  -fx-max-height: 2;
+  -fx-max-width: -size;
+  -fx-shape: "M804.571 420.571v109.714q0 22.857-16 38.857t-38.857 16h-694.857q-22.857 0-38.857-16t-16-38.857v-109.714q0-22.857 16-38.857t38.857-16h694.857q22.857 0 38.857 16t16 38.857z";
+
+}
+
+.resize-max-icon {
+  -fx-background-color: -color-fg-default;
+  -size: 12;
+  -fx-min-height: -size;
+  -fx-min-width: -size;
+  -fx-max-height: -size;
+  -fx-max-width: -size;
+  -fx-shape: "M726 810v-596h-428v596h428zM726 44q34 0 59 25t25 59v768q0 34-25 60t-59 26h-428q-34 0-59-26t-25-60v-768q0-34 25-60t59-26z";
+}
+
+.resize-min-icon {
+  -fx-background-color: -color-fg-default;
+  -size: 12;
+  -fx-min-height: -size;
+  -fx-min-width: -size;
+  -fx-max-height: -size;
+  -fx-max-width: -size;
+  -fx-shape: "M80.842 943.158v-377.264h565.894v377.264h-565.894zM0 404.21v619.79h727.578v-619.79h-727.578zM377.264 161.684h565.894v377.264h-134.736v80.842h215.578v-619.79h-727.578v323.37h80.842v-161.686z";
+}
+
+.close-icon {
+  -fx-background-color: -color-fg-default;
+  -size: 12;
+  -fx-min-height: -size;
+  -fx-min-width: -size;
+  -fx-max-height: -size;
+  -fx-max-width: -size;
+  -fx-shape: "M810 274l-238 238 238 238-60 60-238-238-238 238-60-60 238-238-238-238 60-60 238 238 238-238z";
+}
+
+
+.mfx-button {
+  -fx-background-color: green;
+}
+
+.mfx-tree-view {
+  -fx-border-insets: 0;
+  -fx-border-color: lightgray;
+  -fx-border-width: 0;
+  -fx-border-radius: 0;
+  -fx-background-radius: 0;
+  -fx-background-color: TRANSPARENT;
+  -fx-padding: 0px 0px 0px 10px
+
+}
+
+.mfx-tree-view .viewport {
+  -fx-background-color: TRANSPARENT;
+}
+
+.mfx-tree-cell {
+  -fx-background-radius: 7px;
+}
+
+.mfx-tree-cell:selected {
+  -fx-background-color: -color-accent-muted;
+}
+
+.mfx-tree-cell:hover {
+  -fx-background-color: -color-accent-emphasis;
+}
+
+//.tab-pane > .tab-header-area > .tab-header-background {
+//  -fx-background-color: -color-bg-subtle;
+//
+//}
+
+//.tab-pane > .tab-header-area > .headers-region > .tab {
+//  /* This is how it is done in Button, but the -1 inset caused a white line  */
+//  /* to appear beneath the tab, which looks bad, so it's taken out below.    */
+//  /*    -fx-background-color: -fx-shadow-highlight-color, -fx-tab-border-color, -fx-inner-border, -fx-body-color;
+//      -fx-background-radius: 5 5 0 0, 5 5 0 0, 4 4 0 0, 3 3 0 0;
+//      -fx-background-insets: 0 0 -1 0, 0, 1, 2;*/
+//  /*-fx-background-insets: 0, 1, 2;*/
+//  -fx-padding: 10px
+//  /*    -fx-text-fill: -fx-text-base-color;*/
+//}
+
+#side-tree .tree-cell > .tree-disclosure-node > .arrow {
+  -fx-shape: "";
+  -fx-scale-shape: true;
+  -fx-background-color: transparent;
+}
+
+//#side-tree .tree-cell:expanded > .tree-disclosure-node > .arrow {
+//  -fx-shape: "";
+//  -fx-scale-shape: true;
+//  -fx-background-color: transparent;
+//}
+
+
+#side-tree {
+  .tree-cell {
+    -fx-background-color: -color-bg-inset;
+
+    &:hover {
+      -fx-background-color: -color-accent-muted;
+    }
+
+    &:selected {
+      -fx-background-color: -color-accent-muted;
+      -fx-font-weight: bold;
+    }
+  }
+
+  .tree-cell:empty {
+    &:hover {
+      -fx-background-color: transparent;
+    }
+  }
+
+}
+
+
+#side-menu-cell-selected {
+  -fx-text-fill: -color-accent-fg;
+  -fx-font-weight: bold;
+}
+
+
+
+#side-menu-bar {
+  -fx-border-color: -color-border-default;
+  -fx-border-width: 0 0 0 0;
+}
+
+#side-menu {
+  -fx-border-color: -color-border-default;
+  -fx-border-width: 0 1px 0 0;
+  -fx-background-color: -color-bg-inset;
+}
+
