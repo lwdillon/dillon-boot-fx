@@ -35,6 +35,143 @@ public abstract class OverlayDialog<T extends Node> extends VBox {
         createView();
     }
 
+    public static final String CSS = """ 
+            .mfx-dialog {
+              	-fx-background-color:  -color-bg-default;
+              	-fx-background-radius: 10;
+                -fx-border-width: 1px;
+                -fx-border-color: -color-border-default;
+              	-fx-border-radius: 10;
+              	-fx-padding: 10;
+              }
+              
+              .mfx-dialog #alwaysOnTop .mfx-font-icon{
+              	-mfx-color: -color-fg-default;
+              }
+              .mfx-dialog #alwaysOnTop:hover {
+              	-fx-background-color: red;
+              }
+              
+              .mfx-dialog #alwaysOnTop:hover .mfx-font-icon {
+              	-mfx-color: derive(-mfx-purple, 30%);
+              }
+              
+              .mfx-dialog:always-on-top #alwaysOnTop {
+              	-fx-background-color: derive(-mfx-purple, 140%);
+              }
+              
+              .mfx-dialog:always-on-top #alwaysOnTop .mfx-font-icon {
+              	-mfx-color: derive(-mfx-purple, 30%);
+              }
+              .mfx-dialog #minimize .mfx-font-icon{
+              	-mfx-color: -color-fg-default;
+              }
+              .mfx-dialog #minimize:hover {
+              	-fx-background-color: derive(-mfx-blue, 105%);
+              }
+              
+              .mfx-dialog #minimize:hover .mfx-font-icon {
+              	-mfx-color: -mfx-blue;
+              }
+              
+              .mfx-dialog #close .mfx-font-icon{
+              	-mfx-color: -color-fg-default;
+              }
+              .mfx-dialog #close:hover {
+              	-fx-background-color: derive(-mfx-red, 90%);
+              }
+              
+              .mfx-dialog #close:hover .mfx-font-icon {
+              	-mfx-color: -mfx-red;
+              }
+              
+              .mfx-dialog .header-label {
+              	-fx-font-family: "Open Sans Bold";
+              	-fx-font-size: 14;
+              	-fx-text-fill: -color-fg-muted;
+              	-fx-graphic-text-gap: 10;
+              }
+              
+              .mfx-dialog .header-label .text {
+              	-fx-font-smoothing-type: lcd;
+              }
+              
+              .mfx-dialog .content-container {
+              	-fx-padding: 10 0 10 0;
+              	-fx-background-color:  -color-bg-default;
+              }
+              
+              .mfx-dialog .content-container .scroll-bar:vertical {
+              	-fx-pref-width: 15;
+              }
+              
+              .mfx-dialog .content {
+              	-fx-font-family: "Open Sans Regular";
+              	-fx-text-fill: -color-fg-muted;
+              }
+              
+              .mfx-dialog .content .text {
+              	-fx-font-smoothing-type: lcd;
+              }
+                        
+              /********************
+              Info
+              ********************/
+              .mfx-info-dialog .header-label .mfx-font-icon {
+              	-mfx-color: derive(-mfx-blue, 60%);
+              }
+              
+              .mfx-info-dialog .actions-pane .mfx-button {
+              	-fx-text-fill: derive(-mfx-blue, -20%);
+              }
+              
+              .mfx-info-dialog .actions-pane .mfx-button .mfx-ripple-generator {
+              	-mfx-ripple-color: derive(-mfx-blue, 80%);
+              }
+              
+              .mfx-info-dialog .actions-pane .mfx-button:hover {
+              	-fx-background-color: derive(-mfx-blue, 110%);
+              }
+              
+              /********************
+              Warn
+              ********************/
+              .mfx-warn-dialog .header-label .mfx-font-icon {
+              	-mfx-color: derive(-mfx-orange, 35%);
+              }
+              
+              .mfx-warn-dialog .actions-pane .mfx-button {
+              	-fx-text-fill: derive(-mfx-orange, -5%);
+              }
+              
+              .mfx-warn-dialog .actions-pane .mfx-button .mfx-ripple-generator {
+              	-mfx-ripple-color: derive(-mfx-orange, 60%);
+              }
+              
+              .mfx-warn-dialog .actions-pane .mfx-button:hover {
+              	-fx-background-color: derive(-mfx-orange, 90%);
+              }
+              
+              /********************
+              Error
+              ********************/
+              .mfx-error-dialog .header-label .mfx-font-icon {
+              	-mfx-color: derive(-mfx-red, 20%);
+              }
+              
+              .mfx-error-dialog .actions-pane .mfx-button {
+              	-fx-text-fill: derive(-mfx-red, -5%);
+              }
+              
+              .mfx-error-dialog .actions-pane .mfx-button .mfx-ripple-generator {
+              	-mfx-ripple-color: derive(-mfx-red, 65%);
+              }
+              
+              .mfx-error-dialog .actions-pane .mfx-button:hover {
+              	-fx-background-color: derive(-mfx-red, 95%);
+              }
+            """;
+
     protected void createView() {
         titleLabel = new Label();
         titleLabel.getStyleClass().addAll(TITLE_4, "title");

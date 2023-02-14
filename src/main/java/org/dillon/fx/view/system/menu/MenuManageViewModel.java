@@ -35,17 +35,10 @@ public class MenuManageViewModel implements ViewModel, SceneLifecycle {
     private ObservableList<SysMenu> allData = FXCollections.observableArrayList();
     private StringProperty text = new SimpleStringProperty();
 
-    private Command listCommand;
 
 
     public void initialize() {
 
-        listCommand = new DelegateCommand(() -> new Action() {
-            @Override
-            protected void action() throws Exception {
-                list();
-            }
-        }, true); //Async
     }
 
     public void someAction() {
@@ -69,9 +62,7 @@ public class MenuManageViewModel implements ViewModel, SceneLifecycle {
         System.err.println("------add");
     }
 
-    public Command getListCommand() {
-        return listCommand;
-    }
+
 
     public ObservableList<SysMenu> getAllData() {
         return allData;
@@ -88,7 +79,7 @@ public class MenuManageViewModel implements ViewModel, SceneLifecycle {
      * 获取菜单列表
      */
 
-    private void list() {
+    public void query() {
         allData.clear();
         JsonObject routers = Request.connector(SysMenuFeign.class).list(new HashMap<>());
 
@@ -101,13 +92,8 @@ public class MenuManageViewModel implements ViewModel, SceneLifecycle {
     }
 
     public void remove(Long menuId) {
-        new DelegateCommand(() -> new Action() {
-            @Override
-            protected void action() throws Exception {
-                Request.connector(SysMenuFeign.class).remove(menuId);
-                publish(REFRESH);
-            }
-        }, true).execute();
+        Request.connector(SysMenuFeign.class).remove(menuId);
+
     }
 
 

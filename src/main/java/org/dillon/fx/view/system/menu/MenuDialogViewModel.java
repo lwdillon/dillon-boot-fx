@@ -1,5 +1,6 @@
 package org.dillon.fx.view.system.menu;
 
+import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONUtil;
 import com.google.gson.JsonArray;
@@ -11,7 +12,6 @@ import de.saxsys.mvvmfx.utils.commands.Action;
 import de.saxsys.mvvmfx.utils.commands.Command;
 import de.saxsys.mvvmfx.utils.commands.DelegateCommand;
 import de.saxsys.mvvmfx.utils.mapping.ModelWrapper;
-import de.saxsys.mvvmfx.utils.notifications.WeakNotificationObserver;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -37,33 +37,13 @@ public class MenuDialogViewModel implements ViewModel, SceneLifecycle {
      */
     private ModelWrapper<SysMenu> wrapper = new ModelWrapper<>();
 
-    private Command addCommand;
-    private Command edtCommand;
-    private Command menuListCommand;
 
     private ObjectProperty<SysMenu> selectSysMenu = new SimpleObjectProperty<>(new SysMenu());
 
 
     public void initialize() {
 
-        addCommand = new DelegateCommand(() -> new Action() {
-            @Override
-            protected void action() throws Exception {
-                add();
-            }
-        }, true); //Async
-        edtCommand = new DelegateCommand(() -> new Action() {
-            @Override
-            protected void action() throws Exception {
-                edit();
-            }
-        }, true); //Async
-        menuListCommand = new DelegateCommand(() -> new Action() {
-            @Override
-            protected void action() throws Exception {
-                menuList();
-            }
-        }, true); //Async
+
     }
 
 
@@ -218,36 +198,24 @@ public class MenuDialogViewModel implements ViewModel, SceneLifecycle {
 
     }
 
-    public Command getMenuListCommand() {
-        return menuListCommand;
-    }
-
     public ObservableList<SysMenu> getAllMenuData() {
         return allMenuData;
     }
 
-    public Command getAddCommand() {
-        return addCommand;
-    }
 
-    public Command getEdtCommand() {
-        return edtCommand;
-    }
-
-    private void add() {
+    public Boolean save(boolean isEdit) {
         wrapper.commit();
-        Request.connector(SysMenuFeign.class).add(wrapper.get());
-        publish(ON_CLOSE);
+        JsonObject result;
+        if (isEdit) {
+            result = Request.connector(SysMenuFeign.class).edit(wrapper.get());
+        } else {
+            result = Request.connector(SysMenuFeign.class).add(wrapper.get());
+        }
 
+        return ObjectUtil.equals(result.get(AjaxResult.CODE_TAG).getAsString(),"200");
     }
 
-    private void edit() {
-        wrapper.commit();
-        Request.connector(SysMenuFeign.class).edit(wrapper.get());
-        publish(ON_CLOSE);
-    }
-
-    private void menuList() {
+    public void menuList() {
         JsonObject routers = Request.connector(SysMenuFeign.class).list(new HashMap<>());
 
         JsonArray array = routers.getAsJsonArray(AjaxResult.DATA_TAG);

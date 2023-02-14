@@ -5,6 +5,7 @@ import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.ObjectUtil;
 import de.saxsys.mvvmfx.FxmlView;
 import de.saxsys.mvvmfx.InjectViewModel;
+import io.datafx.core.concurrent.ProcessChain;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -111,7 +112,10 @@ public class MenuDialogView implements FxmlView<MenuDialogViewModel>, Initializa
     public void initialize(URL url, ResourceBundle resourceBundle) {
         menuTreeView = new TreeView<SysMenu>();
         menuTreeView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            viewModel.setSelectSysMenu(newValue.getValue());
+            if (newValue != null) {
+                viewModel.setSelectSysMenu(newValue.getValue());
+
+            }
             if (menuTreePopover != null) {
                 menuTreePopover.hide();
             }
@@ -246,11 +250,9 @@ public class MenuDialogView implements FxmlView<MenuDialogViewModel>, Initializa
             }
         });
 
-        viewModel.subscribe("menuList", (key, payload) -> {
-            createRoot();
-        });
 
 
+        initMeneTree();
     }
 
     private TreeItem selItem = null;
@@ -262,15 +264,15 @@ public class MenuDialogView implements FxmlView<MenuDialogViewModel>, Initializa
         var root = new TreeItem<SysMenu>(rootMenu);
         menuTreeView.setRoot(root);
         root.setExpanded(true);
-        selItem=root;
+        selItem = root;
         Map<Long, List<SysMenu>> groupMap = viewModel.getAllMenuData().stream().collect(Collectors.groupingBy(SysMenu::getParentId));
         List<SysMenu> firstList = groupMap.get(0L);
         if (CollUtil.isNotEmpty(firstList)) {
             firstList.forEach(bean -> {
                 var group = new TreeItem<>(bean);
                 root.getChildren().add(group);
-                if (ObjectUtil.equals(viewModel.getSelectSysMenu().getMenuName(), bean.getMenuName())) {
-                    selItem=group;
+                if (ObjectUtil.equals(viewModel.getSelectSysMenu().getMenuId(), bean.getMenuId())) {
+                    selItem = group;
                 }
                 List<SysMenu> childs = groupMap.get(bean.getMenuId());
                 if (CollUtil.isNotEmpty(childs)) {
@@ -287,8 +289,8 @@ public class MenuDialogView implements FxmlView<MenuDialogViewModel>, Initializa
             var group = new TreeItem<>(bean);
             parent.getChildren().add(group);
             List<SysMenu> childs = groupMap.get(bean.getMenuId());
-            if (ObjectUtil.equals(viewModel.getSelectSysMenu().getMenuName(), bean.getMenuName())) {
-                selItem=group;
+            if (ObjectUtil.equals(viewModel.getSelectSysMenu().getMenuId(), bean.getMenuId())) {
+                selItem = group;
             }
             if (CollUtil.isNotEmpty(childs)) {
                 generateTree(group, childs, groupMap);
@@ -307,6 +309,13 @@ public class MenuDialogView implements FxmlView<MenuDialogViewModel>, Initializa
         menuTreeView.setPrefWidth(parentIdCombo.getWidth() - 40);
 //        Bounds bounds = source.localToScreen(source.getBoundsInLocal());
         menuTreePopover.show(source);
+    }
+
+    private void initMeneTree() {
+        ProcessChain.create()
+                .addRunnableInExecutor(() -> viewModel.menuList())
+                .addRunnableInPlatformThread(() -> createRoot()).onException(e -> e.printStackTrace())
+                .run();
     }
 
 }

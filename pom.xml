@@ -13,6 +13,7 @@
         <mvvmfx-version>1.9.0-SNAPSHOT</mvvmfx-version>
         <ikonli-javafx-version>12.3.1</ikonli-javafx-version>
         <feign.version>12.1</feign.version>
+        <datafx.version>8.0.2-SNAPSHOT</datafx.version>
     </properties>
     <dependencies>
 
@@ -94,6 +95,13 @@
         </dependency>
 
 
+        <dependency>
+            <groupId>datafx-core</groupId>
+            <artifactId>datafx-core</artifactId>
+            <version>${datafx.version}</version>
+            <scope>system</scope>
+            <systemPath>${pom.basedir}/libs/datafx-core-8.0.2-SNAPSHOT.jar</systemPath>
+        </dependency>
         <dependency>
             <groupId>io.github.typhon0</groupId>
             <artifactId>AnimateFX</artifactId>
@@ -283,6 +291,7 @@
                     <source>19</source>
                     <target>19</target>
                     <release>19</release>
+
                 </configuration>
             </plugin>
             <!-- compile SCSS -->
@@ -312,6 +321,7 @@
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.6</version>
+
                 <executions>
                     <execution>
                         <!-- Default configuration for running -->

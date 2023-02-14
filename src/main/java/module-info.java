@@ -12,6 +12,7 @@ open module org.dillon.fx {
     requires annotations;
     requires ruoyi.common.core;
     requires ruoyi.api.system;
+    requires datafx.core;
 
     requires javafx.controls;
     requires javafx.fxml;
