@@ -13,7 +13,6 @@ import io.github.palexdev.materialfx.dialogs.MFXStageDialog;
 import io.github.palexdev.materialfx.enums.ScrimPriority;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.TreeItemPropertyValueFactory;
@@ -24,7 +23,6 @@ import javafx.stage.Modality;
 import javafx.util.Callback;
 import org.dillon.fx.theme.CSSFragment;
 import org.dillon.fx.view.control.OverlayDialog;
-import org.dillon.fx.view.main.Overlay;
 import org.dillon.fx.vo.SysMenu;
 import org.kordamp.ikonli.feather.Feather;
 import org.kordamp.ikonli.javafx.FontIcon;
@@ -33,11 +31,15 @@ import java.net.URL;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
 
-import static atlantafx.base.theme.Styles.ACCENT;
-import static atlantafx.base.theme.Styles.FLAT;
+import static atlantafx.base.theme.Styles.*;
 
+/**
+ * 菜单管理视图
+ *
+ * @author wenli
+ * @date 2023/02/15
+ */
 public class MenuManageView implements FxmlView<MenuManageViewModel>, Initializable {
 
     @InjectViewModel
@@ -53,6 +55,16 @@ public class MenuManageView implements FxmlView<MenuManageViewModel>, Initializa
     private StackPane root;
     @FXML
     private MFXProgressSpinner load;
+
+    @FXML
+    private TextField searchField;
+
+    @FXML
+    private ComboBox<String> statusCombo;
+    @FXML
+    private Button addBut;
+    @FXML
+    private Button restBut;
     @FXML
     private TreeTableView<SysMenu> treeTableView;
     @FXML
@@ -77,8 +89,13 @@ public class MenuManageView implements FxmlView<MenuManageViewModel>, Initializa
     @FXML
     private ToggleButton expansionBut;
 
-    private Overlay overlay;
 
+    /**
+     * 初始化
+     *
+     * @param url            url
+     * @param resourceBundle 资源包
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -86,11 +103,17 @@ public class MenuManageView implements FxmlView<MenuManageViewModel>, Initializa
         load = new MFXProgressSpinner();
         load.disableProperty().bind(load.visibleProperty().not());
         load.visibleProperty().bindBidirectional(content.disableProperty());
-
-
         root.getChildren().add(load);
 
+        addBut.setOnAction(event -> showEditDialog(new SysMenu(), false));
+        addBut.getStyleClass().addAll(BUTTON_OUTLINED, ACCENT);
+        searchField.textProperty().bindBidirectional(viewModel.searchTextProperty());
+        statusCombo.valueProperty().bindBidirectional(viewModel.statusTextProperty());
         searchBut.setOnAction(event -> query());
+        searchBut.getStyleClass().addAll(ACCENT);
+
+        restBut.setOnAction(event -> {viewModel.rest();query();});
+
         nameCol.setCellValueFactory(new TreeItemPropertyValueFactory<>("menuName"));
         iconCol.setCellValueFactory(new TreeItemPropertyValueFactory<>("icon"));
         sortCol.setCellValueFactory(new TreeItemPropertyValueFactory<>("orderNum"));
@@ -138,23 +161,25 @@ public class MenuManageView implements FxmlView<MenuManageViewModel>, Initializa
 
     }
 
-    private void createRoot() {
+    /**
+     * 创建树项目根
+     * 创建根
+     */
+    private void createTreeItemRoot() {
 
         var root = new TreeItem<SysMenu>(new SysMenu());
-//        root.expandedProperty().bind(expansionBut.selectedProperty());
-        Map<Long, List<SysMenu>> groupMap = viewModel.getAllData().stream().collect(Collectors.groupingBy(SysMenu::getParentId));
 
-        List<SysMenu> firstList = groupMap.get(0L);
+        List<SysMenu> treeList = viewModel.getMenuList();
 
-        if (CollUtil.isNotEmpty(firstList)) {
-            firstList.forEach(bean -> {
-                var group = new TreeItem<>(bean);
+        if (CollUtil.isNotEmpty(treeList)) {
+            treeList.forEach(sysMenu -> {
+                var group = new TreeItem<SysMenu>(sysMenu);
                 root.getChildren().add(group);
                 group.expandedProperty().bindBidirectional(expansionBut.selectedProperty());
-                List<SysMenu> childs = groupMap.get(bean.getMenuId());
+                List<SysMenu> children = sysMenu.getChildren();
 
-                if (CollUtil.isNotEmpty(childs)) {
-                    generateTree(group, childs, groupMap);
+                if (CollUtil.isNotEmpty(children)) {
+                    generateTree(group, children);
                 }
             });
         }
@@ -163,38 +188,37 @@ public class MenuManageView implements FxmlView<MenuManageViewModel>, Initializa
         root.setExpanded(true);
     }
 
-    private void generateTree(TreeItem<SysMenu> parent, List<SysMenu> sysMenuList, Map<Long, List<SysMenu>> groupMap) {
-        sysMenuList.forEach(bean -> {
-            var group = new TreeItem<>(bean);
+    /**
+     * 生成树
+     *
+     * @param parent   父
+     * @param treeList 树列表
+     */
+    private void generateTree(TreeItem<SysMenu> parent, List<SysMenu> treeList) {
+        treeList.forEach(treeNode -> {
+            var group = new TreeItem<SysMenu>(treeNode);
             parent.getChildren().add(group);
             parent.expandedProperty().bindBidirectional(expansionBut.selectedProperty());
-            List<SysMenu> childs = groupMap.get(bean.getMenuId());
-
-            if (CollUtil.isNotEmpty(childs)) {
-                generateTree(group, childs, groupMap);
+            List<SysMenu> children = treeNode.getChildren();
+            if (CollUtil.isNotEmpty(children)) {
+                generateTree(group, children);
             }
         });
     }
 
 
-    protected Overlay lookupOverlay() {
-        return load.getScene() != null && load.getScene().lookup("." + Overlay.STYLE_CLASS) instanceof Overlay ov ? ov : null;
-    }
-
-
-    public Overlay getOverlay() {
-        if (overlay == null) {
-            this.overlay = lookupOverlay();
-        }
-        return overlay;
-    }
-
+    /**
+     * 显示编辑对话框
+     *
+     * @param sysMenu 系统菜单
+     * @param isEdit  是编辑
+     */
     private void showEditDialog(SysMenu sysMenu, boolean isEdit) {
 
 
         ViewTuple<MenuDialogView, MenuDialogViewModel> load = FluentViewLoader.fxmlView(MenuDialogView.class).load();
         SysMenu selMenu = new SysMenu();
-        selMenu.setMenuId(isEdit ? sysMenu.getParentId() : 0L);
+        selMenu.setMenuId(isEdit ? sysMenu.getParentId() : sysMenu.getMenuId());
         load.getViewModel().setSysMenu(isEdit ? sysMenu : new SysMenu());
         load.getViewModel().setSelectSysMenu(selMenu);
 
@@ -243,12 +267,17 @@ public class MenuManageView implements FxmlView<MenuManageViewModel>, Initializa
     }
 
 
+    /**
+     * 显示del对话框
+     *
+     * @param sysMenu 系统菜单
+     */
     private void showDelDialog(SysMenu sysMenu) {
         getDialogContent().clearActions();
         getDialogContent().addActions(
                 Map.entry(new Button("取消"), event -> dialog.close()),
                 Map.entry(new Button("确定"), event -> {
-                    del(sysMenu.getMenuId());
+                    remove(sysMenu.getMenuId());
                 })
         );
         getDialogContent().setShowAlwaysOnTop(false);
@@ -260,15 +289,24 @@ public class MenuManageView implements FxmlView<MenuManageViewModel>, Initializa
         getDialog().showDialog();
     }
 
+    /**
+     * 查询
+     */
     private void query() {
         ProcessChain.create().addRunnableInPlatformThread(() -> load.setVisible(true))
                 .addRunnableInExecutor(() -> viewModel.query())
-                .addRunnableInPlatformThread(() -> createRoot()).withFinal(() -> {
+                .addRunnableInPlatformThread(() -> createTreeItemRoot()).withFinal(() -> {
                     load.setVisible(false);
                 }).onException(e -> e.printStackTrace())
                 .run();
     }
 
+    /**
+     * 保存
+     *
+     * @param menuDialogViewModel 菜单对话框视图模型
+     * @param isEdit              是编辑
+     */
     private void save(MenuDialogViewModel menuDialogViewModel, final boolean isEdit) {
 
         ProcessChain.create()
@@ -283,7 +321,12 @@ public class MenuManageView implements FxmlView<MenuManageViewModel>, Initializa
 
     }
 
-    private void del(Long menuId) {
+    /**
+     * 删除
+     *
+     * @param menuId 菜单id
+     */
+    private void remove(Long menuId) {
 
         ProcessChain.create()
                 .addRunnableInExecutor(() -> viewModel.remove(menuId))

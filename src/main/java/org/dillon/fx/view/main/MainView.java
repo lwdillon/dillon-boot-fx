@@ -72,8 +72,10 @@ public class MainView implements FxmlView<MainViewModel>, Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        rootPane.getStyleClass().add("main-view");
         sideMenu = new SideMenu(mainViewModel);
         tabPane = new TabPane();
+
         HBox.setHgrow(tabPane, Priority.ALWAYS);
 
         centerPane.getChildren().addAll(sideMenu, tabPane);

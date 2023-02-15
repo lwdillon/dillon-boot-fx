@@ -9,27 +9,25 @@ import io.datafx.core.concurrent.ProcessChain;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Bounds;
-import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
 import javafx.util.Callback;
-import org.dillon.fx.view.main.QuickConfigMenu;
 import org.dillon.fx.vo.SysMenu;
-import org.kordamp.ikonli.feather.Feather;
-import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.net.URL;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import static atlantafx.base.controls.Popover.ArrowLocation.TOP_CENTER;
 
+/**
+ * 视图菜单对话框
+ *
+ * @author wenli
+ * @date 2023/02/15
+ */
 public class MenuDialogView implements FxmlView<MenuDialogViewModel>, Initializable {
 
     @InjectViewModel
@@ -108,6 +106,12 @@ public class MenuDialogView implements FxmlView<MenuDialogViewModel>, Initializa
     @FXML
     private ToggleGroup group5;
 
+    /**
+     * 初始化
+     *
+     * @param url            url
+     * @param resourceBundle 资源包
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         menuTreeView = new TreeView<SysMenu>();
@@ -251,12 +255,14 @@ public class MenuDialogView implements FxmlView<MenuDialogViewModel>, Initializa
         });
 
 
-
-        initMeneTree();
+        initMenuTuree();
     }
 
     private TreeItem selItem = null;
 
+    /**
+     * 创建根
+     */
     private void createRoot() {
         SysMenu rootMenu = new SysMenu();
         rootMenu.setMenuId(0L);
@@ -284,6 +290,13 @@ public class MenuDialogView implements FxmlView<MenuDialogViewModel>, Initializa
 
     }
 
+    /**
+     * 生成树
+     *
+     * @param parent      父
+     * @param sysMenuList 系统菜单列表
+     * @param groupMap    组织图
+     */
     private void generateTree(TreeItem<SysMenu> parent, List<SysMenu> sysMenuList, Map<Long, List<SysMenu>> groupMap) {
         sysMenuList.forEach(bean -> {
             var group = new TreeItem<>(bean);
@@ -299,6 +312,11 @@ public class MenuDialogView implements FxmlView<MenuDialogViewModel>, Initializa
     }
 
 
+    /**
+     * 显示弹出窗口菜单树
+     *
+     * @param source 源
+     */
     private void showMenuTreePopover(Node source) {
         if (menuTreePopover == null) {
             menuTreePopover = new Popover(menuTreeView);
@@ -311,7 +329,11 @@ public class MenuDialogView implements FxmlView<MenuDialogViewModel>, Initializa
         menuTreePopover.show(source);
     }
 
-    private void initMeneTree() {
+    /**
+     * 初始化菜单turee
+     * init弥尼树
+     */
+    private void initMenuTuree() {
         ProcessChain.create()
                 .addRunnableInExecutor(() -> viewModel.menuList())
                 .addRunnableInPlatformThread(() -> createRoot()).onException(e -> e.printStackTrace())

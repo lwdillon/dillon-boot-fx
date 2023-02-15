@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -14,71 +16,70 @@
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
 <StackPane fx:id="root" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.dillon.fx.view.system.menu.MenuManageView">
-   <children>
-      <VBox fx:id="content" prefHeight="600.0" prefWidth="700.0">
-          <children>
-              <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="200.0" spacing="7.0">
-                  <children>
-                      <Label text="菜单名称" />
-                      <TextField promptText="请输入菜单名称" />
-                      <Label text="状态" />
-                      <ComboBox prefWidth="150.0" promptText="菜单状态" />
-                      <Button fx:id="searchBut" mnemonicParsing="false" text="搜索">
-                          <graphic>
-                              <FontIcon iconLiteral="fth-search" />
-                          </graphic>
-                      </Button>
-                      <Button mnemonicParsing="false" text="重置">
-                          <graphic>
-                              <FontIcon iconLiteral="fth-plus" />
-                          </graphic>
-                      </Button>
-      
-      
-                  </children>
-              </HBox>
-              <VBox prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
-                  <children>
-                      <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="200.0" spacing="7.0">
-                          <children>
-                              <Button mnemonicParsing="false" text="新增">
-                                  <graphic>
-                                      <FontIcon iconLiteral="fth-plus" />
-                                  </graphic>
-                              </Button>
-                              <ToggleButton fx:id="expansionBut" mnemonicParsing="false" text="展开/折叠">
-                                  <graphic>
-                                      <FontIcon iconLiteral="fth-plus" />
-                                  </graphic>
-                              </ToggleButton>
-                              <ToggleButton mnemonicParsing="false">
-                                  <graphic>
-                                      <FontIcon iconLiteral="fth-search" />
-                                  </graphic>
-                              </ToggleButton>
-                          </children>
-                      </HBox>
-                      <TreeTableView fx:id="treeTableView" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-                          <columns>
-                              <TreeTableColumn fx:id="nameCol" prefWidth="75.0" text="菜单名称" />
-                              <TreeTableColumn fx:id="iconCol" prefWidth="75.0" text="图标" />
-                              <TreeTableColumn fx:id="sortCol" prefWidth="75.0" text="排序" />
-                              <TreeTableColumn fx:id="authCol" prefWidth="75.0" text="权限标识" />
-                              <TreeTableColumn fx:id="comPathCol" prefWidth="75.0" text="组件路径" />
-                              <TreeTableColumn fx:id="stateCol" prefWidth="75.0" text="状态" />
-                              <TreeTableColumn fx:id="createTime" prefWidth="39.0" text="创建时间" />
-                              <TreeTableColumn fx:id="optCol" maxWidth="260.0" minWidth="260.0" prefWidth="260.0" text="操作" />
-                          </columns>
-                          <columnResizePolicy>
-                              <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                          </columnResizePolicy>
-                      </TreeTableView>
-                  </children>
-              </VBox>
-          </children>
-         <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </padding>
-      </VBox>
-   </children>
+    <children>
+        <VBox fx:id="content" prefHeight="600.0" prefWidth="700.0" spacing="7.0">
+            <children>
+                <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="200.0" spacing="7.0">
+                    <children>
+                        <Label text="菜单名称" />
+                        <TextField fx:id="searchField" promptText="请输入菜单名称" />
+                        <Label text="状态" />
+                        <ComboBox fx:id="statusCombo" prefWidth="150.0" promptText="菜单状态">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="全部" />
+                                    <String fx:value="正常" />
+                                    <String fx:value="停用" />
+                                </FXCollections>
+                            </items>
+                        </ComboBox>
+                        <Button fx:id="searchBut" mnemonicParsing="false" text="搜索">
+                            <graphic>
+                                <FontIcon iconLiteral="fth-search" />
+                            </graphic>
+                        </Button>
+                        <Button fx:id="restBut" mnemonicParsing="false" text="重置">
+                            <graphic>
+                                <FontIcon iconLiteral="fth-refresh-cw" />
+                            </graphic>
+                        </Button>
+                          <ToggleButton fx:id="expansionBut" mnemonicParsing="false" text="展开/折叠">
+                              <graphic>
+                                  <FontIcon iconLiteral="fth-plus" />
+                              </graphic>
+                          </ToggleButton>
+                          <Button fx:id="addBut" mnemonicParsing="false" text="新增">
+                              <graphic>
+                                  <FontIcon iconLiteral="fth-plus" />
+                              </graphic>
+                          </Button>
+
+
+                    </children>
+                </HBox>
+                <VBox prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
+                    <children>
+                        <TreeTableView fx:id="treeTableView" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                            <columns>
+                                <TreeTableColumn fx:id="nameCol" prefWidth="75.0" text="菜单名称" />
+                                <TreeTableColumn fx:id="iconCol" prefWidth="75.0" text="图标" />
+                                <TreeTableColumn fx:id="sortCol" prefWidth="75.0" text="排序" />
+                                <TreeTableColumn fx:id="authCol" prefWidth="75.0" text="权限标识" />
+                                <TreeTableColumn fx:id="comPathCol" prefWidth="75.0" text="组件路径" />
+                                <TreeTableColumn fx:id="stateCol" prefWidth="75.0" text="状态" />
+                                <TreeTableColumn fx:id="createTime" prefWidth="39.0" text="创建时间" />
+                                <TreeTableColumn fx:id="optCol" maxWidth="260.0" minWidth="260.0" prefWidth="260.0" text="操作" />
+                            </columns>
+                            <columnResizePolicy>
+                                <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                            </columnResizePolicy>
+                        </TreeTableView>
+                    </children>
+                </VBox>
+            </children>
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+        </VBox>
+    </children>
 </StackPane>

@@ -8,9 +8,6 @@ import com.google.gson.JsonObject;
 import com.ruoyi.common.core.web.domain.AjaxResult;
 import de.saxsys.mvvmfx.SceneLifecycle;
 import de.saxsys.mvvmfx.ViewModel;
-import de.saxsys.mvvmfx.utils.commands.Action;
-import de.saxsys.mvvmfx.utils.commands.Command;
-import de.saxsys.mvvmfx.utils.commands.DelegateCommand;
 import de.saxsys.mvvmfx.utils.mapping.ModelWrapper;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
@@ -203,6 +200,12 @@ public class MenuDialogViewModel implements ViewModel, SceneLifecycle {
     }
 
 
+    /**
+     * 保存
+     *
+     * @param isEdit 是编辑
+     * @return {@link Boolean}
+     */
     public Boolean save(boolean isEdit) {
         wrapper.commit();
         JsonObject result;
@@ -215,6 +218,9 @@ public class MenuDialogViewModel implements ViewModel, SceneLifecycle {
         return ObjectUtil.equals(result.get(AjaxResult.CODE_TAG).getAsString(),"200");
     }
 
+    /**
+     * 菜单列表
+     */
     public void menuList() {
         JsonObject routers = Request.connector(SysMenuFeign.class).list(new HashMap<>());
 
@@ -223,6 +229,5 @@ public class MenuDialogViewModel implements ViewModel, SceneLifecycle {
         JSONArray objects = JSONUtil.parseArray(array.toString());
         List<SysMenu> menus = JSONUtil.toList(objects, SysMenu.class);
         allMenuData.addAll(menus);
-        publish("menuList");
     }
 }

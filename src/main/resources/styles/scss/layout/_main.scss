@@ -156,7 +156,6 @@
 }
 
 
-
 #side-menu-bar {
   -fx-border-color: -color-border-default;
   -fx-border-width: 0 0 0 0;
@@ -168,4 +167,7 @@
   -fx-background-color: -color-bg-inset;
 }
 
+.main-view .tab-pane > .tab-header-area > .headers-region > .tab {
 
+  -fx-padding: 10px;
+}
