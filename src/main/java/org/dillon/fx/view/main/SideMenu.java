@@ -24,6 +24,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 import javafx.util.Duration;
+import org.dillon.fx.icon.WIcon;
+import org.dillon.fx.theme.CSSFragment;
 import org.kordamp.ikonli.feather.Feather;
 import org.kordamp.ikonli.javafx.FontIcon;
 
@@ -72,9 +74,10 @@ public class SideMenu extends StackPane {
                         } else {
 
                             Label label = new Label(item.getJSONObject("meta").getStr("title"));
+                            String iconStr = item.getJSONObject("meta").getStr("icon");
                             label.setMaxWidth(Double.MAX_VALUE);
                             FontIcon icon = FontIcon.of(Feather.CHEVRON_DOWN);
-                            label.setGraphic(FontIcon.of(Feather.HOME));
+                            label.setGraphic(FontIcon.of(WIcon.findByDescription("lw-" + iconStr)));
                             label.setGraphicTextGap(10);
                             HBox box = new HBox(label, icon);
                             HBox.setHgrow(label, Priority.ALWAYS);
@@ -83,8 +86,6 @@ public class SideMenu extends StackPane {
                             icon.setVisible(!getTreeItem().isLeaf());
                             if (isSelected()) {
                                 label.setId("side-menu-cell-selected");
-                            }else {
-                                label.setId("side-menu-cell");
                             }
                             box.setPadding(new Insets(7, 7, 7, 0));
                             setGraphic(box);
@@ -102,8 +103,8 @@ public class SideMenu extends StackPane {
         });
         treeView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             TreeItem<JSONObject> currentSelectItem = (TreeItem<JSONObject>) newValue;
-            if (currentSelectItem != null&&currentSelectItem.isLeaf()) {
-               mainViewModel.addTab(currentSelectItem.getValue());
+            if (currentSelectItem != null && currentSelectItem.isLeaf()) {
+                mainViewModel.addTab(currentSelectItem.getValue());
             }
         });
         setId("side-menu");
@@ -116,15 +117,18 @@ public class SideMenu extends StackPane {
 
         mainViewModel.getRouterList().forEach(obj -> {
             var child = new TreeItem<JSONObject>(obj);
+            String iconStr = obj.getJSONObject("meta").getStr("icon");
             MenuButton menuButton = new MenuButton();
-            menuButton.setGraphic(FontIcon.of(Feather.HOME));
-            menuButton.getStyleClass().addAll(FLAT,Tweaks.NO_ARROW);
+            menuButton.setPopupSide(Side.RIGHT);
+            menuButton.setGraphic(FontIcon.of(WIcon.findByDescription("lw-" + iconStr)));
+            menuButton.getStyleClass().addAll(FLAT, Tweaks.NO_ARROW);
+            menuButton.setId("side-menu-button");
 
             var childObj = obj.getJSONArray("children");
             if (childObj != null) {
                 generateTree(child, childObj);
                 generateMenu(menuButton, childObj);
-            }else {
+            } else {
                 menuButton.setOnMouseClicked(event -> mainViewModel.addTab(obj));
             }
 
@@ -163,9 +167,11 @@ public class SideMenu extends StackPane {
 
             if (obj instanceof JSONObject) {
                 var childObj = ((JSONObject) obj).getJSONArray("children");
-                var text=((JSONObject) obj).getJSONObject("meta").getStr("title");
+                var text = ((JSONObject) obj).getJSONObject("meta").getStr("title");
+                String iconStr = ((JSONObject) obj).getJSONObject("meta").getStr("icon");
                 if (childObj != null) {
                     var child = new Menu(text);
+                    child.setGraphic(FontIcon.of(WIcon.findByDescription("lw-" + iconStr)));
                     generateMenu2(child, childObj);
 
                     Platform.runLater(() -> {
@@ -174,6 +180,7 @@ public class SideMenu extends StackPane {
                     });
                 } else {
                     var child = new MenuItem(text);
+                    child.setGraphic(FontIcon.of(WIcon.findByDescription("lw-" + iconStr)));
                     child.setOnAction(event -> mainViewModel.addTab((JSONObject) obj));
                     Platform.runLater(() -> {
                         parent.getItems().add(child);
@@ -189,18 +196,21 @@ public class SideMenu extends StackPane {
         jsonArray.forEach(obj -> {
 
             if (obj instanceof JSONObject) {
-                var text=((JSONObject) obj).getJSONObject("meta").getStr("title");
+                var text = ((JSONObject) obj).getJSONObject("meta").getStr("title");
+                String iconStr = ((JSONObject) obj).getJSONObject("meta").getStr("icon");
                 var childObj = ((JSONObject) obj).getJSONArray("children");
                 if (childObj != null) {
                     var child = new Menu(text);
+                    child.setGraphic(FontIcon.of(WIcon.findByDescription("lw-" + iconStr)));
                     generateMenu2(child, childObj);
 
                     Platform.runLater(() -> {
                         parent.getItems().add(child);
 
                     });
-                }else {
+                } else {
                     var child = new MenuItem(text);
+                    child.setGraphic(FontIcon.of(WIcon.findByDescription("lw-" + iconStr)));
                     child.setOnAction(event -> mainViewModel.addTab((JSONObject) obj));
                     Platform.runLater(() -> {
                         parent.getItems().add(child);

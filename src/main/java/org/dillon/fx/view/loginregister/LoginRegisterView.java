@@ -82,8 +82,8 @@ public class LoginRegisterView implements FxmlView<LoginRegisterViewModel>, Init
         SVGIcon svgIcon1 = new SVGIcon();
 
         try {
-            svgIcon.setSvgURI(LoginRegisterView.class.getResource("/image/dd.svg").toURI());
-            svgIcon1.setSvgURI(LoginRegisterView.class.getResource("/image/bb.svg").toURI());
+            svgIcon.setSvgURI(LoginRegisterView.class.getResource("/images/dd.svg").toURI());
+            svgIcon1.setSvgURI(LoginRegisterView.class.getResource("/images/bb.svg").toURI());
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }

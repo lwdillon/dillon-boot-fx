@@ -1,6 +1,7 @@
 package org.dillon.fx.view.main;
 
 import atlantafx.base.controls.Popover;
+import cn.hutool.core.util.ClassUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONObject;
 import com.goxr3plus.fxborderlessscene.borderless.BorderlessScene;
@@ -18,6 +19,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import org.dillon.fx.icon.WIcon;
 import org.dillon.fx.store.AppStore;
 import org.dillon.fx.theme.SamplerTheme;
 import org.dillon.fx.theme.ThemeManager;
@@ -173,7 +175,7 @@ public class MainView implements FxmlView<MainViewModel>, Initializable {
 
     private void loddTab(JSONObject obj) {
         var title = obj.getJSONObject("meta").getStr("title");
-
+        String iconStr = ((JSONObject) obj).getJSONObject("meta").getStr("icon");
         Tab tab = null;
         var tabOptional = tabPane.getTabs().stream()
                 .filter(t -> StrUtil.equals(t.getText(), title))
@@ -183,10 +185,22 @@ public class MainView implements FxmlView<MainViewModel>, Initializable {
             tab = tabOptional.get();
         } else {
             tab = new Tab(title);
-            tab.setGraphic(new FontIcon(AppStore.randomIcon()));
+            tab.setGraphic(new FontIcon(WIcon.findByDescription("lw-" + iconStr)));
             tabPane.getTabs().add(tab);
+            Class clazz = null;
 
-            ViewTuple<MenuManageView, MenuManageViewModel> load = FluentViewLoader.fxmlView(MenuManageView.class).load();
+            if (StrUtil.equals("菜单管理", title)) {
+                clazz = MenuManageView.class;
+            } else {
+                String component = ((JSONObject) obj).getStr("component");
+
+                try {
+                    clazz = Class.forName(component);
+                } catch (ClassNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            ViewTuple<MenuManageView, MenuManageViewModel> load = FluentViewLoader.fxmlView(clazz).load();
             tab.setContent(load.getView());
         }
 

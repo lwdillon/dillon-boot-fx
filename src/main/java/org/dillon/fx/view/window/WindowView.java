@@ -38,13 +38,12 @@ public class WindowView implements FxmlView<WindowViewModel>, Initializable {
     @FXML
     private StackPane contentPane;
 
-    private Overlay overlay;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-
-        rootPane.getChildren().add(0, overlay = new Overlay());
+        messagePane.visibleProperty().bindBidirectional(windowViewModel.mainViewVisbleProperty());
         MvvmFX.getNotificationCenter().subscribe("showMainView", (key, payload) -> {
             // trigger some actions
             showMainView();

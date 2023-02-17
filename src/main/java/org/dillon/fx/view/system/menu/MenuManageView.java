@@ -1,6 +1,8 @@
 package org.dillon.fx.view.system.menu;
 
 import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.util.StrUtil;
 import de.saxsys.mvvmfx.FluentViewLoader;
 import de.saxsys.mvvmfx.FxmlView;
 import de.saxsys.mvvmfx.InjectViewModel;
@@ -21,6 +23,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.util.Callback;
+import javafx.util.StringConverter;
+import org.dillon.fx.icon.WIcon;
 import org.dillon.fx.theme.CSSFragment;
 import org.dillon.fx.view.control.OverlayDialog;
 import org.dillon.fx.vo.SysMenu;
@@ -28,9 +32,7 @@ import org.kordamp.ikonli.feather.Feather;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.net.URL;
-import java.util.List;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.*;
 
 import static atlantafx.base.theme.Styles.*;
 
@@ -80,7 +82,7 @@ public class MenuManageView implements FxmlView<MenuManageViewModel>, Initializa
     @FXML
     private TreeTableColumn<SysMenu, String> stateCol;
     @FXML
-    private TreeTableColumn<SysMenu, String> createTime;
+    private TreeTableColumn<SysMenu, Date> createTime;
     @FXML
     private TreeTableColumn<SysMenu, String> optCol;
 
@@ -112,15 +114,68 @@ public class MenuManageView implements FxmlView<MenuManageViewModel>, Initializa
         searchBut.setOnAction(event -> query());
         searchBut.getStyleClass().addAll(ACCENT);
 
-        restBut.setOnAction(event -> {viewModel.rest();query();});
-
+        restBut.setOnAction(event -> {
+            viewModel.rest();
+            query();
+        });
+        expansionBut.selectedProperty().addListener((observable, oldValue, newValue) -> treeExpandedAll(treeTableView.getRoot(), newValue));
         nameCol.setCellValueFactory(new TreeItemPropertyValueFactory<>("menuName"));
+        iconCol.setStyle("-fx-alignment: CENTER");
         iconCol.setCellValueFactory(new TreeItemPropertyValueFactory<>("icon"));
+        iconCol.setCellFactory(new Callback<TreeTableColumn<SysMenu, String>, TreeTableCell<SysMenu, String>>() {
+            @Override
+            public TreeTableCell<SysMenu, String> call(TreeTableColumn<SysMenu, String> param) {
+                return new TreeTableCell<>() {
+                    @Override
+                    protected void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+
+                        if (StrUtil.isEmpty(item)) {
+                            setGraphic(null);
+                            return;
+                        }
+
+                        Label label = new Label();
+                        if (StrUtil.equals("#", item)) {
+                            label.setText(item);
+                        } else {
+                            label.setGraphic(FontIcon.of(WIcon.findByDescription("lw-" + item)));
+                        }
+
+                        setGraphic(label);
+                    }
+                };
+            }
+        });
         sortCol.setCellValueFactory(new TreeItemPropertyValueFactory<>("orderNum"));
+        sortCol.setStyle("-fx-alignment: CENTER");
         authCol.setCellValueFactory(new TreeItemPropertyValueFactory<>("perms"));
+        authCol.setStyle("-fx-alignment: CENTER");
         comPathCol.setCellValueFactory(new TreeItemPropertyValueFactory<>("path"));
+        comPathCol.setStyle("-fx-alignment: CENTER");
         stateCol.setCellValueFactory(new TreeItemPropertyValueFactory<>("status"));
+        stateCol.setStyle("-fx-alignment: CENTER");
         createTime.setCellValueFactory(new TreeItemPropertyValueFactory<>("createTime"));
+        createTime.setStyle("-fx-alignment: CENTER");
+        createTime.setCellFactory(new Callback<TreeTableColumn<SysMenu, Date>, TreeTableCell<SysMenu, Date>>() {
+            @Override
+            public TreeTableCell<SysMenu, Date> call(TreeTableColumn<SysMenu, Date> param) {
+                return new TreeTableCell<>() {
+                    @Override
+                    protected void updateItem(Date item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setText(null);
+                        } else {
+                            if (item != null) {
+                                this.setText(DateUtil.format(item, "yyyy-MM-dd HH:mm:ss"));
+                            }
+                        }
+
+                    }
+                };
+            }
+        });
         optCol.setCellValueFactory(new TreeItemPropertyValueFactory<>("menuName"));
         optCol.setCellFactory(new Callback<TreeTableColumn<SysMenu, String>, TreeTableCell<SysMenu, String>>() {
             @Override
@@ -175,7 +230,6 @@ public class MenuManageView implements FxmlView<MenuManageViewModel>, Initializa
             treeList.forEach(sysMenu -> {
                 var group = new TreeItem<SysMenu>(sysMenu);
                 root.getChildren().add(group);
-                group.expandedProperty().bindBidirectional(expansionBut.selectedProperty());
                 List<SysMenu> children = sysMenu.getChildren();
 
                 if (CollUtil.isNotEmpty(children)) {
@@ -186,6 +240,23 @@ public class MenuManageView implements FxmlView<MenuManageViewModel>, Initializa
         treeTableView.setRoot(root);
         treeTableView.setShowRoot(false);
         root.setExpanded(true);
+
+    }
+
+
+    /**
+     * 树扩展所有
+     *
+     * @param root     根
+     * @param expanded 扩大
+     */
+    private void treeExpandedAll(TreeItem<SysMenu> root, boolean expanded) {
+        for (TreeItem<SysMenu> child : root.getChildren()) {
+            child.setExpanded(expanded);
+            if (!child.getChildren().isEmpty()) {
+                treeExpandedAll(child, expanded);
+            }
+        }
     }
 
     /**
@@ -198,7 +269,6 @@ public class MenuManageView implements FxmlView<MenuManageViewModel>, Initializa
         treeList.forEach(treeNode -> {
             var group = new TreeItem<SysMenu>(treeNode);
             parent.getChildren().add(group);
-            parent.expandedProperty().bindBidirectional(expansionBut.selectedProperty());
             List<SysMenu> children = treeNode.getChildren();
             if (CollUtil.isNotEmpty(children)) {
                 generateTree(group, children);

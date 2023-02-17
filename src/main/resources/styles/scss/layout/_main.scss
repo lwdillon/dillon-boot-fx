@@ -159,12 +159,18 @@
 #side-menu-bar {
   -fx-border-color: -color-border-default;
   -fx-border-width: 0 0 0 0;
+  -fx-spacing: 5;
+  -fx-padding: 5 0 0 0;
 }
 
 #side-menu {
   -fx-border-color: -color-border-default;
   -fx-border-width: 0 1px 0 0;
   -fx-background-color: -color-bg-inset;
+}
+
+#side-menu-button .ikonli-font-icon {
+  -fx-icon-size: 24px;
 }
 
 .main-view .tab-pane > .tab-header-area > .headers-region > .tab {

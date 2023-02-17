@@ -1,5 +1,6 @@
 package org.dillon.fx.vo;
 
+
 import com.ruoyi.common.core.web.domain.BaseEntity;
 
 import java.util.ArrayList;

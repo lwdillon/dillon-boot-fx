@@ -43,7 +43,7 @@ public class LoginRegisterViewModel implements ViewModel, SceneLifecycle {
     private SimpleStringProperty userName = new SimpleStringProperty("admin");
     private SimpleStringProperty passWord = new SimpleStringProperty("admin123");
     private SimpleStringProperty uuId = new SimpleStringProperty();
-    private SimpleStringProperty vefCode = new SimpleStringProperty();
+    private SimpleStringProperty vefCode = new SimpleStringProperty("ss");
     private SimpleBooleanProperty success = new SimpleBooleanProperty(false);
 
     private SimpleObjectProperty<Image> codeImage = new SimpleObjectProperty<Image>();
