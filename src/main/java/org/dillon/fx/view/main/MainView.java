@@ -184,9 +184,7 @@ public class MainView implements FxmlView<MainViewModel>, Initializable {
         if (tabOptional.isPresent()) {
             tab = tabOptional.get();
         } else {
-            tab = new Tab(title);
-            tab.setGraphic(new FontIcon(WIcon.findByDescription("lw-" + iconStr)));
-            tabPane.getTabs().add(tab);
+
             Class clazz = null;
 
             if (StrUtil.equals("菜单管理", title)) {
@@ -200,6 +198,9 @@ public class MainView implements FxmlView<MainViewModel>, Initializable {
                     throw new RuntimeException(e);
                 }
             }
+            tab = new Tab(title);
+            tab.setGraphic(new FontIcon(WIcon.findByDescription("lw-" + iconStr)));
+            tabPane.getTabs().add(tab);
             ViewTuple<MenuManageView, MenuManageViewModel> load = FluentViewLoader.fxmlView(clazz).load();
             tab.setContent(load.getView());
         }

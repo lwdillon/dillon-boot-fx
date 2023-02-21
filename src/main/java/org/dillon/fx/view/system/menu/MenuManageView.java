@@ -23,11 +23,10 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.util.Callback;
-import javafx.util.StringConverter;
+import org.dillon.fx.domain.SysMenu;
 import org.dillon.fx.icon.WIcon;
 import org.dillon.fx.theme.CSSFragment;
 import org.dillon.fx.view.control.OverlayDialog;
-import org.dillon.fx.vo.SysMenu;
 import org.kordamp.ikonli.feather.Feather;
 import org.kordamp.ikonli.javafx.FontIcon;
 
@@ -55,7 +54,6 @@ public class MenuManageView implements FxmlView<MenuManageViewModel>, Initializa
 
     @FXML
     private StackPane root;
-    @FXML
     private MFXProgressSpinner load;
 
     @FXML

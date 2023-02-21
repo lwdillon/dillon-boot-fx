@@ -3,10 +3,10 @@ package org.dillon.fx.request.feign.interceptor;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.google.gson.JsonObject;
-import com.ruoyi.common.core.web.domain.AjaxResult;
 import de.saxsys.mvvmfx.MvvmFX;
 import okhttp3.*;
 import okio.Buffer;
+import org.dillon.fx.domain.AjaxResult;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;

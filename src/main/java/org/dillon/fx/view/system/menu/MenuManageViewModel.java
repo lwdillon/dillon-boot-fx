@@ -1,26 +1,19 @@
 package org.dillon.fx.view.system.menu;
 
 import cn.hutool.core.collection.CollUtil;
-import cn.hutool.core.lang.tree.Tree;
-import cn.hutool.core.lang.tree.TreeNode;
-import cn.hutool.core.lang.tree.TreeNodeConfig;
-import cn.hutool.core.lang.tree.TreeUtil;
-import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
-import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONUtil;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.ruoyi.common.core.web.domain.AjaxResult;
 import de.saxsys.mvvmfx.SceneLifecycle;
 import de.saxsys.mvvmfx.ViewModel;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.dillon.fx.domain.AjaxResult;
+import org.dillon.fx.domain.SysMenu;
 import org.dillon.fx.request.Request;
 import org.dillon.fx.request.feign.client.SysMenuFeign;
-import org.dillon.fx.vo.SysMenu;
 
 import java.util.*;
 import java.util.stream.Collectors;

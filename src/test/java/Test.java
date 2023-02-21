@@ -1,6 +1,6 @@
 public class Test {
 
     public static void main(String[] args) {
-        ListViewSample.main(args);
+        FilterableTreeItemSample.main(args);
     }
 }

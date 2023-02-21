@@ -12,7 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.util.Callback;
-import org.dillon.fx.vo.SysMenu;
+import org.dillon.fx.domain.SysMenu;
 
 import java.net.URL;
 import java.util.List;

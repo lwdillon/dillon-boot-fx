@@ -1,26 +1,17 @@
 package org.dillon.fx.view.window;
 
-import animatefx.animation.BounceInRight;
-import cn.hutool.json.JSONObject;
-import com.ruoyi.common.core.constant.HttpStatus;
-import com.ruoyi.common.core.web.domain.AjaxResult;
 import de.saxsys.mvvmfx.*;
-import de.saxsys.mvvmfx.utils.notifications.WeakNotificationObserver;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.HPos;
-import javafx.scene.Parent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import org.dillon.fx.theme.CSSFragment;
+import org.dillon.fx.constant.HttpStatus;
 import org.dillon.fx.view.control.Message;
 import org.dillon.fx.view.loginregister.LoginRegisterView;
 import org.dillon.fx.view.loginregister.LoginRegisterViewModel;
 import org.dillon.fx.view.main.MainView;
 import org.dillon.fx.view.main.MainViewModel;
-import org.dillon.fx.view.main.Overlay;
-import org.dillon.fx.view.system.DeptManageView;
 
 import java.net.URL;
 import java.util.ResourceBundle;

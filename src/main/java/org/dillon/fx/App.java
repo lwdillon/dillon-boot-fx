@@ -1,10 +1,7 @@
 package org.dillon.fx;
 
-import cn.hutool.core.bean.BeanUtil;
 import com.goxr3plus.fxborderlessscene.borderless.BorderlessPane;
 import com.goxr3plus.fxborderlessscene.borderless.BorderlessScene;
-import com.netflix.config.ConfigurationManager;
-import com.ruoyi.system.api.domain.SysUser;
 import de.saxsys.mvvmfx.FluentViewLoader;
 import de.saxsys.mvvmfx.ViewTuple;
 import fr.brouillard.oss.cssfx.CSSFX;
@@ -26,8 +23,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URI;
 import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Properties;
 
 import static java.nio.charset.StandardCharsets.UTF_8;

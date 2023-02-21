@@ -1,14 +1,12 @@
 package org.dillon.fx.request.feign.client;
 
 import com.google.gson.JsonObject;
-import com.ruoyi.common.core.web.domain.AjaxResult;
 import feign.Param;
 import feign.QueryMap;
 import feign.RequestLine;
+import org.dillon.fx.domain.SysMenu;
 import org.dillon.fx.request.feign.FeignAPI;
-import org.dillon.fx.vo.SysMenu;
 
-import java.util.List;
 import java.util.Map;
 
 public interface SysMenuFeign extends FeignAPI {

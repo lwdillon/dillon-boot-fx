@@ -1,9 +1,9 @@
 package org.dillon.fx.request.feign.client;
 
 import com.google.gson.JsonObject;
-import com.ruoyi.common.core.domain.R;
 import feign.Param;
 import feign.RequestLine;
+import org.dillon.fx.domain.R;
 import org.dillon.fx.request.feign.FeignAPI;
 
 import java.util.Map;

@@ -1,28 +1,20 @@
 package org.dillon.fx.view.config;
 
 import cn.hutool.core.bean.BeanUtil;
-import cn.hutool.core.map.MapUtil;
-import cn.hutool.core.util.ObjectUtil;
-import cn.hutool.json.JSONObject;
-import cn.hutool.json.JSONUtil;
-import com.ruoyi.system.api.domain.SysDept;
-import com.ruoyi.system.api.domain.SysRole;
-import com.ruoyi.system.api.domain.SysUser;
 import de.saxsys.mvvmfx.ViewModel;
 import de.saxsys.mvvmfx.utils.commands.Action;
 import de.saxsys.mvvmfx.utils.commands.Command;
 import de.saxsys.mvvmfx.utils.commands.DelegateCommand;
 import de.saxsys.mvvmfx.utils.mapping.ModelWrapper;
 import javafx.application.Platform;
-import javafx.beans.property.ListProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import org.dillon.fx.domain.SysDept;
+import org.dillon.fx.domain.SysUser;
 import org.dillon.fx.request.Request;
 import org.dillon.fx.request.feign.client.SysUserFeign;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
 public class UserInfoViewModel implements ViewModel {

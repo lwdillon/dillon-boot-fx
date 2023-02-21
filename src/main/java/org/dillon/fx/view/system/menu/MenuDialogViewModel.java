@@ -5,16 +5,16 @@ import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONUtil;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.ruoyi.common.core.web.domain.AjaxResult;
 import de.saxsys.mvvmfx.SceneLifecycle;
 import de.saxsys.mvvmfx.ViewModel;
 import de.saxsys.mvvmfx.utils.mapping.ModelWrapper;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.dillon.fx.domain.AjaxResult;
+import org.dillon.fx.domain.SysMenu;
 import org.dillon.fx.request.Request;
 import org.dillon.fx.request.feign.client.SysMenuFeign;
-import org.dillon.fx.vo.SysMenu;
 
 import java.util.HashMap;
 import java.util.List;

@@ -10,8 +10,6 @@ open module org.dillon.fx {
     requires lombok;
     requires okio;
     requires annotations;
-    requires ruoyi.api.system;
-    requires ruoyi.common.core;
     requires datafx.core;
     requires org.kordamp.ikonli.core;
     requires javafx.controls;
@@ -40,5 +38,7 @@ open module org.dillon.fx {
     provides org.kordamp.ikonli.IkonProvider
             with org.dillon.fx.icon.WIconIkonProvider;
 
+//    opens org.dillon.fx to javafx.fxml, de.saxsys.mvvmfx;
+//    exports org.dillon.fx;
 
 }

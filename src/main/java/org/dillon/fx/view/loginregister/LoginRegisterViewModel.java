@@ -1,10 +1,7 @@
 package org.dillon.fx.view.loginregister;
 
-import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.img.ImgUtil;
 import com.google.gson.JsonObject;
-import com.ruoyi.common.core.domain.R;
-import com.ruoyi.common.core.web.domain.AjaxResult;
 import de.saxsys.mvvmfx.SceneLifecycle;
 import de.saxsys.mvvmfx.ViewModel;
 import de.saxsys.mvvmfx.utils.commands.Action;
@@ -17,14 +14,12 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.image.Image;
+import org.dillon.fx.domain.R;
 import org.dillon.fx.request.Request;
 import org.dillon.fx.request.feign.client.LoginFeign;
-import org.dillon.fx.request.feign.client.SysMenuFeign;
-import org.dillon.fx.request.feign.client.SysUserFeign;
 import org.dillon.fx.store.AppStore;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
