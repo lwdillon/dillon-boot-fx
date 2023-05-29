@@ -28,27 +28,25 @@ javafx权限管理系统UI
 
 登录
 
-![Image text](https://gitee.com/lwdillon/fx-falsework/raw/main/readme/login.png)
-
-注册
-
-![Image text](https://gitee.com/lwdillon/fx-falsework/raw/main/readme/registered.png)
+![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/login.jpg)
 
 
 用户管理
 
-![Image text](https://gitee.com/lwdillon/fx-falsework/raw/main/readme/user-dark.png)
+![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/user_dark.jpg)
 
-![Image text](https://gitee.com/lwdillon/fx-falsework/raw/main/readme/user-light.png)
+![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/user-light.jpg)
 
 菜单管理
 
-![Image text](https://gitee.com/lwdillon/fx-falsework/raw/main/readme/menu-dark.png)
+![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/menu-dark.jpg)
 
-![Image text](https://gitee.com/lwdillon/fx-falsework/raw/main/readme/menu-light.png)
+![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/menu-light.jpg)
 
 角色权限管理
+![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/role-dark.jpg)
 
+![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/role-light.jpg)
 
 角色类型管理
 
