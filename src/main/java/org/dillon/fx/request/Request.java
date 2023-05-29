@@ -7,6 +7,7 @@ import feign.Logger;
 import feign.gson.GsonDecoder;
 import feign.gson.GsonEncoder;
 import feign.okhttp.OkHttpClient;
+import feign.querymap.BeanQueryMapEncoder;
 import okhttp3.ConnectionPool;
 import org.dillon.fx.request.feign.FeignAPI;
 import org.dillon.fx.request.feign.decoder.FeignErrorDecoder;
@@ -38,8 +39,9 @@ public class Request {
         final String commandConfigKey = connectorClass.getSimpleName() + readTimeOut;
 
         return (T) CONNECTORS.computeIfAbsent(commandConfigKey, k -> {
-            return Feign.builder()
+            return Feign.builder()  .queryMapEncoder(new BeanQueryMapEncoder())
                     .client(new OkHttpClient(createOkHttpClient()))
+
                     .decoder(getGsonDecoder())
                     .encoder(getGsonEncoder())
                     .errorDecoder(new FeignErrorDecoder(new GsonDecoder()))

@@ -60,7 +60,7 @@ public interface SysUserFeign extends FeignAPI {
      * 删除用户
      */
     @RequestLine("DELETE /system/user/{userIds}")
-    JsonObject remove(@Param("userIds") Long[] userIds);
+    JsonObject remove(@Param("userIds") String userIds);
 
     /**
      * 重置密码
@@ -84,7 +84,7 @@ public interface SysUserFeign extends FeignAPI {
      * 用户授权角色
      */
     @RequestLine("PUT /system/user/authRole")
-    JsonObject insertAuthRole(@Param("userId") Long userId, @Param("roleIds")Long[] roleIds);
+    JsonObject insertAuthRole(@QueryMap Map<String, Object> query);
 
     /**
      * 获取部门树列表

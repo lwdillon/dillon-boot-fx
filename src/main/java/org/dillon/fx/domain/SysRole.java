@@ -1,5 +1,8 @@
 package org.dillon.fx.domain;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+
 import java.util.Set;
 
 /**
@@ -10,6 +13,10 @@ import java.util.Set;
 public class SysRole extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
+
+    private final BooleanProperty select = new SimpleBooleanProperty(false);
+
+
 
     /** 角色ID */
     private Long roleId;
@@ -167,7 +174,9 @@ public class SysRole extends BaseEntity
 
     public void setFlag(boolean flag)
     {
+
         this.flag = flag;
+        this.setSelect(flag);
     }
 
     public Long[] getMenuIds()
@@ -200,5 +209,15 @@ public class SysRole extends BaseEntity
         this.permissions = permissions;
     }
 
+    public boolean isSelect() {
+        return select.get();
+    }
 
+    public BooleanProperty selectProperty() {
+        return select;
+    }
+
+    public void setSelect(boolean select) {
+        this.select.set(select);
+    }
 }

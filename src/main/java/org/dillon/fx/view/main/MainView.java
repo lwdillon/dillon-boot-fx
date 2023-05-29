@@ -5,16 +5,14 @@ import cn.hutool.core.util.ClassUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONObject;
 import com.goxr3plus.fxborderlessscene.borderless.BorderlessScene;
-import de.saxsys.mvvmfx.FluentViewLoader;
-import de.saxsys.mvvmfx.FxmlView;
-import de.saxsys.mvvmfx.InjectViewModel;
-import de.saxsys.mvvmfx.ViewTuple;
+import de.saxsys.mvvmfx.*;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Bounds;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
@@ -169,6 +167,14 @@ public class MainView implements FxmlView<MainViewModel>, Initializable {
                 loddTab(newValue);
             }
         });
+        MvvmFX.getNotificationCenter().subscribe("addAuthUserTab", (key, payload) -> {
+
+
+            // trigger some actions
+            loddTab("分配用户","", (Parent) payload[0]);
+
+        });
+
 
     }
 
@@ -201,10 +207,31 @@ public class MainView implements FxmlView<MainViewModel>, Initializable {
             tab = new Tab(title);
             tab.setGraphic(new FontIcon(WIcon.findByDescription("lw-" + iconStr)));
             tabPane.getTabs().add(tab);
-            ViewTuple<MenuManageView, MenuManageViewModel> load = FluentViewLoader.fxmlView(clazz).load();
-            tab.setContent(load.getView());
+            tab.setContent(FluentViewLoader.fxmlView(clazz).load().getView());
         }
 
+        tabPane.getSelectionModel().select(tab);
+
+        FadeTransition fadeTransition = new FadeTransition(Duration.millis(400), tab.getContent());
+        fadeTransition.setFromValue(0);
+        fadeTransition.setToValue(1);
+        fadeTransition.play();
+    }
+
+    private void loddTab(String title, String icon, Parent node) {
+        Tab tab = null;
+        var tabOptional = tabPane.getTabs().stream()
+                .filter(t -> StrUtil.equals(t.getText(), title))
+                .findFirst();
+
+        if (tabOptional.isPresent()) {
+            tab = tabOptional.get();
+            tabPane.getTabs().remove(tab);
+        }
+        tab = new Tab(title);
+        tab.setGraphic(new FontIcon(WIcon.findByDescription("lw-" + icon)));
+        tabPane.getTabs().add(tab);
+        tab.setContent(node);
         tabPane.getSelectionModel().select(tab);
 
         FadeTransition fadeTransition = new FadeTransition(Duration.millis(400), tab.getContent());

@@ -160,6 +160,12 @@
             <artifactId>pinyin4j</artifactId>
             <version>2.5.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.github.haifengl</groupId>
+            <artifactId>smile-core</artifactId>
+            <version>2.6.0</version>
+        </dependency>
+
 
     </dependencies>
 
@@ -229,7 +235,7 @@
                         <!-- Usage: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>org.dillon.fx.App</mainClass>
+                            <mainClass>org.dillon.fx.AppUI</mainClass>
                         </configuration>
                     </execution>
                 </executions>

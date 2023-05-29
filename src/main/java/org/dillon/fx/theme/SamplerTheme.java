@@ -5,8 +5,7 @@ import atlantafx.base.theme.Theme;
 import fr.brouillard.oss.cssfx.CSSFX;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import org.dillon.fx.App;
-import org.dillon.fx.Resources;
+import org.dillon.fx.AppUI;
 import org.dillon.fx.utils.FileResource;
 
 import java.io.BufferedReader;
@@ -20,7 +19,7 @@ import java.util.regex.Pattern;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.nio.file.LinkOption.NOFOLLOW_LINKS;
-import static org.dillon.fx.App.IS_DEV_MODE;
+import static org.dillon.fx.AppUI.IS_DEV_MODE;
 import static org.dillon.fx.Resources.resolve;
 import static org.dillon.fx.theme.ThemeManager.*;
 
@@ -165,7 +164,7 @@ public final class SamplerTheme implements Theme {
         String filename = classpathTheme.getFilename();
 
         try {
-            FileResource testTheme = FileResource.internal(resolve("theme-test/" + filename), App.class);
+            FileResource testTheme = FileResource.internal(resolve("theme-test/" + filename), AppUI.class);
             if (!testTheme.exists()) { throw new IOException(); }
             return testTheme;
         } catch (Exception e) {

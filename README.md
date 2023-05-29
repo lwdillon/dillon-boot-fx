@@ -23,6 +23,45 @@ javafx权限管理系统UI
     2 运行主类org.dillon.fx.App即可
 ```
 
+
+# 界面：
+
+登录
+
+![Image text](https://gitee.com/lwdillon/fx-falsework/raw/main/readme/login.png)
+
+注册
+
+![Image text](https://gitee.com/lwdillon/fx-falsework/raw/main/readme/registered.png)
+
+
+用户管理
+
+![Image text](https://gitee.com/lwdillon/fx-falsework/raw/main/readme/user-dark.png)
+
+![Image text](https://gitee.com/lwdillon/fx-falsework/raw/main/readme/user-light.png)
+
+菜单管理
+
+![Image text](https://gitee.com/lwdillon/fx-falsework/raw/main/readme/menu-dark.png)
+
+![Image text](https://gitee.com/lwdillon/fx-falsework/raw/main/readme/menu-light.png)
+
+角色权限管理
+
+
+角色类型管理
+
+
+操作日志
+
+
+在线用户
+
+
+登录日志
+
+
 ## 交流群
 
 QQ群：518914410

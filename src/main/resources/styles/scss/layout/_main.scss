@@ -128,6 +128,8 @@
 
 
 #side-tree {
+  -fx-border-color: RED;
+  -fx-border-width: 0 0 0 0;
   .tree-cell {
     -fx-background-color: -color-bg-inset;
 

@@ -1,94 +1,118 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-
-<VBox xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="org.dillon.fx.view.system.user.UserInfoView">
+<VBox fx:id="rootPane" prefHeight="464.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.dillon.fx.view.system.user.UserInfoView">
     <children>
-        <GridPane alignment="TOP_CENTER" hgap="10.0" VBox.vgrow="ALWAYS">
+        <GridPane alignment="TOP_CENTER" hgap="10.0" vgap="10.0" VBox.vgrow="ALWAYS">
             <columnConstraints>
-                <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" maxWidth="-Infinity" minWidth="-Infinity"/>
-                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="1.7976931348623157E308"
-                                   minWidth="10.0"/>
-                <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" maxWidth="-Infinity" minWidth="-Infinity"/>
-                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="1.7976931348623157E308"
-                                   minWidth="10.0"/>
+                <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="236.0" />
+                <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" maxWidth="192.0" minWidth="80.0" prefWidth="80.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="225.0" />
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="45.0" vgrow="SOMETIMES"/>
-                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="45.0" vgrow="SOMETIMES"/>
-                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="45.0" vgrow="SOMETIMES"/>
-                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="45.0" vgrow="SOMETIMES"/>
-                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="45.0" vgrow="SOMETIMES"/>
-                <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="156.0"
-                                vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="45.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="45.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="45.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="45.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="-Infinity" prefHeight="90.0" valignment="TOP" />
+                <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="156.0" valignment="TOP" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <Label text="用户昵称"/>
-                <TextField GridPane.columnIndex="1"/>
+                <Label text="用户昵称" />
+                <TextField fx:id="nickNameField" GridPane.columnIndex="1" />
                 <Label text="归属部门" GridPane.columnIndex="2">
                     <padding>
-                        <Insets left="10.0"/>
+                        <Insets left="10.0" />
                     </padding>
                 </Label>
-                <TextField GridPane.columnIndex="3"/>
-                <Label text="手机号码" GridPane.rowIndex="1"/>
-                <TextField GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                <TextField fx:id="deptField" GridPane.columnIndex="3" />
+                <Label text="手机号码" GridPane.rowIndex="1" />
+                <TextField fx:id="phonenumberField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                 <Label text="邮箱" GridPane.columnIndex="2" GridPane.rowIndex="1">
                     <padding>
-                        <Insets left="10.0"/>
+                        <Insets left="10.0" />
                     </padding>
                 </Label>
-                <TextField GridPane.columnIndex="3" GridPane.rowIndex="1"/>
+                <TextField fx:id="emailField" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                 <Label text="密码" GridPane.columnIndex="2" GridPane.rowIndex="2">
                     <padding>
-                        <Insets left="10.0"/>
+                        <Insets left="10.0" />
                     </padding>
                 </Label>
-                <PasswordField GridPane.columnIndex="3" GridPane.rowIndex="2"/>
-                <Label text="用户名称" GridPane.rowIndex="2"/>
-                <TextField GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-                <Label text="性别" GridPane.rowIndex="3"/>
-                <ComboBox maxWidth="1.7976931348623157E308" prefWidth="150.0" GridPane.columnIndex="1"
-                          GridPane.rowIndex="3"/>
+                <PasswordField fx:id="passwordField" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                <Label text="用户名称" GridPane.rowIndex="2" />
+                <TextField fx:id="userNameField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <Label text="性别" GridPane.rowIndex="3" />
+                <ComboBox fx:id="sexCombo" maxWidth="1.7976931348623157E308" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="男" />
+                            <String fx:value="女" />
+                            <String fx:value="未知" />
+                        </FXCollections>
+                    </items>
+                </ComboBox>
                 <Label text="状态" GridPane.columnIndex="2" GridPane.rowIndex="3">
                     <padding>
-                        <Insets left="10.0"/>
+                        <Insets left="10.0" />
                     </padding>
                 </Label>
                 <HBox alignment="CENTER_LEFT" spacing="10.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
                     <children>
-                        <RadioButton mnemonicParsing="false" text="正常"/>
-                        <RadioButton mnemonicParsing="false" text="停用"/>
+                        <RadioButton fx:id="statusRadio" mnemonicParsing="false" text="正常">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="stateGroup" />
+                     </toggleGroup></RadioButton>
+                        <RadioButton fx:id="statusStopRadio" mnemonicParsing="false" text="停用" toggleGroup="$stateGroup" />
                     </children>
                 </HBox>
-                <Label text="岗位" GridPane.rowIndex="4"/>
-                <TextField GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                <Label text="岗位" GridPane.rowIndex="4" />
                 <Label text="角色" GridPane.columnIndex="2" GridPane.rowIndex="4">
                     <padding>
-                        <Insets left="10.0"/>
+                        <Insets left="10.0" />
                     </padding>
                 </Label>
-                <ComboBox maxWidth="1.7976931348623157E308" prefWidth="150.0" GridPane.columnIndex="3"
-                          GridPane.rowIndex="4"/>
-                <Label text="备注" GridPane.rowIndex="5"/>
-                <TextArea prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="3"
-                          GridPane.rowIndex="5"/>
+                <Label text="备注" GridPane.rowIndex="5" />
+                <TextArea fx:id="remarkArea" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="5" />
+            <ScrollPane fx:id="postSp" fitToWidth="true" style="-fx-border-color: -color-border-default;" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <content>
+                  <FlowPane fx:id="postPane" hgap="10.0" vgap="10.0">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </FlowPane>
+               </content>
+            </ScrollPane>
+            <ScrollPane fx:id="roleSp" fitToWidth="true" prefWidth="192.0" style="-fx-border-color: -color-border-default;" GridPane.columnIndex="3" GridPane.rowIndex="4">
+               <content>
+                  <FlowPane fx:id="rolesPane" hgap="10.0" vgap="10.0">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </FlowPane>
+               </content>
+            </ScrollPane>
             </children>
             <padding>
-                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
             </padding>
         </GridPane>
     </children>

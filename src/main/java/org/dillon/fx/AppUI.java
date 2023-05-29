@@ -30,7 +30,7 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 /**
  * JavaFX App
  */
-public class App extends Application {
+public class AppUI extends Application {
 
     public static final boolean IS_DEV_MODE = "DEV".equalsIgnoreCase(
             Resources.getPropertyOrEnv("app.profiles.active", "app.profiles.active")
@@ -67,7 +67,7 @@ public class App extends Application {
         scene.setFill(Color.TRANSPARENT);
 //        viewTuple.getViewModel().setTitle(System.getProperty("app.name"));
         primaryStage.setTitle(System.getProperty("app.name"));
-        scene.getStylesheets().addAll(App.class.getResource("/styles/index.css").toExternalForm());
+        scene.getStylesheets().addAll(AppUI.class.getResource("/styles/index.css").toExternalForm());
 
         scene.maximizedProperty().addListener((observableValue, oldVal, newVal) -> {
             if (newVal) {

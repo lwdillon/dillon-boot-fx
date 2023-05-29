@@ -14,14 +14,14 @@ public final class Resources {
     public static InputStream getResourceAsStream(String resource) {
         String path = resolve(resource);
         return Objects.requireNonNull(
-                App.class.getResourceAsStream(resolve(path)),
+                AppUI.class.getResourceAsStream(resolve(path)),
                 "Resource not found: " + path
         );
     }
 
     public static URI getResource(String resource) {
         String path = resolve(resource);
-        URL url = Objects.requireNonNull(App.class.getResource(resolve(path)), "Resource not found: " + path);
+        URL url = Objects.requireNonNull(AppUI.class.getResource(resolve(path)), "Resource not found: " + path);
         return URI.create(url.toExternalForm());
     }
 
