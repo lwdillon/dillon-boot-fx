@@ -24,6 +24,7 @@ import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.util.Callback;
 import org.dillon.fx.domain.SysRole;
@@ -33,6 +34,7 @@ import org.dillon.fx.domain.vo.TreeSelect;
 import org.dillon.fx.theme.CSSFragment;
 import org.dillon.fx.view.control.FilterableTreeItem;
 import org.dillon.fx.view.control.OverlayDialog;
+import org.dillon.fx.view.control.PagingControl;
 import org.kordamp.ikonli.feather.Feather;
 import org.kordamp.ikonli.javafx.FontIcon;
 
@@ -69,8 +71,6 @@ public class AuthUserView implements FxmlView<AuthUserViewModel>, Initializable 
     private Button cancelAuthBut;
 
     @FXML
-    private Pagination pagination;
-    @FXML
     private HBox contentPane;
     @FXML
     private TableView<SysUser> tableView;
@@ -95,9 +95,22 @@ public class AuthUserView implements FxmlView<AuthUserViewModel>, Initializable 
     private TableColumn<SysUser, String> optCol;
 
 
+    @FXML
+    private VBox pagePane;
+
+    private PagingControl pagingControl;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        pagingControl = new PagingControl();
+        pagePane.getChildren().add(pagingControl);
+        pagingControl.totalProperty().bind(viewModel.totalProperty());
+        viewModel.pageNumProperty().bind(pagingControl.pageNumProperty());
+        viewModel.pageSizeProperty().bind(pagingControl.pageSizeProperty());
+        viewModel.pageNumProperty().addListener((observable, oldValue, newValue) -> {
+            viewModel.allocatedList();
+        });
 
         loading = new MFXProgressSpinner();
         loading.disableProperty().bind(loading.visibleProperty().not());
@@ -110,7 +123,7 @@ public class AuthUserView implements FxmlView<AuthUserViewModel>, Initializable 
         resetBut.setOnAction(event -> viewModel.reset());
         addUserBut.setOnAction(event -> showDialog(viewModel.getRoleId()));
         cancelAuthBut.setOnAction(event -> {
-          showCancelAllDialog();
+            showCancelAllDialog();
         });
 
         selCol.setCellValueFactory(new PropertyValueFactory<>("select"));
@@ -145,12 +158,12 @@ public class AuthUserView implements FxmlView<AuthUserViewModel>, Initializable 
                         if (item) {
                             state.setText("正常");
                             state.getStyleClass().addAll(BUTTON_OUTLINED, SUCCESS);
-                        }else {
+                        } else {
                             state.setText("停用");
                             state.getStyleClass().addAll(BUTTON_OUTLINED, DANGER);
                         }
                         HBox box = new HBox(state);
-                        box.setPadding(new Insets(7,7,7,7));
+                        box.setPadding(new Insets(7, 7, 7, 7));
                         box.setAlignment(Pos.CENTER);
                         setGraphic(box);
                     }
@@ -206,13 +219,7 @@ public class AuthUserView implements FxmlView<AuthUserViewModel>, Initializable 
         for (TableColumn<?, ?> c : tableView.getColumns()) {
             addStyleClass(c, ALIGN_CENTER, ALIGN_LEFT, ALIGN_RIGHT);
         }
-        pagination.pageCountProperty().bind(viewModel.totalProperty());
-        pagination.setPageFactory(new Callback<Integer, Node>() {
-            @Override
-            public Node call(Integer param) {
-                return null;
-            }
-        });
+
 
     }
 
@@ -224,7 +231,7 @@ public class AuthUserView implements FxmlView<AuthUserViewModel>, Initializable 
 
         getDialogContent().addActions(Map.entry(new Button("取消"), event -> dialog.close()), Map.entry(new Button("确定"), event -> {
 
-            ProcessChain.create().addSupplierInExecutor(() ->  load.getViewModel().save()).addConsumerInPlatformThread(res -> {
+            ProcessChain.create().addSupplierInExecutor(() -> load.getViewModel().save()).addConsumerInPlatformThread(res -> {
 
                 if (res) {
                     dialog.close();
@@ -310,7 +317,7 @@ public class AuthUserView implements FxmlView<AuthUserViewModel>, Initializable 
         }
         getDialogContent().clearActions();
         getDialogContent().addActions(Map.entry(new Button("取消"), event -> dialog.close()), Map.entry(new Button("确定"), event -> {
-            ProcessChain.create().addSupplierInExecutor(() -> viewModel.cancelAll(viewModel.getRoleId(), CollUtil.join(userIds,","))).addConsumerInPlatformThread(r -> {
+            ProcessChain.create().addSupplierInExecutor(() -> viewModel.cancelAll(viewModel.getRoleId(), CollUtil.join(userIds, ","))).addConsumerInPlatformThread(r -> {
                 if (r) {
                     dialog.close();
                     viewModel.allocatedList();

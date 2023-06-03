@@ -84,3 +84,8 @@
   -fx-text-fill: -color-danger-fg;
   -fx-icon-color: -color-danger-fg;
 }
+
+.custom-pagination .pagination-control .page-label:selected {
+  -fx-background-color: red;
+  -fx-text-fill: transparent;
+}

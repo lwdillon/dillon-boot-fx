@@ -9,15 +9,18 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import de.saxsys.mvvmfx.ViewModel;
 import de.saxsys.mvvmfx.utils.mapping.ModelWrapper;
+import io.datafx.core.concurrent.ProcessChain;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.dillon.fx.domain.AjaxResult;
+import org.dillon.fx.domain.SysRole;
 import org.dillon.fx.domain.SysUser;
 import org.dillon.fx.domain.page.TableDataInfo;
 import org.dillon.fx.domain.vo.TreeSelect;
 import org.dillon.fx.request.Request;
 import org.dillon.fx.request.feign.client.SysMenuFeign;
+import org.dillon.fx.request.feign.client.SysRoleFeign;
 import org.dillon.fx.request.feign.client.SysUserFeign;
 
 import java.time.LocalDate;
@@ -31,6 +34,8 @@ public class UserViewModel implements ViewModel {
 
 
     private SimpleIntegerProperty total = new SimpleIntegerProperty(0);
+    private IntegerProperty pageNum = new SimpleIntegerProperty(0);
+    private IntegerProperty pageSize = new SimpleIntegerProperty(10);
     private ObjectProperty<LocalDate> startDate = new SimpleObjectProperty<>();
     private ObjectProperty<LocalDate> endDate = new SimpleObjectProperty();
     private ObservableList<TreeSelect> deptTreeList = FXCollections.observableArrayList();
@@ -41,7 +46,6 @@ public class UserViewModel implements ViewModel {
 
     public void initialize() {
         deptId.addListener((obs, old, val) -> userList());
-
     }
 
 
@@ -95,12 +99,13 @@ public class UserViewModel implements ViewModel {
     }
 
 
-    public void  reset(){
+    public void reset() {
         userName.setValue("");
         status.setValue("");
         endDate.setValue(null);
         startDate.setValue(null);
     }
+
     public int getTotal() {
         return total.get();
     }
@@ -118,8 +123,6 @@ public class UserViewModel implements ViewModel {
      * 用户列表
      */
     public void userList() {
-        userList.clear();
-        setTotal(1);
 
         Map<String, Object> params = new HashMap<>();
         if (ObjectUtil.isNotEmpty(startDate.getValue())) {
@@ -127,23 +130,29 @@ public class UserViewModel implements ViewModel {
 
         }
         if (ObjectUtil.isNotEmpty(endDate.getValue())) {
-            params.put("endTime",new Date());
+            params.put("endTime", new Date());
 
         }
         Map<String, Object> querMap = new HashMap<>();
         querMap.put("userName", userName.getValue());
         querMap.put("status", status.getValue());
         querMap.put("deptId", deptId.getValue());
-
-//        if (ObjectUtil.isNotEmpty(params)) {
-//            querMap.put("params", JSONUtil.toJsonStr(params));
-//        }
+        querMap.put("pageNum", pageNum.getValue() + 1);
+        querMap.put("pageSize", pageSize.getValue());
 
 
-        TableDataInfo tableDataInfo = Request.connector(SysUserFeign.class).list(querMap);
-        List<SysUser> users = BeanUtil.copyToList(tableDataInfo.getRows(), SysUser.class);
-        setTotal(NumberUtil.parseInt(tableDataInfo.getTotal() + ""));
-        userList.addAll(users);
+        ProcessChain.create().addRunnableInPlatformThread(() -> userList.clear())
+                .addSupplierInExecutor(() ->
+                        Request.connector(SysUserFeign.class).list(querMap)
+                )
+                .addConsumerInPlatformThread(r -> {
+                    List<SysUser> users = BeanUtil.copyToList(r.getRows(), SysUser.class);
+                    setTotal(NumberUtil.parseInt(r.getTotal() + ""));
+                    userList.addAll(users);
+                })
+
+                .onException(e -> e.printStackTrace()).run();
+
 
     }
 
@@ -166,16 +175,39 @@ public class UserViewModel implements ViewModel {
 
     }
 
-    public void restPassword(SysUser user){
+    public void restPassword(SysUser user) {
         Request.connector(SysUserFeign.class).resetPwd(user);
 
     }
 
-    public void selectAll(boolean sel){
+    public void selectAll(boolean sel) {
 
         for (SysUser sysUser : getUserList()) {
             sysUser.setSelect(sel);
         }
     }
 
+    public int getPageNum() {
+        return pageNum.get();
+    }
+
+    public IntegerProperty pageNumProperty() {
+        return pageNum;
+    }
+
+    public void setPageNum(int pageNum) {
+        this.pageNum.set(pageNum);
+    }
+
+    public int getPageSize() {
+        return pageSize.get();
+    }
+
+    public IntegerProperty pageSizeProperty() {
+        return pageSize;
+    }
+
+    public void setPageSize(int pageSize) {
+        this.pageSize.set(pageSize);
+    }
 }

@@ -36,6 +36,7 @@ import org.dillon.fx.domain.vo.TreeSelect;
 import org.dillon.fx.theme.CSSFragment;
 import org.dillon.fx.view.control.FilterableTreeItem;
 import org.dillon.fx.view.control.OverlayDialog;
+import org.dillon.fx.view.control.PagingControl;
 import org.dillon.fx.view.control.TreeItemPredicate;
 import org.kordamp.ikonli.feather.Feather;
 import org.kordamp.ikonli.javafx.FontIcon;
@@ -78,8 +79,7 @@ public class UserView implements FxmlView<UserViewModel>, Initializable {
     @FXML
     private Button delBut;
 
-    @FXML
-    private Pagination pagination;
+
     @FXML
     private HBox contentPane;
     @FXML
@@ -113,8 +113,22 @@ public class UserView implements FxmlView<UserViewModel>, Initializable {
     @FXML
     private TreeItem<TreeSelect> deptTreeRoot;
 
+    @FXML
+    private VBox rightPane;
+
+    private PagingControl pagingControl;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+
+        pagingControl = new PagingControl();
+        rightPane.getChildren().add(pagingControl);
+        pagingControl.totalProperty().bind(viewModel.totalProperty());
+        viewModel.pageNumProperty().bind(pagingControl.pageNumProperty());
+        viewModel.pageSizeProperty().bind(pagingControl.pageSizeProperty());
+        pagingControl.pageNumProperty().addListener((observable, oldValue, newValue) -> {
+            viewModel.userList();
+        });
 
 
         loading = new MFXProgressSpinner();
@@ -286,13 +300,7 @@ public class UserView implements FxmlView<UserViewModel>, Initializable {
         for (TableColumn<?, ?> c : tableView.getColumns()) {
             addStyleClass(c, ALIGN_CENTER, ALIGN_LEFT, ALIGN_RIGHT);
         }
-        pagination.pageCountProperty().bind(viewModel.totalProperty());
-        pagination.setPageFactory(new Callback<Integer, Node>() {
-            @Override
-            public Node call(Integer param) {
-                return null;
-            }
-        });
+
 
         initListener();
         initData();

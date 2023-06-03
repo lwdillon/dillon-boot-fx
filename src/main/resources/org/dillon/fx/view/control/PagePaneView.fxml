@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Pagination?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+
+
+<HBox alignment="CENTER_RIGHT" maxHeight="45.0" minHeight="45.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" >
+   <children>
+      <Label text="共" />
+      <Label fx:id="totalLabel" />
+      <Label text="条" />
+      <ComboBox fx:id="pageCombox" prefWidth="150.0">
+         <items>
+            <FXCollections fx:factory="observableArrayList">
+               <String fx:value="10条/页" />
+               <String fx:value="20条/页" />
+               <String fx:value="30条/页" />
+               <String fx:value="50条/页" />
+            </FXCollections>
+         </items>
+      </ComboBox>
+      <Pagination fx:id="pagination" maxHeight="45.0" minHeight="45.0" prefHeight="40.0" prefWidth="280.0" style="-fx-page-information-visible: false;" />
+      <Label text="前往" />
+      <TextField prefWidth="60.0" />
+      <Label text="页" />
+   </children>
+</HBox>

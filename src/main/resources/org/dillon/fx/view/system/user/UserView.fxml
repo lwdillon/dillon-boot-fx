@@ -8,7 +8,6 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Pagination?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -28,7 +27,7 @@
                   <TreeView fx:id="treeView" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
                </children>
             </VBox>
-            <VBox prefHeight="200.0" prefWidth="100.0" spacing="7.0" HBox.hgrow="ALWAYS">
+            <VBox fx:id="rightPane" prefHeight="200.0" prefWidth="100.0" spacing="7.0" HBox.hgrow="ALWAYS">
                <children>
                   <HBox alignment="CENTER_LEFT" spacing="5.0">
                      <children>
@@ -88,25 +87,7 @@
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                      </columnResizePolicy>
                   </TableView>
-                  <HBox alignment="CENTER_RIGHT" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="823.0" spacing="7.0">
-                     <children>
-                        <Label text="共100条" />
-                        <ComboBox prefWidth="150.0">
-                            <items>
-                                <FXCollections fx:factory="observableArrayList">
-                                    <String fx:value="10条/页" />
-                                    <String fx:value="20条/页" />
-                                    <String fx:value="30条/页" />
-                                    <String fx:value="50条/页" />
-                                </FXCollections>
-                            </items>
-                        </ComboBox>
-                        <Pagination fx:id="pagination" maxHeight="50.0" minHeight="50.0" style="-fx-page-information-visible: false;" />
-                        <Label text="前往" />
-                        <TextField prefWidth="60.0" />
-                        <Label text="页" />
-                     </children>
-                  </HBox>
+
                </children>
             </VBox>
          </children>

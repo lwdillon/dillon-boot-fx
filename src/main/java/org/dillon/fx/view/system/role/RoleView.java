@@ -11,12 +11,10 @@ import io.github.palexdev.materialfx.dialogs.MFXGenericDialog;
 import io.github.palexdev.materialfx.dialogs.MFXGenericDialogBuilder;
 import io.github.palexdev.materialfx.dialogs.MFXStageDialog;
 import io.github.palexdev.materialfx.enums.ScrimPriority;
-import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -28,6 +26,7 @@ import javafx.util.Callback;
 import org.dillon.fx.domain.SysRole;
 import org.dillon.fx.theme.CSSFragment;
 import org.dillon.fx.view.control.OverlayDialog;
+import org.dillon.fx.view.control.PagingControl;
 import org.kordamp.ikonli.feather.Feather;
 import org.kordamp.ikonli.javafx.FontIcon;
 
@@ -43,6 +42,8 @@ public class RoleView implements FxmlView<RoleViewModel>, Initializable {
     @InjectViewModel
     private RoleViewModel roleViewModel;
 
+    @FXML
+    private VBox contentPane;
     @FXML
     private Button addBut;
 
@@ -61,8 +62,6 @@ public class RoleView implements FxmlView<RoleViewModel>, Initializable {
     @FXML
     private TableColumn<SysRole, String> optCol;
 
-    @FXML
-    private Pagination pagination;
 
     @FXML
     private Button resetBut;
@@ -105,51 +104,33 @@ public class RoleView implements FxmlView<RoleViewModel>, Initializable {
 
     @FXML
     private TextField roleSearchField;
-    @FXML
-    private VBox contentPane;
-    @FXML
-    private Label totalLabel;
-    @FXML
-    private ComboBox pageCombox;
+
+
     private MFXProgressSpinner loading;
 
     private MFXStageDialog dialog;
 
     private MFXGenericDialog dialogContent;
 
+    private PagingControl pagingControl;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        pagingControl = new PagingControl();
+        contentPane.getChildren().add(pagingControl);
+        pagingControl.totalProperty().bindBidirectional(roleViewModel.totalProperty());
+        roleViewModel.pageNumProperty().bind(pagingControl.pageNumProperty());
+        roleViewModel.pageSizeProperty().bindBidirectional(pagingControl.pageSizeProperty());
+        roleViewModel.pageNumProperty().addListener((observable, oldValue, newValue) -> {
+            roleViewModel.queryRoleList();
+        });
 
         loading = new MFXProgressSpinner();
         loading.disableProperty().bind(loading.visibleProperty().not());
         loading.visibleProperty().bindBidirectional(contentPane.disableProperty());
         rootPane.getChildren().add(loading);
-        totalLabel.textProperty().bind(Bindings.createStringBinding(
-                () -> roleViewModel.getTotal() + "", roleViewModel.totalProperty())
-        );
-        pageCombox.getSelectionModel().select(0);
-        pageCombox.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
 
-            int pageSize = 1;
-            switch (newValue.intValue()) {
-                case 0:
-                    pageSize = 10;
-                    break;
-                case 1:
-                    pageSize = 20;
-                    break;
-                case 2:
-                    pageSize = 30;
-                    break;
-                case 3:
-                    pageSize = 50;
-                    break;
-                default:
-                    pageSize = 10;
-            }
-            roleViewModel.setPageSize(pageSize);
-        });
         roleSearchField.textProperty().bindBidirectional(roleViewModel.roleNameProperty());
         statusCombo.valueProperty().bindBidirectional(roleViewModel.statusProperty());
         startDatePicker.valueProperty().bindBidirectional(roleViewModel.startDateProperty());
@@ -287,18 +268,7 @@ public class RoleView implements FxmlView<RoleViewModel>, Initializable {
         for (TableColumn<?, ?> c : tableView.getColumns()) {
             addStyleClass(c, ALIGN_CENTER, ALIGN_LEFT, ALIGN_RIGHT);
         }
-        pagination.pageCountProperty().bind(Bindings.createIntegerBinding(() -> {
 
-            int totalCount = roleViewModel.getTotal(); // 总条数
-            int pageSize =  roleViewModel.getPageNum(); // 每页条数
-            int totalPages = totalCount / pageSize; // 计算总页数
-            if (totalCount % pageSize != 0) {
-                totalPages++; // 如果有余数，则总页数加1
-            }
-            return totalPages;
-        }, roleViewModel.totalProperty()));
-        pagination.currentPageIndexProperty().bindBidirectional(roleViewModel.pageNumProperty());
-        roleViewModel.pageNumProperty().addListener((observable, oldValue, newValue) -> roleViewModel.queryRoleList());
 
         addBut.setOnAction(event -> showRoleInfoDialog(null));
 

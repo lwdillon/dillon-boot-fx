@@ -81,27 +81,7 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <HBox alignment="CENTER_RIGHT" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="823.0" spacing="7.0">
-               <children>
-                  <Label text="共" />
-                  <Label fx:id="totalLabel" />
-                  <Label text="条" />
-                  <ComboBox fx:id="pageCombox" prefWidth="150.0">
-                     <items>
-                        <FXCollections fx:factory="observableArrayList">
-                           <String fx:value="10条/页" />
-                           <String fx:value="20条/页" />
-                           <String fx:value="30条/页" />
-                           <String fx:value="50条/页" />
-                        </FXCollections>
-                     </items>
-                  </ComboBox>
-                  <Pagination fx:id="pagination" maxHeight="50.0" minHeight="50.0" style="-fx-page-information-visible: false;" />
-                  <Label text="前往" />
-                  <TextField prefWidth="60.0" />
-                  <Label text="页" />
-               </children>
-            </HBox>
+
          </children>
       </VBox>
    </children>

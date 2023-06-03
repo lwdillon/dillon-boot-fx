@@ -23,12 +23,14 @@ import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.util.Callback;
 import org.dillon.fx.domain.SysUser;
 import org.dillon.fx.domain.vo.TreeSelect;
 import org.dillon.fx.theme.CSSFragment;
 import org.dillon.fx.view.control.OverlayDialog;
+import org.dillon.fx.view.control.PagingControl;
 import org.kordamp.ikonli.feather.Feather;
 import org.kordamp.ikonli.javafx.FontIcon;
 
@@ -56,8 +58,7 @@ public class AddUserView implements FxmlView<AddUserViewModel>, Initializable {
     private TextField phoneField;
     @FXML
     private Button resetBut;
-    @FXML
-    private Pagination pagination;
+
     @FXML
     private HBox contentPane;
     @FXML
@@ -82,8 +83,24 @@ public class AddUserView implements FxmlView<AddUserViewModel>, Initializable {
     @FXML
     private TableColumn<SysUser, Date> createTimeCol;
 
+    @FXML
+    private VBox pagePane;
+
+    private PagingControl pagingControl;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        pagingControl = new PagingControl();
+        pagePane.getChildren().add(pagingControl);
+        pagingControl.totalProperty().bind(viewModel.totalProperty());
+        viewModel.pageNumProperty().bind(pagingControl.pageNumProperty());
+        viewModel.pageSizeProperty().bind(pagingControl.pageSizeProperty());
+        pagingControl.pageNumProperty().addListener((observable, oldValue, newValue) -> {
+            viewModel.unallocatedList();
+        });
+
+
         searchBut.getStyleClass().addAll(ACCENT);
         searchBut.setOnAction(event -> viewModel.unallocatedList());
         resetBut.setOnAction(event -> viewModel.reset());
@@ -128,12 +145,12 @@ public class AddUserView implements FxmlView<AddUserViewModel>, Initializable {
                         if (item) {
                             state.setText("正常");
                             state.getStyleClass().addAll(BUTTON_OUTLINED, SUCCESS);
-                        }else {
+                        } else {
                             state.setText("停用");
                             state.getStyleClass().addAll(BUTTON_OUTLINED, DANGER);
                         }
                         HBox box = new HBox(state);
-                        box.setPadding(new Insets(7,7,7,7));
+                        box.setPadding(new Insets(7, 7, 7, 7));
                         box.setAlignment(Pos.CENTER);
                         setGraphic(box);
                     }
@@ -166,13 +183,7 @@ public class AddUserView implements FxmlView<AddUserViewModel>, Initializable {
         for (TableColumn<?, ?> c : tableView.getColumns()) {
             addStyleClass(c, ALIGN_CENTER, ALIGN_LEFT, ALIGN_RIGHT);
         }
-        pagination.pageCountProperty().bind(viewModel.totalProperty());
-        pagination.setPageFactory(new Callback<Integer, Node>() {
-            @Override
-            public Node call(Integer param) {
-                return null;
-            }
-        });
+
 
     }
 

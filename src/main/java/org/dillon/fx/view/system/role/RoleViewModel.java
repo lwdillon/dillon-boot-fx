@@ -37,8 +37,6 @@ public class RoleViewModel implements ViewModel {
 
     public void queryRoleList() {
 
-        sysRoles.clear();
-        setTotal(1);
         Map<String, Object> params = new HashMap<>();
         if (ObjectUtil.isNotEmpty(startDate.getValue())) {
             params.put("beginTime", new Date());
@@ -51,16 +49,16 @@ public class RoleViewModel implements ViewModel {
         Map<String, Object> querMap = new HashMap<>();
         querMap.put("roleName", roleName.getValue());
         querMap.put("status", status.getValue());
-        querMap.put("pageNum", pageNum.getValue()+1);
+        querMap.put("pageNum", pageNum.getValue() + 1);
         querMap.put("pageSize", pageSize.getValue());
 
-        ProcessChain.create()
+        ProcessChain.create().addRunnableInPlatformThread(() -> sysRoles.clear())
                 .addSupplierInExecutor(() ->
                         Request.connector(SysRoleFeign.class).list(querMap)
                 )
                 .addConsumerInPlatformThread(r -> {
                     List<SysRole> roles = BeanUtil.copyToList(r.getRows(), SysRole.class);
-                    setTotal(NumberUtil.parseInt(r.getTotal()+""));
+                    setTotal(NumberUtil.parseInt(r.getTotal() + ""));
 
                     sysRoles.addAll(roles);
                 })

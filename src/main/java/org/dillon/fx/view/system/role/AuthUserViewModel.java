@@ -33,6 +33,8 @@ public class AuthUserViewModel implements ViewModel {
     private StringProperty phone = new SimpleStringProperty();
 
     private SimpleIntegerProperty total = new SimpleIntegerProperty(0);
+    private IntegerProperty pageNum = new SimpleIntegerProperty(0);
+    private IntegerProperty pageSize = new SimpleIntegerProperty(10);
     private ObservableList<SysUser> userList = FXCollections.observableArrayList();
 
     private Long roleId;
@@ -108,6 +110,8 @@ public class AuthUserViewModel implements ViewModel {
         map.put("roleId", getRoleId());
         map.put("userName", userName.getValue());
         map.put("phonenumber", phone.getValue());
+        map.put("pageNum", pageNum.getValue()+1);
+        map.put("pageSize", pageSize.getValue());
         ProcessChain.create().addSupplierInExecutor(() -> {
                     TableDataInfo tableDataInfo = Request.connector(SysRoleFeign.class).allocatedList(map);
                     List<SysUser> sysUserList = BeanUtil.copyToList(tableDataInfo.getRows(), SysUser.class);
@@ -116,6 +120,7 @@ public class AuthUserViewModel implements ViewModel {
                 .addConsumerInPlatformThread(r -> {
                     userList.clear();
                     userList.setAll(r);
+                    setTotal(r.size());
 
                 })
                 .onException(e -> e.printStackTrace()).run();
@@ -133,5 +138,29 @@ public class AuthUserViewModel implements ViewModel {
         map.put("userIds", userIds);
         JsonObject result = Request.connector(SysRoleFeign.class).cancelAuthUserAll(map);
         return ObjectUtil.equals(result.get(AjaxResult.CODE_TAG).getAsString(), "200");
+    }
+
+    public int getPageNum() {
+        return pageNum.get();
+    }
+
+    public IntegerProperty pageNumProperty() {
+        return pageNum;
+    }
+
+    public void setPageNum(int pageNum) {
+        this.pageNum.set(pageNum);
+    }
+
+    public int getPageSize() {
+        return pageSize.get();
+    }
+
+    public IntegerProperty pageSizeProperty() {
+        return pageSize;
+    }
+
+    public void setPageSize(int pageSize) {
+        this.pageSize.set(pageSize);
     }
 }
