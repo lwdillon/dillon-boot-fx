@@ -48,7 +48,10 @@ javafx权限管理系统UI
 
 ![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/role-light.jpg)
 
-角色类型管理
+部门管理
+![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/dept-dark.jpg)
+
+![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/dept-light.jpg)
 
 
 操作日志

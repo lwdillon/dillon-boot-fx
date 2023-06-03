@@ -1,9 +1,8 @@
-package org.dillon.fx.view.system.menu;
+package org.dillon.fx.view.system.dept;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.ObjectUtil;
-import cn.hutool.core.util.StrUtil;
 import de.saxsys.mvvmfx.FluentViewLoader;
 import de.saxsys.mvvmfx.FxmlView;
 import de.saxsys.mvvmfx.InjectViewModel;
@@ -26,28 +25,30 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.util.Callback;
-import org.dillon.fx.domain.SysMenu;
-import org.dillon.fx.icon.WIcon;
+import org.dillon.fx.domain.SysDept;
 import org.dillon.fx.theme.CSSFragment;
 import org.dillon.fx.view.control.OverlayDialog;
 import org.kordamp.ikonli.feather.Feather;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.net.URL;
-import java.util.*;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.ResourceBundle;
 
 import static atlantafx.base.theme.Styles.*;
 
 /**
- * 菜单管理视图
+ * 部门管理视图
  *
  * @author wenli
  * @date 2023/02/15
  */
-public class MenuManageView implements FxmlView<MenuManageViewModel>, Initializable {
+public class DeptManageView implements FxmlView<DeptManageViewModel>, Initializable {
 
     @InjectViewModel
-    private MenuManageViewModel viewModel;
+    private DeptManageViewModel viewModel;
 
     private MFXGenericDialog dialogContent;
     private MFXStageDialog dialog;
@@ -69,23 +70,20 @@ public class MenuManageView implements FxmlView<MenuManageViewModel>, Initializa
     @FXML
     private Button restBut;
     @FXML
-    private TreeTableView<SysMenu> treeTableView;
+    private TreeTableView<SysDept> treeTableView;
     @FXML
-    private TreeTableColumn<SysMenu, String> nameCol;
+    private TreeTableColumn<SysDept, String> nameCol;
+
+
     @FXML
-    private TreeTableColumn<SysMenu, String> iconCol;
+    private TreeTableColumn<SysDept, String> sortCol;
+
     @FXML
-    private TreeTableColumn<SysMenu, String> sortCol;
+    private TreeTableColumn<SysDept, Boolean> stateCol;
     @FXML
-    private TreeTableColumn<SysMenu, String> authCol;
+    private TreeTableColumn<SysDept, Date> createTime;
     @FXML
-    private TreeTableColumn<SysMenu, String> comPathCol;
-    @FXML
-    private TreeTableColumn<SysMenu, Boolean> stateCol;
-    @FXML
-    private TreeTableColumn<SysMenu, Date> createTime;
-    @FXML
-    private TreeTableColumn<SysMenu, String> optCol;
+    private TreeTableColumn<SysDept, String> optCol;
 
     @FXML
     private Button searchBut;
@@ -108,7 +106,7 @@ public class MenuManageView implements FxmlView<MenuManageViewModel>, Initializa
         load.visibleProperty().bindBidirectional(content.disableProperty());
         root.getChildren().add(load);
 
-        addBut.setOnAction(event -> showEditDialog(new SysMenu(), false));
+        addBut.setOnAction(event -> showEditDialog(new SysDept(), false));
         addBut.getStyleClass().addAll(BUTTON_OUTLINED, ACCENT);
         searchField.textProperty().bindBidirectional(viewModel.searchTextProperty());
         statusCombo.valueProperty().bindBidirectional(viewModel.statusTextProperty());
@@ -120,40 +118,11 @@ public class MenuManageView implements FxmlView<MenuManageViewModel>, Initializa
             query();
         });
         expansionBut.selectedProperty().addListener((observable, oldValue, newValue) -> treeExpandedAll(treeTableView.getRoot(), newValue));
-        nameCol.setCellValueFactory(new TreeItemPropertyValueFactory<>("menuName"));
-        iconCol.setStyle("-fx-alignment: CENTER");
-        iconCol.setCellValueFactory(new TreeItemPropertyValueFactory<>("icon"));
-        iconCol.setCellFactory(new Callback<TreeTableColumn<SysMenu, String>, TreeTableCell<SysMenu, String>>() {
-            @Override
-            public TreeTableCell<SysMenu, String> call(TreeTableColumn<SysMenu, String> param) {
-                return new TreeTableCell<>() {
-                    @Override
-                    protected void updateItem(String item, boolean empty) {
-                        super.updateItem(item, empty);
+        nameCol.setCellValueFactory(new TreeItemPropertyValueFactory<>("deptName"));
 
-                        if (StrUtil.isEmpty(item)) {
-                            setGraphic(null);
-                            return;
-                        }
-
-                        Label label = new Label();
-                        if (StrUtil.equals("#", item)) {
-                            label.setText(item);
-                        } else {
-                            label.setGraphic(FontIcon.of(WIcon.findByDescription("lw-" + item)));
-                        }
-
-                        setGraphic(label);
-                    }
-                };
-            }
-        });
         sortCol.setCellValueFactory(new TreeItemPropertyValueFactory<>("orderNum"));
         sortCol.setStyle("-fx-alignment: CENTER");
-        authCol.setCellValueFactory(new TreeItemPropertyValueFactory<>("perms"));
-        authCol.setStyle("-fx-alignment: CENTER");
-        comPathCol.setCellValueFactory(new TreeItemPropertyValueFactory<>("path"));
-        comPathCol.setStyle("-fx-alignment: CENTER");
+
         stateCol.setCellValueFactory(cb -> {
             var row = cb.getValue();
             var item = ObjectUtil.equal("0", row.getValue().getStatus());
@@ -188,9 +157,11 @@ public class MenuManageView implements FxmlView<MenuManageViewModel>, Initializa
         });
         createTime.setCellValueFactory(new TreeItemPropertyValueFactory<>("createTime"));
         createTime.setStyle("-fx-alignment: CENTER");
-        createTime.setCellFactory(new Callback<TreeTableColumn<SysMenu, Date>, TreeTableCell<SysMenu, Date>>() {
+
+
+        createTime.setCellFactory(new Callback<TreeTableColumn<SysDept, Date>, TreeTableCell<SysDept, Date>>() {
             @Override
-            public TreeTableCell<SysMenu, Date> call(TreeTableColumn<SysMenu, Date> param) {
+            public TreeTableCell<SysDept, Date> call(TreeTableColumn<SysDept, Date> param) {
                 return new TreeTableCell<>() {
                     @Override
                     protected void updateItem(Date item, boolean empty) {
@@ -207,12 +178,13 @@ public class MenuManageView implements FxmlView<MenuManageViewModel>, Initializa
                 };
             }
         });
-        optCol.setCellValueFactory(new TreeItemPropertyValueFactory<>("menuName"));
-        optCol.setCellFactory(new Callback<TreeTableColumn<SysMenu, String>, TreeTableCell<SysMenu, String>>() {
-            @Override
-            public TreeTableCell<SysMenu, String> call(TreeTableColumn<SysMenu, String> param) {
 
-                TreeTableCell cell = new TreeTableCell<SysMenu, String>() {
+        optCol.setCellValueFactory(new TreeItemPropertyValueFactory<>("deptName"));
+        optCol.setCellFactory(new Callback<TreeTableColumn<SysDept, String>, TreeTableCell<SysDept, String>>() {
+            @Override
+            public TreeTableCell<SysDept, String> call(TreeTableColumn<SysDept, String> param) {
+
+                TreeTableCell cell = new TreeTableCell<SysDept, String>() {
                     @Override
                     protected void updateItem(String item, boolean empty) {
                         super.updateItem(item, empty);
@@ -253,15 +225,15 @@ public class MenuManageView implements FxmlView<MenuManageViewModel>, Initializa
      */
     private void createTreeItemRoot() {
 
-        var root = new TreeItem<SysMenu>(new SysMenu());
+        var root = new TreeItem<SysDept>(new SysDept());
 
-        List<SysMenu> treeList = viewModel.getMenuList();
+        List<SysDept> treeList = viewModel.getDeptList();
 
         if (CollUtil.isNotEmpty(treeList)) {
-            treeList.forEach(sysMenu -> {
-                var group = new TreeItem<SysMenu>(sysMenu);
+            treeList.forEach(SysDept -> {
+                var group = new TreeItem<SysDept>(SysDept);
                 root.getChildren().add(group);
-                List<SysMenu> children = sysMenu.getChildren();
+                List<SysDept> children = SysDept.getChildren();
 
                 if (CollUtil.isNotEmpty(children)) {
                     generateTree(group, children);
@@ -281,8 +253,8 @@ public class MenuManageView implements FxmlView<MenuManageViewModel>, Initializa
      * @param root     根
      * @param expanded 扩大
      */
-    private void treeExpandedAll(TreeItem<SysMenu> root, boolean expanded) {
-        for (TreeItem<SysMenu> child : root.getChildren()) {
+    private void treeExpandedAll(TreeItem<SysDept> root, boolean expanded) {
+        for (TreeItem<SysDept> child : root.getChildren()) {
             child.setExpanded(expanded);
             if (!child.getChildren().isEmpty()) {
                 treeExpandedAll(child, expanded);
@@ -296,11 +268,11 @@ public class MenuManageView implements FxmlView<MenuManageViewModel>, Initializa
      * @param parent   父
      * @param treeList 树列表
      */
-    private void generateTree(TreeItem<SysMenu> parent, List<SysMenu> treeList) {
+    private void generateTree(TreeItem<SysDept> parent, List<SysDept> treeList) {
         treeList.forEach(treeNode -> {
-            var group = new TreeItem<SysMenu>(treeNode);
+            var group = new TreeItem<SysDept>(treeNode);
             parent.getChildren().add(group);
-            List<SysMenu> children = treeNode.getChildren();
+            List<SysDept> children = treeNode.getChildren();
             if (CollUtil.isNotEmpty(children)) {
                 generateTree(group, children);
             }
@@ -311,17 +283,17 @@ public class MenuManageView implements FxmlView<MenuManageViewModel>, Initializa
     /**
      * 显示编辑对话框
      *
-     * @param sysMenu 系统菜单
+     * @param SysDept 系统部门
      * @param isEdit  是编辑
      */
-    private void showEditDialog(SysMenu sysMenu, boolean isEdit) {
+    private void showEditDialog(SysDept SysDept, boolean isEdit) {
 
 
-        ViewTuple<MenuDialogView, MenuDialogViewModel> load = FluentViewLoader.fxmlView(MenuDialogView.class).load();
-        SysMenu selMenu = new SysMenu();
-        selMenu.setMenuId(isEdit ? sysMenu.getParentId() : sysMenu.getMenuId());
-        load.getViewModel().setSysMenu(isEdit ? sysMenu : new SysMenu());
-        load.getViewModel().setSelectSysMenu(selMenu);
+        ViewTuple<DeptDialogView, DeptDialogViewModel> load = FluentViewLoader.fxmlView(DeptDialogView.class).load();
+        SysDept selDept = new SysDept();
+        selDept.setDeptId(isEdit ? SysDept.getParentId() : SysDept.getDeptId());
+        load.getViewModel().setSysDept(isEdit ? SysDept : new SysDept());
+        load.getViewModel().setSelectSysDept(selDept);
 
         getDialogContent().clearActions();
         getDialogContent().addActions(
@@ -334,7 +306,7 @@ public class MenuManageView implements FxmlView<MenuManageViewModel>, Initializa
         getDialogContent().setShowMinimize(false);
 
         getDialogContent().setHeaderIcon(FontIcon.of(Feather.INFO));
-        getDialogContent().setHeaderText(isEdit ? "编辑菜单" : "添加菜单");
+        getDialogContent().setHeaderText(isEdit ? "编辑部门" : "添加部门");
         getDialogContent().setContent(load.getView());
         getDialog().showDialog();
 
@@ -371,14 +343,14 @@ public class MenuManageView implements FxmlView<MenuManageViewModel>, Initializa
     /**
      * 显示del对话框
      *
-     * @param sysMenu 系统菜单
+     * @param SysDept 系统部门
      */
-    private void showDelDialog(SysMenu sysMenu) {
+    private void showDelDialog(SysDept SysDept) {
         getDialogContent().clearActions();
         getDialogContent().addActions(
                 Map.entry(new Button("取消"), event -> dialog.close()),
                 Map.entry(new Button("确定"), event -> {
-                    remove(sysMenu.getMenuId());
+                    remove(SysDept.getDeptId());
                 })
         );
         getDialogContent().setShowAlwaysOnTop(false);
@@ -386,7 +358,7 @@ public class MenuManageView implements FxmlView<MenuManageViewModel>, Initializa
 
         getDialogContent().setHeaderIcon(FontIcon.of(Feather.INFO));
         getDialogContent().setHeaderText("系统揭示");
-        getDialogContent().setContent(new Label("是否确认删除名称为" + sysMenu.getMenuName() + "的数据项？"));
+        getDialogContent().setContent(new Label("是否确认删除名称为" + SysDept.getDeptName() + "的数据项？"));
         getDialog().showDialog();
     }
 
@@ -405,13 +377,13 @@ public class MenuManageView implements FxmlView<MenuManageViewModel>, Initializa
     /**
      * 保存
      *
-     * @param menuDialogViewModel 菜单对话框视图模型
+     * @param deptDialogViewModel 部门对话框视图模型
      * @param isEdit              是编辑
      */
-    private void save(MenuDialogViewModel menuDialogViewModel, final boolean isEdit) {
+    private void save(DeptDialogViewModel deptDialogViewModel, final boolean isEdit) {
 
         ProcessChain.create()
-                .addSupplierInExecutor(() -> menuDialogViewModel.save(isEdit))
+                .addSupplierInExecutor(() -> deptDialogViewModel.save(isEdit))
                 .addConsumerInPlatformThread(r -> {
                     if (r) {
                         dialog.close();
@@ -425,12 +397,12 @@ public class MenuManageView implements FxmlView<MenuManageViewModel>, Initializa
     /**
      * 删除
      *
-     * @param menuId 菜单id
+     * @param deptId 部门id
      */
-    private void remove(Long menuId) {
+    private void remove(Long deptId) {
 
         ProcessChain.create()
-                .addRunnableInExecutor(() -> viewModel.remove(menuId))
+                .addRunnableInExecutor(() -> viewModel.remove(deptId))
                 .addRunnableInPlatformThread(() -> {
                     dialog.close();
                     query();
