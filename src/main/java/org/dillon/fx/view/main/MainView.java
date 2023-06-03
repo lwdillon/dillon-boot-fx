@@ -167,11 +167,11 @@ public class MainView implements FxmlView<MainViewModel>, Initializable {
                 loddTab(newValue);
             }
         });
-        MvvmFX.getNotificationCenter().subscribe("addAuthUserTab", (key, payload) -> {
+        MvvmFX.getNotificationCenter().subscribe("addTab", (key, payload) -> {
 
 
             // trigger some actions
-            loddTab("分配用户","", (Parent) payload[0]);
+            loddTab((String) payload[0],(String) payload[1], (Parent) payload[2]);
 
         });
 

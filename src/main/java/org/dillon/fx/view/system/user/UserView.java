@@ -225,7 +225,6 @@ public class UserView implements FxmlView<UserViewModel>, Initializable {
                 @Override
                 protected void updateItem(Boolean item, boolean empty) {
                     super.updateItem(item, empty);
-                    super.updateItem(item, empty);
                     if (empty) {
                         setText(null);
                         setGraphic(null);

@@ -204,7 +204,7 @@ public class UserInfoViewModel implements ViewModel {
                 roleIds = JSONUtil.toList(objects.getJSONArray("roleIds"), Long.class);
                 posts.forEach(post -> {
                     if (postIds.contains(post.getPostId())) {
-                        post.setSel(true);
+                        post.setSelect(true);
                        selPostMap.put(post.getPostId(),post);
                     }
                 });

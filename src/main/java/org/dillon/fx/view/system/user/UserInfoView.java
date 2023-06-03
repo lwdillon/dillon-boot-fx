@@ -136,9 +136,9 @@ public class UserInfoView implements FxmlView<UserInfoViewModel>, Initializable 
         postListView.setCellFactory(CheckBoxListCell.forListView(new Callback<SysPost, ObservableValue<Boolean>>() {
             @Override
             public ObservableValue<Boolean> call(SysPost param) {
-                SimpleBooleanProperty booleanProperty=  new SimpleBooleanProperty(param.getSel());
+                SimpleBooleanProperty booleanProperty=  new SimpleBooleanProperty(param.isSelect());
                 booleanProperty.addListener((observable, oldValue, newValue) -> {
-                    param.setSel(newValue);
+                    param.setSelect(newValue);
                     if (newValue) {
                         viewModel.getSelPostMap().put(param.getPostId(), param);
                     } else {
@@ -205,9 +205,6 @@ public class UserInfoView implements FxmlView<UserInfoViewModel>, Initializable 
         postPopover.setHeaderAlwaysVisible(false);
         postPopover.setArrowLocation(Popover.ArrowLocation.TOP_CENTER);
         postSp.setOnMouseClicked(e -> postPopover.show(postSp));
-
-
-
 
 
         viewModel.getDeptTreeList().addListener(new ListChangeListener<TreeSelect>() {

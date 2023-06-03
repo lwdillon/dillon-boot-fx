@@ -134,7 +134,6 @@ public class DeptManageView implements FxmlView<DeptManageViewModel>, Initializa
                 @Override
                 protected void updateItem(Boolean item, boolean empty) {
                     super.updateItem(item, empty);
-                    super.updateItem(item, empty);
                     if (empty) {
                         setText(null);
                         setGraphic(null);

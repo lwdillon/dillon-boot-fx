@@ -1,10 +1,9 @@
-package org.dillon.fx.view.system.role;
+package org.dillon.fx.view.system.post;
 
 import atlantafx.base.controls.ToggleSwitch;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.ObjectUtil;
-import cn.hutool.extra.pinyin.PinyinUtil;
 import de.saxsys.mvvmfx.*;
 import io.datafx.core.concurrent.ProcessChain;
 import io.github.palexdev.materialfx.controls.MFXProgressSpinner;
@@ -13,12 +12,10 @@ import io.github.palexdev.materialfx.dialogs.MFXGenericDialogBuilder;
 import io.github.palexdev.materialfx.dialogs.MFXStageDialog;
 import io.github.palexdev.materialfx.enums.ScrimPriority;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -27,12 +24,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.util.Callback;
-import org.dillon.fx.domain.SysRole;
-import org.dillon.fx.domain.SysUser;
-import org.dillon.fx.domain.SysUserRole;
-import org.dillon.fx.domain.vo.TreeSelect;
+import org.dillon.fx.domain.SysPost;
 import org.dillon.fx.theme.CSSFragment;
-import org.dillon.fx.view.control.FilterableTreeItem;
 import org.dillon.fx.view.control.OverlayDialog;
 import org.dillon.fx.view.control.PagingControl;
 import org.kordamp.ikonli.feather.Feather;
@@ -42,61 +35,78 @@ import java.net.URL;
 import java.util.*;
 
 import static atlantafx.base.theme.Styles.*;
+import static atlantafx.base.theme.Styles.DANGER;
 import static atlantafx.base.theme.Tweaks.*;
 
-public class AuthUserView implements FxmlView<AuthUserViewModel>, Initializable {
+public class PostView implements FxmlView<PostViewModel>, Initializable {
 
     @InjectViewModel
-    private AuthUserViewModel viewModel;
+    private PostViewModel postViewModel;
 
     @FXML
-    private CheckBox selAllCheckBox;
-    private MFXGenericDialog dialogContent;
-    private MFXStageDialog dialog;
-    private MFXProgressSpinner loading;
+    private VBox contentPane;
+    @FXML
+    private Button addBut;
+
+    @FXML
+    private TableColumn<SysPost, Date> createTimeCol;
+
+    @FXML
+    private Button delBut;
+
+    @FXML
+    private Button editBut;
+
+    @FXML
+    private TableColumn<SysPost, String> optCol;
+
+    @FXML
+    private Button resetBut;
+
+    @FXML
+    private TableColumn<?, ?> postIdCol;
+
+    @FXML
+    private TableColumn<?, ?> postCodeCol;
+
+    @FXML
+    private TableColumn<?, ?> postNameCol;
+
+    @FXML
+    private TableColumn<?, ?> postSortCol;
+
     @FXML
     private StackPane rootPane;
 
     @FXML
-    private TextField userSearchField;
-    @FXML
-    private TextField phoneField;
-    @FXML
-    private Button resetBut;
-    @FXML
     private Button searchBut;
-    @FXML
-    private Button addUserBut;
-    @FXML
-    private Button cancelAuthBut;
 
     @FXML
-    private HBox contentPane;
-    @FXML
-    private TableView<SysUser> tableView;
+    private CheckBox selAllCheckBox;
 
     @FXML
-    private TableColumn<SysUser, Boolean> selCol;
-    @FXML
-    private TableColumn<SysUser, String> idCol;
-    @FXML
-    private TableColumn<SysUser, String> userNameCol;
-    @FXML
-    private TableColumn<SysUser, String> nickNameCol;
-    @FXML
-    private TableColumn<SysUser, String> deptCol;
-    @FXML
-    private TableColumn<SysUser, String> phonenumberCol;
-    @FXML
-    private TableColumn<SysUser, Boolean> statusCol;
-    @FXML
-    private TableColumn<SysUser, Date> createTimeCol;
-    @FXML
-    private TableColumn<SysUser, String> optCol;
+    private TableColumn<SysPost, Boolean> selCol;
 
 
     @FXML
-    private VBox pagePane;
+    private TableColumn<SysPost, Boolean> statusCol;
+
+    @FXML
+    private ComboBox<String> statusCombo;
+
+    @FXML
+    private TableView<SysPost> tableView;
+
+    @FXML
+    private TextField postCodeField;
+    @FXML
+    private TextField postNameField;
+
+    private MFXProgressSpinner loading;
+
+    private MFXStageDialog dialog;
+
+    private MFXGenericDialog dialogContent;
 
     private PagingControl pagingControl;
 
@@ -104,40 +114,66 @@ public class AuthUserView implements FxmlView<AuthUserViewModel>, Initializable 
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         pagingControl = new PagingControl();
-        pagePane.getChildren().add(pagingControl);
-        pagingControl.totalProperty().bind(viewModel.totalProperty());
-        viewModel.pageNumProperty().bind(pagingControl.pageNumProperty());
-        viewModel.pageSizeProperty().bind(pagingControl.pageSizeProperty());
-        viewModel.pageNumProperty().addListener((observable, oldValue, newValue) -> {
-            viewModel.allocatedList();
+        contentPane.getChildren().add(pagingControl);
+        pagingControl.totalProperty().bindBidirectional(postViewModel.totalProperty());
+        postViewModel.pageNumProperty().bind(pagingControl.pageNumProperty());
+        postViewModel.pageSizeProperty().bindBidirectional(pagingControl.pageSizeProperty());
+        postViewModel.pageNumProperty().addListener((observable, oldValue, newValue) -> {
+            postViewModel.queryPostList();
         });
 
         loading = new MFXProgressSpinner();
         loading.disableProperty().bind(loading.visibleProperty().not());
         loading.visibleProperty().bindBidirectional(contentPane.disableProperty());
         rootPane.getChildren().add(loading);
+
+        postNameField.textProperty().bindBidirectional(postViewModel.postNameProperty());
+        postCodeField.textProperty().bindBidirectional(postViewModel.postCodeProperty());
+        statusCombo.valueProperty().bindBidirectional(postViewModel.statusProperty());
+        searchBut.setOnAction(event -> postViewModel.queryPostList());
         searchBut.getStyleClass().addAll(ACCENT);
-        searchBut.setOnAction(event -> viewModel.allocatedList());
-        userSearchField.textProperty().bindBidirectional(viewModel.userNameProperty());
-        phoneField.textProperty().bindBidirectional(viewModel.phoneProperty());
-        resetBut.setOnAction(event -> viewModel.reset());
-        addUserBut.setOnAction(event -> showDialog(viewModel.getRoleId()));
-        cancelAuthBut.setOnAction(event -> {
-            showCancelAllDialog();
+
+        resetBut.setOnAction(event -> postViewModel.reset());
+        editBut.setOnAction(event -> {
+            if (tableView.getSelectionModel().getSelectedItem() == null) {
+                MvvmFX.getNotificationCenter().publish("message", 500, "请选择一条记录");
+                return;
+            }
+            showPostInfoDialog(tableView.getSelectionModel().getSelectedItem().getPostId());
+        });
+        delBut.setOnAction(event -> {
+            List<Long> delIds = new ArrayList<>();
+            postViewModel.getSysPosts().forEach(post -> {
+                if (post.isSelect()) {
+                    delIds.add(post.getPostId());
+                }
+            });
+            showDelDialog(delIds);
+        });
+        statusCombo.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
+            @Override
+            public ListCell<String> call(ListView<String> param) {
+                return new ListCell<>() {
+                    @Override
+                    protected void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setText(null);
+                        } else {
+                            setText(ObjectUtil.equal("0", item) ? "正常" : ObjectUtil.equal("1", item) ? "停用" : "全部");
+                        }
+                    }
+                };
+            }
         });
 
         selCol.setCellValueFactory(new PropertyValueFactory<>("select"));
         selCol.setCellFactory(CheckBoxTableCell.forTableColumn(selCol));
         selCol.setEditable(true);
-        idCol.setCellValueFactory(new PropertyValueFactory<>("userId"));
-        userNameCol.setCellValueFactory(new PropertyValueFactory<>("userName"));
-        nickNameCol.setCellValueFactory(new PropertyValueFactory<>("nickName"));
-        deptCol.setCellValueFactory(cb -> {
-            var row = cb.getValue();
-            var dept = row.getDept();
-
-            return new SimpleStringProperty(ObjectUtil.isEmpty(dept) ? "" : dept.getDeptName());
-        });
+        postIdCol.setCellValueFactory(new PropertyValueFactory<>("postId"));
+        postNameCol.setCellValueFactory(new PropertyValueFactory<>("postName"));
+        postCodeCol.setCellValueFactory(new PropertyValueFactory<>("postCode"));
+        postSortCol.setCellValueFactory(new PropertyValueFactory<>("postSort"));
 
         statusCol.setCellValueFactory(cb -> {
             var row = cb.getValue();
@@ -170,6 +206,8 @@ public class AuthUserView implements FxmlView<AuthUserViewModel>, Initializable 
             };
         });
 
+
+
         optCol.setCellFactory(col -> {
             return new TableCell<>() {
                 @Override
@@ -179,11 +217,16 @@ public class AuthUserView implements FxmlView<AuthUserViewModel>, Initializable 
                         setText(null);
                         setGraphic(null);
                     } else {
-                        Button editBut = new Button("取消授权");
-                        editBut.setOnAction(event -> showCancelDialog(getTableRow().getItem()));
+
+                        Button editBut = new Button("修改");
+                        editBut.setOnAction(event -> showPostInfoDialog(getTableRow().getItem().getPostId()));
                         editBut.setGraphic(FontIcon.of(Feather.EDIT));
                         editBut.getStyleClass().addAll(FLAT, ACCENT);
-                        HBox box = new HBox(editBut);
+                        Button remBut = new Button("删除");
+                        remBut.setOnAction(event -> showDelDialog(CollUtil.newArrayList(getTableRow().getItem().getPostId())));
+                        remBut.setGraphic(FontIcon.of(Feather.TRASH));
+                        remBut.getStyleClass().addAll(FLAT, ACCENT);
+                        HBox box = new HBox(editBut, remBut);
                         box.setAlignment(Pos.CENTER);
                         setGraphic(box);
                     }
@@ -192,11 +235,10 @@ public class AuthUserView implements FxmlView<AuthUserViewModel>, Initializable 
         });
 
 
-        phonenumberCol.setCellValueFactory(new PropertyValueFactory<>("phonenumber"));
         createTimeCol.setCellValueFactory(new PropertyValueFactory<>("createTime"));
-        createTimeCol.setCellFactory(new Callback<TableColumn<SysUser, Date>, TableCell<SysUser, Date>>() {
+        createTimeCol.setCellFactory(new Callback<TableColumn<SysPost, Date>, TableCell<SysPost, Date>>() {
             @Override
-            public TableCell<SysUser, Date> call(TableColumn<SysUser, Date> param) {
+            public TableCell<SysPost, Date> call(TableColumn<SysPost, Date> param) {
                 return new TableCell<>() {
                     @Override
                     protected void updateItem(Date item, boolean empty) {
@@ -213,38 +255,15 @@ public class AuthUserView implements FxmlView<AuthUserViewModel>, Initializable 
                 };
             }
         });
-        tableView.setItems(viewModel.getUserList());
+        tableView.setItems(postViewModel.getSysPosts());
         tableView.getSelectionModel().setCellSelectionEnabled(false);
         for (TableColumn<?, ?> c : tableView.getColumns()) {
             addStyleClass(c, ALIGN_CENTER, ALIGN_LEFT, ALIGN_RIGHT);
         }
 
 
-    }
+        addBut.setOnAction(event -> showPostInfoDialog(null));
 
-    private void showDialog(Long roleId) {
-        ViewTuple<AddUserView, AddUserViewModel> load = FluentViewLoader.fxmlView(AddUserView.class).load();
-        load.getViewModel().setRoleId(roleId);
-        load.getViewModel().unallocatedList();
-        getDialogContent().clearActions();
-
-        getDialogContent().addActions(Map.entry(new Button("取消"), event -> dialog.close()), Map.entry(new Button("确定"), event -> {
-
-            ProcessChain.create().addSupplierInExecutor(() -> load.getViewModel().save()).addConsumerInPlatformThread(res -> {
-
-                if (res) {
-                    dialog.close();
-                    viewModel.allocatedList();
-                }
-            }).onException(e -> e.printStackTrace()).run();
-        }));
-        getDialogContent().setShowAlwaysOnTop(false);
-        getDialogContent().setShowMinimize(false);
-
-        getDialogContent().setHeaderIcon(FontIcon.of(Feather.INFO));
-        getDialogContent().setHeaderText("选择用户");
-        getDialogContent().setContent(load.getView());
-        getDialog().showDialog();
     }
 
     public MFXGenericDialog getDialogContent() {
@@ -262,6 +281,52 @@ public class AuthUserView implements FxmlView<AuthUserViewModel>, Initializable 
         return dialog;
     }
 
+    private void showPostInfoDialog(Long userId) {
+
+        ViewTuple<PostInfoView, PostInfoViewModel> load = FluentViewLoader.fxmlView(PostInfoView.class).load();
+        getDialogContent().clearActions();
+        load.getViewModel().updateSysPostInfo(userId);
+        getDialogContent().addActions(Map.entry(new Button("取消"), event -> dialog.close()), Map.entry(new Button("确定"), event -> {
+            ProcessChain.create().addSupplierInExecutor(() -> load.getViewModel().save(ObjectUtil.isNotEmpty(userId))).addConsumerInPlatformThread(r -> {
+                if (r) {
+                    dialog.close();
+                    postViewModel.queryPostList();
+                }
+            }).onException(e -> e.printStackTrace()).run();
+        }));
+        getDialogContent().setShowAlwaysOnTop(false);
+        getDialogContent().setShowMinimize(false);
+
+        getDialogContent().setHeaderIcon(FontIcon.of(Feather.INFO));
+        getDialogContent().setHeaderText(ObjectUtil.isNotEmpty(userId) ? "编辑岗位" : "添加岗位");
+        getDialogContent().setContent(load.getView());
+        getDialog().showDialog();
+    }
+
+
+
+    private void showDelDialog(List<Long> postIds) {
+
+        if (CollUtil.isEmpty(postIds)) {
+            MvvmFX.getNotificationCenter().publish("message", 500, "请选择一条记录");
+            return;
+        }
+        getDialogContent().clearActions();
+        getDialogContent().addActions(Map.entry(new Button("取消"), event -> dialog.close()), Map.entry(new Button("确定"), event -> {
+            ProcessChain.create().addRunnableInExecutor(() -> postViewModel.del(CollUtil.join(postIds, ","))).addRunnableInPlatformThread(() -> {
+                dialog.close();
+                postViewModel.queryPostList();
+            }).onException(e -> e.printStackTrace()).run();
+        }));
+        getDialogContent().setShowAlwaysOnTop(false);
+        getDialogContent().setShowMinimize(false);
+
+        getDialogContent().setHeaderIcon(FontIcon.of(Feather.INFO));
+        getDialogContent().setHeaderText("系统揭示");
+        getDialogContent().setContent(new Label("是否确认删除编号为" + postIds + "的岗位吗？"));
+        getDialog().showDialog();
+    }
+
 
     private static void addStyleClass(TableColumn<?, ?> c, String styleClass, String... excludes) {
         Objects.requireNonNull(c);
@@ -271,65 +336,5 @@ public class AuthUserView implements FxmlView<AuthUserViewModel>, Initializable 
             c.getStyleClass().removeAll(excludes);
         }
         c.getStyleClass().add(styleClass);
-    }
-
-    private void showCancelDialog(SysUser sysUser) {
-
-        if (ObjectUtil.isEmpty(sysUser)) {
-            MvvmFX.getNotificationCenter().publish("message", 500, "请选择一条记录");
-            return;
-        }
-        getDialogContent().clearActions();
-        SysUserRole sysUserRole = new SysUserRole();
-        sysUserRole.setUserId(sysUser.getUserId());
-        sysUserRole.setRoleId(viewModel.getRoleId());
-        getDialogContent().addActions(Map.entry(new Button("取消"), event -> dialog.close()), Map.entry(new Button("确定"), event -> {
-            ProcessChain.create().addSupplierInExecutor(() -> viewModel.cancel(sysUserRole)).addConsumerInPlatformThread(r -> {
-                if (r) {
-                    dialog.close();
-                    viewModel.allocatedList();
-                }
-
-            }).onException(e -> e.printStackTrace()).run();
-        }));
-        getDialogContent().setShowAlwaysOnTop(false);
-        getDialogContent().setShowMinimize(false);
-
-        getDialogContent().setHeaderIcon(FontIcon.of(Feather.INFO));
-        getDialogContent().setHeaderText("系统揭示");
-        getDialogContent().setContent(new Label("确认要取消该用户" + sysUser.getUserName() + "的角色吗？"));
-        getDialog().showDialog();
-    }
-
-    private void showCancelAllDialog() {
-
-        List<Long> userIds = new ArrayList<>();
-        viewModel.getUserList().forEach(user -> {
-            if (user.isSelect()) {
-                userIds.add(user.getUserId());
-            }
-        });
-
-        if (ObjectUtil.isEmpty(userIds)) {
-            MvvmFX.getNotificationCenter().publish("message", 500, "请选择一条记录");
-            return;
-        }
-        getDialogContent().clearActions();
-        getDialogContent().addActions(Map.entry(new Button("取消"), event -> dialog.close()), Map.entry(new Button("确定"), event -> {
-            ProcessChain.create().addSupplierInExecutor(() -> viewModel.cancelAll(viewModel.getRoleId(), CollUtil.join(userIds, ","))).addConsumerInPlatformThread(r -> {
-                if (r) {
-                    dialog.close();
-                    viewModel.allocatedList();
-                }
-
-            }).onException(e -> e.printStackTrace()).run();
-        }));
-        getDialogContent().setShowAlwaysOnTop(false);
-        getDialogContent().setShowMinimize(false);
-
-        getDialogContent().setHeaderIcon(FontIcon.of(Feather.INFO));
-        getDialogContent().setHeaderText("系统揭示");
-        getDialogContent().setContent(new Label("是否取消选中用户授权数据项？"));
-        getDialog().showDialog();
     }
 }

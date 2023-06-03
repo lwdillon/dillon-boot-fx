@@ -53,6 +53,16 @@ javafx权限管理系统UI
 
 ![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/dept-light.jpg)
 
+字典类型
+![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/dicttype-dark.jpg)
+
+![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/dicttype-light.jpg)
+
+字典数据
+![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/dictdata-dark.jpg)
+
+![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/dictdata-light.jpg)
+
 
 操作日志
 

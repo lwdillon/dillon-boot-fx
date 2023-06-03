@@ -1,6 +1,5 @@
-package org.dillon.fx.view.system.role;
+package org.dillon.fx.view.system.dict.type;
 
-import atlantafx.base.controls.ToggleSwitch;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.ObjectUtil;
@@ -14,6 +13,7 @@ import io.github.palexdev.materialfx.enums.ScrimPriority;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
@@ -23,24 +23,28 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.util.Callback;
-import org.dillon.fx.domain.SysRole;
+import org.dillon.fx.domain.SysDictType;
 import org.dillon.fx.theme.CSSFragment;
 import org.dillon.fx.view.control.OverlayDialog;
 import org.dillon.fx.view.control.PagingControl;
+import org.dillon.fx.view.system.dict.data.DictDataInfoViewModel;
+import org.dillon.fx.view.system.dict.data.DictDataView;
+import org.dillon.fx.view.system.dict.data.DictDataViewModel;
+import org.dillon.fx.view.system.role.AuthUserView;
+import org.dillon.fx.view.system.role.AuthUserViewModel;
 import org.kordamp.ikonli.feather.Feather;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.net.URL;
 import java.util.*;
 
-import static atlantafx.base.theme.Styles.ACCENT;
-import static atlantafx.base.theme.Styles.FLAT;
+import static atlantafx.base.theme.Styles.*;
 import static atlantafx.base.theme.Tweaks.*;
 
-public class RoleView implements FxmlView<RoleViewModel>, Initializable {
+public class DictTypeView implements FxmlView<DictTypeViewModel>, Initializable {
 
     @InjectViewModel
-    private RoleViewModel roleViewModel;
+    private DictTypeViewModel dictTypeViewModel;
 
     @FXML
     private VBox contentPane;
@@ -48,7 +52,7 @@ public class RoleView implements FxmlView<RoleViewModel>, Initializable {
     private Button addBut;
 
     @FXML
-    private TableColumn<SysRole, Date> createTimeCol;
+    private TableColumn<SysDictType, Date> createTimeCol;
 
     @FXML
     private Button delBut;
@@ -60,23 +64,19 @@ public class RoleView implements FxmlView<RoleViewModel>, Initializable {
     private DatePicker endDatePicker;
 
     @FXML
-    private TableColumn<SysRole, String> optCol;
+    private TableColumn<SysDictType, String> optCol;
 
 
     @FXML
     private Button resetBut;
 
     @FXML
-    private TableColumn<?, ?> roleIdCol;
+    private TableColumn<?, ?> dictNameCol;
 
     @FXML
-    private TableColumn<?, ?> roleKeyCol;
-
+    private TableColumn<?, ?> dictIdCol;
     @FXML
-    private TableColumn<?, ?> roleNameCol;
-
-    @FXML
-    private TableColumn<?, ?> roleSortCol;
+    private TableColumn<SysDictType, String> dictTypeCol;
 
     @FXML
     private StackPane rootPane;
@@ -88,22 +88,22 @@ public class RoleView implements FxmlView<RoleViewModel>, Initializable {
     private CheckBox selAllCheckBox;
 
     @FXML
-    private TableColumn<SysRole, Boolean> selCol;
+    private TableColumn<SysDictType, Boolean> selCol;
 
     @FXML
     private DatePicker startDatePicker;
 
     @FXML
-    private TableColumn<SysRole, Boolean> statusCol;
+    private TableColumn<SysDictType, Boolean> statusCol;
 
     @FXML
     private ComboBox<String> statusCombo;
 
     @FXML
-    private TableView<SysRole> tableView;
+    private TableView<SysDictType> tableView;
 
     @FXML
-    private TextField roleSearchField;
+    private TextField dictNameField;
 
 
     private MFXProgressSpinner loading;
@@ -119,11 +119,11 @@ public class RoleView implements FxmlView<RoleViewModel>, Initializable {
 
         pagingControl = new PagingControl();
         contentPane.getChildren().add(pagingControl);
-        pagingControl.totalProperty().bindBidirectional(roleViewModel.totalProperty());
-        roleViewModel.pageNumProperty().bind(pagingControl.pageNumProperty());
-        roleViewModel.pageSizeProperty().bindBidirectional(pagingControl.pageSizeProperty());
-        roleViewModel.pageNumProperty().addListener((observable, oldValue, newValue) -> {
-            roleViewModel.queryRoleList();
+        pagingControl.totalProperty().bindBidirectional(dictTypeViewModel.totalProperty());
+        dictTypeViewModel.pageNumProperty().bind(pagingControl.pageNumProperty());
+        dictTypeViewModel.pageSizeProperty().bindBidirectional(pagingControl.pageSizeProperty());
+        dictTypeViewModel.pageNumProperty().addListener((observable, oldValue, newValue) -> {
+            dictTypeViewModel.queryDictDataList();
         });
 
         loading = new MFXProgressSpinner();
@@ -131,26 +131,26 @@ public class RoleView implements FxmlView<RoleViewModel>, Initializable {
         loading.visibleProperty().bindBidirectional(contentPane.disableProperty());
         rootPane.getChildren().add(loading);
 
-        roleSearchField.textProperty().bindBidirectional(roleViewModel.roleNameProperty());
-        statusCombo.valueProperty().bindBidirectional(roleViewModel.statusProperty());
-        startDatePicker.valueProperty().bindBidirectional(roleViewModel.startDateProperty());
-        endDatePicker.valueProperty().bindBidirectional(roleViewModel.endDateProperty());
-        searchBut.setOnAction(event -> roleViewModel.queryRoleList());
+        dictNameField.textProperty().bindBidirectional(dictTypeViewModel.dictNameProperty());
+        statusCombo.valueProperty().bindBidirectional(dictTypeViewModel.statusProperty());
+        startDatePicker.valueProperty().bindBidirectional(dictTypeViewModel.startDateProperty());
+        endDatePicker.valueProperty().bindBidirectional(dictTypeViewModel.endDateProperty());
+        searchBut.setOnAction(event -> dictTypeViewModel.queryDictDataList());
         searchBut.getStyleClass().addAll(ACCENT);
 
-        resetBut.setOnAction(event -> roleViewModel.reset());
+        resetBut.setOnAction(event -> dictTypeViewModel.reset());
         editBut.setOnAction(event -> {
             if (tableView.getSelectionModel().getSelectedItem() == null) {
                 MvvmFX.getNotificationCenter().publish("message", 500, "请选择一条记录");
                 return;
             }
-            showRoleInfoDialog(tableView.getSelectionModel().getSelectedItem().getRoleId());
+            showDictDataInfoDialog(tableView.getSelectionModel().getSelectedItem().getDictId());
         });
         delBut.setOnAction(event -> {
             List<Long> delIds = new ArrayList<>();
-            roleViewModel.getSysRoles().forEach(role -> {
-                if (role.isSelect()) {
-                    delIds.add(role.getRoleId());
+            dictTypeViewModel.getSysDictTypes().forEach(dict -> {
+                if (dict.isSelect()) {
+                    delIds.add(dict.getDictId());
                 }
             });
             showDelDialog(delIds);
@@ -175,10 +175,9 @@ public class RoleView implements FxmlView<RoleViewModel>, Initializable {
         selCol.setCellValueFactory(new PropertyValueFactory<>("select"));
         selCol.setCellFactory(CheckBoxTableCell.forTableColumn(selCol));
         selCol.setEditable(true);
-        roleIdCol.setCellValueFactory(new PropertyValueFactory<>("roleId"));
-        roleNameCol.setCellValueFactory(new PropertyValueFactory<>("roleName"));
-        roleKeyCol.setCellValueFactory(new PropertyValueFactory<>("roleKey"));
-        roleSortCol.setCellValueFactory(new PropertyValueFactory<>("roleSort"));
+        dictNameCol.setCellValueFactory(new PropertyValueFactory<>("dictName"));
+        dictTypeCol.setCellValueFactory(new PropertyValueFactory<>("dictType"));
+        dictIdCol.setCellValueFactory(new PropertyValueFactory<>("dictId"));
 
         statusCol.setCellValueFactory(cb -> {
             var row = cb.getValue();
@@ -194,9 +193,42 @@ public class RoleView implements FxmlView<RoleViewModel>, Initializable {
                         setText(null);
                         setGraphic(null);
                     } else {
-                        ToggleSwitch state = new ToggleSwitch();
-                        state.setSelected(item);
-                        setGraphic(state);
+                        Button state = new Button();
+                        if (item) {
+                            state.setText("正常");
+                            state.getStyleClass().addAll(BUTTON_OUTLINED, SUCCESS);
+                        } else {
+                            state.setText("停用");
+                            state.getStyleClass().addAll(BUTTON_OUTLINED, DANGER);
+                        }
+                        HBox box = new HBox(state);
+                        box.setPadding(new Insets(7, 7, 7, 7));
+                        box.setAlignment(Pos.CENTER);
+                        setGraphic(box);
+                    }
+                }
+            };
+        });
+
+        dictTypeCol.setCellFactory(col -> {
+            return new TableCell<>() {
+                @Override
+                protected void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (empty) {
+                        setText(null);
+                        setGraphic(null);
+                    } else {
+                        Button editBut = new Button(item);
+                        editBut.setOnAction(event ->{
+                            ViewTuple<DictDataView, DictDataViewModel> load = FluentViewLoader.fxmlView(DictDataView.class).load();
+                            load.getViewModel().queryDictDataList(getTableRow().getItem());
+                            MvvmFX.getNotificationCenter().publish("addTab", "字典数据","",load.getView());
+                        });
+                        editBut.getStyleClass().addAll(FLAT, ACCENT);
+                        HBox box = new HBox(editBut);
+                        box.setAlignment(Pos.CENTER);
+                        setGraphic(box);
                     }
                 }
             };
@@ -213,27 +245,16 @@ public class RoleView implements FxmlView<RoleViewModel>, Initializable {
                     } else {
 
                         Button editBut = new Button("修改");
-                        editBut.setOnAction(event -> showRoleInfoDialog(getTableRow().getItem().getRoleId()));
+                        editBut.setOnAction(event -> showDictDataInfoDialog(getTableRow().getItem().getDictId()));
                         editBut.setGraphic(FontIcon.of(Feather.EDIT));
                         editBut.getStyleClass().addAll(FLAT, ACCENT);
                         Button remBut = new Button("删除");
-                        remBut.setOnAction(event -> showDelDialog(CollUtil.newArrayList(getTableRow().getItem().getRoleId())));
+                        remBut.setOnAction(event -> showDelDialog(CollUtil.newArrayList(getTableRow().getItem().getDictId())));
                         remBut.setGraphic(FontIcon.of(Feather.TRASH));
                         remBut.getStyleClass().addAll(FLAT, ACCENT);
 
-                        MenuItem resetPwdItem = new MenuItem("数据权限");
-                        resetPwdItem.setOnAction(event -> showAuthDataDialog(getTableRow().getItem().getRoleId()));
-                        MenuItem assignRolesItme = new MenuItem("分配用户");
-                        assignRolesItme.setOnAction(event -> {
-                            ViewTuple<AuthUserView, AuthUserViewModel> load = FluentViewLoader.fxmlView(AuthUserView.class).load();
-                            load.getViewModel().setRoleId(getTableRow().getItem().getRoleId());
-                            load.getViewModel().allocatedList();
-                            MvvmFX.getNotificationCenter().publish("addTab", "分配用户","",load.getView());
-                        });
-                        MenuButton moreBut = new MenuButton("更多");
-                        moreBut.getItems().addAll(resetPwdItem, assignRolesItme);
-                        moreBut.getStyleClass().addAll(FLAT, ACCENT);
-                        HBox box = new HBox(editBut, remBut, moreBut);
+
+                        HBox box = new HBox(editBut, remBut);
                         box.setAlignment(Pos.CENTER);
 //                            box.setSpacing(7);
                         setGraphic(box);
@@ -244,9 +265,9 @@ public class RoleView implements FxmlView<RoleViewModel>, Initializable {
 
 
         createTimeCol.setCellValueFactory(new PropertyValueFactory<>("createTime"));
-        createTimeCol.setCellFactory(new Callback<TableColumn<SysRole, Date>, TableCell<SysRole, Date>>() {
+        createTimeCol.setCellFactory(new Callback<TableColumn<SysDictType, Date>, TableCell<SysDictType, Date>>() {
             @Override
-            public TableCell<SysRole, Date> call(TableColumn<SysRole, Date> param) {
+            public TableCell<SysDictType, Date> call(TableColumn<SysDictType, Date> param) {
                 return new TableCell<>() {
                     @Override
                     protected void updateItem(Date item, boolean empty) {
@@ -263,14 +284,14 @@ public class RoleView implements FxmlView<RoleViewModel>, Initializable {
                 };
             }
         });
-        tableView.setItems(roleViewModel.getSysRoles());
+        tableView.setItems(dictTypeViewModel.getSysDictTypes());
         tableView.getSelectionModel().setCellSelectionEnabled(false);
         for (TableColumn<?, ?> c : tableView.getColumns()) {
             addStyleClass(c, ALIGN_CENTER, ALIGN_LEFT, ALIGN_RIGHT);
         }
 
 
-        addBut.setOnAction(event -> showRoleInfoDialog(null));
+        addBut.setOnAction(event -> showDictDataInfoDialog(null));
 
     }
 
@@ -289,16 +310,16 @@ public class RoleView implements FxmlView<RoleViewModel>, Initializable {
         return dialog;
     }
 
-    private void showRoleInfoDialog(Long userId) {
+    private void showDictDataInfoDialog(Long dictTypeId) {
 
-        ViewTuple<RoleInfoView, RoleInfoViewModel> load = FluentViewLoader.fxmlView(RoleInfoView.class).load();
+        ViewTuple<DictTypeInfoView, DictTypeInfoViewModel> load = FluentViewLoader.fxmlView(DictTypeInfoView.class).load();
         getDialogContent().clearActions();
-        load.getViewModel().updateSysRoleInfo(userId);
+        load.getViewModel().updateSysDictTypeInfo(dictTypeId);
         getDialogContent().addActions(Map.entry(new Button("取消"), event -> dialog.close()), Map.entry(new Button("确定"), event -> {
-            ProcessChain.create().addSupplierInExecutor(() -> load.getViewModel().save(ObjectUtil.isNotEmpty(userId))).addConsumerInPlatformThread(r -> {
+            ProcessChain.create().addSupplierInExecutor(() -> load.getViewModel().save(ObjectUtil.isNotEmpty(dictTypeId))).addConsumerInPlatformThread(r -> {
                 if (r) {
                     dialog.close();
-                    roleViewModel.queryRoleList();
+                    dictTypeViewModel.queryDictDataList();
                 }
             }).onException(e -> e.printStackTrace()).run();
         }));
@@ -306,44 +327,23 @@ public class RoleView implements FxmlView<RoleViewModel>, Initializable {
         getDialogContent().setShowMinimize(false);
 
         getDialogContent().setHeaderIcon(FontIcon.of(Feather.INFO));
-        getDialogContent().setHeaderText(ObjectUtil.isNotEmpty(userId) ? "编辑角色" : "添加角色");
+        getDialogContent().setHeaderText(ObjectUtil.isNotEmpty(dictTypeId) ? "编辑字典类型" : "添加字典类型");
         getDialogContent().setContent(load.getView());
         getDialog().showDialog();
     }
 
-    private void showAuthDataDialog(Long userId) {
 
-        ViewTuple<AuthDataView, AuthDataViewModel> load = FluentViewLoader.fxmlView(AuthDataView.class).load();
-        getDialogContent().clearActions();
-        load.getViewModel().updateSysRoleInfo(userId);
-        getDialogContent().addActions(Map.entry(new Button("取消"), event -> dialog.close()), Map.entry(new Button("确定"), event -> {
-            ProcessChain.create().addSupplierInExecutor(() -> load.getViewModel().save()).addConsumerInPlatformThread(r -> {
-                if (r) {
-                    dialog.close();
-                    roleViewModel.queryRoleList();
-                }
-            }).onException(e -> e.printStackTrace()).run();
-        }));
-        getDialogContent().setShowAlwaysOnTop(false);
-        getDialogContent().setShowMinimize(false);
+    private void showDelDialog(List<Long> dictIds) {
 
-        getDialogContent().setHeaderIcon(FontIcon.of(Feather.INFO));
-        getDialogContent().setHeaderText("分配数据权限");
-        getDialogContent().setContent(load.getView());
-        getDialog().showDialog();
-    }
-
-    private void showDelDialog(List<Long> roleIds) {
-
-        if (CollUtil.isEmpty(roleIds)) {
+        if (CollUtil.isEmpty(dictIds)) {
             MvvmFX.getNotificationCenter().publish("message", 500, "请选择一条记录");
             return;
         }
         getDialogContent().clearActions();
         getDialogContent().addActions(Map.entry(new Button("取消"), event -> dialog.close()), Map.entry(new Button("确定"), event -> {
-            ProcessChain.create().addRunnableInExecutor(() -> roleViewModel.del(CollUtil.join(roleIds, ","))).addRunnableInPlatformThread(() -> {
+            ProcessChain.create().addRunnableInExecutor(() -> dictTypeViewModel.del(CollUtil.join(dictIds, ","))).addRunnableInPlatformThread(() -> {
                 dialog.close();
-                roleViewModel.queryRoleList();
+                dictTypeViewModel.queryDictDataList();
             }).onException(e -> e.printStackTrace()).run();
         }));
         getDialogContent().setShowAlwaysOnTop(false);
@@ -351,7 +351,7 @@ public class RoleView implements FxmlView<RoleViewModel>, Initializable {
 
         getDialogContent().setHeaderIcon(FontIcon.of(Feather.INFO));
         getDialogContent().setHeaderText("系统揭示");
-        getDialogContent().setContent(new Label("是否确认删除编号为" + roleIds + "的角色吗？"));
+        getDialogContent().setContent(new Label("是否确认删除编号为" + dictIds + "的字典类型吗？"));
         getDialog().showDialog();
     }
 

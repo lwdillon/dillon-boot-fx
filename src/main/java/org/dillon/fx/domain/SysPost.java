@@ -1,5 +1,6 @@
 package org.dillon.fx.domain;
 
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 
 /**
@@ -9,7 +10,9 @@ import javafx.beans.property.SimpleBooleanProperty;
  */
 public class SysPost extends BaseEntity {
     private static final long serialVersionUID = 1L;
-    private Boolean sel=false;
+
+    private final BooleanProperty select = new SimpleBooleanProperty(false);
+
 
 
     /**
@@ -90,11 +93,15 @@ public class SysPost extends BaseEntity {
         this.flag = flag;
     }
 
-    public Boolean getSel() {
-        return sel;
+    public boolean isSelect() {
+        return select.get();
     }
 
-    public void setSel(Boolean sel) {
-        this.sel = sel;
+    public BooleanProperty selectProperty() {
+        return select;
+    }
+
+    public void setSelect(boolean select) {
+        this.select.set(select);
     }
 }
