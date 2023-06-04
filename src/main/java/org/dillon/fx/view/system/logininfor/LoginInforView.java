@@ -1,10 +1,11 @@
-package org.dillon.fx.view.system.post;
+package org.dillon.fx.view.system.logininfor;
 
-import atlantafx.base.controls.ToggleSwitch;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.ObjectUtil;
-import de.saxsys.mvvmfx.*;
+import de.saxsys.mvvmfx.FxmlView;
+import de.saxsys.mvvmfx.InjectViewModel;
+import de.saxsys.mvvmfx.MvvmFX;
 import io.datafx.core.concurrent.ProcessChain;
 import io.github.palexdev.materialfx.controls.MFXProgressSpinner;
 import io.github.palexdev.materialfx.dialogs.MFXGenericDialog;
@@ -24,7 +25,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.util.Callback;
-import org.dillon.fx.domain.SysPost;
+import org.dillon.fx.domain.SysLogininfor;
 import org.dillon.fx.theme.CSSFragment;
 import org.dillon.fx.view.control.OverlayDialog;
 import org.dillon.fx.view.control.PagingControl;
@@ -35,45 +36,45 @@ import java.net.URL;
 import java.util.*;
 
 import static atlantafx.base.theme.Styles.*;
-import static atlantafx.base.theme.Styles.DANGER;
 import static atlantafx.base.theme.Tweaks.*;
 
-public class PostView implements FxmlView<PostViewModel>, Initializable {
+public class LoginInforView implements FxmlView<LoginInforViewModel>, Initializable {
 
     @InjectViewModel
-    private PostViewModel postViewModel;
+    private LoginInforViewModel loginInforViewModel;
 
     @FXML
     private VBox contentPane;
-    @FXML
-    private Button addBut;
 
     @FXML
-    private TableColumn<SysPost, Date> createTimeCol;
+    private TableColumn<SysLogininfor, Date> accessTimeCol;
 
     @FXML
     private Button delBut;
 
     @FXML
-    private Button editBut;
+    private Button emptyBut;
 
     @FXML
-    private TableColumn<SysPost, String> optCol;
+    private DatePicker endDatePicker;
+
+    @FXML
+    private TableColumn<?, ?> infoIdCol;
+
+    @FXML
+    private TableColumn<?, ?> userNameCol;
+
+    @FXML
+    private TableColumn<?, ?> ipaddrCol;
+
+    @FXML
+    private TextField userNameField;
+
+    @FXML
+    private TableColumn<?, ?> msgCol;
 
     @FXML
     private Button resetBut;
-
-    @FXML
-    private TableColumn<?, ?> postIdCol;
-
-    @FXML
-    private TableColumn<?, ?> postCodeCol;
-
-    @FXML
-    private TableColumn<?, ?> postNameCol;
-
-    @FXML
-    private TableColumn<?, ?> postSortCol;
 
     @FXML
     private StackPane rootPane;
@@ -85,22 +86,23 @@ public class PostView implements FxmlView<PostViewModel>, Initializable {
     private CheckBox selAllCheckBox;
 
     @FXML
-    private TableColumn<SysPost, Boolean> selCol;
-
+    private TableColumn<SysLogininfor, Boolean> selCol;
 
     @FXML
-    private TableColumn<SysPost, Boolean> statusCol;
+    private DatePicker startDatePicker;
+
+    @FXML
+    private TableColumn<SysLogininfor, Boolean> statusCol;
 
     @FXML
     private ComboBox<String> statusCombo;
 
     @FXML
-    private TableView<SysPost> tableView;
+    private TableView<SysLogininfor> tableView;
+
 
     @FXML
-    private TextField postCodeField;
-    @FXML
-    private TextField postNameField;
+    private TextField ipaddrField;
 
     private MFXProgressSpinner loading;
 
@@ -115,39 +117,36 @@ public class PostView implements FxmlView<PostViewModel>, Initializable {
 
         pagingControl = new PagingControl();
         contentPane.getChildren().add(pagingControl);
-        pagingControl.totalProperty().bindBidirectional(postViewModel.totalProperty());
-        postViewModel.pageNumProperty().bind(pagingControl.pageNumProperty());
-        postViewModel.pageSizeProperty().bindBidirectional(pagingControl.pageSizeProperty());
-        postViewModel.pageNumProperty().addListener((observable, oldValue, newValue) -> {
-            postViewModel.queryPostList();
+        pagingControl.totalProperty().bind(loginInforViewModel.totalProperty());
+        loginInforViewModel.pageNumProperty().bind(pagingControl.pageNumProperty());
+        loginInforViewModel.pageSizeProperty().bindBidirectional(pagingControl.pageSizeProperty());
+        loginInforViewModel.pageNumProperty().addListener((observable, oldValue, newValue) -> {
+            loginInforViewModel.queryLogininforList();
         });
         pagingControl.pageSizeProperty().addListener((observable, oldValue, newValue) -> {
-            postViewModel.queryPostList();
+            loginInforViewModel.queryLogininforList();
         });
+
         loading = new MFXProgressSpinner();
         loading.disableProperty().bind(loading.visibleProperty().not());
         loading.visibleProperty().bindBidirectional(contentPane.disableProperty());
         rootPane.getChildren().add(loading);
 
-        postNameField.textProperty().bindBidirectional(postViewModel.postNameProperty());
-        postCodeField.textProperty().bindBidirectional(postViewModel.postCodeProperty());
-        statusCombo.valueProperty().bindBidirectional(postViewModel.statusProperty());
-        searchBut.setOnAction(event -> postViewModel.queryPostList());
+        ipaddrField.textProperty().bindBidirectional(loginInforViewModel.ipaddrProperty());
+        userNameField.textProperty().bindBidirectional(loginInforViewModel.userNameProperty());
+        statusCombo.valueProperty().bindBidirectional(loginInforViewModel.statusProperty());
+        startDatePicker.valueProperty().bindBidirectional(loginInforViewModel.startDateProperty());
+        endDatePicker.valueProperty().bindBidirectional(loginInforViewModel.endDateProperty());
+        searchBut.setOnAction(event -> loginInforViewModel.queryLogininforList());
         searchBut.getStyleClass().addAll(ACCENT);
 
-        resetBut.setOnAction(event -> postViewModel.reset());
-        editBut.setOnAction(event -> {
-            if (tableView.getSelectionModel().getSelectedItem() == null) {
-                MvvmFX.getNotificationCenter().publish("message", 500, "请选择一条记录");
-                return;
-            }
-            showPostInfoDialog(tableView.getSelectionModel().getSelectedItem().getPostId());
-        });
+        resetBut.setOnAction(event -> loginInforViewModel.reset());
+
         delBut.setOnAction(event -> {
             List<Long> delIds = new ArrayList<>();
-            postViewModel.getSysPosts().forEach(post -> {
-                if (post.isSelect()) {
-                    delIds.add(post.getPostId());
+            loginInforViewModel.getSysLogininfors().forEach(operLog -> {
+                if (operLog.isSelect()) {
+                    delIds.add(operLog.getInfoId());
                 }
             });
             showDelDialog(delIds);
@@ -162,7 +161,7 @@ public class PostView implements FxmlView<PostViewModel>, Initializable {
                         if (empty) {
                             setText(null);
                         } else {
-                            setText(ObjectUtil.equal("0", item) ? "正常" : ObjectUtil.equal("1", item) ? "停用" : "全部");
+                            setText(ObjectUtil.equal("0", item) ? "成功" : ObjectUtil.equal("1", item) ? "失败" : "全部");
                         }
                     }
                 };
@@ -172,10 +171,10 @@ public class PostView implements FxmlView<PostViewModel>, Initializable {
         selCol.setCellValueFactory(new PropertyValueFactory<>("select"));
         selCol.setCellFactory(CheckBoxTableCell.forTableColumn(selCol));
         selCol.setEditable(true);
-        postIdCol.setCellValueFactory(new PropertyValueFactory<>("postId"));
-        postNameCol.setCellValueFactory(new PropertyValueFactory<>("postName"));
-        postCodeCol.setCellValueFactory(new PropertyValueFactory<>("postCode"));
-        postSortCol.setCellValueFactory(new PropertyValueFactory<>("postSort"));
+        infoIdCol.setCellValueFactory(new PropertyValueFactory<>("infoId"));
+        userNameCol.setCellValueFactory(new PropertyValueFactory<>("userName"));
+        ipaddrCol.setCellValueFactory(new PropertyValueFactory<>("ipaddr"));
+        msgCol.setCellValueFactory(new PropertyValueFactory<>("msg"));
 
         statusCol.setCellValueFactory(cb -> {
             var row = cb.getValue();
@@ -209,38 +208,10 @@ public class PostView implements FxmlView<PostViewModel>, Initializable {
         });
 
 
-
-        optCol.setCellFactory(col -> {
-            return new TableCell<>() {
-                @Override
-                protected void updateItem(String item, boolean empty) {
-                    super.updateItem(item, empty);
-                    if (empty) {
-                        setText(null);
-                        setGraphic(null);
-                    } else {
-
-                        Button editBut = new Button("修改");
-                        editBut.setOnAction(event -> showPostInfoDialog(getTableRow().getItem().getPostId()));
-                        editBut.setGraphic(FontIcon.of(Feather.EDIT));
-                        editBut.getStyleClass().addAll(FLAT, ACCENT);
-                        Button remBut = new Button("删除");
-                        remBut.setOnAction(event -> showDelDialog(CollUtil.newArrayList(getTableRow().getItem().getPostId())));
-                        remBut.setGraphic(FontIcon.of(Feather.TRASH));
-                        remBut.getStyleClass().addAll(FLAT, ACCENT);
-                        HBox box = new HBox(editBut, remBut);
-                        box.setAlignment(Pos.CENTER);
-                        setGraphic(box);
-                    }
-                }
-            };
-        });
-
-
-        createTimeCol.setCellValueFactory(new PropertyValueFactory<>("createTime"));
-        createTimeCol.setCellFactory(new Callback<TableColumn<SysPost, Date>, TableCell<SysPost, Date>>() {
+        accessTimeCol.setCellValueFactory(new PropertyValueFactory<>("accessTime"));
+        accessTimeCol.setCellFactory(new Callback<TableColumn<SysLogininfor, Date>, TableCell<SysLogininfor, Date>>() {
             @Override
-            public TableCell<SysPost, Date> call(TableColumn<SysPost, Date> param) {
+            public TableCell<SysLogininfor, Date> call(TableColumn<SysLogininfor, Date> param) {
                 return new TableCell<>() {
                     @Override
                     protected void updateItem(Date item, boolean empty) {
@@ -257,14 +228,13 @@ public class PostView implements FxmlView<PostViewModel>, Initializable {
                 };
             }
         });
-        tableView.setItems(postViewModel.getSysPosts());
+
+        tableView.setItems(loginInforViewModel.getSysLogininfors());
         tableView.getSelectionModel().setCellSelectionEnabled(false);
         for (TableColumn<?, ?> c : tableView.getColumns()) {
             addStyleClass(c, ALIGN_CENTER, ALIGN_LEFT, ALIGN_RIGHT);
         }
 
-
-        addBut.setOnAction(event -> showPostInfoDialog(null));
 
     }
 
@@ -283,41 +253,40 @@ public class PostView implements FxmlView<PostViewModel>, Initializable {
         return dialog;
     }
 
-    private void showPostInfoDialog(Long userId) {
+    private void showLogininforInfoDialog(Long operLogTypeId) {
 
-        ViewTuple<PostInfoView, PostInfoViewModel> load = FluentViewLoader.fxmlView(PostInfoView.class).load();
-        getDialogContent().clearActions();
-        load.getViewModel().updateSysPostInfo(userId);
-        getDialogContent().addActions(Map.entry(new Button("取消"), event -> dialog.close()), Map.entry(new Button("确定"), event -> {
-            ProcessChain.create().addSupplierInExecutor(() -> load.getViewModel().save(ObjectUtil.isNotEmpty(userId))).addConsumerInPlatformThread(r -> {
-                if (r) {
-                    dialog.close();
-                    postViewModel.queryPostList();
-                }
-            }).onException(e -> e.printStackTrace()).run();
-        }));
-        getDialogContent().setShowAlwaysOnTop(false);
-        getDialogContent().setShowMinimize(false);
-
-        getDialogContent().setHeaderIcon(FontIcon.of(Feather.INFO));
-        getDialogContent().setHeaderText(ObjectUtil.isNotEmpty(userId) ? "编辑岗位" : "添加岗位");
-        getDialogContent().setContent(load.getView());
-        getDialog().showDialog();
+//        ViewTuple<DictTypeInfoView, DictTypeInfoViewModel> load = FluentViewLoader.fxmlView(DictTypeInfoView.class).load();
+//        getDialogContent().clearActions();
+//        load.getViewModel().updateSysLogininforInfo(operLogTypeId);
+//        getDialogContent().addActions(Map.entry(new Button("取消"), event -> dialog.close()), Map.entry(new Button("确定"), event -> {
+//            ProcessChain.create().addSupplierInExecutor(() -> load.getViewModel().save(ObjectUtil.isNotEmpty(operLogTypeId))).addConsumerInPlatformThread(r -> {
+//                if (r) {
+//                    dialog.close();
+//                    operlogViewModel.queryLogininforList();
+//                }
+//            }).onException(e -> e.printStackTrace()).run();
+//        }));
+//        getDialogContent().setShowAlwaysOnTop(false);
+//        getDialogContent().setShowMinimize(false);
+//
+//        getDialogContent().setHeaderIcon(FontIcon.of(Feather.INFO));
+//        getDialogContent().setHeaderText(ObjectUtil.isNotEmpty(operLogTypeId) ? "编辑字典类型" : "添加字典类型");
+//        getDialogContent().setContent(load.getView());
+//        getDialog().showDialog();
     }
 
 
+    private void showDelDialog(List<Long> operLogIds) {
 
-    private void showDelDialog(List<Long> postIds) {
-
-        if (CollUtil.isEmpty(postIds)) {
+        if (CollUtil.isEmpty(operLogIds)) {
             MvvmFX.getNotificationCenter().publish("message", 500, "请选择一条记录");
             return;
         }
         getDialogContent().clearActions();
         getDialogContent().addActions(Map.entry(new Button("取消"), event -> dialog.close()), Map.entry(new Button("确定"), event -> {
-            ProcessChain.create().addRunnableInExecutor(() -> postViewModel.del(CollUtil.join(postIds, ","))).addRunnableInPlatformThread(() -> {
+            ProcessChain.create().addRunnableInExecutor(() -> loginInforViewModel.del(CollUtil.join(operLogIds, ","))).addRunnableInPlatformThread(() -> {
                 dialog.close();
-                postViewModel.queryPostList();
+                loginInforViewModel.queryLogininforList();
             }).onException(e -> e.printStackTrace()).run();
         }));
         getDialogContent().setShowAlwaysOnTop(false);
@@ -325,7 +294,7 @@ public class PostView implements FxmlView<PostViewModel>, Initializable {
 
         getDialogContent().setHeaderIcon(FontIcon.of(Feather.INFO));
         getDialogContent().setHeaderText("系统揭示");
-        getDialogContent().setContent(new Label("是否确认删除编号为" + postIds + "的岗位吗？"));
+        getDialogContent().setContent(new Label("是否确认删除编号为" + operLogIds + "的字典类型吗？"));
         getDialog().showDialog();
     }
 

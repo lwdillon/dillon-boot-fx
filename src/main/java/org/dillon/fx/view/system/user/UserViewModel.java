@@ -124,16 +124,15 @@ public class UserViewModel implements ViewModel {
      */
     public void userList() {
 
-        Map<String, Object> params = new HashMap<>();
-        if (ObjectUtil.isNotEmpty(startDate.getValue())) {
-            params.put("beginTime", new Date());
 
+        Map<String, Object> querMap = new HashMap<>();
+        if (ObjectUtil.isNotEmpty(startDate.getValue())) {
+            querMap.put("params[beginTime]", startDate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+" 00:00:00");
         }
         if (ObjectUtil.isNotEmpty(endDate.getValue())) {
-            params.put("endTime", new Date());
-
+            querMap.put("params[endTime]", endDate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+" 23:59:59");
         }
-        Map<String, Object> querMap = new HashMap<>();
+
         querMap.put("userName", userName.getValue());
         querMap.put("status", status.getValue());
         querMap.put("deptId", deptId.getValue());

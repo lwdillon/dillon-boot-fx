@@ -63,14 +63,20 @@ javafx权限管理系统UI
 
 ![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/dictdata-light.jpg)
 
+参数管理
+![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/config-dark.jpg)
+
+![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/config-light.jpg)
 
 操作日志
+![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/operlog-dark.jpg)
 
-
-在线用户
-
+![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/operlog-light.jpg)
 
 登录日志
+![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/loginlog-dark.jpg)
+
+![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/loginlog-light.jpg)
 
 
 ## 交流群

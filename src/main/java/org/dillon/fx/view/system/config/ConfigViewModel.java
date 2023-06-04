@@ -1,4 +1,4 @@
-package org.dillon.fx.view.system.role;
+package org.dillon.fx.view.system.config;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.NumberUtil;
@@ -8,9 +8,9 @@ import io.datafx.core.concurrent.ProcessChain;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import org.dillon.fx.domain.SysRole;
+import org.dillon.fx.domain.SysConfig;
 import org.dillon.fx.request.Request;
-import org.dillon.fx.request.feign.client.SysRoleFeign;
+import org.dillon.fx.request.feign.client.SysConfigFeign;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -19,47 +19,50 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class RoleViewModel implements ViewModel {
+public class ConfigViewModel implements ViewModel {
 
-    private ObservableList<SysRole> sysRoles = FXCollections.observableArrayList();
+    private ObservableList<SysConfig> sysConfigs = FXCollections.observableArrayList();
 
     private SimpleIntegerProperty total = new SimpleIntegerProperty(0);
     private ObjectProperty<LocalDate> startDate = new SimpleObjectProperty<>();
     private ObjectProperty<LocalDate> endDate = new SimpleObjectProperty();
-    private StringProperty status = new SimpleStringProperty();
-    private StringProperty roleName = new SimpleStringProperty();
-
+    private StringProperty configType = new SimpleStringProperty();
+    private StringProperty configName = new SimpleStringProperty();
+    private StringProperty configKey = new SimpleStringProperty();
     private IntegerProperty pageNum = new SimpleIntegerProperty(0);
     private IntegerProperty pageSize = new SimpleIntegerProperty(10);
 
-    public RoleViewModel() {
-        queryRoleList();
+    public ConfigViewModel() {
+        queryConfigDataList();
     }
 
-    public void queryRoleList() {
+    public void queryConfigDataList() {
+
 
         Map<String, Object> querMap = new HashMap<>();
         if (ObjectUtil.isNotEmpty(startDate.getValue())) {
             querMap.put("params[beginTime]", startDate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+" 00:00:00");
+
         }
         if (ObjectUtil.isNotEmpty(endDate.getValue())) {
             querMap.put("params[endTime]", endDate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+" 23:59:59");
         }
 
-        querMap.put("roleName", roleName.getValue());
-        querMap.put("status", status.getValue());
+        querMap.put("configName", configName.getValue());
+        querMap.put("configType", configType.getValue());
+        querMap.put("configKey", configKey.getValue());
         querMap.put("pageNum", pageNum.getValue() + 1);
         querMap.put("pageSize", pageSize.getValue());
 
-        ProcessChain.create().addRunnableInPlatformThread(() -> sysRoles.clear())
+        ProcessChain.create().addRunnableInPlatformThread(() -> sysConfigs.clear())
                 .addSupplierInExecutor(() ->
-                        Request.connector(SysRoleFeign.class).list(querMap)
+                        Request.connector(SysConfigFeign.class).list(querMap)
                 )
                 .addConsumerInPlatformThread(r -> {
-                    List<SysRole> roles = BeanUtil.copyToList(r.getRows(), SysRole.class);
+                    List<SysConfig> configs = BeanUtil.copyToList(r.getRows(), SysConfig.class);
                     setTotal(NumberUtil.parseInt(r.getTotal() + ""));
 
-                    sysRoles.addAll(roles);
+                    sysConfigs.addAll(configs);
                 })
 
                 .onException(e -> e.printStackTrace()).run();
@@ -68,19 +71,20 @@ public class RoleViewModel implements ViewModel {
     }
 
     public void reset() {
-        roleName.setValue("");
-        status.setValue("");
+        configName.setValue("");
+        configType.setValue("");
+        configKey.setValue("");
         endDate.setValue(null);
         startDate.setValue(null);
     }
 
-    public ObservableList<SysRole> getSysRoles() {
-        return sysRoles;
+    public ObservableList<SysConfig> getSysConfigs() {
+        return sysConfigs;
     }
 
 
-    public void setSysRoles(ObservableList<SysRole> sysRoles) {
-        this.sysRoles = sysRoles;
+    public void setSysConfigs(ObservableList<SysConfig> sysConfigs) {
+        this.sysConfigs = sysConfigs;
     }
 
     public LocalDate getStartDate() {
@@ -107,28 +111,28 @@ public class RoleViewModel implements ViewModel {
         this.endDate.set(endDate);
     }
 
-    public String getStatus() {
-        return status.get();
+    public String getConfigType() {
+        return configType.get();
     }
 
-    public StringProperty statusProperty() {
-        return status;
+    public StringProperty configTypeProperty() {
+        return configType;
     }
 
-    public void setStatus(String status) {
-        this.status.set(status);
+    public void setConfigType(String configType) {
+        this.configType.set(configType);
     }
 
-    public String getRoleName() {
-        return roleName.get();
+    public String getConfigName() {
+        return configName.get();
     }
 
-    public StringProperty roleNameProperty() {
-        return roleName;
+    public StringProperty configNameProperty() {
+        return configName;
     }
 
-    public void setRoleName(String roleName) {
-        this.roleName.set(roleName);
+    public void setConfigName(String configName) {
+        this.configName.set(configName);
     }
 
     public int getTotal() {
@@ -167,7 +171,19 @@ public class RoleViewModel implements ViewModel {
         this.pageSize.set(pageSize);
     }
 
-    public void del(String roleIds) {
-        Request.connector(SysRoleFeign.class).remove(roleIds);
+    public void del(String configIds) {
+        Request.connector(SysConfigFeign.class).remove(configIds);
+    }
+
+    public String getConfigKey() {
+        return configKey.get();
+    }
+
+    public StringProperty configKeyProperty() {
+        return configKey;
+    }
+
+    public void setConfigKey(String configKey) {
+        this.configKey.set(configKey);
     }
 }

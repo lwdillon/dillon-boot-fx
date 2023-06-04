@@ -1,4 +1,4 @@
-package org.dillon.fx.view.system.role;
+package org.dillon.fx.view.system.logininfor;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.NumberUtil;
@@ -8,9 +8,9 @@ import io.datafx.core.concurrent.ProcessChain;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import org.dillon.fx.domain.SysRole;
+import org.dillon.fx.domain.SysLogininfor;
 import org.dillon.fx.request.Request;
-import org.dillon.fx.request.feign.client.SysRoleFeign;
+import org.dillon.fx.request.feign.client.SysLogininforFeign;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -19,47 +19,51 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class RoleViewModel implements ViewModel {
+public class LoginInforViewModel implements ViewModel {
 
-    private ObservableList<SysRole> sysRoles = FXCollections.observableArrayList();
+    private ObservableList<SysLogininfor> sysDicts = FXCollections.observableArrayList();
 
     private SimpleIntegerProperty total = new SimpleIntegerProperty(0);
     private ObjectProperty<LocalDate> startDate = new SimpleObjectProperty<>();
     private ObjectProperty<LocalDate> endDate = new SimpleObjectProperty();
     private StringProperty status = new SimpleStringProperty();
-    private StringProperty roleName = new SimpleStringProperty();
+    private StringProperty ipaddr = new SimpleStringProperty();
+    private StringProperty userName = new SimpleStringProperty();
 
     private IntegerProperty pageNum = new SimpleIntegerProperty(0);
     private IntegerProperty pageSize = new SimpleIntegerProperty(10);
 
-    public RoleViewModel() {
-        queryRoleList();
+    public LoginInforViewModel() {
+        queryLogininforList();
     }
 
-    public void queryRoleList() {
+    public void queryLogininforList() {
+
 
         Map<String, Object> querMap = new HashMap<>();
         if (ObjectUtil.isNotEmpty(startDate.getValue())) {
             querMap.put("params[beginTime]", startDate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+" 00:00:00");
+
         }
         if (ObjectUtil.isNotEmpty(endDate.getValue())) {
             querMap.put("params[endTime]", endDate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+" 23:59:59");
         }
 
-        querMap.put("roleName", roleName.getValue());
+        querMap.put("ipaddr", ipaddr.getValue());
+        querMap.put("userName", userName.getValue());
         querMap.put("status", status.getValue());
         querMap.put("pageNum", pageNum.getValue() + 1);
         querMap.put("pageSize", pageSize.getValue());
 
-        ProcessChain.create().addRunnableInPlatformThread(() -> sysRoles.clear())
+        ProcessChain.create().addRunnableInPlatformThread(() -> sysDicts.clear())
                 .addSupplierInExecutor(() ->
-                        Request.connector(SysRoleFeign.class).list(querMap)
+                        Request.connector(SysLogininforFeign.class).list(querMap)
                 )
                 .addConsumerInPlatformThread(r -> {
-                    List<SysRole> roles = BeanUtil.copyToList(r.getRows(), SysRole.class);
-                    setTotal(NumberUtil.parseInt(r.getTotal() + ""));
+                    List<SysLogininfor> logininfors = BeanUtil.copyToList(r.getRows(), SysLogininfor.class);
+                    total.setValue(NumberUtil.parseInt(r.getTotal() + ""));
 
-                    sysRoles.addAll(roles);
+                    sysDicts.addAll(logininfors);
                 })
 
                 .onException(e -> e.printStackTrace()).run();
@@ -68,19 +72,20 @@ public class RoleViewModel implements ViewModel {
     }
 
     public void reset() {
-        roleName.setValue("");
+        ipaddr.setValue("");
+        userName.setValue("");
         status.setValue("");
         endDate.setValue(null);
         startDate.setValue(null);
     }
 
-    public ObservableList<SysRole> getSysRoles() {
-        return sysRoles;
+    public ObservableList<SysLogininfor> getSysLogininfors() {
+        return sysDicts;
     }
 
 
-    public void setSysRoles(ObservableList<SysRole> sysRoles) {
-        this.sysRoles = sysRoles;
+    public void setSysLogininfors(ObservableList<SysLogininfor> sysDicts) {
+        this.sysDicts = sysDicts;
     }
 
     public LocalDate getStartDate() {
@@ -119,17 +124,6 @@ public class RoleViewModel implements ViewModel {
         this.status.set(status);
     }
 
-    public String getRoleName() {
-        return roleName.get();
-    }
-
-    public StringProperty roleNameProperty() {
-        return roleName;
-    }
-
-    public void setRoleName(String roleName) {
-        this.roleName.set(roleName);
-    }
 
     public int getTotal() {
         return total.get();
@@ -167,7 +161,32 @@ public class RoleViewModel implements ViewModel {
         this.pageSize.set(pageSize);
     }
 
-    public void del(String roleIds) {
-        Request.connector(SysRoleFeign.class).remove(roleIds);
+
+    public String getIpaddr() {
+        return ipaddr.get();
+    }
+
+    public StringProperty ipaddrProperty() {
+        return ipaddr;
+    }
+
+    public void setIpaddr(String ipaddr) {
+        this.ipaddr.set(ipaddr);
+    }
+
+    public String getUserName() {
+        return userName.get();
+    }
+
+    public StringProperty userNameProperty() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName.set(userName);
+    }
+
+    public void del(String logininforIds) {
+        Request.connector(SysLogininforFeign.class).remove(logininforIds);
     }
 }

@@ -99,6 +99,9 @@ public class AddUserView implements FxmlView<AddUserViewModel>, Initializable {
         pagingControl.pageNumProperty().addListener((observable, oldValue, newValue) -> {
             viewModel.unallocatedList();
         });
+        pagingControl.pageSizeProperty().addListener((observable, oldValue, newValue) -> {
+            viewModel.unallocatedList();
+        });
 
 
         searchBut.getStyleClass().addAll(ACCENT);

@@ -1,6 +1,9 @@
 package org.dillon.fx.domain;
 
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+
 /**
  * 参数配置表 sys_config
  * 
@@ -9,6 +12,9 @@ package org.dillon.fx.domain;
 public class SysConfig extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
+
+    private final BooleanProperty select = new SimpleBooleanProperty(false);
+
 
     /** 参数主键 */
     private Long configId;
@@ -74,6 +80,17 @@ public class SysConfig extends BaseEntity
     {
         this.configType = configType;
     }
-    
 
+
+    public boolean isSelect() {
+        return select.get();
+    }
+
+    public BooleanProperty selectProperty() {
+        return select;
+    }
+
+    public void setSelect(boolean select) {
+        this.select.set(select);
+    }
 }

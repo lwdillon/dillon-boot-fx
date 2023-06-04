@@ -151,4 +151,9 @@ public class SysDictData extends BaseEntity {
     public void setSelect(boolean select) {
         this.select.set(select);
     }
+
+    @Override
+    public String toString() {
+        return dictLabel;
+    }
 }

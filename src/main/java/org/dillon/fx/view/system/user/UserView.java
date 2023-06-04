@@ -130,7 +130,9 @@ public class UserView implements FxmlView<UserViewModel>, Initializable {
             viewModel.userList();
         });
 
-
+        pagingControl.pageSizeProperty().addListener((observable, oldValue, newValue) -> {
+            viewModel.userList();
+        });
         loading = new MFXProgressSpinner();
         loading.disableProperty().bind(loading.visibleProperty().not());
         loading.visibleProperty().bindBidirectional(contentPane.disableProperty());

@@ -125,7 +125,9 @@ public class DictTypeView implements FxmlView<DictTypeViewModel>, Initializable 
         dictTypeViewModel.pageNumProperty().addListener((observable, oldValue, newValue) -> {
             dictTypeViewModel.queryDictDataList();
         });
-
+        pagingControl.pageSizeProperty().addListener((observable, oldValue, newValue) -> {
+            dictTypeViewModel.queryDictDataList();
+        });
         loading = new MFXProgressSpinner();
         loading.disableProperty().bind(loading.visibleProperty().not());
         loading.visibleProperty().bindBidirectional(contentPane.disableProperty());
@@ -220,10 +222,10 @@ public class DictTypeView implements FxmlView<DictTypeViewModel>, Initializable 
                         setGraphic(null);
                     } else {
                         Button editBut = new Button(item);
-                        editBut.setOnAction(event ->{
+                        editBut.setOnAction(event -> {
                             ViewTuple<DictDataView, DictDataViewModel> load = FluentViewLoader.fxmlView(DictDataView.class).load();
                             load.getViewModel().queryDictDataList(getTableRow().getItem());
-                            MvvmFX.getNotificationCenter().publish("addTab", "字典数据","",load.getView());
+                            MvvmFX.getNotificationCenter().publish("addTab", "字典数据", "", load.getView());
                         });
                         editBut.getStyleClass().addAll(FLAT, ACCENT);
                         HBox box = new HBox(editBut);

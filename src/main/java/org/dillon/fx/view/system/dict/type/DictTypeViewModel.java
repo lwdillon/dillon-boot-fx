@@ -13,6 +13,7 @@ import org.dillon.fx.request.Request;
 import org.dillon.fx.request.feign.client.SysDictTypeFeign;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -37,16 +38,16 @@ public class DictTypeViewModel implements ViewModel {
 
     public void queryDictDataList() {
 
-        Map<String, Object> params = new HashMap<>();
+
+        Map<String, Object> querMap = new HashMap<>();
         if (ObjectUtil.isNotEmpty(startDate.getValue())) {
-            params.put("beginTime", new Date());
+            querMap.put("params[beginTime]", startDate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+" 00:00:00");
 
         }
         if (ObjectUtil.isNotEmpty(endDate.getValue())) {
-            params.put("endTime", new Date());
-
+            querMap.put("params[endTime]", endDate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+" 23:59:59");
         }
-        Map<String, Object> querMap = new HashMap<>();
+
         querMap.put("dictName", dictName.getValue());
         querMap.put("status", status.getValue());
         querMap.put("pageNum", pageNum.getValue() + 1);

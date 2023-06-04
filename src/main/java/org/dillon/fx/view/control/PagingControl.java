@@ -84,18 +84,6 @@ public class PagingControl extends HBox {
         );
         pageCombox.setItems(pageItmeList);
 
-
-        pagination.pageCountProperty().bind(Bindings.createIntegerBinding(() -> {
-
-            int totalCount = getTotal(); // 总条数
-            int pageSize = (getPageSize() == 0 ? 1 : getPageSize()); // 每页条数
-            int totalPages = totalCount / pageSize; // 计算总页数
-            if (totalCount % pageSize != 0) {
-                totalPages++; // 如果有余数，则总页数加1
-            }
-            return totalPages;
-        }, totalProperty()));
-
         pageCombox.getSelectionModel().select(0);
 
     }
@@ -114,6 +102,25 @@ public class PagingControl extends HBox {
                 }
                 pagination.setCurrentPageIndex(index-1);
             }
+        });
+
+        total.addListener((observable, oldValue, newValue) -> {
+            int totalCount = getTotal(); // 总条数
+            int pageSize = (getPageSize() == 0 ? 1 : getPageSize()); // 每页条数
+            int totalPages = totalCount / pageSize; // 计算总页数
+            if (totalCount % pageSize != 0) {
+                totalPages++; // 如果有余数，则总页数加1
+            }
+            pagination.setPageCount(totalPages);
+        });
+        pageCombox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            int totalCount = getTotal(); // 总条数
+            int pageSize = (getPageSize() == 0 ? 1 : getPageSize()); // 每页条数
+            int totalPages = totalCount / pageSize; // 计算总页数
+            if (totalCount % pageSize != 0) {
+                totalPages++; // 如果有余数，则总页数加1
+            }
+            pagination.setPageCount(totalPages);
         });
 
     }
