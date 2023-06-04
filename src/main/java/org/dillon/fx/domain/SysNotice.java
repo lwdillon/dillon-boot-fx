@@ -1,6 +1,9 @@
 package org.dillon.fx.domain;
 
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+
 /**
  * 通知公告表 sys_notice
  * 
@@ -9,6 +12,8 @@ package org.dillon.fx.domain;
 public class SysNotice extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
+    private final BooleanProperty select = new SimpleBooleanProperty(false);
+
 
     /** 公告ID */
     private Long noticeId;
@@ -75,5 +80,15 @@ public class SysNotice extends BaseEntity
         return status;
     }
 
+    public boolean isSelect() {
+        return select.get();
+    }
 
+    public BooleanProperty selectProperty() {
+        return select;
+    }
+
+    public void setSelect(boolean select) {
+        this.select.set(select);
+    }
 }

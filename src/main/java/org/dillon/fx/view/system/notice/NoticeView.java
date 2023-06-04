@@ -1,8 +1,10 @@
-package org.dillon.fx.view.system.operlog;
+package org.dillon.fx.view.system.notice;
 
+import atlantafx.base.theme.Styles;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.core.util.StrUtil;
 import de.saxsys.mvvmfx.*;
 import io.datafx.core.concurrent.ProcessChain;
 import io.github.palexdev.materialfx.controls.MFXProgressSpinner;
@@ -24,8 +26,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.util.Callback;
 import org.dillon.fx.domain.SysDictData;
-import org.dillon.fx.domain.SysDictType;
-import org.dillon.fx.domain.SysOperLog;
+import org.dillon.fx.domain.SysNotice;
 import org.dillon.fx.theme.CSSFragment;
 import org.dillon.fx.view.control.OverlayDialog;
 import org.dillon.fx.view.control.PagingControl;
@@ -38,55 +39,44 @@ import java.util.*;
 import static atlantafx.base.theme.Styles.*;
 import static atlantafx.base.theme.Tweaks.*;
 
-public class OperLogView implements FxmlView<OperLogViewModel>, Initializable {
+public class NoticeView implements FxmlView<NoticeViewModel>, Initializable {
 
     @InjectViewModel
-    private OperLogViewModel operlogViewModel;
-
-    @FXML
-    private TableColumn<SysOperLog, Integer> businessTypeCol;
-
-    @FXML
-    private ComboBox<SysDictData> businessTypeCombo;
+    private NoticeViewModel noticeViewModel;
 
     @FXML
     private VBox contentPane;
-
     @FXML
-    private TableColumn<SysOperLog, Long> costTimeCol;
+    private Button addBut;
 
     @FXML
     private Button delBut;
 
     @FXML
-    private Button emptyBut;
-
-    @FXML
-    private DatePicker endDatePicker;
-
-    @FXML
-    private TableColumn<?, ?> operIdCol;
-
-    @FXML
-    private TableColumn<?, ?> operIpCol;
-
-    @FXML
-    private TableColumn<?, ?> operNameCol;
-
-    @FXML
-    private TextField operNameField;
-
-    @FXML
-    private TableColumn<SysOperLog, Date> operTimeCol;
-
-    @FXML
-    private TableColumn<SysOperLog, String> optCol;
-
-    @FXML
-    private TableColumn<?, ?> requestMethodCol;
+    private Button editBut;
 
     @FXML
     private Button resetBut;
+
+    @FXML
+    private TableColumn<SysNotice, Date> createTimeCol;
+
+    @FXML
+    private TableColumn<SysNotice, String> optCol;
+
+    @FXML
+    private TableColumn<?, ?> noticeIdCol;
+    @FXML
+    private TableColumn<?, ?> noticeTitleCol;
+    @FXML
+    private TableColumn<?, ?> createByCol;
+    @FXML
+    private TableColumn<SysNotice, String> noticeTypeCol;
+    @FXML
+    private TableColumn<SysNotice, Boolean> selCol;
+
+    @FXML
+    private TableColumn<SysNotice, Boolean> statusCol;
 
     @FXML
     private StackPane rootPane;
@@ -98,25 +88,15 @@ public class OperLogView implements FxmlView<OperLogViewModel>, Initializable {
     private CheckBox selAllCheckBox;
 
     @FXML
-    private TableColumn<SysOperLog, Boolean> selCol;
+    private ComboBox<SysDictData> noticeTypeCombo;
 
     @FXML
-    private DatePicker startDatePicker;
+    private TableView<SysNotice> tableView;
 
     @FXML
-    private TableColumn<SysOperLog, Boolean> statusCol;
-
+    private TextField noticeTitleField;
     @FXML
-    private ComboBox<String> statusCombo;
-
-    @FXML
-    private TableView<SysOperLog> tableView;
-
-    @FXML
-    private TableColumn<?, ?> titleCol;
-
-    @FXML
-    private TextField titleField;
+    private TextField createByField;
 
     private MFXProgressSpinner loading;
 
@@ -131,74 +111,55 @@ public class OperLogView implements FxmlView<OperLogViewModel>, Initializable {
 
         pagingControl = new PagingControl();
         contentPane.getChildren().add(pagingControl);
-        pagingControl.totalProperty().bindBidirectional(operlogViewModel.totalProperty());
-        operlogViewModel.pageNumProperty().bind(pagingControl.pageNumProperty());
-        operlogViewModel.pageSizeProperty().bindBidirectional(pagingControl.pageSizeProperty());
-        operlogViewModel.pageNumProperty().addListener((observable, oldValue, newValue) -> {
-            operlogViewModel.updateData();
+        pagingControl.totalProperty().bindBidirectional(noticeViewModel.totalProperty());
+        noticeViewModel.pageNumProperty().bind(pagingControl.pageNumProperty());
+        noticeViewModel.pageSizeProperty().bindBidirectional(pagingControl.pageSizeProperty());
+        noticeViewModel.pageNumProperty().addListener((observable, oldValue, newValue) -> {
+            noticeViewModel.updateData();
         });
         pagingControl.pageSizeProperty().addListener((observable, oldValue, newValue) -> {
-            operlogViewModel.updateData();
+            noticeViewModel.updateData();
         });
         loading = new MFXProgressSpinner();
         loading.disableProperty().bind(loading.visibleProperty().not());
         loading.visibleProperty().bindBidirectional(contentPane.disableProperty());
         rootPane.getChildren().add(loading);
 
-        titleField.textProperty().bindBidirectional(operlogViewModel.titleProperty());
-        operNameField.textProperty().bindBidirectional(operlogViewModel.operNameProperty());
-        businessTypeCombo.valueProperty().bindBidirectional(operlogViewModel.sysDictDataProperty());
-        businessTypeCombo.setItems(operlogViewModel.getDictDataObservableList());
-        businessTypeCombo.setCellFactory(new Callback<ListView<SysDictData>, ListCell<SysDictData>>() {
-            @Override
-            public ListCell<SysDictData> call(ListView<SysDictData> param) {
-                final ListCell<SysDictData> cell = new ListCell<SysDictData>() {
-
-                    @Override
-                    public void updateItem(SysDictData item,
-                                           boolean empty) {
-                        super.updateItem(item, empty);
-                        if (item != null) {
-                            setText(item.getDictLabel());
-                        } else {
-                            setText(null);
-                        }
-                    }
-                };
-                return cell;
-            }
-        });
-        statusCombo.valueProperty().bindBidirectional(operlogViewModel.statusProperty());
-        startDatePicker.valueProperty().bindBidirectional(operlogViewModel.startDateProperty());
-        endDatePicker.valueProperty().bindBidirectional(operlogViewModel.endDateProperty());
-        searchBut.setOnAction(event -> operlogViewModel.updateData());
+        noticeTitleField.textProperty().bindBidirectional(noticeViewModel.noticeTitleProperty());
+        createByField.textProperty().bindBidirectional(noticeViewModel.createByProperty());
+        noticeTypeCombo.valueProperty().bindBidirectional(noticeViewModel.noticeTypeProperty());
+        noticeTypeCombo.setItems(noticeViewModel.getNoticeDataObservableList());
+        searchBut.setOnAction(event -> noticeViewModel.updateData());
         searchBut.getStyleClass().addAll(ACCENT);
 
-        resetBut.setOnAction(event -> operlogViewModel.reset());
-
+        resetBut.setOnAction(event -> noticeViewModel.reset());
+        editBut.setOnAction(event -> {
+            if (tableView.getSelectionModel().getSelectedItem() == null) {
+                MvvmFX.getNotificationCenter().publish("message", 500, "请选择一条记录");
+                return;
+            }
+            showDictDataInfoDialog(tableView.getSelectionModel().getSelectedItem().getNoticeId(), noticeViewModel.getSysDictDataMap().get(tableView.getSelectionModel().getSelectedItem().getNoticeType()));
+        });
         delBut.setOnAction(event -> {
             List<Long> delIds = new ArrayList<>();
-            operlogViewModel.getSysOperLogs().forEach(operLog -> {
-                if (operLog.isSelect()) {
-                    delIds.add(operLog.getOperId());
+            noticeViewModel.getSysNotices().forEach(notice -> {
+                if (notice.isSelect()) {
+                    delIds.add(notice.getNoticeId());
                 }
             });
             showDelDialog(delIds);
         });
-        emptyBut.setOnAction(event -> {
-            showEmptyDialog();
-        });
-        statusCombo.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
+        noticeTypeCombo.setCellFactory(new Callback<ListView<SysDictData>, ListCell<SysDictData>>() {
             @Override
-            public ListCell<String> call(ListView<String> param) {
+            public ListCell<SysDictData> call(ListView<SysDictData> param) {
                 return new ListCell<>() {
                     @Override
-                    protected void updateItem(String item, boolean empty) {
+                    protected void updateItem(SysDictData item, boolean empty) {
                         super.updateItem(item, empty);
                         if (empty) {
                             setText(null);
                         } else {
-                            setText(ObjectUtil.equal("0", item) ? "成功" : ObjectUtil.equal("1", item) ? "失败" : "全部");
+                            setText(ObjectUtil.equal("0", item) ? "正常" : ObjectUtil.equal("1", item) ? "关闭" : "全部");
                         }
                     }
                 };
@@ -208,16 +169,15 @@ public class OperLogView implements FxmlView<OperLogViewModel>, Initializable {
         selCol.setCellValueFactory(new PropertyValueFactory<>("select"));
         selCol.setCellFactory(CheckBoxTableCell.forTableColumn(selCol));
         selCol.setEditable(true);
-        operIdCol.setCellValueFactory(new PropertyValueFactory<>("operId"));
-        titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
-        businessTypeCol.setCellValueFactory(new PropertyValueFactory<>("businessType"));
-        requestMethodCol.setCellValueFactory(new PropertyValueFactory<>("businessType"));
-        operNameCol.setCellValueFactory(new PropertyValueFactory<>("operName"));
-        operIpCol.setCellValueFactory(new PropertyValueFactory<>("operIp"));
+
+        noticeIdCol.setCellValueFactory(new PropertyValueFactory<>("noticeId"));
+        noticeTitleCol.setCellValueFactory(new PropertyValueFactory<>("noticeTitle"));
+        noticeTypeCol.setCellValueFactory(new PropertyValueFactory<>("noticeType"));
+        createByCol.setCellValueFactory(new PropertyValueFactory<>("createBy"));
 
         statusCol.setCellValueFactory(cb -> {
             var row = cb.getValue();
-            var item = ObjectUtil.equal(0, row.getStatus());
+            var item = ObjectUtil.equal("0", row.getStatus());
             return new SimpleBooleanProperty(item);
         });
         statusCol.setCellFactory(col -> {
@@ -231,10 +191,10 @@ public class OperLogView implements FxmlView<OperLogViewModel>, Initializable {
                     } else {
                         Button state = new Button();
                         if (item) {
-                            state.setText("成功");
+                            state.setText("正常");
                             state.getStyleClass().addAll(BUTTON_OUTLINED, SUCCESS);
                         } else {
-                            state.setText("失败");
+                            state.setText("关闭");
                             state.getStyleClass().addAll(BUTTON_OUTLINED, DANGER);
                         }
                         HBox box = new HBox(state);
@@ -246,28 +206,27 @@ public class OperLogView implements FxmlView<OperLogViewModel>, Initializable {
             };
         });
 
-        businessTypeCol.setCellFactory(col -> {
+        noticeTypeCol.setCellFactory(col -> {
             return new TableCell<>() {
                 @Override
-                protected void updateItem(Integer item, boolean empty) {
+                protected void updateItem(String item, boolean empty) {
                     super.updateItem(item, empty);
                     if (empty) {
                         setText(null);
                         setGraphic(null);
                     } else {
                         Button state = new Button();
-                        SysDictData sysDictData = operlogViewModel.getSysDictDataMap().get(item + "");
+                        SysDictData sysDictData = noticeViewModel.getSysDictDataMap().get(item);
                         if (sysDictData != null) {
                             state.setText(sysDictData.getDictLabel());
-                            if (item == 3 || item == 7 || item == 9) {
+                            if (StrUtil.equals(sysDictData.getDictValue(), "1")) {
+                                state.getStyleClass().addAll(BUTTON_OUTLINED, SUCCESS);
+                            } else if (StrUtil.equals(sysDictData.getDictValue(), "2")) {
                                 state.getStyleClass().addAll(BUTTON_OUTLINED, DANGER);
-                            } else if (item == 5 || item == 6 || item == 8) {
-                                state.getStyleClass().addAll(BUTTON_OUTLINED, WARNING);
-                            } else if (item == 4) {
-                                state.getStyleClass().addAll(BUTTON_OUTLINED, ACCENT);
+                            }else {
+                                state.getStyleClass().addAll(BUTTON_OUTLINED);
                             }
                         }
-
                         HBox box = new HBox(state);
                         box.setPadding(new Insets(7, 7, 7, 7));
                         box.setAlignment(Pos.CENTER);
@@ -276,7 +235,6 @@ public class OperLogView implements FxmlView<OperLogViewModel>, Initializable {
                 }
             };
         });
-
 
         optCol.setCellFactory(col -> {
             return new TableCell<>() {
@@ -288,12 +246,17 @@ public class OperLogView implements FxmlView<OperLogViewModel>, Initializable {
                         setGraphic(null);
                     } else {
 
-                        Button editBut = new Button("详细");
-                        editBut.setOnAction(event -> showDictDataInfoDialog(getTableRow().getItem()));
-                        editBut.setGraphic(FontIcon.of(Feather.EYE));
+                        Button editBut = new Button("修改");
+                        editBut.setOnAction(event -> showDictDataInfoDialog(getTableRow().getItem().getNoticeId(), noticeViewModel.getSysDictDataMap().get(getTableRow().getItem().getNoticeType())));
+                        editBut.setGraphic(FontIcon.of(Feather.EDIT));
                         editBut.getStyleClass().addAll(FLAT, ACCENT);
+                        Button remBut = new Button("删除");
+                        remBut.setOnAction(event -> showDelDialog(CollUtil.newArrayList(getTableRow().getItem().getNoticeId())));
+                        remBut.setGraphic(FontIcon.of(Feather.TRASH));
+                        remBut.getStyleClass().addAll(FLAT, ACCENT);
 
-                        HBox box = new HBox(editBut);
+
+                        HBox box = new HBox(editBut, remBut);
                         box.setAlignment(Pos.CENTER);
 //                            box.setSpacing(7);
                         setGraphic(box);
@@ -303,10 +266,10 @@ public class OperLogView implements FxmlView<OperLogViewModel>, Initializable {
         });
 
 
-        operTimeCol.setCellValueFactory(new PropertyValueFactory<>("operTime"));
-        operTimeCol.setCellFactory(new Callback<TableColumn<SysOperLog, Date>, TableCell<SysOperLog, Date>>() {
+        createTimeCol.setCellValueFactory(new PropertyValueFactory<>("createTime"));
+        createTimeCol.setCellFactory(new Callback<TableColumn<SysNotice, Date>, TableCell<SysNotice, Date>>() {
             @Override
-            public TableCell<SysOperLog, Date> call(TableColumn<SysOperLog, Date> param) {
+            public TableCell<SysNotice, Date> call(TableColumn<SysNotice, Date> param) {
                 return new TableCell<>() {
                     @Override
                     protected void updateItem(Date item, boolean empty) {
@@ -323,32 +286,14 @@ public class OperLogView implements FxmlView<OperLogViewModel>, Initializable {
                 };
             }
         });
-        costTimeCol.setCellValueFactory(new PropertyValueFactory<>("costTime"));
-        costTimeCol.setCellFactory(new Callback<TableColumn<SysOperLog, Long>, TableCell<SysOperLog, Long>>() {
-            @Override
-            public TableCell<SysOperLog, Long> call(TableColumn<SysOperLog, Long> param) {
-                return new TableCell<>() {
-                    @Override
-                    protected void updateItem(Long item, boolean empty) {
-                        super.updateItem(item, empty);
-                        if (empty) {
-                            setText(null);
-                        } else {
-                            if (item != null) {
-                                this.setText(item + "毫秒");
-                            }
-                        }
-
-                    }
-                };
-            }
-        });
-        tableView.setItems(operlogViewModel.getSysOperLogs());
+        tableView.setItems(noticeViewModel.getSysNotices());
         tableView.getSelectionModel().setCellSelectionEnabled(false);
         for (TableColumn<?, ?> c : tableView.getColumns()) {
             addStyleClass(c, ALIGN_CENTER, ALIGN_LEFT, ALIGN_RIGHT);
         }
 
+
+        addBut.setOnAction(event -> showDictDataInfoDialog(null, null));
 
     }
 
@@ -367,33 +312,42 @@ public class OperLogView implements FxmlView<OperLogViewModel>, Initializable {
         return dialog;
     }
 
-    private void showDictDataInfoDialog(SysOperLog sysOperLog) {
+    private void showDictDataInfoDialog(Long noticeTypeId, SysDictData sysDictData) {
 
-        ViewTuple<OperLogInfoView, OperLogInfoViewModel> load = FluentViewLoader.fxmlView(OperLogInfoView.class).load();
+        ViewTuple<NoticeInfoView, NoticeInfoViewModel> load = FluentViewLoader.fxmlView(NoticeInfoView.class).load();
         getDialogContent().clearActions();
-        load.getViewModel().setSysOperLog(sysOperLog);
-        getDialogContent().addActions(Map.entry(new Button("关闭"), event -> dialog.close()));
+        load.getViewModel().setNoticeDataObservableList(noticeViewModel.getNoticeDataObservableList());
+        load.getViewModel().updateSysNoticeInfo(noticeTypeId, sysDictData);
+        getDialogContent().addActions(Map.entry(new Button("取消"), event -> dialog.close()), Map.entry(new Button("确定"), event -> {
+            ProcessChain.create().addRunnableInPlatformThread(() -> load.getViewModel().commitHtmlText()).addSupplierInExecutor(
+                            () -> load.getViewModel().save(ObjectUtil.isNotEmpty(noticeTypeId)))
+                    .addConsumerInPlatformThread(r -> {
+                        if (r) {
+                            dialog.close();
+                            noticeViewModel.updateData();
+                        }
+                    }).onException(e -> e.printStackTrace()).run();
+        }));
         getDialogContent().setShowAlwaysOnTop(false);
         getDialogContent().setShowMinimize(false);
-
         getDialogContent().setHeaderIcon(FontIcon.of(Feather.INFO));
-        getDialogContent().setHeaderText("操作日志详细");
+        getDialogContent().setHeaderText(ObjectUtil.isNotEmpty(noticeTypeId) ? "编辑公告" : "添加公告");
         getDialogContent().setContent(load.getView());
         getDialog().showDialog();
     }
 
 
-    private void showDelDialog(List<Long> operLogIds) {
+    private void showDelDialog(List<Long> noticeIds) {
 
-        if (CollUtil.isEmpty(operLogIds)) {
+        if (CollUtil.isEmpty(noticeIds)) {
             MvvmFX.getNotificationCenter().publish("message", 500, "请选择一条记录");
             return;
         }
         getDialogContent().clearActions();
         getDialogContent().addActions(Map.entry(new Button("取消"), event -> dialog.close()), Map.entry(new Button("确定"), event -> {
-            ProcessChain.create().addRunnableInExecutor(() -> operlogViewModel.del(CollUtil.join(operLogIds, ","))).addRunnableInPlatformThread(() -> {
+            ProcessChain.create().addRunnableInExecutor(() -> noticeViewModel.del(CollUtil.join(noticeIds, ","))).addRunnableInPlatformThread(() -> {
                 dialog.close();
-                operlogViewModel.updateData();
+                noticeViewModel.updateData();
             }).onException(e -> e.printStackTrace()).run();
         }));
         getDialogContent().setShowAlwaysOnTop(false);
@@ -401,25 +355,7 @@ public class OperLogView implements FxmlView<OperLogViewModel>, Initializable {
 
         getDialogContent().setHeaderIcon(FontIcon.of(Feather.INFO));
         getDialogContent().setHeaderText("系统揭示");
-        getDialogContent().setContent(new Label("是否确认删除编号为" + operLogIds + "的数据项吗？"));
-        getDialog().showDialog();
-    }
-
-    private void showEmptyDialog() {
-
-        getDialogContent().clearActions();
-        getDialogContent().addActions(Map.entry(new Button("取消"), event -> dialog.close()), Map.entry(new Button("确定"), event -> {
-            ProcessChain.create().addRunnableInExecutor(() -> operlogViewModel.clean()).addRunnableInPlatformThread(() -> {
-                dialog.close();
-                operlogViewModel.updateData();
-            }).onException(e -> e.printStackTrace()).run();
-        }));
-        getDialogContent().setShowAlwaysOnTop(false);
-        getDialogContent().setShowMinimize(false);
-
-        getDialogContent().setHeaderIcon(FontIcon.of(Feather.INFO));
-        getDialogContent().setHeaderText("系统揭示");
-        getDialogContent().setContent(new Label("是否确认清空所有操作日志数据项？"));
+        getDialogContent().setContent(new Label("是否确认删除编号为" + noticeIds + "的公告吗？"));
         getDialog().showDialog();
     }
 

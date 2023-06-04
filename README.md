@@ -68,6 +68,11 @@ javafx权限管理系统UI
 
 ![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/config-light.jpg)
 
+### 通知公告
+![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/notice-dark.jpg)
+
+![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/notice-light.jpg)
+
 ### 操作日志
 ![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/operlog-dark.jpg)
 

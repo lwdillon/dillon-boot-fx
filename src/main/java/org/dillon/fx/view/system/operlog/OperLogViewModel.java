@@ -38,7 +38,7 @@ public class OperLogViewModel implements ViewModel {
     private StringProperty title = new SimpleStringProperty();
     private StringProperty operName = new SimpleStringProperty();
 
-    private ObservableList<SysDictData> dictDataObservableList = FXCollections.observableArrayList();
+    private ObservableList<SysDictData> noticeDataObservableList = FXCollections.observableArrayList();
 
     private IntegerProperty pageNum = new SimpleIntegerProperty(0);
     private IntegerProperty pageSize = new SimpleIntegerProperty(10);
@@ -50,7 +50,7 @@ public class OperLogViewModel implements ViewModel {
     }
 
     private void initData() {
-        ProcessChain.create().addRunnableInPlatformThread(() -> dictDataObservableList.clear())
+        ProcessChain.create().addRunnableInPlatformThread(() -> noticeDataObservableList.clear())
                 .addSupplierInExecutor(() ->
                         Request.connector(SysDictDataFeign.class).dictType("sys_oper_type")
                 )
@@ -60,7 +60,7 @@ public class OperLogViewModel implements ViewModel {
                     List<SysDictData> sysDictDataList = JSONUtil.toList(objects.getJSONArray("data"), SysDictData.class);
                     Map<String, SysDictData> stringSysDictDataMap = sysDictDataList.stream().collect(Collectors.toMap(SysDictData::getDictValue, Function.identity(), (key1, key2) -> key2));
                     setSysDictDataMap(stringSysDictDataMap);
-                    dictDataObservableList.setAll(sysDictDataList);
+                    noticeDataObservableList.setAll(sysDictDataList);
                 })
                 .addRunnableInExecutor(() -> updateData())
                 .onException(e -> e.printStackTrace()).run();
@@ -71,11 +71,11 @@ public class OperLogViewModel implements ViewModel {
 
         Map<String, Object> querMap = new HashMap<>();
         if (ObjectUtil.isNotEmpty(startDate.getValue())) {
-            querMap.put("params[beginTime]", startDate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+" 00:00:00");
+            querMap.put("params[beginTime]", startDate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + " 00:00:00");
 
         }
         if (ObjectUtil.isNotEmpty(endDate.getValue())) {
-            querMap.put("params[endTime]", endDate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+" 23:59:59");
+            querMap.put("params[endTime]", endDate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + " 23:59:59");
         }
 
         querMap.put("title", title.getValue());
@@ -230,8 +230,12 @@ public class OperLogViewModel implements ViewModel {
         this.operName.set(operName);
     }
 
-    public void del(String dictIds) {
-        Request.connector(SysOperlogFeign.class).remove(dictIds);
+    public void del(String noticeIds) {
+        Request.connector(SysOperlogFeign.class).remove(noticeIds);
+    }
+
+    public void clean() {
+        Request.connector(SysOperlogFeign.class).clean();
     }
 
     public Map<String, SysDictData> getSysDictDataMap() {
@@ -243,10 +247,10 @@ public class OperLogViewModel implements ViewModel {
     }
 
     public ObservableList<SysDictData> getDictDataObservableList() {
-        return dictDataObservableList;
+        return noticeDataObservableList;
     }
 
-    public void setDictDataObservableList(ObservableList<SysDictData> dictDataObservableList) {
-        this.dictDataObservableList = dictDataObservableList;
+    public void setDictDataObservableList(ObservableList<SysDictData> noticeDataObservableList) {
+        this.noticeDataObservableList = noticeDataObservableList;
     }
 }

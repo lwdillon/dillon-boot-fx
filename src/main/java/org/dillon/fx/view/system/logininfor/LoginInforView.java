@@ -151,6 +151,10 @@ public class LoginInforView implements FxmlView<LoginInforViewModel>, Initializa
             });
             showDelDialog(delIds);
         });
+        emptyBut.setOnAction(event -> {
+
+            showEmptyDialog();
+        });
         statusCombo.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
             @Override
             public ListCell<String> call(ListView<String> param) {
@@ -192,10 +196,10 @@ public class LoginInforView implements FxmlView<LoginInforViewModel>, Initializa
                     } else {
                         Button state = new Button();
                         if (item) {
-                            state.setText("正常");
+                            state.setText("成功");
                             state.getStyleClass().addAll(BUTTON_OUTLINED, SUCCESS);
                         } else {
-                            state.setText("停用");
+                            state.setText("失败");
                             state.getStyleClass().addAll(BUTTON_OUTLINED, DANGER);
                         }
                         HBox box = new HBox(state);
@@ -253,28 +257,6 @@ public class LoginInforView implements FxmlView<LoginInforViewModel>, Initializa
         return dialog;
     }
 
-    private void showLogininforInfoDialog(Long operLogTypeId) {
-
-//        ViewTuple<DictTypeInfoView, DictTypeInfoViewModel> load = FluentViewLoader.fxmlView(DictTypeInfoView.class).load();
-//        getDialogContent().clearActions();
-//        load.getViewModel().updateSysLogininforInfo(operLogTypeId);
-//        getDialogContent().addActions(Map.entry(new Button("取消"), event -> dialog.close()), Map.entry(new Button("确定"), event -> {
-//            ProcessChain.create().addSupplierInExecutor(() -> load.getViewModel().save(ObjectUtil.isNotEmpty(operLogTypeId))).addConsumerInPlatformThread(r -> {
-//                if (r) {
-//                    dialog.close();
-//                    operlogViewModel.queryLogininforList();
-//                }
-//            }).onException(e -> e.printStackTrace()).run();
-//        }));
-//        getDialogContent().setShowAlwaysOnTop(false);
-//        getDialogContent().setShowMinimize(false);
-//
-//        getDialogContent().setHeaderIcon(FontIcon.of(Feather.INFO));
-//        getDialogContent().setHeaderText(ObjectUtil.isNotEmpty(operLogTypeId) ? "编辑字典类型" : "添加字典类型");
-//        getDialogContent().setContent(load.getView());
-//        getDialog().showDialog();
-    }
-
 
     private void showDelDialog(List<Long> operLogIds) {
 
@@ -294,7 +276,25 @@ public class LoginInforView implements FxmlView<LoginInforViewModel>, Initializa
 
         getDialogContent().setHeaderIcon(FontIcon.of(Feather.INFO));
         getDialogContent().setHeaderText("系统揭示");
-        getDialogContent().setContent(new Label("是否确认删除编号为" + operLogIds + "的字典类型吗？"));
+        getDialogContent().setContent(new Label("是否确认删除编号为" + operLogIds + "的数据项？"));
+        getDialog().showDialog();
+    }
+
+    private void showEmptyDialog() {
+
+        getDialogContent().clearActions();
+        getDialogContent().addActions(Map.entry(new Button("取消"), event -> dialog.close()), Map.entry(new Button("确定"), event -> {
+            ProcessChain.create().addRunnableInExecutor(() -> loginInforViewModel.clean()).addRunnableInPlatformThread(() -> {
+                dialog.close();
+                loginInforViewModel.queryLogininforList();
+            }).onException(e -> e.printStackTrace()).run();
+        }));
+        getDialogContent().setShowAlwaysOnTop(false);
+        getDialogContent().setShowMinimize(false);
+
+        getDialogContent().setHeaderIcon(FontIcon.of(Feather.INFO));
+        getDialogContent().setHeaderText("系统揭示");
+        getDialogContent().setContent(new Label("是否确认清空所有操作日志数据项？"));
         getDialog().showDialog();
     }
 
