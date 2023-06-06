@@ -1,0 +1,43 @@
+// SPDX-License-Identifier: MIT
+
+.mfx-text-field {
+  -fx-background-color: transparent;
+  -fx-border-color: -color-border-default;
+
+  > .text-field {
+    -fx-highlight-fill: #32076e; /* Selected text highlight */
+    -fx-prompt-text-fill: -color-fg-subtle; /* Prompt text color */
+  }
+}
+
+
+.tree-table-row-cell:hover,.tree-cell:hover,.table-row-cell:hover {
+  -fx-background-color: -color-bg-subtle;
+}
+
+.tree-table-row-cell:selected,.tree-cell:selected,.table-row-cell:selected {
+  -fx-background-color: -color-cell-border, -color-cell-bg-selected;;
+}
+
+.tree-table-row-cell:empty,.tree-cell:empty,.table-row-cell:empty {
+  -fx-background-color: transparent;
+}
+
+.tree-table-view > .column-header-background .column-header .label {
+  -fx-text-fill: -color-header-fg;
+  -fx-alignment: CENTER;
+  -fx-padding: 0 0.5em 0 0.5em;
+}
+
+.table-view > .column-header-background .column-header .label {
+  -fx-text-fill: -color-header-fg;
+  -fx-alignment: CENTER;
+  -fx-padding: 0 0.5em 0 0.5em;
+}
+
+
+.custom-pagination .pagination-control .page-label:selected {
+  -fx-background-color: red;
+  -fx-text-fill: transparent;
+}
+

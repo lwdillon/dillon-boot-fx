@@ -14,6 +14,7 @@
         <ikonli-javafx-version>12.3.1</ikonli-javafx-version>
         <feign.version>12.1</feign.version>
         <datafx.version>8.0.2-SNAPSHOT</datafx.version>
+        <atlantafx.version>2.0.0</atlantafx.version>
     </properties>
     <dependencies>
 
@@ -37,7 +38,7 @@
         <dependency>
             <groupId>io.github.mkpaz</groupId>
             <artifactId>atlantafx-base</artifactId>
-            <version>1.2.0</version>
+            <version>${atlantafx.version}</version>
         </dependency>
 
 

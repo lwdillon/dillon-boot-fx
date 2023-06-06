@@ -1,5 +1,6 @@
 package org.dillon.fx.view.system.menu;
 
+import atlantafx.base.theme.Tweaks;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.ObjectUtil;
@@ -242,6 +243,8 @@ public class MenuManageView implements FxmlView<MenuManageViewModel>, Initializa
                 return cell;
             }
         });
+
+        toggleStyleClass(treeTableView, Tweaks.ALT_ICON);
         query();
 
     }

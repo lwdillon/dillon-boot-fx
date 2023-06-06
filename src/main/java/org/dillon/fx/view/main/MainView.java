@@ -11,6 +11,7 @@ import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Bounds;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
@@ -171,7 +172,7 @@ public class MainView implements FxmlView<MainViewModel>, Initializable {
 
 
             // trigger some actions
-            loddTab((String) payload[0],(String) payload[1], (Parent) payload[2]);
+            loddTab((String) payload[0], (String) payload[1], (Parent) payload[2]);
 
         });
 
@@ -207,7 +208,9 @@ public class MainView implements FxmlView<MainViewModel>, Initializable {
             tab = new Tab(title);
             tab.setGraphic(new FontIcon(WIcon.findByDescription("lw-" + iconStr)));
             tabPane.getTabs().add(tab);
-            tab.setContent(FluentViewLoader.fxmlView(clazz).load().getView());
+            Node node = FluentViewLoader.fxmlView(clazz).load().getView();
+//            node.setStyle("-fx-padding: 10");
+            tab.setContent(node);
         }
 
         tabPane.getSelectionModel().select(tab);

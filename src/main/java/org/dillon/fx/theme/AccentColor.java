@@ -1,3 +1,5 @@
+/* SPDX-License-Identifier: MIT */
+
 package org.dillon.fx.theme;
 
 import javafx.css.PseudoClass;

@@ -1,5 +1,6 @@
 package org.dillon.fx.view.system.dept;
 
+import atlantafx.base.theme.Tweaks;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.ObjectUtil;
@@ -214,6 +215,8 @@ public class DeptManageView implements FxmlView<DeptManageViewModel>, Initializa
                 return cell;
             }
         });
+        toggleStyleClass(treeTableView, Tweaks.ALT_ICON);
+
         query();
 
     }

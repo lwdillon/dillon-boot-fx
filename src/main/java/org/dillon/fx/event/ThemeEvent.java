@@ -1,16 +1,8 @@
+/* SPDX-License-Identifier: MIT */
+
 package org.dillon.fx.event;
 
-public class ThemeEvent extends Event {
-
-    private final EventType eventType;
-
-    public ThemeEvent(EventType eventType) {
-        this.eventType = eventType;
-    }
-
-    public EventType getEventType() {
-        return eventType;
-    }
+public final class ThemeEvent extends Event {
 
     public enum EventType {
         // theme can change both, base font size and colors
@@ -24,10 +16,20 @@ public class ThemeEvent extends Event {
         THEME_REMOVE
     }
 
+    private final EventType eventType;
+
+    public ThemeEvent(EventType eventType) {
+        this.eventType = eventType;
+    }
+
+    public EventType getEventType() {
+        return eventType;
+    }
+
     @Override
     public String toString() {
-        return "ThemeEvent{" +
-                "eventType=" + eventType +
-                "} " + super.toString();
+        return "ThemeEvent{"
+            + "eventType=" + eventType
+            + "} " + super.toString();
     }
 }

@@ -1,6 +1,7 @@
 package org.dillon.fx.view.system.notice;
 
 import atlantafx.base.theme.Styles;
+import atlantafx.base.theme.Tweaks;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.ObjectUtil;
@@ -30,8 +31,10 @@ import org.dillon.fx.domain.SysNotice;
 import org.dillon.fx.theme.CSSFragment;
 import org.dillon.fx.view.control.OverlayDialog;
 import org.dillon.fx.view.control.PagingControl;
+import org.dillon.fx.view.control.Tag;
 import org.kordamp.ikonli.feather.Feather;
 import org.kordamp.ikonli.javafx.FontIcon;
+import org.kordamp.ikonli.material2.Material2AL;
 
 import java.net.URL;
 import java.util.*;
@@ -189,13 +192,13 @@ public class NoticeView implements FxmlView<NoticeViewModel>, Initializable {
                         setText(null);
                         setGraphic(null);
                     } else {
-                        Button state = new Button();
+                        Label state = new Label("",new FontIcon(Material2AL.LABEL));
                         if (item) {
                             state.setText("正常");
-                            state.getStyleClass().addAll(BUTTON_OUTLINED, SUCCESS);
+                            state.getStyleClass().addAll(SUCCESS);
                         } else {
                             state.setText("关闭");
-                            state.getStyleClass().addAll(BUTTON_OUTLINED, DANGER);
+                            state.getStyleClass().addAll( DANGER);
                         }
                         HBox box = new HBox(state);
                         box.setPadding(new Insets(7, 7, 7, 7));
@@ -215,17 +218,16 @@ public class NoticeView implements FxmlView<NoticeViewModel>, Initializable {
                         setText(null);
                         setGraphic(null);
                     } else {
-                        Button state = new Button();
+                        Label state = new Label("",new FontIcon(Material2AL.LABEL));
                         SysDictData sysDictData = noticeViewModel.getSysDictDataMap().get(item);
                         if (sysDictData != null) {
                             state.setText(sysDictData.getDictLabel());
                             if (StrUtil.equals(sysDictData.getDictValue(), "1")) {
-                                state.getStyleClass().addAll(BUTTON_OUTLINED, SUCCESS);
+                                state.getStyleClass().addAll(SUCCESS);
                             } else if (StrUtil.equals(sysDictData.getDictValue(), "2")) {
-                                state.getStyleClass().addAll(BUTTON_OUTLINED, DANGER);
-                            }else {
-                                state.getStyleClass().addAll(BUTTON_OUTLINED);
+                                state.getStyleClass().addAll(WARNING);
                             }
+
                         }
                         HBox box = new HBox(state);
                         box.setPadding(new Insets(7, 7, 7, 7));

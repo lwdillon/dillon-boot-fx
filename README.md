@@ -30,38 +30,48 @@ javafx权限管理系统UI
 
 ![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/login.jpg)
 
+### 主页
+
+![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/home-dark.jpg)
+
+![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/home-light.jpg)
+
 
 ### 用户管理
 
-![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/user_dark.jpg)
+![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/user-dark.jpg)
 
 ![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/user-light.jpg)
 
-### 菜单管理
-
-![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/menu-dark.jpg)
-
-![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/menu-light.jpg)
-
-### 角色权限管理
+### 角色管理
 ![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/role-dark.jpg)
 
 ![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/role-light.jpg)
+
+### 菜单管理
+![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/menu-dark.jpg)
+
+![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/menu-light.jpg)
 
 ### 部门管理
 ![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/dept-dark.jpg)
 
 ![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/dept-light.jpg)
 
-### 字典类型
-![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/dicttype-dark.jpg)
+### 岗位管理
+![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/post-dark.jpg)
 
-![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/dicttype-light.jpg)
+![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/post-light.jpg)
+
+### 字典类型
+![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/dict-type-dark.jpg)
+
+![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/dict-type-light.jpg)
 
 ### 字典数据
-![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/dictdata-dark.jpg)
+![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/dict-data-dark.jpg)
 
-![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/dictdata-light.jpg)
+![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/dict-data-light.jpg)
 
 ### 参数管理
 ![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/config-dark.jpg)
@@ -79,9 +89,9 @@ javafx权限管理系统UI
 ![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/operlog-light.jpg)
 
 ### 登录日志
-![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/loginlog-dark.jpg)
+![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/logininfo-dark.jpg)
 
-![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/loginlog-light.jpg)
+![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/logininfo-light.jpg)
 
 
 ## 交流群

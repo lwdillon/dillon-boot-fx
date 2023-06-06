@@ -1,17 +1,31 @@
 package org.dillon.fx.view.window;
 
+import animatefx.animation.BounceInRight;
+import atlantafx.base.controls.Message;
+import atlantafx.base.controls.Notification;
+import atlantafx.base.theme.Styles;
+import atlantafx.base.util.Animations;
 import de.saxsys.mvvmfx.*;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 import org.dillon.fx.constant.HttpStatus;
-import org.dillon.fx.view.control.Message;
 import org.dillon.fx.view.loginregister.LoginRegisterView;
 import org.dillon.fx.view.loginregister.LoginRegisterViewModel;
 import org.dillon.fx.view.main.MainView;
 import org.dillon.fx.view.main.MainViewModel;
+import org.kordamp.ikonli.javafx.FontIcon;
+import org.kordamp.ikonli.material2.Material2OutlinedAL;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -28,7 +42,6 @@ public class WindowView implements FxmlView<WindowViewModel>, Initializable {
     private StackPane rootPane;
     @FXML
     private StackPane contentPane;
-
 
 
     @Override
@@ -77,16 +90,42 @@ public class WindowView implements FxmlView<WindowViewModel>, Initializable {
 
         if (windowViewModel.isMainViewVisble()) {
             Platform.runLater(() -> {
-                Message message=null;
+
+
+                Message message = null;
                 if (code == HttpStatus.SUCCESS) {
-                    message = new Message(Message.Type.SUCCESS, null, msg);
-
-                }else {
-                    message= new Message(Message.Type.DANGER, null, msg);
-
+                    message = new Message("消息提示",msg, new FontIcon(Material2OutlinedAL.CHECK_CIRCLE_OUTLINE));
+                    message.getStyleClass().addAll(Styles.SUCCESS);
+                } else {
+                    message = new Message("消息提示",msg, new FontIcon(Material2OutlinedAL.ERROR_OUTLINE));
+                    message.getStyleClass().addAll(Styles.DANGER);
                 }
-                messagePane.getChildren().add(message);
-                message.handleOpen();
+                message.setPrefHeight(Region.USE_PREF_SIZE);
+                message.setMaxHeight(Region.USE_PREF_SIZE);
+                StackPane.setAlignment(message, Pos.TOP_RIGHT);
+                StackPane.setMargin(message, new Insets(10, 10, 0, 0));
+                Message finalMessage = message;
+                message.setOnClose(e -> {
+                    var out = Animations.slideOutUp(finalMessage, Duration.millis(250));
+                    out.setOnFinished(f -> messagePane.getChildren().remove(finalMessage));
+                    out.playFromStart();
+                });
+//                var in = Animations.slideInDown(message, Duration.millis(250));
+                if (!messagePane.getChildren().contains(message)) {
+                    messagePane.getChildren().add(message);
+                }
+                new BounceInRight(message).play();
+
+                Timeline fiveSecondsWonder = new Timeline(new KeyFrame(Duration.seconds(5), new EventHandler<ActionEvent>() {
+
+                    @Override
+                    public void handle(ActionEvent event) {
+                        var out = Animations.slideOutUp(finalMessage, Duration.millis(250));
+                        out.setOnFinished(f -> messagePane.getChildren().remove(finalMessage));
+                        out.playFromStart();
+                    }
+                }));
+                fiveSecondsWonder.play();
             });
         }
 
