@@ -18,6 +18,7 @@ import javafx.geometry.Pos;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.dillon.fx.constant.HttpStatus;
 import org.dillon.fx.view.loginregister.LoginRegisterView;
@@ -64,6 +65,13 @@ public class WindowView implements FxmlView<WindowViewModel>, Initializable {
             showMessage((Integer) payload[0], (String) payload[1]);
 
         });
+        MvvmFX.getNotificationCenter().subscribe("exit", (key, payload) -> {
+            // trigger some actions
+            Stage stage = (Stage) rootPane.getScene().getWindow();
+
+            stage.close();
+
+        });
 
         showLoginView();
 
@@ -94,10 +102,10 @@ public class WindowView implements FxmlView<WindowViewModel>, Initializable {
 
                 Message message = null;
                 if (code == HttpStatus.SUCCESS) {
-                    message = new Message("消息提示",msg, new FontIcon(Material2OutlinedAL.CHECK_CIRCLE_OUTLINE));
+                    message = new Message("消息提示", msg, new FontIcon(Material2OutlinedAL.CHECK_CIRCLE_OUTLINE));
                     message.getStyleClass().addAll(Styles.SUCCESS);
                 } else {
-                    message = new Message("消息提示",msg, new FontIcon(Material2OutlinedAL.ERROR_OUTLINE));
+                    message = new Message("消息提示", msg, new FontIcon(Material2OutlinedAL.ERROR_OUTLINE));
                     message.getStyleClass().addAll(Styles.DANGER);
                 }
                 message.setPrefHeight(Region.USE_PREF_SIZE);

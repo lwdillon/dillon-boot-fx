@@ -8,6 +8,7 @@ import feign.gson.GsonDecoder;
 import feign.gson.GsonEncoder;
 import feign.okhttp.OkHttpClient;
 import feign.querymap.BeanQueryMapEncoder;
+import feign.slf4j.Slf4jLogger;
 import okhttp3.ConnectionPool;
 import org.dillon.fx.request.feign.FeignAPI;
 import org.dillon.fx.request.feign.decoder.FeignErrorDecoder;
@@ -41,16 +42,12 @@ public class Request {
         return (T) CONNECTORS.computeIfAbsent(commandConfigKey, k -> {
             return Feign.builder()  .queryMapEncoder(new BeanQueryMapEncoder())
                     .client(new OkHttpClient(createOkHttpClient()))
-
                     .decoder(getGsonDecoder())
                     .encoder(getGsonEncoder())
                     .errorDecoder(new FeignErrorDecoder(new GsonDecoder()))
                     .requestInterceptor(new ForwardedForInterceptor())
-                    .logger(new Logger.JavaLogger("GitHub.Logger").appendToFile("logs/dillon-boot-fx-http.log"))
-                    .logLevel(Logger.Level.FULL)
-//                    .logger(new Logger.JavaLogger("GitHub.Logger").appendToFile("logs/http.log"))
-//                    .logLevel(Logger.Level.FULL)
-//                    .options(new feign.Request.Options(CONNECT_TIME_OUT_MILLIS, readTimeOut))
+                    .logger(new Slf4jLogger())
+                    .logLevel(Logger.Level.BASIC)
                     .target(connectorClass, API_URL);
 
         });
