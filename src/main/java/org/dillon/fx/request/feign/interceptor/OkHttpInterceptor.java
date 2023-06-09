@@ -48,8 +48,8 @@ public class OkHttpInterceptor implements Interceptor {
                 .build();
         if (!"GET".equalsIgnoreCase(originalRequest.method())) {
             MvvmFX.getNotificationCenter().publish("message", code, msg);
-
         }
+        messageProcess(code, msg);
         //生成新的response返回，网络请求的response如果取出之后，直接返回将会抛出异常
         return responseNew;
     }
@@ -65,14 +65,15 @@ public class OkHttpInterceptor implements Interceptor {
      * @auther: liwen
      * @date: 2018/11/6 12:59 PM
      */
-    private void messageProcess(Response response, JsonObject res) throws IOException {
-
-        int status = res.get("status") == null ? 0 : res.get("status").getAsInt();
-        String message = res.get("message") == null ? "" : res.get("message").getAsString();
+    private void messageProcess(int code,String msg) throws IOException {
 
 
-        if (response.code() != 200 && status != 200) {
-//            TransitionManager.showMessage(status + ":" + message, TYPE_WARNING);
+        if (code != 200 ) {
+
+            MvvmFX.getNotificationCenter().publish("message", code, msg);
+            if (code == 401) {
+                MvvmFX.getNotificationCenter().publish("showLoginRegister");
+            }
         }
     }
 
