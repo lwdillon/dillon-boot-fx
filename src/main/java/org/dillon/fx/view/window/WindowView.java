@@ -51,25 +51,38 @@ public class WindowView implements FxmlView<WindowViewModel>, Initializable {
         messagePane.visibleProperty().bindBidirectional(windowViewModel.mainViewVisbleProperty());
         MvvmFX.getNotificationCenter().subscribe("showMainView", (key, payload) -> {
             // trigger some actions
-            showMainView();
+            Platform.runLater(() -> {
+                showMainView();
+
+            });
 
         });
         MvvmFX.getNotificationCenter().subscribe("showLoginRegister", (key, payload) -> {
             // trigger some actions
-            showLoginView();
+            Platform.runLater(() -> {
+                showLoginView();
 
+            });
         });
 
         MvvmFX.getNotificationCenter().subscribe("message", (key, payload) -> {
             // trigger some actions
-            showMessage((Integer) payload[0], (String) payload[1]);
+
+            Platform.runLater(() -> {
+                showMessage((Integer) payload[0], (String) payload[1]);
+
+            });
 
         });
         MvvmFX.getNotificationCenter().subscribe("exit", (key, payload) -> {
             // trigger some actions
-            Stage stage = (Stage) rootPane.getScene().getWindow();
 
-            stage.close();
+            Platform.runLater(() -> {
+                Stage stage = (Stage) rootPane.getScene().getWindow();
+
+                stage.close();
+
+            });
 
         });
 

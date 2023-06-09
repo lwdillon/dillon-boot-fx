@@ -8,6 +8,7 @@ import com.goxr3plus.fxborderlessscene.borderless.BorderlessScene;
 import de.saxsys.mvvmfx.*;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.animation.FadeTransition;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Bounds;
@@ -179,9 +180,11 @@ public class MainView implements FxmlView<MainViewModel>, Initializable {
         });
         MvvmFX.getNotificationCenter().subscribe("addTab", (key, payload) -> {
 
-
             // trigger some actions
-            loddTab((String) payload[0], (String) payload[1], (Parent) payload[2]);
+            Platform.runLater(()->{
+                loddTab((String) payload[0], (String) payload[1], (Parent) payload[2]);
+
+            });
 
         });
 
