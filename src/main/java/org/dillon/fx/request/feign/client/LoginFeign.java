@@ -10,11 +10,13 @@ import java.util.Map;
 
 public interface LoginFeign extends FeignAPI {
 
-    @RequestLine("GET /code")
+//    @RequestLine("GET /code")
+    @RequestLine("GET /captchaImage")
     JsonObject getCode();
 
-    @RequestLine("POST /auth/login")
-    R<Map<String, Object>> login(@Param("username") String userName, @Param("password") String password, @Param("code") String code, @Param("uuid") String uuid);
+//    @RequestLine("POST /auth/login")
+    @RequestLine("POST /login")
+    JsonObject login(@Param("username") String userName, @Param("password") String password, @Param("code") String code, @Param("uuid") String uuid);
 
     @RequestLine("DELETE /auth/logout")
     R<?> logout();

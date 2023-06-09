@@ -23,8 +23,17 @@ import org.dillon.fx.store.AppStore;
 import org.dillon.fx.theme.SamplerTheme;
 import org.dillon.fx.theme.ThemeManager;
 import org.dillon.fx.view.config.UserInfoView;
+import org.dillon.fx.view.system.config.ConfigView;
+import org.dillon.fx.view.system.dept.DeptManageView;
+import org.dillon.fx.view.system.dict.type.DictTypeView;
+import org.dillon.fx.view.system.logininfor.LoginInforView;
 import org.dillon.fx.view.system.menu.MenuManageView;
 import org.dillon.fx.view.system.menu.MenuManageViewModel;
+import org.dillon.fx.view.system.notice.NoticeView;
+import org.dillon.fx.view.system.operlog.OperLogView;
+import org.dillon.fx.view.system.post.PostView;
+import org.dillon.fx.view.system.role.RoleView;
+import org.dillon.fx.view.system.user.UserView;
 import org.kordamp.ikonli.feather.Feather;
 import org.kordamp.ikonli.javafx.FontIcon;
 
@@ -196,6 +205,24 @@ public class MainView implements FxmlView<MainViewModel>, Initializable {
 
             if (StrUtil.equals("菜单管理", title)) {
                 clazz = MenuManageView.class;
+            } else if (StrUtil.equals("用户管理", title)) {
+                clazz = UserView.class;
+            } else if (StrUtil.equals("角色管理", title)) {
+                clazz = RoleView.class;
+            } else if (StrUtil.equals("部门管理", title)) {
+                clazz = DeptManageView.class;
+            } else if (StrUtil.equals("岗位管理", title)) {
+                clazz = PostView.class;
+            } else if (StrUtil.equals("字典管理", title)) {
+                clazz = DictTypeView.class;
+            } else if (StrUtil.equals("参数设置", title)) {
+                clazz = ConfigView.class;
+            } else if (StrUtil.equals("通知公告", title)) {
+                clazz = NoticeView.class;
+            } else if (StrUtil.equals("操作日志", title)) {
+                clazz = OperLogView.class;
+            } else if (StrUtil.equals("登录日志", title)) {
+                clazz = LoginInforView.class;
             } else {
                 String component = ((JSONObject) obj).getStr("component");
 

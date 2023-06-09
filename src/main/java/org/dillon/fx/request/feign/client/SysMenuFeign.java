@@ -19,7 +19,8 @@ public interface SysMenuFeign extends FeignAPI {
      *
      * @return 路由信息
      */
-    @RequestLine("GET /system/menu/getRouters")
+//    @RequestLine("GET /system/menu/getRouters")
+    @RequestLine("GET /getRouters")
     JsonObject getRouters();
 
 

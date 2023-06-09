@@ -1,6 +1,9 @@
 package org.dillon.fx.view.loginregister;
 
 import cn.hutool.core.img.ImgUtil;
+import cn.hutool.json.JSONArray;
+import cn.hutool.json.JSONObject;
+import cn.hutool.json.JSONUtil;
 import com.google.gson.JsonObject;
 import de.saxsys.mvvmfx.SceneLifecycle;
 import de.saxsys.mvvmfx.ViewModel;
@@ -14,6 +17,7 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.image.Image;
+import org.dillon.fx.domain.AjaxResult;
 import org.dillon.fx.domain.R;
 import org.dillon.fx.request.Request;
 import org.dillon.fx.request.feign.client.LoginFeign;
@@ -219,13 +223,15 @@ public class LoginRegisterViewModel implements ViewModel, SceneLifecycle {
 
         LoginFeign loginFeign = Request.connector(LoginFeign.class);
 
-        R<Map<String, Object>> result = loginFeign.login(userName.getValue(), passWord.getValue(), vefCode.getValue(), uuId.getValue());
+        JsonObject result = loginFeign.login(userName.getValue(), passWord.getValue(), vefCode.getValue(), uuId.getValue());
+        JSONObject objects = JSONUtil.parseObj(result.toString());
+
         Platform.runLater(() -> {
-            msg.setValue(result.getMsg());
+            msg.setValue(objects.getStr(AjaxResult.MSG_TAG));
         });
 
-        if (result.getCode() == 200) {
-            AppStore.setToken(result.getData().get("access_token").toString());
+        if (objects.getInt(AjaxResult.CODE_TAG) == 200) {
+            AppStore.setToken(objects.getStr("token"));
 
             success.setValue(true);
 
