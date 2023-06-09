@@ -47,9 +47,11 @@ public class OkHttpInterceptor implements Interceptor {
                 body(ResponseBody.create(mediaType, content))
                 .build();
         if (!"GET".equalsIgnoreCase(originalRequest.method())) {
-            MvvmFX.getNotificationCenter().publish("message", code, msg);
+            messageProcess(code, msg);
+        }else {
+            messageProcess(code, msg);
         }
-        messageProcess(code, msg);
+
         //生成新的response返回，网络请求的response如果取出之后，直接返回将会抛出异常
         return responseNew;
     }
