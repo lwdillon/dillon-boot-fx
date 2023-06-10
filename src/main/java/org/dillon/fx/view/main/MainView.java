@@ -1,35 +1,39 @@
 package org.dillon.fx.view.main;
 
 import atlantafx.base.controls.Popover;
-import cn.hutool.core.util.ClassUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONObject;
 import com.goxr3plus.fxborderlessscene.borderless.BorderlessScene;
-import de.saxsys.mvvmfx.*;
+import de.saxsys.mvvmfx.FluentViewLoader;
+import de.saxsys.mvvmfx.FxmlView;
+import de.saxsys.mvvmfx.InjectViewModel;
+import de.saxsys.mvvmfx.MvvmFX;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Bounds;
-import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
-import javafx.scene.layout.*;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.dillon.fx.icon.WIcon;
-import org.dillon.fx.store.AppStore;
 import org.dillon.fx.theme.SamplerTheme;
 import org.dillon.fx.theme.ThemeManager;
 import org.dillon.fx.view.config.UserInfoView;
+import org.dillon.fx.view.home.HomeView;
+import org.dillon.fx.view.monitor.MonitorView;
 import org.dillon.fx.view.system.config.ConfigView;
 import org.dillon.fx.view.system.dept.DeptManageView;
 import org.dillon.fx.view.system.dict.type.DictTypeView;
 import org.dillon.fx.view.system.logininfor.LoginInforView;
 import org.dillon.fx.view.system.menu.MenuManageView;
-import org.dillon.fx.view.system.menu.MenuManageViewModel;
 import org.dillon.fx.view.system.notice.NoticeView;
 import org.dillon.fx.view.system.operlog.OperLogView;
 import org.dillon.fx.view.system.post.PostView;
@@ -162,6 +166,7 @@ public class MainView implements FxmlView<MainViewModel>, Initializable {
 
         initListeners();
 
+        loddTab("主页", "home", FluentViewLoader.fxmlView(HomeView.class).load().getView());
 
         FadeTransition fadeTransition = new FadeTransition(Duration.millis(400), rootPane);
         fadeTransition.setFromValue(0);
@@ -181,7 +186,7 @@ public class MainView implements FxmlView<MainViewModel>, Initializable {
         MvvmFX.getNotificationCenter().subscribe("addTab", (key, payload) -> {
 
             // trigger some actions
-            Platform.runLater(()->{
+            Platform.runLater(() -> {
                 loddTab((String) payload[0], (String) payload[1], (Parent) payload[2]);
 
             });
@@ -196,8 +201,9 @@ public class MainView implements FxmlView<MainViewModel>, Initializable {
         var title = obj.getJSONObject("meta").getStr("title");
         String iconStr = ((JSONObject) obj).getJSONObject("meta").getStr("icon");
         Tab tab = null;
+        String finalTitle = title;
         var tabOptional = tabPane.getTabs().stream()
-                .filter(t -> StrUtil.equals(t.getText(), title))
+                .filter(t -> StrUtil.equals(t.getText(), finalTitle))
                 .findFirst();
 
         if (tabOptional.isPresent()) {
@@ -226,6 +232,10 @@ public class MainView implements FxmlView<MainViewModel>, Initializable {
                 clazz = OperLogView.class;
             } else if (StrUtil.equals("登录日志", title)) {
                 clazz = LoginInforView.class;
+            } else if (StrUtil.equals("服务监控", title)) {
+                clazz = MonitorView.class;
+            } else if (StrUtil.equals("若依官网", title)) {
+                clazz = HomeView.class;
             } else {
                 String component = ((JSONObject) obj).getStr("component");
 

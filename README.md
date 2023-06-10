@@ -93,6 +93,11 @@ javafx权限管理系统UI
 
 ![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/logininfo-light.jpg)
 
+### 服务监控
+![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/moint-dark.jpg)
+
+![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/moint-light.jpg)
+
 
 ## 交流群
 ## QQ群：114697782 QQ群：518914410
