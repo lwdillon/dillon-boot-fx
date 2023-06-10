@@ -17,7 +17,7 @@ import java.util.Map;
  * @author ruoyi
  */
 public interface SysLogininforFeign extends FeignAPI {
-    @RequestLine("GET /system/logininfor/list")
+    @RequestLine("GET /monitor/logininfor/list")
     TableDataInfo list(@QueryMap Map<String, Object> query);
 
     @RequestLine("POST /system/logininfor/export")

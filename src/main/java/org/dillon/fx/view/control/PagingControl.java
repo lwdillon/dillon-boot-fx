@@ -40,7 +40,7 @@ public class PagingControl extends HBox {
     }
 
     private void initView() {
-        pagination = new Pagination();
+        pagination = new Pagination(1);
         pagination.setStyle("-fx-page-information-visible:flase;");
         pagination.setMinHeight(50);
         pagination.setMaxHeight(50);
@@ -97,8 +97,8 @@ public class PagingControl extends HBox {
                 Integer index = NumberUtil.parseInt(toPageText.getText());
                 if (index <= 0) {
                     index = 1;
-                } else if (index > pagination.getMaxPageIndicatorCount()) {
-                    index = pagination.getMaxPageIndicatorCount();
+                } else if (index > pagination.getPageCount()) {
+                    index = pagination.getPageCount();
                 }
                 pagination.setCurrentPageIndex(index-1);
             }
