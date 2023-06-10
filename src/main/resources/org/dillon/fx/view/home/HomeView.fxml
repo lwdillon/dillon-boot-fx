@@ -45,7 +45,11 @@
                         <HBox alignment="CENTER_LEFT" prefHeight="39.0" prefWidth="100.0">
                            <children>
                               <Label maxWidth="1.7976931348623157E308" text="总访问数" HBox.hgrow="ALWAYS" />
-                              <Label maxWidth="1.7976931348623157E308" styleClass="accent" text="120,000" />
+                              <Label maxWidth="1.7976931348623157E308" text="120,000">
+                                 <styleClass>
+                                    <String fx:value="accent" />
+                                    <String fx:value="title-4" />
+                                 </styleClass></Label>
                            </children>
                         </HBox>
                      </children>
@@ -77,7 +81,11 @@
                         <HBox alignment="CENTER_LEFT" prefHeight="39.0" prefWidth="100.0">
                            <children>
                               <Label maxWidth="1.7976931348623157E308" text="总成交额" HBox.hgrow="ALWAYS" />
-                              <Label maxWidth="1.7976931348623157E308" styleClass="accent" text="\$420,000" />
+                              <Label maxWidth="1.7976931348623157E308" text="\$420,000">
+                                 <styleClass>
+                                    <String fx:value="accent" />
+                                    <String fx:value="title-4" />
+                                 </styleClass></Label>
                            </children>
                         </HBox>
                      </children>
@@ -109,7 +117,11 @@
                         <HBox alignment="CENTER_LEFT" prefHeight="39.0" prefWidth="100.0">
                            <children>
                               <Label maxWidth="1.7976931348623157E308" text="总下载数" HBox.hgrow="ALWAYS" />
-                              <Label maxWidth="1.7976931348623157E308" styleClass="accent" text="120,000" />
+                              <Label maxWidth="1.7976931348623157E308" text="120,000">
+                                 <styleClass>
+                                    <String fx:value="accent" />
+                                    <String fx:value="title-4" />
+                                 </styleClass></Label>
                            </children>
                         </HBox>
                      </children>
@@ -141,7 +153,11 @@
                         <HBox alignment="CENTER_LEFT" prefHeight="39.0" prefWidth="100.0">
                            <children>
                               <Label maxWidth="1.7976931348623157E308" text="总成交数" HBox.hgrow="ALWAYS" />
-                              <Label maxWidth="1.7976931348623157E308" styleClass="accent" text="220,000" />
+                              <Label maxWidth="1.7976931348623157E308" text="220,000">
+                                 <styleClass>
+                                    <String fx:value="accent" />
+                                    <String fx:value="title-4" />
+                                 </styleClass></Label>
                            </children>
                         </HBox>
                      </children>
