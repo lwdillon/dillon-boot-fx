@@ -4,10 +4,7 @@ import atlantafx.base.controls.Popover;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONObject;
 import com.goxr3plus.fxborderlessscene.borderless.BorderlessScene;
-import de.saxsys.mvvmfx.FluentViewLoader;
-import de.saxsys.mvvmfx.FxmlView;
-import de.saxsys.mvvmfx.InjectViewModel;
-import de.saxsys.mvvmfx.MvvmFX;
+import de.saxsys.mvvmfx.*;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
@@ -21,6 +18,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
+import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.dillon.fx.icon.WIcon;
@@ -31,6 +29,8 @@ import org.dillon.fx.view.home.HomeView;
 import org.dillon.fx.view.monitor.MonitorView;
 import org.dillon.fx.view.system.config.ConfigView;
 import org.dillon.fx.view.system.dept.DeptManageView;
+import org.dillon.fx.view.system.dict.data.DictDataView;
+import org.dillon.fx.view.system.dict.data.DictDataViewModel;
 import org.dillon.fx.view.system.dict.type.DictTypeView;
 import org.dillon.fx.view.system.logininfor.LoginInforView;
 import org.dillon.fx.view.system.menu.MenuManageView;
@@ -38,6 +38,8 @@ import org.dillon.fx.view.system.notice.NoticeView;
 import org.dillon.fx.view.system.operlog.OperLogView;
 import org.dillon.fx.view.system.post.PostView;
 import org.dillon.fx.view.system.role.RoleView;
+import org.dillon.fx.view.system.tool.ToolView;
+import org.dillon.fx.view.system.tool.ToolViewModel;
 import org.dillon.fx.view.system.user.UserView;
 import org.kordamp.ikonli.feather.Feather;
 import org.kordamp.ikonli.javafx.FontIcon;
@@ -199,6 +201,7 @@ public class MainView implements FxmlView<MainViewModel>, Initializable {
 
     private void loddTab(JSONObject obj) {
         var title = obj.getJSONObject("meta").getStr("title");
+        String component = ((JSONObject) obj).getStr("component");
         String iconStr = ((JSONObject) obj).getJSONObject("meta").getStr("icon");
         Tab tab = null;
         String finalTitle = title;
@@ -237,20 +240,35 @@ public class MainView implements FxmlView<MainViewModel>, Initializable {
             } else if (StrUtil.equals("若依官网", title)) {
                 clazz = HomeView.class;
             } else {
-                String component = ((JSONObject) obj).getStr("component");
 
-                try {
-                    clazz = Class.forName(component);
-                } catch (ClassNotFoundException e) {
-                    throw new RuntimeException(e);
+                if (component.contains("/")) {
+                    clazz = ToolView.class;
+                } else {
+
+                    try {
+                        clazz = Class.forName(component);
+                    } catch (ClassNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
+            }
+
+
+            Node node = null;
+
+            if (clazz == ToolView.class) {
+                ViewTuple<ToolView, ToolViewModel> viewTuple = FluentViewLoader.fxmlView(ToolView.class).load();
+                viewTuple.getViewModel().setUrl("http://vue.ruoyi.vip/" + ((JSONObject) obj).getStr("component").replace("/index", "").replace("/list", "List"));
+                MvvmFX.getNotificationCenter().publish("addTab", "若依演示", "", viewTuple.getView());
+                return;
+            } else {
+                node = FluentViewLoader.fxmlView(clazz).load().getView();
             }
             tab = new Tab(title);
             tab.setGraphic(new FontIcon(WIcon.findByDescription("lw-" + iconStr)));
-            tabPane.getTabs().add(tab);
-            Node node = FluentViewLoader.fxmlView(clazz).load().getView();
-//            node.setStyle("-fx-padding: 10");
             tab.setContent(node);
+            tabPane.getTabs().add(tab);
+
         }
 
         tabPane.getSelectionModel().select(tab);
