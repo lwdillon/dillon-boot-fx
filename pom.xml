@@ -64,11 +64,17 @@
             <groupId>de.saxsys</groupId>
             <artifactId>mvvmfx</artifactId>
             <version>${mvvmfx-version}</version>
+            <scope>system</scope>
+            <systemPath>${pom.basedir}/libs/mvvmfx-1.9.0-SNAPSHOT.jar</systemPath>
+
         </dependency>
         <dependency>
             <groupId>de.saxsys</groupId>
             <artifactId>mvvmfx-validation</artifactId>
             <version>${mvvmfx-version}</version>
+            <scope>system</scope>
+            <systemPath>${pom.basedir}/libs/mvvmfx-validation-1.9.0-SNAPSHOT.jar</systemPath>
+
         </dependency>
 
         <dependency>
