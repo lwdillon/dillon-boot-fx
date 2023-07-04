@@ -47,12 +47,12 @@
             <version>${atlantafx.version}</version>
         </dependency>
 
-
         <dependency>
             <groupId>org.controlsfx</groupId>
             <artifactId>controlsfx</artifactId>
-            <version>11.0.3</version>
+            <version>11.1.0</version>
         </dependency>
+
         <dependency>
             <groupId>io.github.palexdev</groupId>
             <artifactId>materialfx</artifactId>
@@ -192,7 +192,7 @@
         <dependency>
             <groupId>eu.hansolo</groupId>
             <artifactId>tilesfx</artifactId>
-            <version>17.1.15</version>
+            <version>17.0.11</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.openjfx</groupId>
