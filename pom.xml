@@ -217,15 +217,17 @@
     </dependencyManagement>
 
 
-<!--    <repositories>-->
+    <repositories>
 
-<!--        <repository>-->
-<!--            <id>jitpack.io</id>-->
-<!--            <url>https://jitpack.io</url>-->
-<!--        </repository>-->
+        <repository>
+            <id>sonatype-snapshots</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
 
-
-<!--    </repositories>-->
+    </repositories>
 
 
     <build>
