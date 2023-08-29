@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox prefHeight="505.0" prefWidth="465.0" spacing="10.0" xmlns="http://javafx.com/javafx/19"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lw.fx.client.view.system.config.ConfigInfoView">
+    <children>
+
+        <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="433.0" spacing="10.0">
+            <children>
+                <Label alignment="CENTER_RIGHT" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" text="参数名称:"/>
+                <TextField fx:id="configNameTextField" HBox.hgrow="ALWAYS" promptText="请输入参数名称"/>
+            </children>
+        </HBox>
+        <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="433.0" spacing="10.0">
+            <children>
+                <Label alignment="CENTER_RIGHT" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" text="参数键名:"/>
+                <TextField fx:id="configKeyTextField" HBox.hgrow="ALWAYS" promptText="请输入参数键名"/>
+            </children>
+        </HBox>
+        <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="433.0" spacing="10.0">
+            <children>
+                <Label alignment="CENTER_RIGHT" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" text="参数键值:"/>
+                <TextField fx:id="configValueTextField" HBox.hgrow="ALWAYS" promptText="请输入参数键值"/>
+            </children>
+        </HBox>
+
+
+        <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="433.0" spacing="10.0">
+            <children>
+                <Label alignment="CENTER_RIGHT" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" text="系统内置:"/>
+                <RadioButton fx:id="normalRadioBut" mnemonicParsing="false" text="是">
+                    <toggleGroup>
+                        <ToggleGroup fx:id="group"/>
+                    </toggleGroup>
+                </RadioButton>
+                <RadioButton fx:id="deactivateRadioBut" layoutX="59.0" mnemonicParsing="false" text="否"
+                             toggleGroup="$group"/>
+            </children>
+        </HBox>
+
+        <HBox prefHeight="98.0" prefWidth="465.0" spacing="10.0" VBox.vgrow="ALWAYS">
+            <children>
+                <Label alignment="CENTER_RIGHT" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" text="备注:"/>
+                <TextArea fx:id="remarksTextArea" prefHeight="92.0" prefWidth="375.0" HBox.hgrow="ALWAYS"/>
+            </children>
+        </HBox>
+
+    </children>
+    <padding>
+        <Insets bottom="10.0" right="10.0" top="10.0"/>
+    </padding>
+</VBox>

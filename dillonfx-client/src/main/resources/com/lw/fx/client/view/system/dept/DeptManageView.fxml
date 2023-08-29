@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+<?import java.lang.String?>
+<StackPane fx:id="root" xmlns="http://javafx.com/javafx/19" styleClass="tab-center-pane"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.lw.fx.client.view.system.dept.DeptManageView">
+    <children>
+        <VBox fx:id="content" prefHeight="600.0" prefWidth="700.0" spacing="7.0" styleClass="sample">
+            <children>
+                <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="200.0" spacing="7.0">
+                    <children>
+                        <Label text="部门名称"/>
+                        <TextField fx:id="searchField" promptText="请输入部门名称"/>
+                        <Label text="状态"/>
+                        <ComboBox fx:id="statusCombo" prefWidth="150.0" promptText="部门状态">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="全部"/>
+                                    <String fx:value="正常"/>
+                                    <String fx:value="停用"/>
+                                </FXCollections>
+                            </items>
+                        </ComboBox>
+                        <Button fx:id="searchBut" mnemonicParsing="false" text="搜索">
+                            <graphic>
+                                <FontIcon iconLiteral="fth-search"/>
+                            </graphic>
+                        </Button>
+                        <Button fx:id="restBut" mnemonicParsing="false" text="重置">
+                            <graphic>
+                                <FontIcon iconLiteral="fth-refresh-cw"/>
+                            </graphic>
+                        </Button>
+                        <ToggleButton fx:id="expansionBut" mnemonicParsing="false" text="展开/折叠">
+                            <graphic>
+                                <FontIcon iconLiteral="fth-plus"/>
+                            </graphic>
+                        </ToggleButton>
+                        <Button fx:id="addBut" mnemonicParsing="false" text="新增">
+                            <graphic>
+                                <FontIcon iconLiteral="fth-plus"/>
+                            </graphic>
+                        </Button>
+
+
+                    </children>
+                </HBox>
+                <VBox prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
+                    <children>
+                        <TreeTableView fx:id="treeTableView" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                            <columns>
+                                <TreeTableColumn fx:id="nameCol" prefWidth="75.0" text="部门名称"/>
+                                <TreeTableColumn fx:id="sortCol" prefWidth="75.0" text="排序"/>
+                                <TreeTableColumn fx:id="stateCol" prefWidth="75.0" text="状态"/>
+                                <TreeTableColumn fx:id="createTime" prefWidth="39.0" text="创建时间"/>
+                                <TreeTableColumn fx:id="optCol" maxWidth="260.0" minWidth="260.0" prefWidth="260.0"
+                                                 text="操作"/>
+                            </columns>
+                            <columnResizePolicy>
+                                <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                            </columnResizePolicy>
+                        </TreeTableView>
+                    </children>
+                </VBox>
+            </children>
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+            </padding>
+        </VBox>
+    </children>
+</StackPane>

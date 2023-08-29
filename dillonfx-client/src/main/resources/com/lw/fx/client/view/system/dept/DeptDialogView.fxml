@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox prefHeight="425.0" prefWidth="682.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lw.fx.client.view.system.dept.DeptDialogView">
+    <children>
+        <GridPane hgap="10.0" prefHeight="418.0" prefWidth="610.0" VBox.vgrow="ALWAYS">
+            <columnConstraints>
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="167.0" minWidth="10.0" prefWidth="40.0" />
+                <ColumnConstraints hgrow="ALWAYS" maxWidth="308.0" minWidth="10.0" prefWidth="200.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="222.0" minWidth="10.0" prefWidth="40.0" />
+                <ColumnConstraints hgrow="ALWAYS" maxWidth="293.0" minWidth="10.0" prefWidth="200.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <TextField fx:id="parentIdCombo" maxWidth="1.7976931348623157E308" prefWidth="150.0" GridPane.columnIndex="1" GridPane.columnSpan="3" />
+                <Spinner fx:id="ordNumFeild" prefHeight="26.0" prefWidth="244.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                <Label text="显示排序" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                <TextField fx:id="deptNameField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <Label text="负责人" GridPane.rowIndex="2" />
+                <TextField fx:id="leaderField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <Label text="联系方式" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                <TextField fx:id="phoneField" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                <Label text="邮箱" GridPane.rowIndex="3" />
+                <TextField fx:id="emailField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                <HBox alignment="CENTER_LEFT" spacing="7.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
+               <children>
+                      <HBox alignment="CENTER_LEFT" spacing="7.0">
+                          <children>
+                              <RadioButton fx:id="statusRadio1" mnemonicParsing="false" text="正常">
+                                  <toggleGroup>
+                                      <ToggleGroup fx:id="group" />
+                                  </toggleGroup>
+                              </RadioButton>
+                              <RadioButton fx:id="statusRadio2" mnemonicParsing="false" text="停用" toggleGroup="$group5" />
+                          </children>
+                      </HBox>
+               </children>
+                </HBox>
+                <Label text="部门状态" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                <Label text="上级部门" />
+                <Label text="部门名称" GridPane.rowIndex="1" />
+            </children>
+        </GridPane>
+
+    </children>
+    <padding>
+        <Insets right="10.0" />
+    </padding>
+
+</VBox>

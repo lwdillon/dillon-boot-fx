@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+<StackPane fx:id="rootPane" prefHeight="454.0" prefWidth="1060.0" styleClass="tab-center-pane" xmlns="http://javafx.com/javafx/19"
+           xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lw.fx.client.view.system.role.AuthUserView">
+    <children>
+        <HBox fx:id="contentPane" prefHeight="100.0" prefWidth="200.0" spacing="10.0" styleClass="sample">
+            <children>
+                <VBox fx:id="pagePane" prefHeight="200.0" prefWidth="100.0" spacing="7.0" HBox.hgrow="ALWAYS">
+                    <children>
+                        <HBox alignment="CENTER_LEFT" spacing="5.0">
+                            <children>
+                                <TextField fx:id="userSearchField" promptText="请输入用户名称"/>
+                                <TextField fx:id="phoneField" promptText="请输入手机号"/>
+                                <Button fx:id="searchBut" mnemonicParsing="false" text="查询">
+                                    <graphic>
+                                        <FontIcon iconLiteral="fth-search"/>
+                                    </graphic>
+                                </Button>
+                                <Button fx:id="resetBut" mnemonicParsing="false" text="重置">
+                                    <graphic>
+                                        <FontIcon iconLiteral="fth-refresh-cw"/>
+                                    </graphic>
+                                </Button>
+                                <Button fx:id="addUserBut" mnemonicParsing="false" text="添加用户">
+                                    <graphic>
+                                        <FontIcon iconLiteral="fth-plus"/>
+                                    </graphic>
+                                </Button>
+                                <Button fx:id="cancelAuthBut" mnemonicParsing="false" text="取消授权"/>
+                            </children>
+                        </HBox>
+                        <TableView fx:id="tableView" editable="true" VBox.vgrow="ALWAYS">
+                            <columns>
+                                <TableColumn fx:id="selCol" maxWidth="50.0" minWidth="50.0" prefWidth="50.0"
+                                             sortable="false">
+                                    <graphic>
+                                        <CheckBox fx:id="selAllCheckBox" mnemonicParsing="false"/>
+                                    </graphic>
+                                </TableColumn>
+                                <TableColumn fx:id="idCol" prefWidth="141.0" text="用户编号"/>
+                                <TableColumn fx:id="userNameCol" prefWidth="75.0" text="用户名称"/>
+                                <TableColumn fx:id="nickNameCol" prefWidth="75.0" text="用户昵称"/>
+                                <TableColumn fx:id="deptCol" prefWidth="75.0" text="部门"/>
+                                <TableColumn fx:id="phonenumberCol" prefWidth="75.0" text="手机号码"/>
+                                <TableColumn fx:id="statusCol" prefWidth="75.0" text="状态"/>
+                                <TableColumn fx:id="createTimeCol" minWidth="170.0" prefWidth="355.0" text="创建时间"/>
+                                <TableColumn fx:id="optCol" minWidth="100.0" prefWidth="100.0" text="操作"/>
+                            </columns>
+                            <columnResizePolicy>
+                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                            </columnResizePolicy>
+                        </TableView>
+
+                    </children>
+                </VBox>
+            </children>
+            <StackPane.margin>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+            </StackPane.margin>
+        </HBox>
+    </children>
+</StackPane>

@@ -1,0 +1,51 @@
+#login-context-pane {
+  -fx-background-color: #ffffff;
+  -fx-background-radius: 10;
+  -fx-effect: dropshadow(gaussian, black, 30, 0, 0, 0)
+}
+
+#login-info-pane {
+  -fx-background-color: linear-gradient(#00247f, #1c56c5);
+  -fx-background-radius: 10 0 0 10;
+  -fx-background-insets: 0px;
+
+}
+
+#register-info-pane {
+  -fx-background-color: linear-gradient(#00157f, #f53166);
+  -fx-background-radius: 10 0 0 10;
+  -fx-background-insets: 0px;
+
+}
+
+#login-info-pane .label, #register-info-pane .label {
+  -fx-text-fill: #ffffff;
+}
+
+#login-text-pane .label, #login-text-pane .ikonli-font-icon {
+  -fx-text-fill: #000000;
+  -fx-icon-color: #000000;
+}
+
+#login-text-pane .mfx-text-field > .text-field {
+  -fx-text-fill: #000000;
+}
+
+#login-button {
+  -fx-text-fill: #ffffff;
+  -fx-background-color: linear-gradient(#3F007F, #7226A5);
+}
+
+#register-button {
+  -fx-text-fill: #ffffff;
+  -fx-background-color: linear-gradient(#7f001e, #f53166);
+}
+
+#login-pane {
+  -fx-background-size: 100% 100%;
+  -fx-background-image: url(/images/login.png);
+}
+
+#login-text{
+  -fx-border-color: rgba(120, 129, 146, 0.65);
+}

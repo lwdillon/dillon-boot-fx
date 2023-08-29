@@ -38,7 +38,7 @@ HTTP库：使用 OpenFeign HTTP库，该库提供了方便的 HTTP 请求和响�
 
 ```agsl
     1 在idea右侧栏找到Maven，展开并点击Plugins->sass-cli:run，会编译出index.css
-    2 运行主类org.dillon.fx.DillonBootFxApplication即可
+    2 运行主类com.lw.fx.client.Launcher即可
 ```
 
 # showcase:
@@ -49,7 +49,7 @@ HTTP库：使用 OpenFeign HTTP库，该库提供了方便的 HTTP 请求和响�
 
 ### 登录
 
-![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/login.jpg)
+![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/login.png)
 
 ### 主页
 

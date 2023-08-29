@@ -1,296 +1,401 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>org.dillon.fx</groupId>
-    <artifactId>dillon-boot-fx</artifactId>
-    <version>1.0-SNAPSHOT</version>
+
+    <groupId>com.lw.fx</groupId>
+    <artifactId>dillonfx</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+    <name>dillonfx</name>
+
+
     <properties>
         <java.version>17</java.version>
+        <app.name>DillonFX</app.name>
+        <app.version>1.0.0</app.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-        <javafx.version>17.0.7</javafx.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+
+
+        <java.version>17</java.version>
+        <openjfx.version>17.0.7</openjfx.version>
+        <sass.version>1.54.4</sass.version>
+        <atlantafx.version>2.0.1</atlantafx.version>
+        <controlsfx.version>11.1.2</controlsfx.version>
+        <lib.commons-lang.version>3.12.0</lib.commons-lang.version>
+        <lib.cssfx.version>11.5.1</lib.cssfx.version>
+        <lib.ikonli.version>12.3.1</lib.ikonli.version>
+        <lib.datafaker.version>1.3.0</lib.datafaker.version>
+        <lib.jetbrains-annotations.version>23.0.0</lib.jetbrains-annotations.version>
+        <test.assertj.version>3.21.0</test.assertj.version>
+        <test.junit.version>5.8.1</test.junit.version>
         <mvvmfx-version>1.9.0-SNAPSHOT</mvvmfx-version>
-        <ikonli-javafx-version>12.3.1</ikonli-javafx-version>
-        <feign.version>12.1</feign.version>
-        <datafx.version>8.0.2-SNAPSHOT</datafx.version>
-        <atlantafx.version>2.0.0</atlantafx.version>
-        <spring-boot.version>2.7.1</spring-boot.version>
-
+        <hutool.version>5.8.20</hutool.version>
+        <fx.borderlessscene.version>4.4.0</fx.borderlessscene.version>
     </properties>
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-controls</artifactId>
-            <version>${javafx.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-fxml</artifactId>
-            <version>${javafx.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-web</artifactId>
-            <version>${javafx.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.github.mkpaz</groupId>
-            <artifactId>atlantafx-base</artifactId>
-            <version>${atlantafx.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.controlsfx</groupId>
-            <artifactId>controlsfx</artifactId>
-            <version>11.1.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.github.palexdev</groupId>
-            <artifactId>materialfx</artifactId>
-            <version>11.13.5</version>
-        </dependency>
 
 
-        <dependency>
-            <groupId>de.saxsys</groupId>
-            <artifactId>mvvmfx</artifactId>
-            <version>${mvvmfx-version}</version>
-<!--            <scope>system</scope>-->
-<!--            <systemPath>${pom.basedir}/libs/mvvmfx-1.9.0-SNAPSHOT.jar</systemPath>-->
-
-        </dependency>
-        <dependency>
-            <groupId>de.saxsys</groupId>
-            <artifactId>mvvmfx-validation</artifactId>
-            <version>${mvvmfx-version}</version>
-<!--            <scope>system</scope>-->
-<!--            <systemPath>${pom.basedir}/libs/mvvmfx-validation-1.9.0-SNAPSHOT.jar</systemPath>-->
-
-        </dependency>
-
-        <dependency>
-            <groupId>fr.brouillard.oss</groupId>
-            <artifactId>cssfx</artifactId>
-            <version>11.4.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.kordamp.ikonli</groupId>
-            <artifactId>ikonli-javafx</artifactId>
-            <version>${ikonli-javafx-version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.kordamp.ikonli</groupId>
-            <artifactId>ikonli-feather-pack</artifactId>
-            <version>${ikonli-javafx-version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.kordamp.ikonli</groupId>
-            <artifactId>ikonli-material2-pack</artifactId>
-            <version>${ikonli-javafx-version}</version>
-        </dependency>
-
-
-        <dependency>
-            <groupId>com.github.goxr3plus</groupId>
-            <artifactId>FX-BorderlessScene</artifactId>
-            <version>4.4.0</version>
-            <scope>system</scope>
-            <systemPath>${pom.basedir}/libs/FX-BorderlessScene-4.4.0.jar</systemPath>
-        </dependency>
-
-
-        <dependency>
-            <groupId>com.formdev</groupId>
-            <artifactId>svgSalamander</artifactId>
-            <version>1.1.3</version>
-        </dependency>
-        <dependency>
-            <groupId>org.kordamp.jipsy</groupId>
-            <artifactId>jipsy-processor</artifactId>
-            <version>1.1.1</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>datafx-core</groupId>
-            <artifactId>datafx-core</artifactId>
-            <version>${datafx.version}</version>
-            <scope>system</scope>
-            <systemPath>${pom.basedir}/libs/datafx-core-8.0.2-SNAPSHOT.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>io.github.typhon0</groupId>
-            <artifactId>AnimateFX</artifactId>
-            <version>1.2.3</version>
-        </dependency>
-        <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-api</artifactId>
-            <version>7.0</version>
-        </dependency>
-        <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-all</artifactId>
-            <version>5.8.4</version>
-        </dependency>
-        <dependency>
-            <groupId>io.github.openfeign</groupId>
-            <artifactId>feign-core</artifactId>
-            <version>${feign.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.github.openfeign</groupId>
-            <artifactId>feign-slf4j</artifactId>
-            <version>${feign.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.github.openfeign</groupId>
-            <artifactId>feign-gson</artifactId>
-            <version>${feign.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.github.openfeign</groupId>
-            <artifactId>feign-okhttp</artifactId>
-            <version>${feign.version}</version>
-        </dependency>
-
-
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.26</version>
-        </dependency>
-        <dependency>
-            <groupId>com.netflix.archaius</groupId>
-            <artifactId>archaius-core</artifactId>
-            <version>0.7.6</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>net.datafaker</groupId>
-            <artifactId>datafaker</artifactId>
-            <version>1.3.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.belerweb</groupId>
-            <artifactId>pinyin4j</artifactId>
-            <version>2.5.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.github.haifengl</groupId>
-            <artifactId>smile-core</artifactId>
-            <version>2.6.0</version>
-        </dependency>
-        <dependency>
-            <groupId>eu.hansolo</groupId>
-            <artifactId>tilesfx</artifactId>
-            <version>17.0.11</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.openjfx</groupId>
-                    <artifactId>*</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-    </dependencies>
-
+    <modules>
+        <module>dillonfx-client</module>
+    </modules>
 
     <dependencyManagement>
         <dependencies>
+
+
             <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring-boot.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-controls</artifactId>
+                <version>${openjfx.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-fxml</artifactId>
+                <version>${openjfx.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-swing</artifactId>
+                <version>${openjfx.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-media</artifactId>
+                <version>${openjfx.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-web</artifactId>
+                <version>${openjfx.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.kordamp.ikonli</groupId>
+                <artifactId>ikonli-javafx</artifactId>
+                <version>${lib.ikonli.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.kordamp.ikonli</groupId>
+                <artifactId>ikonli-feather-pack</artifactId>
+                <version>${lib.ikonli.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.kordamp.ikonli</groupId>
+                <artifactId>ikonli-material2-pack</artifactId>
+                <version>${lib.ikonli.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jetbrains</groupId>
+                <artifactId>annotations</artifactId>
+                <version>${lib.jetbrains-annotations.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.controlsfx</groupId>
+                <artifactId>controlsfx</artifactId>
+                <version>${controlsfx.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>fr.brouillard.oss</groupId>
+                <artifactId>cssfx</artifactId>
+                <version>${lib.cssfx.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>net.datafaker</groupId>
+                <artifactId>datafaker</artifactId>
+                <version>${lib.datafaker.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.saxsys</groupId>
+                <artifactId>mvvmfx</artifactId>
+                <version>${mvvmfx-version}</version>
+
+            </dependency>
+            <dependency>
+                <groupId>de.saxsys</groupId>
+                <artifactId>mvvmfx-validation</artifactId>
+                <version>${mvvmfx-version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>io.github.mkpaz</groupId>
+                <artifactId>atlantafx-base</artifactId>
+                <version>${atlantafx.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.assertj</groupId>
+                <artifactId>assertj-core</artifactId>
+                <version>${test.assertj.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-api</artifactId>
+                <version>${test.junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-engine</artifactId>
+                <version>${test.junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
-
-
-    <repositories>
-
-        <repository>
-            <id>sonatype-snapshots</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-
-    </repositories>
-
-
     <build>
-
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
-                <configuration>
-                    <source>17</source>
-                    <target>17</target>
-                    <release>17</release>
-
-                </configuration>
-            </plugin>
-            <!-- compile SCSS -->
-            <plugin>
-                <groupId>us.hebi.sass</groupId>
-                <artifactId>sass-cli-maven-plugin</artifactId>
-                <version>1.0.1</version>
-                <configuration>
-                    <args>
-                        <arg>
-                            ${project.basedir}/src/main/resources/styles/scss/index.scss:${project.build.directory}/classes/styles/index.css
-                        </arg>
-                        <arg>--no-source-map</arg>
-                    </args>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>run-sass</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring-boot.version}</version>
-                <configuration>
-                    <mainClass>org.dillon.fx.DillonBootFxApplication</mainClass>
-                    <includeSystemScope>true</includeSystemScope>
-                    <skip>false</skip>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>repackage</id>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-antrun-plugin</artifactId>
+                    <version>3.0.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>3.3.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>3.1.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.8.1</version>
+                    <configuration>
+                        <source>${java.version}</source>
+                        <target>${java.version}</target>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-checkstyle-plugin</artifactId>
+                    <version>3.2.1</version>
+                    <configuration>
+                        <configLocation>checkstyle.xml</configLocation>
+                        <consoleOutput>true</consoleOutput>
+                        <failsOnError>false</failsOnError>
+                        <linkXRef>false</linkXRef>
+                    </configuration>
+                    <dependencies>
+                        <dependency>
+                            <groupId>com.puppycrawl.tools</groupId>
+                            <artifactId>checkstyle</artifactId>
+                            <version>10.6.0</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>3.2.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>3.0.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>us.hebi.sass</groupId>
+                    <artifactId>sass-cli-maven-plugin</artifactId>
+                    <version>1.0.1</version>
+                    <configuration>
+                        <sassVersion>1.54.5</sassVersion>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-gpg-plugin</artifactId>
+                    <version>3.0.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>3.4.0</version>
+                    <configuration>
+                        <doclint>none</doclint>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-install-plugin</artifactId>
+                    <version>3.0.0-M1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>3.2.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-project-info-reports-plugin</artifactId>
+                    <version>3.1.2</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>3.2.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>3.9.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>3.2.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>3.0.0-M5</version>
+                </plugin>
+                <plugin>
+                    <groupId>io.github.wiverson</groupId>
+                    <artifactId>jtoolprovider-plugin</artifactId>
+                    <version>1.0.34</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.moditect</groupId>
+                    <artifactId>moditect-maven-plugin</artifactId>
+                    <version>1.0.0.RC1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.openjfx</groupId>
+                    <artifactId>javafx-maven-plugin</artifactId>
+                    <version>0.0.8</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
-
-
+    <profiles>
+        <profile>
+            <id>linux-active</id>
+            <activation>
+                <os>
+                    <family>unix</family>
+                </os>
+            </activation>
+            <properties>
+                <platform>linux</platform>
+            </properties>
+        </profile>
+        <profile>
+            <id>windows-active</id>
+            <activation>
+                <os>
+                    <family>windows</family>
+                </os>
+            </activation>
+            <properties>
+                <platform>win</platform>
+            </properties>
+        </profile>
+        <profile>
+            <id>release</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <!-- package project sources -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>attach-source</id>
+                                <phase>compile</phase>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <!-- package project javadoc -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <!-- sign deployed artifacts -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>lint</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <configuration>
+                            <showWarnings>true</showWarnings>
+                            <compilerArgs>
+                                <arg>-XDcompilePolicy=simple</arg>
+                                <arg>
+                                    -Xplugin:ErrorProne \
+                                    -Xep:NullAway:ERROR \
+                                    -XepOpt:NullAway:AnnotatedPackages=corf \
+                                    -XepExcludedPaths:.*/src/test/java/.*
+                                    -XepAllErrorsAsWarnings
+                                </arg>
+                            </compilerArgs>
+                            <annotationProcessorPaths>
+                                <path>
+                                    <groupId>com.google.errorprone</groupId>
+                                    <artifactId>error_prone_core</artifactId>
+                                    <version>2.16</version>
+                                </path>
+                                <path>
+                                    <groupId>com.uber.nullaway</groupId>
+                                    <artifactId>nullaway</artifactId>
+                                    <version>0.10.4</version>
+                                </path>
+                            </annotationProcessorPaths>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<VBox prefHeight="443.0" prefWidth="595.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lw.fx.client.view.system.user.AuthRoleView">
+   <children>
+      <HBox alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="407.0">
+         <children>
+            <Label text="用户昵称" />
+            <TextField fx:id="nickNameTextField" editable="false" />
+            <Label text="登录账号" />
+            <TextField fx:id="userNameTextField" editable="false" />
+         </children>
+      </HBox>
+      <TableView fx:id="tableView" editable="true" prefHeight="230.0" prefWidth="400.0" VBox.vgrow="ALWAYS">
+        <columns>
+          <TableColumn fx:id="serialNumbCol" maxWidth="40.0" minWidth="40.0" prefWidth="40.0">
+               <graphic>
+                  <CheckBox fx:id="selectAllCheckBox" mnemonicParsing="false" />
+               </graphic></TableColumn>
+          <TableColumn fx:id="roleIdCol" prefWidth="115.0" text="角色编号" />
+            <TableColumn fx:id="roleNameCol" prefWidth="75.0" text="角色名称" />
+            <TableColumn fx:id="roleKeyCol" prefWidth="75.0" text="权限字符" />
+            <TableColumn fx:id="createTimeCol" minWidth="200.0" prefWidth="200.0" text="创建时间" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+   </children>
+</VBox>
