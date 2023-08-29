@@ -115,7 +115,7 @@ HTTP库：使用 OpenFeign HTTP库，该库提供了方便的 HTTP 请求和响�
 ![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/logininfo-light.jpg)
 
 ### 服务监控
-![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/moint-dark.jpg)
+![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/monit-dark.jpg)
 
 ![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/moint-light.jpg)
 
