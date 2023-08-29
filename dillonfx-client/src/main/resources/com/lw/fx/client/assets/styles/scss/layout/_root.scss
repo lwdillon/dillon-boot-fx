@@ -249,7 +249,7 @@
   }
 
   .table-view > .column-header-background .column-header .label {
-    -fx-text-fill: green;
+    -fx-text-fill: -color-header-fg;
     -fx-alignment: CENTER;
     -fx-padding: 0 0.5em 0 0.5em;
   }
