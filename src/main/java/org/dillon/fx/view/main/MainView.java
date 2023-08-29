@@ -25,6 +25,7 @@ import org.dillon.fx.icon.WIcon;
 import org.dillon.fx.theme.SamplerTheme;
 import org.dillon.fx.theme.ThemeManager;
 import org.dillon.fx.view.config.UserInfoView;
+import org.dillon.fx.view.home.DashboardView;
 import org.dillon.fx.view.home.HomeView;
 import org.dillon.fx.view.monitor.MonitorView;
 import org.dillon.fx.view.system.config.ConfigView;
@@ -168,7 +169,7 @@ public class MainView implements FxmlView<MainViewModel>, Initializable {
 
         initListeners();
 
-        loddTab("主页", "home", FluentViewLoader.fxmlView(HomeView.class).load().getView());
+        loddTab("主页", "home", FluentViewLoader.fxmlView(DashboardView.class).load().getView());
 
         FadeTransition fadeTransition = new FadeTransition(Duration.millis(400), rootPane);
         fadeTransition.setFromValue(0);
@@ -238,7 +239,7 @@ public class MainView implements FxmlView<MainViewModel>, Initializable {
             } else if (StrUtil.equals("服务监控", title)) {
                 clazz = MonitorView.class;
             } else if (StrUtil.equals("若依官网", title)) {
-                clazz = HomeView.class;
+                clazz = DashboardView.class;
             } else {
 
                 if (component.contains("/")) {

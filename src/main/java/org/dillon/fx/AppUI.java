@@ -59,6 +59,7 @@ public class AppUI extends Application {
 
         var tm = ThemeManager.getInstance();
         tm.setScene(scene);
+        tm.setTheme(tm.getDefaultTheme());
         if ("DEV".equalsIgnoreCase(System.getProperty("app.profiles.active"))) {
             startCssFX(scene);
         }

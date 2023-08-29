@@ -4,29 +4,29 @@ import org.kordamp.ikonli.Ikon;
 import org.kordamp.ikonli.feather.Feather;
 
 public enum WIcon implements Ikon {
-    TOOL("lw-tool", '\ue900'),
-    MONITOR("lw-monitor", '\ue901'),
-    SYSTEM_COPY("lw-system", '\ue902'),
+    TOOL("lw-tool", '\ue911'),
+    MONITOR("lw-monitor", '\ue906'),
+    SYSTEM_COPY("lw-system", '\ue908'),
 
-    MESSAGE("lw-message", '\ue903'),
+    MESSAGE("lw-message", '\ue90e'),
 
-    LOG("lw-log", '\ue904'),
+    LOG("lw-log", '\ue909'),
 
-    EDIT("lw-edit", '\ue905'),
+    EDIT("lw-edit", '\ue90c'),
 
-    DICT("lw-dict", '\ue906'),
+    DICT("lw-dict", '\ue90b'),
 
-    POST("lw-post", '\ue907'),
+    POST("lw-post", '\ue902'),
 
-    TREE("lw-tree", '\ue908'),
+    TREE("lw-tree", '\ue90f'),
 
-    PEOPLES("lw-peoples", '\ue909'),
+    PEOPLES("lw-peoples", '\ue90d'),
 
-    USER("lw-user", '\ue90a'),
+    USER("lw-user", '\ue907'),
 
-    TREE_TABLE("lw-tree-table", '\ue90b'),
-    YUANDIAN("lw-yuandian", '\ue90c'),
-    HOME("lw-home", '\ue90d');
+    TREE_TABLE("lw-tree-table", '\ue900'),
+    YUANDIAN("lw-form", '\ue903'),
+    HOME("lw-home", '\ue916');
 
     public static WIcon findByDescription(String description) {
         for (WIcon font : values()) {

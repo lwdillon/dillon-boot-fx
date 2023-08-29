@@ -41,6 +41,9 @@ HTTP库：使用 OpenFeign HTTP库，该库提供了方便的 HTTP 请求和响�
     2 运行主类org.dillon.fx.DillonBootFxApplication即可
 ```
 
+# showcase:
+
+![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/show.gif)
 
 # 界面：
 
