@@ -55,7 +55,7 @@ HTTP库：使用 OpenFeign HTTP库，该库提供了方便的 HTTP 请求和响�
 
 ![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/home-dark.jpg)
 
-![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/home-light.jpg)
+![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/home-light.png)
 
 
 ### 用户管理
