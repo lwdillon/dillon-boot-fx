@@ -32,7 +32,7 @@
         <Separator prefWidth="200.0" />
         <HBox alignment="CENTER_LEFT" prefHeight="38.0" prefWidth="286.0">
             <children>
-                <Label fx:id="phonenumber" text="手机号码">
+                <Label  text="手机号码">
                     <graphic>
                         <FontIcon iconLiteral="fth-smartphone" />
                     </graphic>
