@@ -83,7 +83,7 @@ public class RoleInfoView implements FxmlView<RoleInfoViewModel>, Initializable 
         initListeners();
     }
 
-    private void initListeners(){
+    private void initListeners() {
         roleInfoViewModel.roleSortProperty().addListener((observable, oldValue, newValue) -> {
             roleSortSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, Integer.MAX_VALUE, newValue.intValue()));
         });
@@ -101,14 +101,14 @@ public class RoleInfoView implements FxmlView<RoleInfoViewModel>, Initializable 
                 roleInfoViewModel.statusProperty().setValue(group.getSelectedToggle().getUserData().toString());
             }
         });
-        roleInfoViewModel.expansionAllProperty().addListener((observable, oldValue, newValue) ->{
-            treeExpandedAll(treeView.getRoot(),newValue);
+        roleInfoViewModel.expansionAllProperty().addListener((observable, oldValue, newValue) -> {
+            treeExpandedAll(treeView.getRoot(), newValue);
 
-        } );
-        roleInfoViewModel.selectAllProperty().addListener((observable, oldValue, newValue) ->{
-            treeSelectAll(treeView.getRoot(),newValue);
+        });
+        roleInfoViewModel.selectAllProperty().addListener((observable, oldValue, newValue) -> {
+            treeSelectAll(treeView.getRoot(), newValue);
 
-        } );
+        });
 
     }
 

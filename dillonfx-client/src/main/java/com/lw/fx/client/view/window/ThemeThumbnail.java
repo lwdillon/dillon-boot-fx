@@ -34,11 +34,11 @@ public final class ThemeThumbnail extends VBox implements Toggle {
             Map<String, String> colors = theme.parseColors();
 
             var circles = new HBox(
-                createCircle(colors.get("-color-fg-default"), colors.get("-color-fg-default"), false),
-                createCircle(colors.get("-color-fg-default"), colors.get("-color-accent-emphasis"), true),
-                createCircle(colors.get("-color-fg-default"), colors.get("-color-success-emphasis"), true),
-                createCircle(colors.get("-color-fg-default"), colors.get("-color-danger-emphasis"), true),
-                createCircle(colors.get("-color-fg-default"), colors.get("-color-warning-emphasis"), true)
+                    createCircle(colors.get("-color-fg-default"), colors.get("-color-fg-default"), false),
+                    createCircle(colors.get("-color-fg-default"), colors.get("-color-accent-emphasis"), true),
+                    createCircle(colors.get("-color-fg-default"), colors.get("-color-success-emphasis"), true),
+                    createCircle(colors.get("-color-fg-default"), colors.get("-color-danger-emphasis"), true),
+                    createCircle(colors.get("-color-fg-default"), colors.get("-color-warning-emphasis"), true)
             );
             circles.setAlignment(Pos.CENTER);
 
@@ -47,14 +47,14 @@ public final class ThemeThumbnail extends VBox implements Toggle {
             Styles.appendStyle(nameLbl, "-fx-text-fill", colors.get("-color-fg-muted"));
 
             setStyle("""
-                -fx-background-radius: 10px, 8px;
-                -fx-background-insets: 0, 3px
-                """
+                    -fx-background-radius: 10px, 8px;
+                    -fx-background-insets: 0, 3px
+                    """
             );
             Styles.appendStyle(
-                this,
-                "-fx-background-color",
-                "-color-thumbnail-border," + colors.get("-color-bg-default")
+                    this,
+                    "-fx-background-color",
+                    "-color-thumbnail-border," + colors.get("-color-bg-default")
             );
             setOnMouseClicked(e -> setSelected(true));
             getStyleClass().add("theme-thumbnail");
@@ -65,7 +65,7 @@ public final class ThemeThumbnail extends VBox implements Toggle {
         }
 
         selectedProperty().addListener(
-            (obs, old, val) -> pseudoClassStateChanged(SELECTED, val)
+                (obs, old, val) -> pseudoClassStateChanged(SELECTED, val)
         );
     }
 

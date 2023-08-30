@@ -2,8 +2,9 @@
 
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.web.WebView?>
-<StackPane xmlns="http://javafx.com/javafx/17.0.7" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lw.fx.client.view.system.tool.ToolView">
+<StackPane xmlns="http://javafx.com/javafx/17.0.7" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.lw.fx.client.view.system.tool.ToolView">
     <children>
-        <WebView fx:id="webView" prefHeight="200.0" prefWidth="200.0" />
+        <WebView fx:id="webView" prefHeight="200.0" prefWidth="200.0"/>
     </children>
 </StackPane>

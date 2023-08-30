@@ -21,7 +21,7 @@ public interface SysDictTypeFeign extends FeignAPI {
     TableDataInfo list(@QueryMap Map<String, Object> query);
 
     @RequestLine("GET /system/dict/type/export")
-    void export( SysDictType dictType);
+    void export(SysDictType dictType);
 
     /**
      * 查询字典类型详细

@@ -46,7 +46,6 @@ public class DeptManageView implements FxmlView<DeptManageViewModel>, Initializa
     @InjectViewModel
     private DeptManageViewModel viewModel;
 
-    
 
     @FXML
     private VBox content;
@@ -298,7 +297,7 @@ public class DeptManageView implements FxmlView<DeptManageViewModel>, Initializa
         load.getViewModel().setSysDept(isEdit ? SysDept : new SysDept());
         load.getViewModel().setSelectSysDept(selDept);
 
-        var dialog=optDialog.get();
+        var dialog = optDialog.get();
         dialog.clearActions();
         dialog.addActions(
                 Map.entry(new Button("取消"), event -> dialog.close()),

@@ -57,9 +57,9 @@ public final class DefaultEventBus implements EventBus {
         Objects.requireNonNull(subscriber);
 
         subscribers.keySet().stream()
-            .filter(eventType::isAssignableFrom)
-            .map(subscribers::get)
-            .forEach(eventSubscribers -> eventSubscribers.remove(subscriber));
+                .filter(eventType::isAssignableFrom)
+                .map(subscribers::get)
+                .forEach(eventSubscribers -> eventSubscribers.remove(subscriber));
     }
 
     @Override
@@ -68,9 +68,9 @@ public final class DefaultEventBus implements EventBus {
 
         Class<?> eventType = event.getClass();
         subscribers.keySet().stream()
-            .filter(type -> type.isAssignableFrom(eventType))
-            .flatMap(type -> subscribers.get(type).stream())
-            .forEach(subscriber -> publish(event, subscriber));
+                .filter(type -> type.isAssignableFrom(eventType))
+                .flatMap(type -> subscribers.get(type).stream())
+                .forEach(subscriber -> publish(event, subscriber));
     }
 
     private <E extends Event> void publish(E event, Consumer<E> subscriber) {

@@ -45,9 +45,9 @@ public interface Page {
     Faker FAKER = new Faker();
     Random RANDOM = new Random();
     String JFX_JAVADOC_URI_TEMPLATE =
-        "https://openjfx.io/javadoc/20/javafx.controls/javafx/scene/%s.html";
+            "https://openjfx.io/javadoc/20/javafx.controls/javafx/scene/%s.html";
     String AFX_JAVADOC_URI_TEMPLATE =
-        "https://mkpaz.github.io/atlantafx/apidocs/atlantafx.base/atlantafx/base/%s.html";
+            "https://mkpaz.github.io/atlantafx/apidocs/atlantafx.base/atlantafx/base/%s.html";
 
     String getName();
 
@@ -123,7 +123,7 @@ public interface Page {
             sourceCodeItem.setDisable(!page.canDisplaySourceCode());
             sourceCodeItem.setAccelerator(new KeyCodeCombination(KeyCode.C, ALT_DOWN));
             sourceCodeItem.setOnAction(e ->
-                DefaultEventBus.getInstance().publish(new PageEvent(PageEvent.Action.SOURCE_CODE_ON))
+                    DefaultEventBus.getInstance().publish(new PageEvent(PageEvent.Action.SOURCE_CODE_ON))
             );
 
             final var uri = page.getJavadocUri();

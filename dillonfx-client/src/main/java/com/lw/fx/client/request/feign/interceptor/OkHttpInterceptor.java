@@ -44,7 +44,7 @@ public class OkHttpInterceptor implements Interceptor {
                 .build();
         if (!"GET".equalsIgnoreCase(originalRequest.method())) {
             messageProcess(code, msg);
-        }else {
+        } else {
             messageProcess(code, msg);
         }
 
@@ -63,10 +63,10 @@ public class OkHttpInterceptor implements Interceptor {
      * @auther: liwen
      * @date: 2018/11/6 12:59 PM
      */
-    private void messageProcess(int code,String msg) throws IOException {
+    private void messageProcess(int code, String msg) throws IOException {
 
 
-        if (code != 200 ) {
+        if (code != 200) {
 
             MvvmFX.getNotificationCenter().publish("message", code, msg);
             if (code == 401) {
@@ -74,8 +74,6 @@ public class OkHttpInterceptor implements Interceptor {
             }
         }
     }
-
-
 
 
 }

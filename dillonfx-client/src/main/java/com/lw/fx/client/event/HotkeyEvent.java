@@ -19,7 +19,7 @@ public final class HotkeyEvent extends Event {
     @Override
     public String toString() {
         return "HotkeyEvent{"
-            + "keys=" + keys
-            + "} " + super.toString();
+                + "keys=" + keys
+                + "} " + super.toString();
     }
 }

@@ -109,8 +109,6 @@ public class MainViewModel implements ViewModel, SceneLifecycle {
     }
 
 
-
-
     public ObservableList<JSONObject> getRouterList() {
         return routerList;
     }

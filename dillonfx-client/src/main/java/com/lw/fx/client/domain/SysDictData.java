@@ -1,9 +1,5 @@
 package com.lw.fx.client.domain;
 
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
-
-
 /**
  * 字典数据表 sys_dict_data
  *
@@ -12,7 +8,7 @@ import javafx.beans.property.SimpleBooleanProperty;
 public class SysDictData extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
-    private  boolean select =false;
+    private boolean select = false;
 
     /**
      * 字典编码

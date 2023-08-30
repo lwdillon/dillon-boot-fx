@@ -64,7 +64,6 @@ public class DeptDialogView implements FxmlView<DeptDialogViewModel>, Initializa
     private Popover deptTreePopover;
 
 
-
     /**
      * 初始化
      *
@@ -107,7 +106,6 @@ public class DeptDialogView implements FxmlView<DeptDialogViewModel>, Initializa
                 };
             }
         });
-
 
 
         deptNameField.textProperty().bindBidirectional(viewModel.deptNameProperty());

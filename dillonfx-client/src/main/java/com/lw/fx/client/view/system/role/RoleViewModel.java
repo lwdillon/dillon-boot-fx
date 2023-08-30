@@ -39,10 +39,10 @@ public class RoleViewModel implements ViewModel {
 
         Map<String, Object> querMap = new HashMap<>();
         if (ObjectUtil.isNotEmpty(startDate.getValue())) {
-            querMap.put("params[beginTime]", startDate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+" 00:00:00");
+            querMap.put("params[beginTime]", startDate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + " 00:00:00");
         }
         if (ObjectUtil.isNotEmpty(endDate.getValue())) {
-            querMap.put("params[endTime]", endDate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+" 23:59:59");
+            querMap.put("params[endTime]", endDate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + " 23:59:59");
         }
 
         querMap.put("roleName", roleName.getValue());

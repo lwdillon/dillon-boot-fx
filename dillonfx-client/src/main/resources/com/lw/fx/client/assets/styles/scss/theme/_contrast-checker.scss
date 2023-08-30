@@ -12,11 +12,11 @@
   }
 
   .text-field {
-    -color-input-bg:             transparent;
-    -color-input-fg:             -color-contrast-checker-fg;
-    -color-input-border:         transparent;
-    -color-input-bg-readonly:    transparent;
-    -color-input-bg-focused:     transparent;
+    -color-input-bg: transparent;
+    -color-input-fg: -color-contrast-checker-fg;
+    -color-input-border: transparent;
+    -color-input-bg-readonly: transparent;
+    -color-input-bg-focused: transparent;
     -color-input-border-focused: transparent;
 
     -fx-background-insets: 0;
@@ -49,12 +49,12 @@
   }
 
   .slider {
-    >.thumb {
+    > .thumb {
       -color-slider-thumb: -color-contrast-checker-fg;
       -color-slider-thumb-border: -color-contrast-checker-fg;
     }
 
-    >.track {
+    > .track {
       -color-slider-track: -color-contrast-checker-fg;
       -fx-opacity: 0.5;
     }
@@ -68,17 +68,17 @@
   .contrast-ratio {
     -fx-padding: 0 40px 0 0;
 
-    >.large-font {
+    > .large-font {
       -fx-font-size: 4em;
     }
 
-    >.ratio {
+    > .ratio {
       -fx-font-size: 2em;
     }
   }
 
   .contrast-level {
-    >.state {
+    > .state {
       -fx-padding: 0.5em 1em 0.5em 1em;
       -fx-background-color: palette.$color-wcag-bg-failed;
       -fx-background-radius: 4px;
@@ -88,15 +88,15 @@
         -fx-background-color: palette.$color-wcag-bg-passed;
       }
 
-      >.ikonli-font-icon {
+      > .ikonli-font-icon {
         -fx-fill: palette.$color-wcag-fg;
         -fx-icon-color: palette.$color-wcag-fg;
       }
     }
   }
 
-  >.actions {
-    >.button {
+  > .actions {
+    > .button {
       -fx-border-width: 1px;
       -fx-border-color: -color-contrast-checker-fg;
       -fx-border-radius: 4px;
@@ -106,7 +106,7 @@
   .context-menu {
     -fx-background-color: -color-border-muted, -color-bg-default;
 
-    >.label {
+    > .label {
       -fx-text-fill: -color-fg-default;
     }
   }

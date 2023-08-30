@@ -13,7 +13,7 @@ import java.util.function.Predicate;
 
 public class FilterableTreeItem<T> extends CheckBoxTreeItem<T> {
     private final ObservableList<TreeItem<T>> sourceList = FXCollections.observableArrayList();
-    private final FilteredList<TreeItem<T>> filteredList =new FilteredList<>(this.sourceList);
+    private final FilteredList<TreeItem<T>> filteredList = new FilteredList<>(this.sourceList);
 
     private final ObjectProperty<TreeItemPredicate<T>> predicate = new SimpleObjectProperty<>();
 
@@ -27,7 +27,7 @@ public class FilterableTreeItem<T> extends CheckBoxTreeItem<T> {
     public FilterableTreeItem(T value) {
         super(value);
         this.filteredList.predicateProperty().bind(Bindings.createObjectBinding(() -> {
-            Predicate<TreeItem<T>> p =  child -> {
+            Predicate<TreeItem<T>> p = child -> {
                 // Set the predicate of child items to force filtering
                 if (child instanceof FilterableTreeItem) {
                     FilterableTreeItem<T> filterableChild = (FilterableTreeItem<T>) child;
@@ -58,6 +58,7 @@ public class FilterableTreeItem<T> extends CheckBoxTreeItem<T> {
 
     /**
      * Returns the list of children that is backing the filtered list.
+     *
      * @return underlying list of children
      */
     public ObservableList<TreeItem<T>> getInternalChildren() {
@@ -80,6 +81,7 @@ public class FilterableTreeItem<T> extends CheckBoxTreeItem<T> {
 
     /**
      * Set the predicate
+     *
      * @param predicate the predicate
      */
     public final void setPredicate(TreeItemPredicate<T> predicate) {

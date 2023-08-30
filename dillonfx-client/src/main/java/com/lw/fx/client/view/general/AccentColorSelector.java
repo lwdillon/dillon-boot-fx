@@ -29,10 +29,10 @@ final class AccentColorSelector extends HBox {
 
         setAlignment(Pos.CENTER_LEFT);
         getChildren().setAll(
-            colorButton(AccentColor.primerPurple()),
-            colorButton(AccentColor.primerPink()),
-            colorButton(AccentColor.primerCoral()),
-            resetBtn
+                colorButton(AccentColor.primerPurple()),
+                colorButton(AccentColor.primerPink()),
+                colorButton(AccentColor.primerCoral()),
+                resetBtn
         );
         getStyleClass().add("color-selector");
     }

@@ -5,6 +5,7 @@ import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.ObjectUtil;
 import com.lw.fx.client.domain.SysConfig;
+import com.lw.fx.client.util.NodeUtils;
 import com.lw.fx.client.view.control.PagingControl;
 import com.lw.fx.client.view.control.WFXGenericDialog;
 import de.saxsys.mvvmfx.*;
@@ -75,7 +76,7 @@ public class ConfigView implements FxmlView<ConfigViewModel>, Initializable {
     private DatePicker endDatePicker;
 
     @FXML
-    private TableColumn<SysConfig, String > optCol;
+    private TableColumn<SysConfig, String> optCol;
 
     @FXML
     private TableColumn<?, ?> remarkCol;
@@ -107,7 +108,7 @@ public class ConfigView implements FxmlView<ConfigViewModel>, Initializable {
     private RingProgressIndicator loading;
     private PagingControl pagingControl;
 
-    private  WFXGenericDialog dialog;
+    private WFXGenericDialog dialog;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -123,11 +124,11 @@ public class ConfigView implements FxmlView<ConfigViewModel>, Initializable {
         pagingControl.pageSizeProperty().addListener((observable, oldValue, newValue) -> {
             configViewModel.queryConfigDataList();
         });
-        loading = new RingProgressIndicator(0,false);
+        loading = new RingProgressIndicator(0, false);
         loading.disableProperty().bind(loading.visibleProperty().not());
         loading.visibleProperty().bindBidirectional(contentPane.disableProperty());
         rootPane.getChildren().add(loading);
-        
+
         configNameField.textProperty().bindBidirectional(configViewModel.configNameProperty());
         configKeyField.textProperty().bindBidirectional(configViewModel.configKeyProperty());
         statusCombo.valueProperty().bindBidirectional(configViewModel.configTypeProperty());
@@ -265,7 +266,7 @@ public class ConfigView implements FxmlView<ConfigViewModel>, Initializable {
         tableView.setItems(configViewModel.getSysConfigs());
         tableView.getSelectionModel().setCellSelectionEnabled(false);
         for (TableColumn<?, ?> c : tableView.getColumns()) {
-            addStyleClass(c, ALIGN_CENTER, ALIGN_LEFT, ALIGN_RIGHT);
+            NodeUtils.addStyleClass(c, ALIGN_CENTER, ALIGN_LEFT, ALIGN_RIGHT);
         }
 
 
@@ -275,11 +276,10 @@ public class ConfigView implements FxmlView<ConfigViewModel>, Initializable {
 
     public WFXGenericDialog getDialogContent() {
         if (dialog == null) {
-            dialog =new  WFXGenericDialog();
+            dialog = new WFXGenericDialog();
         }
         return dialog;
     }
-
 
 
     private void showConfigDataInfoDialog(Long configTypeId) {
@@ -295,13 +295,12 @@ public class ConfigView implements FxmlView<ConfigViewModel>, Initializable {
                 }
             }).onException(e -> e.printStackTrace()).run();
         }));
-        
-        
+
 
         getDialogContent().setHeaderIcon(FontIcon.of(Feather.INFO));
         getDialogContent().setHeaderText(ObjectUtil.isNotEmpty(configTypeId) ? "编辑参数" : "添加参数");
         getDialogContent().setContent(load.getView());
-         getDialogContent().show(rootPane.getScene());
+        getDialogContent().show(rootPane.getScene());
     }
 
 
@@ -318,23 +317,13 @@ public class ConfigView implements FxmlView<ConfigViewModel>, Initializable {
                 configViewModel.queryConfigDataList();
             }).onException(e -> e.printStackTrace()).run();
         }));
-        
-        
+
 
         getDialogContent().setHeaderIcon(FontIcon.of(Feather.INFO));
         getDialogContent().setHeaderText("系统揭示");
         getDialogContent().setContent(new Label("是否确认删除编号为" + configIds + "的参数吗？"));
-         getDialogContent().show(rootPane.getScene());
+        getDialogContent().show(rootPane.getScene());
     }
 
 
-    private static void addStyleClass(TableColumn<?, ?> c, String styleClass, String... excludes) {
-        Objects.requireNonNull(c);
-        Objects.requireNonNull(styleClass);
-
-        if (excludes != null && excludes.length > 0) {
-            c.getStyleClass().removeAll(excludes);
-        }
-        c.getStyleClass().add(styleClass);
-    }
 }

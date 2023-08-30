@@ -6,6 +6,7 @@ import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.ObjectUtil;
 import com.lw.fx.client.domain.SysUser;
 import com.lw.fx.client.domain.SysUserRole;
+import com.lw.fx.client.util.NodeUtils;
 import com.lw.fx.client.view.control.PagingControl;
 import com.lw.fx.client.view.control.WFXGenericDialog;
 import de.saxsys.mvvmfx.*;
@@ -39,8 +40,8 @@ public class AuthUserView implements FxmlView<AuthUserViewModel>, Initializable 
 
     @FXML
     private CheckBox selAllCheckBox;
-     
-   private WFXGenericDialog dialog;
+
+    private WFXGenericDialog dialog;
     private RingProgressIndicator loading;
     @FXML
     private StackPane rootPane;
@@ -204,7 +205,7 @@ public class AuthUserView implements FxmlView<AuthUserViewModel>, Initializable 
         tableView.setItems(viewModel.getUserList());
         tableView.getSelectionModel().setCellSelectionEnabled(false);
         for (TableColumn<?, ?> c : tableView.getColumns()) {
-            addStyleClass(c, ALIGN_CENTER, ALIGN_LEFT, ALIGN_RIGHT);
+            NodeUtils.addStyleClass(c, ALIGN_CENTER, ALIGN_LEFT, ALIGN_RIGHT);
         }
 
 
@@ -226,34 +227,21 @@ public class AuthUserView implements FxmlView<AuthUserViewModel>, Initializable 
                 }
             }).onException(e -> e.printStackTrace()).run();
         }));
-        
-        
+
 
         getDialogContent().setHeaderIcon(FontIcon.of(Feather.INFO));
         getDialogContent().setHeaderText("选择用户");
         getDialogContent().setContent(load.getView());
-         getDialogContent().show(rootPane.getScene());
+        getDialogContent().show(rootPane.getScene());
     }
 
     public WFXGenericDialog getDialogContent() {
         if (dialog == null) {
-            dialog =new  WFXGenericDialog();
+            dialog = new WFXGenericDialog();
         }
         return dialog;
     }
 
-
-
-
-    private static void addStyleClass(TableColumn<?, ?> c, String styleClass, String... excludes) {
-        Objects.requireNonNull(c);
-        Objects.requireNonNull(styleClass);
-
-        if (excludes != null && excludes.length > 0) {
-            c.getStyleClass().removeAll(excludes);
-        }
-        c.getStyleClass().add(styleClass);
-    }
 
     private void showCancelDialog(SysUser sysUser) {
 
@@ -274,13 +262,12 @@ public class AuthUserView implements FxmlView<AuthUserViewModel>, Initializable 
 
             }).onException(e -> e.printStackTrace()).run();
         }));
-        
-        
+
 
         getDialogContent().setHeaderIcon(FontIcon.of(Feather.INFO));
         getDialogContent().setHeaderText("系统揭示");
         getDialogContent().setContent(new Label("确认要取消该用户" + sysUser.getUserName() + "的角色吗？"));
-         getDialogContent().show(rootPane.getScene());
+        getDialogContent().show(rootPane.getScene());
     }
 
     private void showCancelAllDialog() {
@@ -306,12 +293,11 @@ public class AuthUserView implements FxmlView<AuthUserViewModel>, Initializable 
 
             }).onException(e -> e.printStackTrace()).run();
         }));
-        
-        
+
 
         getDialogContent().setHeaderIcon(FontIcon.of(Feather.INFO));
         getDialogContent().setHeaderText("系统揭示");
         getDialogContent().setContent(new Label("是否取消选中用户授权数据项？"));
-         getDialogContent().show(rootPane.getScene());
+        getDialogContent().show(rootPane.getScene());
     }
 }

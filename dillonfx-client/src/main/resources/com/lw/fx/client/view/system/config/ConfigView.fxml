@@ -8,7 +8,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import org.kordamp.ikonli.javafx.*?>
 <?import java.lang.String?>
-<StackPane fx:id="rootPane" prefHeight="609.0" prefWidth="1223.0" styleClass="tab-center-pane" xmlns="http://javafx.com/javafx/19"
+<StackPane fx:id="rootPane" prefHeight="609.0" prefWidth="1223.0" styleClass="tab-center-pane"
+           xmlns="http://javafx.com/javafx/19"
            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lw.fx.client.view.system.config.ConfigView">
     <children>
         <VBox fx:id="contentPane" prefHeight="200.0" prefWidth="100.0" spacing="7.0" styleClass="sample">

@@ -8,11 +8,11 @@ import feign.RequestLine;
 
 public interface LoginFeign extends FeignAPI {
 
-//        @RequestLine("GET /code")
+    //        @RequestLine("GET /code")
     @RequestLine("GET /captchaImage")
     JsonObject getCode();
 
-//        @RequestLine("POST /auth/login")
+    //        @RequestLine("POST /auth/login")
     @RequestLine("POST /login")
     JsonObject login(@Param("username") String userName, @Param("password") String password, @Param("code") String code, @Param("uuid") String uuid);
 

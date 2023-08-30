@@ -20,7 +20,7 @@ public interface SysLogininforFeign extends FeignAPI {
     TableDataInfo list(@QueryMap Map<String, Object> query);
 
     @RequestLine("POST /system/logininfor/export")
-    void export( SysLogininfor logininfor);
+    void export(SysLogininfor logininfor);
 
     @RequestLine("DELETE /system/logininfor/{infoIds}")
     JsonObject remove(@Param("infoIds") String infoIds);
@@ -32,5 +32,5 @@ public interface SysLogininforFeign extends FeignAPI {
     JsonObject unlock(@Param("userName") String userName);
 
     @RequestLine("POST /system/logininfor")
-    JsonObject add( SysLogininfor logininfor);
+    JsonObject add(SysLogininfor logininfor);
 }

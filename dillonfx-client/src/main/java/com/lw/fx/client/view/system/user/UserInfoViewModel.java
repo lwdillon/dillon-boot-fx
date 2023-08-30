@@ -205,17 +205,17 @@ public class UserInfoViewModel implements ViewModel {
                 posts.forEach(post -> {
                     if (postIds.contains(post.getPostId())) {
                         post.setSelect(true);
-                       selPostMap.put(post.getPostId(),post);
+                        selPostMap.put(post.getPostId(), post);
                     }
                 });
                 roles.forEach(role -> {
                     if (roleIds.contains(role.getRoleId())) {
                         role.setSelect(true);
-                        selRoleMap.put(role.getRoleId(),role);
+                        selRoleMap.put(role.getRoleId(), role);
                     }
                 });
 
-                setSelDept(new TreeSelect(ObjectUtil.defaultIfNull(sysUser.getDept(),new SysDept())));
+                setSelDept(new TreeSelect(ObjectUtil.defaultIfNull(sysUser.getDept(), new SysDept())));
 
             });
         }

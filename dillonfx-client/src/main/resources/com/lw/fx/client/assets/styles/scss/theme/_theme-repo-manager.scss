@@ -5,13 +5,13 @@
 #theme-repo-manager {
   -fx-spacing: 10px;
 
-  >.info {
+  > .info {
     -fx-background-color: -color-accent-subtle;
     -fx-padding: 0.5em;
     -fx-border-width: 1px;
     -fx-border-color: -color-accent-muted;
 
-    >.label {
+    > .label {
       -fx-text-fill: -color-accent-fg;
     }
   }
@@ -25,7 +25,7 @@
     -fx-padding: 10px;
     -fx-spacing: 5px;
 
-    >.theme {
+    > .theme {
       -fx-spacing: 10px;
       -fx-min-height: 3em;
       -fx-padding: 10px;
@@ -35,36 +35,36 @@
       }
 
       &:selected {
-        >.title {
-          >.text {
+        > .title {
+          > .text {
             -fx-fill: -color-accent-fg;
           }
         }
       }
 
-      >.title {
-        >.sub-text {
+      > .title {
+        > .sub-text {
           -fx-fill: -color-fg-muted;
         }
       }
 
-      >.preview {
-        >.label {
+      > .preview {
+        > .label {
           -fx-alignment: CENTER;
           -fx-font-size: 1.2em;
-          -fx-min-width:   2em;
-          -fx-pref-width:  2em;
-          -fx-max-width:   2em;
-          -fx-min-height:  2em;
+          -fx-min-width: 2em;
+          -fx-pref-width: 2em;
+          -fx-max-width: 2em;
+          -fx-min-height: 2em;
           -fx-pref-height: 2em;
-          -fx-max-height:  2em;
+          -fx-max-height: 2em;
         }
       }
 
-      >.controls {
-        -fx-min-width:  4em;
+      > .controls {
+        -fx-min-width: 4em;
         -fx-pref-width: 4em;
-        -fx-max-width:  4em;
+        -fx-max-width: 4em;
       }
     }
   }

@@ -6,6 +6,7 @@ import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.ObjectUtil;
 import com.lw.fx.client.domain.SysRole;
+import com.lw.fx.client.util.NodeUtils;
 import com.lw.fx.client.view.control.PagingControl;
 import com.lw.fx.client.view.control.WFXGenericDialog;
 import de.saxsys.mvvmfx.*;
@@ -102,9 +103,8 @@ public class RoleView implements FxmlView<RoleViewModel>, Initializable {
 
     private RingProgressIndicator loading;
 
-   private WFXGenericDialog dialog;
+    private WFXGenericDialog dialog;
 
-     
 
     private PagingControl pagingControl;
 
@@ -224,7 +224,7 @@ public class RoleView implements FxmlView<RoleViewModel>, Initializable {
                             ViewTuple<AuthUserView, AuthUserViewModel> load = FluentViewLoader.fxmlView(AuthUserView.class).load();
                             load.getViewModel().setRoleId(getTableRow().getItem().getRoleId());
                             load.getViewModel().allocatedList();
-                            MvvmFX.getNotificationCenter().publish("addTab", "分配用户","",load.getView());
+                            MvvmFX.getNotificationCenter().publish("addTab", "分配用户", "", load.getView());
                         });
                         MenuButton moreBut = new MenuButton("更多");
                         moreBut.getItems().addAll(resetPwdItem, assignRolesItme);
@@ -262,7 +262,7 @@ public class RoleView implements FxmlView<RoleViewModel>, Initializable {
         tableView.setItems(roleViewModel.getSysRoles());
         tableView.getSelectionModel().setCellSelectionEnabled(false);
         for (TableColumn<?, ?> c : tableView.getColumns()) {
-            addStyleClass(c, ALIGN_CENTER, ALIGN_LEFT, ALIGN_RIGHT);
+            NodeUtils.addStyleClass(c, ALIGN_CENTER, ALIGN_LEFT, ALIGN_RIGHT);
         }
 
 
@@ -272,11 +272,10 @@ public class RoleView implements FxmlView<RoleViewModel>, Initializable {
 
     public WFXGenericDialog getDialogContent() {
         if (dialog == null) {
-            dialog =new  WFXGenericDialog();
+            dialog = new WFXGenericDialog();
         }
         return dialog;
     }
-
 
 
     private void showRoleInfoDialog(Long userId) {
@@ -292,13 +291,12 @@ public class RoleView implements FxmlView<RoleViewModel>, Initializable {
                 }
             }).onException(e -> e.printStackTrace()).run();
         }));
-        
-        
+
 
         getDialogContent().setHeaderIcon(FontIcon.of(Feather.INFO));
         getDialogContent().setHeaderText(ObjectUtil.isNotEmpty(userId) ? "编辑角色" : "添加角色");
         getDialogContent().setContent(load.getView());
-         getDialogContent().show(rootPane.getScene());
+        getDialogContent().show(rootPane.getScene());
     }
 
     private void showAuthDataDialog(Long userId) {
@@ -314,13 +312,12 @@ public class RoleView implements FxmlView<RoleViewModel>, Initializable {
                 }
             }).onException(e -> e.printStackTrace()).run();
         }));
-        
-        
+
 
         getDialogContent().setHeaderIcon(FontIcon.of(Feather.INFO));
         getDialogContent().setHeaderText("分配数据权限");
         getDialogContent().setContent(load.getView());
-         getDialogContent().show(rootPane.getScene());
+        getDialogContent().show(rootPane.getScene());
     }
 
     private void showDelDialog(List<Long> roleIds) {
@@ -336,23 +333,13 @@ public class RoleView implements FxmlView<RoleViewModel>, Initializable {
                 roleViewModel.queryRoleList();
             }).onException(e -> e.printStackTrace()).run();
         }));
-        
-        
+
 
         getDialogContent().setHeaderIcon(FontIcon.of(Feather.INFO));
         getDialogContent().setHeaderText("系统揭示");
         getDialogContent().setContent(new Label("是否确认删除编号为" + roleIds + "的角色吗？"));
-         getDialogContent().show(rootPane.getScene());
+        getDialogContent().show(rootPane.getScene());
     }
 
 
-    private static void addStyleClass(TableColumn<?, ?> c, String styleClass, String... excludes) {
-        Objects.requireNonNull(c);
-        Objects.requireNonNull(styleClass);
-
-        if (excludes != null && excludes.length > 0) {
-            c.getStyleClass().removeAll(excludes);
-        }
-        c.getStyleClass().add(styleClass);
-    }
 }

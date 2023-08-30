@@ -98,7 +98,7 @@ public class AddUserViewModel implements ViewModel {
         map.put("roleId", getRoleId());
         map.put("userName", userName.getValue());
         map.put("phonenumber", phone.getValue());
-        map.put("pageNum", pageNum.getValue()+1);
+        map.put("pageNum", pageNum.getValue() + 1);
         map.put("pageSize", pageSize.getValue());
         ProcessChain.create().addSupplierInExecutor(() -> {
                     TableDataInfo tableDataInfo = Request.connector(SysRoleFeign.class).unallocatedList(map);
@@ -114,7 +114,7 @@ public class AddUserViewModel implements ViewModel {
                 .onException(e -> e.printStackTrace()).run();
     }
 
-    public boolean save(){
+    public boolean save() {
         List<Long> userIds = new ArrayList<>();
         for (SysUser user : getUserList()) {
             if (user.isSelect()) {
@@ -122,7 +122,7 @@ public class AddUserViewModel implements ViewModel {
             }
         }
         Map<String, Object> putMap = new HashMap<>();
-        putMap.put("roleId",getRoleId());
+        putMap.put("roleId", getRoleId());
         putMap.put("userIds", CollUtil.join(userIds, ","));
         JsonObject jsonObject = Request.connector(SysRoleFeign.class).selectAuthUserAll(putMap);
         return ObjectUtil.equals(jsonObject.get(AjaxResult.CODE_TAG).getAsString(), "200");

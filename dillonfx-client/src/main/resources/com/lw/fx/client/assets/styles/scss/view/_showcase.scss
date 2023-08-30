@@ -3,29 +3,29 @@
 .showcase-page {
   -fx-background-color: -color-bg-default;
 
-  >.window {
+  > .window {
     -fx-border-color: -color-accent-emphasis;
     -fx-border-width: 1;
     -fx-border-radius: 5px 5px 0 0;
 
-    >.header {
+    > .header {
       -fx-background-color: -color-accent-emphasis;
       -fx-alignment: CENTER_LEFT;
       -fx-padding: 10px;
 
-      >.title {
+      > .title {
         -fx-font-size: 1.2em;
         -fx-text-fill: -color-fg-emphasis;
         -fx-font-weight: bold;
         -fx-graphic-text-gap: 10px;
 
-        >.ikonli-font-icon {
+        > .ikonli-font-icon {
           -fx-icon-color: -color-fg-emphasis;
           -fx-fill: -color-fg-emphasis;
         }
       }
 
-      >.ikonli-font-icon {
+      > .ikonli-font-icon {
         -fx-icon-color: -color-fg-emphasis;
         -fx-fill: -color-fg-emphasis;
 
@@ -39,7 +39,7 @@
 
 .root:showcase-mode {
 
-  .showcase-page>.window {
+  .showcase-page > .window {
     -fx-border-width: 0;
     -fx-border-radius: 0;
   }

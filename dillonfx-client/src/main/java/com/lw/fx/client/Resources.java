@@ -15,8 +15,8 @@ public final class Resources {
     public static InputStream getResourceAsStream(String resource) {
         String path = resolve(resource);
         return Objects.requireNonNull(
-            Launcher.class.getResourceAsStream(resolve(path)),
-            "Resource not found: " + path
+                Launcher.class.getResourceAsStream(resolve(path)),
+                "Resource not found: " + path
         );
     }
 

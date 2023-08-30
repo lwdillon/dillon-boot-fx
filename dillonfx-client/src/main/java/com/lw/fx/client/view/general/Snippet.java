@@ -49,8 +49,8 @@ public final class Snippet {
             var snippet = "";
             if (start >= 0 && end >= 0) {
                 snippet = sourceCode.substring(start + startTag.length(), end)
-                    .stripIndent()
-                    .trim();
+                        .stripIndent()
+                        .trim();
             }
 
             return snippet;

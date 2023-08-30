@@ -55,8 +55,8 @@ final class ThemeDialog extends ModalDialog {
             thumbnail.setToggleGroup(thumbnailsGroup);
             thumbnail.setUserData(theme);
             thumbnail.setSelected(Objects.equals(
-                tm.getTheme().getName(),
-                theme.getName()
+                    tm.getTheme().getName(),
+                    theme.getName()
             ));
             thumbnailsPane.getChildren().add(thumbnail);
         });

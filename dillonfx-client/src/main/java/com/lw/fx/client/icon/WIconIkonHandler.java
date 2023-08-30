@@ -8,7 +8,7 @@ import org.kordamp.jipsy.annotations.ServiceProviderFor;
 import java.io.InputStream;
 import java.net.URL;
 
-@ServiceProviderFor(IkonHandler.class)                                 
+@ServiceProviderFor(IkonHandler.class)
 public class WIconIkonHandler extends AbstractIkonHandler {
     private static final String FONT_RESOURCE = "/com/lw/fx/client/assets/fonts/wiconfont.ttf";
 
@@ -24,12 +24,12 @@ public class WIconIkonHandler extends AbstractIkonHandler {
 
     @Override
     public URL getFontResource() {
-        return getClass().getResource(FONT_RESOURCE);                  
+        return getClass().getResource(FONT_RESOURCE);
     }
 
     @Override
     public InputStream getFontResourceAsStream() {
-        return getClass().getResourceAsStream(FONT_RESOURCE);          
+        return getClass().getResourceAsStream(FONT_RESOURCE);
     }
 
     @Override

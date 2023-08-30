@@ -5,7 +5,9 @@
 <?import javafx.scene.text.Text?>
 <?import org.kordamp.ikonli.javafx.*?>
 <?import java.lang.*?>
-<ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="892.0" prefWidth="1036.0" styleClass="tab-center-pane" xmlns="http://javafx.com/javafx/17.0.7" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lw.fx.client.view.monitor.MonitorView">
+<ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="892.0" prefWidth="1036.0" styleClass="tab-center-pane"
+            xmlns="http://javafx.com/javafx/17.0.7" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.lw.fx.client.view.monitor.MonitorView">
     <content>
         <VBox alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" spacing="15.0">
             <children>
@@ -15,136 +17,168 @@
                             <children>
                                 <Label minHeight="50.0" prefHeight="50.0" styleClass="title-3" text="CPU">
                                     <graphic>
-                                        <FontIcon iconLiteral="fth-star" />
+                                        <FontIcon iconLiteral="fth-star"/>
                                     </graphic>
                                 </Label>
-                                <Separator maxHeight="10.0" minHeight="10.0" prefWidth="200.0" />
-                        <GridPane VBox.vgrow="ALWAYS">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
-                           <children>
-                                      <Separator maxHeight="10.0" minHeight="10.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="1" />
-                                      <Separator maxHeight="10.0" minHeight="10.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="3" />
-                                      <Separator maxHeight="10.0" minHeight="10.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="9" />
-                                      <Separator maxHeight="10.0" minHeight="10.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="7" />
-                                      <Separator maxHeight="10.0" minHeight="10.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="5" />
-                              <Label text="属性">
-                                 <styleClass>
-                                    <String fx:value="title-4" />
-                                    <String fx:value="text-muted" />
-                                 </styleClass></Label>
-                              <Label text="值" GridPane.columnIndex="1" />
-                              <Label text="核心数" GridPane.rowIndex="2">
-                                 <styleClass>
-                                    <String fx:value="title-4" />
-                                    <String fx:value="text-muted" />
-                                 </styleClass></Label>
-                              <Label styleClass="title-4" text="8" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <Label text="用户使用率" GridPane.rowIndex="4">
-                                 <styleClass>
-                                    <String fx:value="title-4" />
-                                    <String fx:value="text-muted" />
-                                 </styleClass></Label>
-                              <Label styleClass="title-4" text="8.67%" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                              <Label text="系统使用率" GridPane.rowIndex="6">
-                                 <styleClass>
-                                    <String fx:value="title-4" />
-                                    <String fx:value="text-muted" />
-                                 </styleClass></Label>
-                              <Label styleClass="title-4" text="0.51%" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                              <Label text="当前空闲率" GridPane.rowIndex="8">
-                                 <styleClass>
-                                    <String fx:value="title-4" />
-                                    <String fx:value="text-muted" />
-                                 </styleClass></Label>
-                              <Label styleClass="title-4" text="90.82%" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                           </children>
-                        </GridPane>
+                                <Separator maxHeight="10.0" minHeight="10.0" prefWidth="200.0"/>
+                                <GridPane VBox.vgrow="ALWAYS">
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                    </rowConstraints>
+                                    <children>
+                                        <Separator maxHeight="10.0" minHeight="10.0" prefWidth="200.0"
+                                                   GridPane.columnSpan="2" GridPane.rowIndex="1"/>
+                                        <Separator maxHeight="10.0" minHeight="10.0" prefWidth="200.0"
+                                                   GridPane.columnSpan="2" GridPane.rowIndex="3"/>
+                                        <Separator maxHeight="10.0" minHeight="10.0" prefWidth="200.0"
+                                                   GridPane.columnSpan="2" GridPane.rowIndex="9"/>
+                                        <Separator maxHeight="10.0" minHeight="10.0" prefWidth="200.0"
+                                                   GridPane.columnSpan="2" GridPane.rowIndex="7"/>
+                                        <Separator maxHeight="10.0" minHeight="10.0" prefWidth="200.0"
+                                                   GridPane.columnSpan="2" GridPane.rowIndex="5"/>
+                                        <Label text="属性">
+                                            <styleClass>
+                                                <String fx:value="title-4"/>
+                                                <String fx:value="text-muted"/>
+                                            </styleClass>
+                                        </Label>
+                                        <Label text="值" GridPane.columnIndex="1"/>
+                                        <Label text="核心数" GridPane.rowIndex="2">
+                                            <styleClass>
+                                                <String fx:value="title-4"/>
+                                                <String fx:value="text-muted"/>
+                                            </styleClass>
+                                        </Label>
+                                        <Label styleClass="title-4" text="8" GridPane.columnIndex="1"
+                                               GridPane.rowIndex="2"/>
+                                        <Label text="用户使用率" GridPane.rowIndex="4">
+                                            <styleClass>
+                                                <String fx:value="title-4"/>
+                                                <String fx:value="text-muted"/>
+                                            </styleClass>
+                                        </Label>
+                                        <Label styleClass="title-4" text="8.67%" GridPane.columnIndex="1"
+                                               GridPane.rowIndex="4"/>
+                                        <Label text="系统使用率" GridPane.rowIndex="6">
+                                            <styleClass>
+                                                <String fx:value="title-4"/>
+                                                <String fx:value="text-muted"/>
+                                            </styleClass>
+                                        </Label>
+                                        <Label styleClass="title-4" text="0.51%" GridPane.columnIndex="1"
+                                               GridPane.rowIndex="6"/>
+                                        <Label text="当前空闲率" GridPane.rowIndex="8">
+                                            <styleClass>
+                                                <String fx:value="title-4"/>
+                                                <String fx:value="text-muted"/>
+                                            </styleClass>
+                                        </Label>
+                                        <Label styleClass="title-4" text="90.82%" GridPane.columnIndex="1"
+                                               GridPane.rowIndex="8"/>
+                                    </children>
+                                </GridPane>
                             </children>
                         </VBox>
                         <VBox prefHeight="232.0" prefWidth="315.0" styleClass="sample" HBox.hgrow="ALWAYS">
                             <children>
                                 <Label minHeight="50.0" prefHeight="50.0" styleClass="title-3" text="内存">
                                     <graphic>
-                                        <FontIcon iconLiteral="fth-star" />
+                                        <FontIcon iconLiteral="fth-star"/>
                                     </graphic>
                                 </Label>
-                                <Separator maxHeight="10.0" minHeight="10.0" prefWidth="200.0" />
-                        <GridPane VBox.vgrow="ALWAYS">
-                           <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                           </columnConstraints>
-                           <rowConstraints>
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                           </rowConstraints>
-                           <children>
-                              <Separator maxHeight="10.0" minHeight="10.0" prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowIndex="1" />
-                              <Separator maxHeight="10.0" minHeight="10.0" prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowIndex="3" />
-                              <Separator maxHeight="10.0" minHeight="10.0" prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowIndex="9" />
-                              <Separator maxHeight="10.0" minHeight="10.0" prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowIndex="7" />
-                              <Separator maxHeight="10.0" minHeight="10.0" prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowIndex="5" />
-                              <Label text="属性">
-                                 <styleClass>
-                                    <String fx:value="title-4" />
-                                    <String fx:value="text-muted" />
-                                 </styleClass></Label>
-                              <Label text="内存" GridPane.columnIndex="1" />
-                              <Label text="总内存" GridPane.rowIndex="2">
-                                 <styleClass>
-                                    <String fx:value="title-4" />
-                                    <String fx:value="text-muted" />
-                                 </styleClass></Label>
-                              <Label styleClass="title-4" text="7.31G" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <Label text="已用内存" GridPane.rowIndex="4">
-                                 <styleClass>
-                                    <String fx:value="title-4" />
-                                    <String fx:value="text-muted" />
-                                 </styleClass></Label>
-                              <Label styleClass="title-4" text="3.26G" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                              <Label text="剩余内存" GridPane.rowIndex="6">
-                                 <styleClass>
-                                    <String fx:value="title-4" />
-                                    <String fx:value="text-muted" />
-                                 </styleClass></Label>
-                              <Label styleClass="title-4" text="4.05G" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                              <Label text="使用率" GridPane.rowIndex="8">
-                                 <styleClass>
-                                    <String fx:value="title-4" />
-                                    <String fx:value="text-muted" />
-                                 </styleClass></Label>
-                              <Label styleClass="title-4" text="30.4%" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                              <Label text="JVM" GridPane.columnIndex="2" />
-                              <Label styleClass="title-4" text="690M" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                              <Label styleClass="title-4" text="339.59M" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                              <Label styleClass="title-4" text="350.41M" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-                              <Label styleClass="title-4" text="49.22%" GridPane.columnIndex="2" GridPane.rowIndex="8" />
-                           </children>
-                        </GridPane>
+                                <Separator maxHeight="10.0" minHeight="10.0" prefWidth="200.0"/>
+                                <GridPane VBox.vgrow="ALWAYS">
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                    </rowConstraints>
+                                    <children>
+                                        <Separator maxHeight="10.0" minHeight="10.0" prefWidth="200.0"
+                                                   GridPane.columnSpan="3" GridPane.rowIndex="1"/>
+                                        <Separator maxHeight="10.0" minHeight="10.0" prefWidth="200.0"
+                                                   GridPane.columnSpan="3" GridPane.rowIndex="3"/>
+                                        <Separator maxHeight="10.0" minHeight="10.0" prefWidth="200.0"
+                                                   GridPane.columnSpan="3" GridPane.rowIndex="9"/>
+                                        <Separator maxHeight="10.0" minHeight="10.0" prefWidth="200.0"
+                                                   GridPane.columnSpan="3" GridPane.rowIndex="7"/>
+                                        <Separator maxHeight="10.0" minHeight="10.0" prefWidth="200.0"
+                                                   GridPane.columnSpan="3" GridPane.rowIndex="5"/>
+                                        <Label text="属性">
+                                            <styleClass>
+                                                <String fx:value="title-4"/>
+                                                <String fx:value="text-muted"/>
+                                            </styleClass>
+                                        </Label>
+                                        <Label text="内存" GridPane.columnIndex="1"/>
+                                        <Label text="总内存" GridPane.rowIndex="2">
+                                            <styleClass>
+                                                <String fx:value="title-4"/>
+                                                <String fx:value="text-muted"/>
+                                            </styleClass>
+                                        </Label>
+                                        <Label styleClass="title-4" text="7.31G" GridPane.columnIndex="1"
+                                               GridPane.rowIndex="2"/>
+                                        <Label text="已用内存" GridPane.rowIndex="4">
+                                            <styleClass>
+                                                <String fx:value="title-4"/>
+                                                <String fx:value="text-muted"/>
+                                            </styleClass>
+                                        </Label>
+                                        <Label styleClass="title-4" text="3.26G" GridPane.columnIndex="1"
+                                               GridPane.rowIndex="4"/>
+                                        <Label text="剩余内存" GridPane.rowIndex="6">
+                                            <styleClass>
+                                                <String fx:value="title-4"/>
+                                                <String fx:value="text-muted"/>
+                                            </styleClass>
+                                        </Label>
+                                        <Label styleClass="title-4" text="4.05G" GridPane.columnIndex="1"
+                                               GridPane.rowIndex="6"/>
+                                        <Label text="使用率" GridPane.rowIndex="8">
+                                            <styleClass>
+                                                <String fx:value="title-4"/>
+                                                <String fx:value="text-muted"/>
+                                            </styleClass>
+                                        </Label>
+                                        <Label styleClass="title-4" text="30.4%" GridPane.columnIndex="1"
+                                               GridPane.rowIndex="8"/>
+                                        <Label text="JVM" GridPane.columnIndex="2"/>
+                                        <Label styleClass="title-4" text="690M" GridPane.columnIndex="2"
+                                               GridPane.rowIndex="2"/>
+                                        <Label styleClass="title-4" text="339.59M" GridPane.columnIndex="2"
+                                               GridPane.rowIndex="4"/>
+                                        <Label styleClass="title-4" text="350.41M" GridPane.columnIndex="2"
+                                               GridPane.rowIndex="6"/>
+                                        <Label styleClass="title-4" text="49.22%" GridPane.columnIndex="2"
+                                               GridPane.rowIndex="8"/>
+                                    </children>
+                                </GridPane>
                             </children>
                         </VBox>
                     </children>
@@ -153,204 +187,248 @@
                     <children>
                         <Label minHeight="50.0" prefHeight="50.0" styleClass="title-3" text="服务器信息">
                             <graphic>
-                                <FontIcon iconLiteral="fth-star" />
+                                <FontIcon iconLiteral="fth-star"/>
                             </graphic>
                         </Label>
-                        <Separator maxHeight="10.0" minHeight="10.0" prefWidth="200.0" />
-                  <GridPane VBox.vgrow="ALWAYS">
-                    <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                     <children>
-                              <Separator maxHeight="10.0" minHeight="10.0" prefWidth="200.0" GridPane.columnSpan="4" GridPane.rowIndex="1" />
-                              <Separator maxHeight="10.0" minHeight="10.0" prefWidth="200.0" GridPane.columnSpan="4" GridPane.rowIndex="3" />
-                        <Label text="服务器名称">
-                           <styleClass>
-                              <String fx:value="title-4" />
-                              <String fx:value="text-muted" />
-                           </styleClass></Label>
-                        <Label styleClass="title-4" text="iZwz90rjtrmd83mt2s0df8Z" GridPane.columnIndex="1" />
-                        <Label text="操作系统" GridPane.columnIndex="2">
-                           <styleClass>
-                              <String fx:value="title-4" />
-                              <String fx:value="text-muted" />
-                           </styleClass></Label>
-                        <Label styleClass="title-4" text="Linux" GridPane.columnIndex="3" />
-                        <Label text="服务器IP" GridPane.rowIndex="2">
-                           <styleClass>
-                              <String fx:value="title-4" />
-                              <String fx:value="text-muted" />
-                           </styleClass></Label>
-                        <Label styleClass="title-4" text="172.23.12.66" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Label text="系统架构" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                           <styleClass>
-                              <String fx:value="title-4" />
-                              <String fx:value="text-muted" />
-                           </styleClass></Label>
-                        <Label styleClass="title-4" text="amd64" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                     </children>
-                  </GridPane>
+                        <Separator maxHeight="10.0" minHeight="10.0" prefWidth="200.0"/>
+                        <GridPane VBox.vgrow="ALWAYS">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES"/>
+                            </rowConstraints>
+                            <children>
+                                <Separator maxHeight="10.0" minHeight="10.0" prefWidth="200.0" GridPane.columnSpan="4"
+                                           GridPane.rowIndex="1"/>
+                                <Separator maxHeight="10.0" minHeight="10.0" prefWidth="200.0" GridPane.columnSpan="4"
+                                           GridPane.rowIndex="3"/>
+                                <Label text="服务器名称">
+                                    <styleClass>
+                                        <String fx:value="title-4"/>
+                                        <String fx:value="text-muted"/>
+                                    </styleClass>
+                                </Label>
+                                <Label styleClass="title-4" text="iZwz90rjtrmd83mt2s0df8Z" GridPane.columnIndex="1"/>
+                                <Label text="操作系统" GridPane.columnIndex="2">
+                                    <styleClass>
+                                        <String fx:value="title-4"/>
+                                        <String fx:value="text-muted"/>
+                                    </styleClass>
+                                </Label>
+                                <Label styleClass="title-4" text="Linux" GridPane.columnIndex="3"/>
+                                <Label text="服务器IP" GridPane.rowIndex="2">
+                                    <styleClass>
+                                        <String fx:value="title-4"/>
+                                        <String fx:value="text-muted"/>
+                                    </styleClass>
+                                </Label>
+                                <Label styleClass="title-4" text="172.23.12.66" GridPane.columnIndex="1"
+                                       GridPane.rowIndex="2"/>
+                                <Label text="系统架构" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                    <styleClass>
+                                        <String fx:value="title-4"/>
+                                        <String fx:value="text-muted"/>
+                                    </styleClass>
+                                </Label>
+                                <Label styleClass="title-4" text="amd64" GridPane.columnIndex="3"
+                                       GridPane.rowIndex="2"/>
+                            </children>
+                        </GridPane>
                     </children>
                 </VBox>
                 <VBox styleClass="sample" VBox.vgrow="ALWAYS">
                     <children>
                         <Label minHeight="50.0" prefHeight="50.0" styleClass="title-3" text="Java虚拟机信息">
                             <graphic>
-                                <FontIcon iconLiteral="fth-sun" />
+                                <FontIcon iconLiteral="fth-sun"/>
                             </graphic>
                         </Label>
-                        <Separator maxHeight="10.0" minHeight="10.0" prefWidth="200.0" />
-                  <GridPane VBox.vgrow="ALWAYS">
-                    <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                     <children>
+                        <Separator maxHeight="10.0" minHeight="10.0" prefWidth="200.0"/>
+                        <GridPane VBox.vgrow="ALWAYS">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                            </rowConstraints>
+                            <children>
                                 <Label maxWidth="1.7976931348623157E308" text="Java名称">
-                           <styleClass>
-                              <String fx:value="title-4" />
-                              <String fx:value="text-muted" />
-                           </styleClass></Label>
-                                <Label maxWidth="1.7976931348623157E308" styleClass="title-4" text="Java HotSpot(TM) 64-Bit Server VM" GridPane.columnIndex="1" />
+                                    <styleClass>
+                                        <String fx:value="title-4"/>
+                                        <String fx:value="text-muted"/>
+                                    </styleClass>
+                                </Label>
+                                <Label maxWidth="1.7976931348623157E308" styleClass="title-4"
+                                       text="Java HotSpot(TM) 64-Bit Server VM" GridPane.columnIndex="1"/>
                                 <Label maxWidth="1.7976931348623157E308" text="Java版本" GridPane.columnIndex="2">
-                           <styleClass>
-                              <String fx:value="title-4" />
-                              <String fx:value="text-muted" />
-                           </styleClass></Label>
-                                <Label maxWidth="1.7976931348623157E308" styleClass="title-4" text="1.8.0_111" GridPane.columnIndex="3" />
+                                    <styleClass>
+                                        <String fx:value="title-4"/>
+                                        <String fx:value="text-muted"/>
+                                    </styleClass>
+                                </Label>
+                                <Label maxWidth="1.7976931348623157E308" styleClass="title-4" text="1.8.0_111"
+                                       GridPane.columnIndex="3"/>
                                 <Label maxWidth="1.7976931348623157E308" text="安装路径" GridPane.rowIndex="4">
-                           <styleClass>
-                              <String fx:value="title-4" />
-                              <String fx:value="text-muted" />
-                           </styleClass></Label>
-                                <Label maxWidth="1.7976931348623157E308" styleClass="title-4" text="/usr/java/jdk1.8.0_111/jre" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="4" />
-                                <Label maxWidth="1.7976931348623157E308" text="运行时长" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                           <styleClass>
-                              <String fx:value="title-4" />
-                              <String fx:value="text-muted" />
-                           </styleClass></Label>
-                                <Label maxWidth="1.7976931348623157E308" styleClass="title-4" text="43天17小时43分钟" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                        <Label maxWidth="1.7976931348623157E308" text="启动时间" GridPane.rowIndex="2">
-                           <styleClass>
-                              <String fx:value="title-4" />
-                              <String fx:value="text-muted" />
-                           </styleClass></Label>
-                        <Label maxWidth="1.7976931348623157E308" styleClass="title-4" text="2023-04-23 16:12:19" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Label maxWidth="1.7976931348623157E308" text="项目路径" GridPane.rowIndex="6">
-                           <styleClass>
-                              <String fx:value="title-4" />
-                              <String fx:value="text-muted" />
-                           </styleClass></Label>
-                        <Label maxWidth="1.7976931348623157E308" text="运行参数" GridPane.rowIndex="8">
-                           <styleClass>
-                              <String fx:value="title-4" />
-                              <String fx:value="text-muted" />
-                           </styleClass></Label>
-                        <Separator maxHeight="10.0" minHeight="10.0" prefWidth="200.0" GridPane.columnSpan="4" GridPane.rowIndex="1" />
-                        <Separator maxHeight="10.0" minHeight="10.0" prefWidth="200.0" GridPane.columnSpan="4" GridPane.rowIndex="3" />
-                        <Separator maxHeight="10.0" minHeight="10.0" prefWidth="200.0" GridPane.columnSpan="4" GridPane.rowIndex="5" />
-                        <Separator maxHeight="10.0" minHeight="10.0" prefWidth="200.0" GridPane.columnSpan="4" GridPane.rowIndex="7" />
-                        <Separator maxHeight="10.0" minHeight="10.0" prefWidth="200.0" GridPane.columnSpan="4" GridPane.rowIndex="9" />
-                        <Label maxWidth="1.7976931348623157E308" styleClass="title-4" text="/home/xxx/projects/ruoyi-vue" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="6" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="[-Dname=target/ruoyi-vue.jar, -Duser.timezone=Asia/Shanghai, -Xms512m, -Xmx1024m, -XX:MetaspaceSize=128m, -XX:MaxMetaspaceSize=512m, -XX:+HeapDumpOnOutOfMemoryError, -XX:+PrintGCDateStamps, -XX:+PrintGCDetails, -XX:NewRatio=1, -XX:SurvivorRatio=30, -XX:+UseParallelGC, -XX:+UseParallelOldGC]" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="8" />
-                     </children>
-                  </GridPane>
+                                    <styleClass>
+                                        <String fx:value="title-4"/>
+                                        <String fx:value="text-muted"/>
+                                    </styleClass>
+                                </Label>
+                                <Label maxWidth="1.7976931348623157E308" styleClass="title-4"
+                                       text="/usr/java/jdk1.8.0_111/jre" GridPane.columnIndex="1"
+                                       GridPane.columnSpan="3" GridPane.rowIndex="4"/>
+                                <Label maxWidth="1.7976931348623157E308" text="运行时长" GridPane.columnIndex="2"
+                                       GridPane.rowIndex="2">
+                                    <styleClass>
+                                        <String fx:value="title-4"/>
+                                        <String fx:value="text-muted"/>
+                                    </styleClass>
+                                </Label>
+                                <Label maxWidth="1.7976931348623157E308" styleClass="title-4" text="43天17小时43分钟"
+                                       GridPane.columnIndex="3" GridPane.rowIndex="2"/>
+                                <Label maxWidth="1.7976931348623157E308" text="启动时间" GridPane.rowIndex="2">
+                                    <styleClass>
+                                        <String fx:value="title-4"/>
+                                        <String fx:value="text-muted"/>
+                                    </styleClass>
+                                </Label>
+                                <Label maxWidth="1.7976931348623157E308" styleClass="title-4" text="2023-04-23 16:12:19"
+                                       GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                                <Label maxWidth="1.7976931348623157E308" text="项目路径" GridPane.rowIndex="6">
+                                    <styleClass>
+                                        <String fx:value="title-4"/>
+                                        <String fx:value="text-muted"/>
+                                    </styleClass>
+                                </Label>
+                                <Label maxWidth="1.7976931348623157E308" text="运行参数" GridPane.rowIndex="8">
+                                    <styleClass>
+                                        <String fx:value="title-4"/>
+                                        <String fx:value="text-muted"/>
+                                    </styleClass>
+                                </Label>
+                                <Separator maxHeight="10.0" minHeight="10.0" prefWidth="200.0" GridPane.columnSpan="4"
+                                           GridPane.rowIndex="1"/>
+                                <Separator maxHeight="10.0" minHeight="10.0" prefWidth="200.0" GridPane.columnSpan="4"
+                                           GridPane.rowIndex="3"/>
+                                <Separator maxHeight="10.0" minHeight="10.0" prefWidth="200.0" GridPane.columnSpan="4"
+                                           GridPane.rowIndex="5"/>
+                                <Separator maxHeight="10.0" minHeight="10.0" prefWidth="200.0" GridPane.columnSpan="4"
+                                           GridPane.rowIndex="7"/>
+                                <Separator maxHeight="10.0" minHeight="10.0" prefWidth="200.0" GridPane.columnSpan="4"
+                                           GridPane.rowIndex="9"/>
+                                <Label maxWidth="1.7976931348623157E308" styleClass="title-4"
+                                       text="/home/xxx/projects/ruoyi-vue" GridPane.columnIndex="1"
+                                       GridPane.columnSpan="3" GridPane.rowIndex="6"/>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0"
+                                      text="[-Dname=target/ruoyi-vue.jar, -Duser.timezone=Asia/Shanghai, -Xms512m, -Xmx1024m, -XX:MetaspaceSize=128m, -XX:MaxMetaspaceSize=512m, -XX:+HeapDumpOnOutOfMemoryError, -XX:+PrintGCDateStamps, -XX:+PrintGCDetails, -XX:NewRatio=1, -XX:SurvivorRatio=30, -XX:+UseParallelGC, -XX:+UseParallelOldGC]"
+                                      GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="8"/>
+                            </children>
+                        </GridPane>
                     </children>
                 </VBox>
                 <VBox styleClass="sample">
                     <children>
                         <Label minHeight="50.0" prefHeight="50.0" styleClass="title-3" text="磁盘状态">
                             <graphic>
-                                <FontIcon iconLiteral="fth-star" />
+                                <FontIcon iconLiteral="fth-star"/>
                             </graphic>
                         </Label>
-                        <Separator maxHeight="10.0" minHeight="10.0" prefWidth="200.0" />
-                  <GridPane>
-                    <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                     <children>
-                              <Separator maxHeight="10.0" minHeight="10.0" prefWidth="200.0" GridPane.columnSpan="7" GridPane.rowIndex="1" />
-                        <Separator maxHeight="10.0" minHeight="10.0" prefWidth="200.0" GridPane.columnSpan="7" GridPane.rowIndex="3" />
+                        <Separator maxHeight="10.0" minHeight="10.0" prefWidth="200.0"/>
+                        <GridPane>
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                            </rowConstraints>
+                            <children>
+                                <Separator maxHeight="10.0" minHeight="10.0" prefWidth="200.0" GridPane.columnSpan="7"
+                                           GridPane.rowIndex="1"/>
+                                <Separator maxHeight="10.0" minHeight="10.0" prefWidth="200.0" GridPane.columnSpan="7"
+                                           GridPane.rowIndex="3"/>
                                 <Label text="盘符路径">
-                           <styleClass>
-                              <String fx:value="title-4" />
-                              <String fx:value="text-muted" />
-                           </styleClass></Label>
+                                    <styleClass>
+                                        <String fx:value="title-4"/>
+                                        <String fx:value="text-muted"/>
+                                    </styleClass>
+                                </Label>
                                 <Label text="文件系统" GridPane.columnIndex="1">
-                           <styleClass>
-                              <String fx:value="title-4" />
-                              <String fx:value="text-muted" />
-                           </styleClass></Label>
+                                    <styleClass>
+                                        <String fx:value="title-4"/>
+                                        <String fx:value="text-muted"/>
+                                    </styleClass>
+                                </Label>
                                 <Label text="盘符类型" GridPane.columnIndex="2">
-                           <styleClass>
-                              <String fx:value="title-4" />
-                              <String fx:value="text-muted" />
-                           </styleClass></Label>
+                                    <styleClass>
+                                        <String fx:value="title-4"/>
+                                        <String fx:value="text-muted"/>
+                                    </styleClass>
+                                </Label>
                                 <Label text="总大小" GridPane.columnIndex="3">
-                           <styleClass>
-                              <String fx:value="title-4" />
-                              <String fx:value="text-muted" />
-                           </styleClass></Label>
-                        <Label text="可用大小" GridPane.columnIndex="4">
-                           <styleClass>
-                              <String fx:value="title-4" />
-                              <String fx:value="text-muted" />
-                           </styleClass></Label>
-                        <Label text="已用大小" GridPane.columnIndex="5">
-                           <styleClass>
-                              <String fx:value="title-4" />
-                              <String fx:value="text-muted" />
-                           </styleClass></Label>
-                        <Label text="已用百分比" GridPane.columnIndex="6">
-                           <styleClass>
-                              <String fx:value="title-4" />
-                              <String fx:value="text-muted" />
-                           </styleClass></Label>
-                        <Label styleClass="title-4" text="/" GridPane.rowIndex="2" />
-                        <Label styleClass="title-4" text="/" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                        <Label styleClass="title-4" text="ext4" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Label styleClass="title-4" text="39.2 GB" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                        <Label styleClass="title-4" text="28.4 GB" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-                        <Label styleClass="title-4" text="10.8 GB" GridPane.columnIndex="5" GridPane.rowIndex="2" />
-                        <Label styleClass="title-4" text="27.58%" GridPane.columnIndex="6" GridPane.rowIndex="2" />
-                     </children>
-                  </GridPane>
+                                    <styleClass>
+                                        <String fx:value="title-4"/>
+                                        <String fx:value="text-muted"/>
+                                    </styleClass>
+                                </Label>
+                                <Label text="可用大小" GridPane.columnIndex="4">
+                                    <styleClass>
+                                        <String fx:value="title-4"/>
+                                        <String fx:value="text-muted"/>
+                                    </styleClass>
+                                </Label>
+                                <Label text="已用大小" GridPane.columnIndex="5">
+                                    <styleClass>
+                                        <String fx:value="title-4"/>
+                                        <String fx:value="text-muted"/>
+                                    </styleClass>
+                                </Label>
+                                <Label text="已用百分比" GridPane.columnIndex="6">
+                                    <styleClass>
+                                        <String fx:value="title-4"/>
+                                        <String fx:value="text-muted"/>
+                                    </styleClass>
+                                </Label>
+                                <Label styleClass="title-4" text="/" GridPane.rowIndex="2"/>
+                                <Label styleClass="title-4" text="/" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+                                <Label styleClass="title-4" text="ext4" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                                <Label styleClass="title-4" text="39.2 GB" GridPane.columnIndex="3"
+                                       GridPane.rowIndex="2"/>
+                                <Label styleClass="title-4" text="28.4 GB" GridPane.columnIndex="4"
+                                       GridPane.rowIndex="2"/>
+                                <Label styleClass="title-4" text="10.8 GB" GridPane.columnIndex="5"
+                                       GridPane.rowIndex="2"/>
+                                <Label styleClass="title-4" text="27.58%" GridPane.columnIndex="6"
+                                       GridPane.rowIndex="2"/>
+                            </children>
+                        </GridPane>
                     </children>
                 </VBox>
             </children>

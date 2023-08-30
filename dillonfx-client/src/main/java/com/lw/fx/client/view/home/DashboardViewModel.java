@@ -1,6 +1,5 @@
 package com.lw.fx.client.view.home;
 
-import com.kitfox.svg.A;
 import com.lw.fx.client.domain.ActiveProjects;
 import com.lw.fx.client.domain.Roects;
 import de.saxsys.mvvmfx.ViewModel;
@@ -29,7 +28,7 @@ public class DashboardViewModel implements ViewModel {
                 for (int i = 1; i < 11; i++) {
                     Roects roectsTmp = new Roects();
                     roectsTmp.setProjectName("App design and development");
-                    roectsTmp.setNo(i+"");
+                    roectsTmp.setNo(i + "");
                     roectsTmp.setStartDate("2023-04-09");
                     roectsTmp.setDueDate("2023-09-09");
                     roectsTmp.setStatus("Work in Progress");

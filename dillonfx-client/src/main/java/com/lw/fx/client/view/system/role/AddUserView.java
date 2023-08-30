@@ -4,6 +4,7 @@ import atlantafx.base.controls.RingProgressIndicator;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.ObjectUtil;
 import com.lw.fx.client.domain.SysUser;
+import com.lw.fx.client.util.NodeUtils;
 import com.lw.fx.client.view.control.PagingControl;
 import de.saxsys.mvvmfx.FxmlView;
 import de.saxsys.mvvmfx.InjectViewModel;
@@ -23,7 +24,6 @@ import javafx.util.Callback;
 
 import java.net.URL;
 import java.util.Date;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 import static atlantafx.base.theme.Styles.*;
@@ -171,19 +171,11 @@ public class AddUserView implements FxmlView<AddUserViewModel>, Initializable {
         tableView.setItems(viewModel.getUserList());
         tableView.getSelectionModel().setCellSelectionEnabled(false);
         for (TableColumn<?, ?> c : tableView.getColumns()) {
-            addStyleClass(c, ALIGN_CENTER, ALIGN_LEFT, ALIGN_RIGHT);
+            NodeUtils.addStyleClass(c, ALIGN_CENTER, ALIGN_LEFT, ALIGN_RIGHT);
         }
 
 
     }
 
-    private static void addStyleClass(TableColumn<?, ?> c, String styleClass, String... excludes) {
-        Objects.requireNonNull(c);
-        Objects.requireNonNull(styleClass);
 
-        if (excludes != null && excludes.length > 0) {
-            c.getStyleClass().removeAll(excludes);
-        }
-        c.getStyleClass().add(styleClass);
-    }
 }

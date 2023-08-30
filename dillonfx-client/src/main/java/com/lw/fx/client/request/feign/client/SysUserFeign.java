@@ -14,7 +14,7 @@ import java.util.Map;
 
 public interface SysUserFeign extends FeignAPI {
 
-//    @RequestLine("GET /system/user/getInfo")
+    //    @RequestLine("GET /system/user/getInfo")
     @RequestLine("GET /getInfo")
     Map<String, Object> getInfo();
 

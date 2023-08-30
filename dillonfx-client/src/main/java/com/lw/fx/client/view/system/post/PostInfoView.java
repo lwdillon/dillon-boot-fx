@@ -53,7 +53,7 @@ public class PostInfoView implements FxmlView<PostInfoViewModel>, Initializable 
         initListeners();
     }
 
-    private void initListeners(){
+    private void initListeners() {
         postInfoViewModel.postSortProperty().addListener((observable, oldValue, newValue) -> {
             postSortSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, Integer.MAX_VALUE, newValue.intValue()));
         });
@@ -71,7 +71,6 @@ public class PostInfoView implements FxmlView<PostInfoViewModel>, Initializable 
                 postInfoViewModel.statusProperty().setValue(group.getSelectedToggle().getUserData().toString());
             }
         });
-
 
 
     }

@@ -20,7 +20,7 @@ public final class NavEvent extends Event {
     @Override
     public String toString() {
         return "NavEvent{"
-            + "page=" + page
-            + "} " + super.toString();
+                + "page=" + page
+                + "} " + super.toString();
     }
 }

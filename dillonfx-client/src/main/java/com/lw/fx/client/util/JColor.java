@@ -570,7 +570,7 @@ public class JColor {
      */
     public void setColorByHSL(float hue, float saturation, float lightness) {
         float[] arithmeticRGB = JColorUtils.toArithmeticRGB(hue, saturation,
-            lightness);
+                lightness);
         setRed(arithmeticRGB[0]);
         setGreen(arithmeticRGB[1]);
         setBlue(arithmeticRGB[2]);
@@ -736,7 +736,7 @@ public class JColor {
      */
     public String getColorHexWithAlpha() {
         return JColorUtils.toColorWithAlpha(getRedHex(), getGreenHex(),
-            getBlueHex(), getAlphaHex());
+                getBlueHex(), getAlphaHex());
     }
 
     /**
@@ -746,7 +746,7 @@ public class JColor {
      */
     public String getColorHexShorthand() {
         return JColorUtils.toColorShorthand(getRedHex(), getGreenHex(),
-            getBlueHex());
+                getBlueHex());
     }
 
     /**
@@ -756,7 +756,7 @@ public class JColor {
      */
     public String getColorHexShorthandWithAlpha() {
         return JColorUtils.toColorShorthandWithAlpha(getRedHex(), getGreenHex(),
-            getBlueHex(), getAlphaHex());
+                getBlueHex(), getAlphaHex());
     }
 
     /**
@@ -775,7 +775,7 @@ public class JColor {
      */
     public int getColorWithAlpha() {
         return JColorUtils.toColorWithAlpha(getRed(), getGreen(), getBlue(),
-            getAlpha());
+                getAlpha());
     }
 
     /**

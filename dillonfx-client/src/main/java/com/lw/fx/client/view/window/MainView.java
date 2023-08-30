@@ -9,7 +9,6 @@ import com.lw.fx.client.util.Lazy;
 import com.lw.fx.client.view.config.UserInfoView;
 import com.lw.fx.client.view.general.ThemePage;
 import com.lw.fx.client.view.home.DashboardView;
-import com.lw.fx.client.view.home.HomeView;
 import com.lw.fx.client.view.monitor.MonitorView;
 import com.lw.fx.client.view.system.config.ConfigView;
 import com.lw.fx.client.view.system.dept.DeptManageView;
@@ -32,7 +31,10 @@ import javafx.geometry.Bounds;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
-import javafx.scene.layout.*;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.kordamp.ikonli.feather.Feather;
@@ -298,7 +300,7 @@ public class MainView implements FxmlView<MainViewModel>, Initializable {
         }
         tab = new Tab(title);
         tab.setId("main-tab");
-        FontIcon fontIcon=  new FontIcon(WIcon.HOME);
+        FontIcon fontIcon = new FontIcon(WIcon.HOME);
         fontIcon.setIconSize(24);
         tab.setGraphic(fontIcon);
         tabPane.getTabs().add(tab);

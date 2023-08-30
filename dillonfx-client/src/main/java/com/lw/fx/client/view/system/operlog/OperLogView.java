@@ -6,6 +6,7 @@ import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.ObjectUtil;
 import com.lw.fx.client.domain.SysDictData;
 import com.lw.fx.client.domain.SysOperLog;
+import com.lw.fx.client.util.NodeUtils;
 import com.lw.fx.client.view.control.PagingControl;
 import com.lw.fx.client.view.control.WFXGenericDialog;
 import de.saxsys.mvvmfx.*;
@@ -113,9 +114,8 @@ public class OperLogView implements FxmlView<OperLogViewModel>, Initializable {
 
     private RingProgressIndicator loading;
 
-   private WFXGenericDialog dialog;
+    private WFXGenericDialog dialog;
 
-     
 
     private PagingControl pagingControl;
 
@@ -339,7 +339,7 @@ public class OperLogView implements FxmlView<OperLogViewModel>, Initializable {
         tableView.setItems(operlogViewModel.getSysOperLogs());
         tableView.getSelectionModel().setCellSelectionEnabled(false);
         for (TableColumn<?, ?> c : tableView.getColumns()) {
-            addStyleClass(c, ALIGN_CENTER, ALIGN_LEFT, ALIGN_RIGHT);
+            NodeUtils.addStyleClass(c, ALIGN_CENTER, ALIGN_LEFT, ALIGN_RIGHT);
         }
 
 
@@ -347,11 +347,10 @@ public class OperLogView implements FxmlView<OperLogViewModel>, Initializable {
 
     public WFXGenericDialog getDialogContent() {
         if (dialog == null) {
-            dialog =new  WFXGenericDialog();
+            dialog = new WFXGenericDialog();
         }
         return dialog;
     }
-
 
 
     private void showDictDataInfoDialog(SysOperLog sysOperLog) {
@@ -360,13 +359,12 @@ public class OperLogView implements FxmlView<OperLogViewModel>, Initializable {
         getDialogContent().clearActions();
         load.getViewModel().setSysOperLog(sysOperLog);
         getDialogContent().addActions(Map.entry(new Button("关闭"), event -> dialog.close()));
-        
-        
+
 
         getDialogContent().setHeaderIcon(FontIcon.of(Feather.INFO));
         getDialogContent().setHeaderText("操作日志详细");
         getDialogContent().setContent(load.getView());
-         getDialogContent().show(rootPane.getScene());
+        getDialogContent().show(rootPane.getScene());
     }
 
 
@@ -383,13 +381,12 @@ public class OperLogView implements FxmlView<OperLogViewModel>, Initializable {
                 operlogViewModel.updateData();
             }).onException(e -> e.printStackTrace()).run();
         }));
-        
-        
+
 
         getDialogContent().setHeaderIcon(FontIcon.of(Feather.INFO));
         getDialogContent().setHeaderText("系统揭示");
         getDialogContent().setContent(new Label("是否确认删除编号为" + operLogIds + "的数据项吗？"));
-         getDialogContent().show(rootPane.getScene());
+        getDialogContent().show(rootPane.getScene());
     }
 
     private void showEmptyDialog() {
@@ -401,23 +398,13 @@ public class OperLogView implements FxmlView<OperLogViewModel>, Initializable {
                 operlogViewModel.updateData();
             }).onException(e -> e.printStackTrace()).run();
         }));
-        
-        
+
 
         getDialogContent().setHeaderIcon(FontIcon.of(Feather.INFO));
         getDialogContent().setHeaderText("系统揭示");
         getDialogContent().setContent(new Label("是否确认清空所有操作日志数据项？"));
-         getDialogContent().show(rootPane.getScene());
+        getDialogContent().show(rootPane.getScene());
     }
 
 
-    private static void addStyleClass(TableColumn<?, ?> c, String styleClass, String... excludes) {
-        Objects.requireNonNull(c);
-        Objects.requireNonNull(styleClass);
-
-        if (excludes != null && excludes.length > 0) {
-            c.getStyleClass().removeAll(excludes);
-        }
-        c.getStyleClass().add(styleClass);
-    }
 }

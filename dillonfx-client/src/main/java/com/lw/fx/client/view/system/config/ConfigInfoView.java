@@ -40,7 +40,6 @@ public class ConfigInfoView implements FxmlView<ConfigInfoViewModel>, Initializa
     private TextArea remarksTextArea;
 
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -59,7 +58,7 @@ public class ConfigInfoView implements FxmlView<ConfigInfoViewModel>, Initializa
         initListeners();
     }
 
-    private void initListeners(){
+    private void initListeners() {
 
         configInfoViewModel.configTypeProperty().addListener((observable, oldValue, newValue) -> {
             if (ObjectUtil.contains("Y", newValue)) {

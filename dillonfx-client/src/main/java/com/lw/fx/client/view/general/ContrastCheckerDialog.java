@@ -27,8 +27,8 @@ class ContrastCheckerDialog extends ModalDialog {
 
     private void updateStyle() {
         setStyle(String.format("-color-contrast-checker-bg:%s;-color-contrast-checker-fg:%s;",
-            JColorUtils.toHexWithAlpha(contrastChecker.getFlatBgColor()),
-            JColorUtils.toHexWithAlpha(contrastChecker.getSafeFgColor())
+                JColorUtils.toHexWithAlpha(contrastChecker.getFlatBgColor()),
+                JColorUtils.toHexWithAlpha(contrastChecker.getSafeFgColor())
         ));
     }
 

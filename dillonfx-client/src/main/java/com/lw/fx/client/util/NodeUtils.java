@@ -6,11 +6,13 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TableColumn;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.util.List;
+import java.util.Objects;
 
 public final class NodeUtils {
 
@@ -68,5 +70,15 @@ public final class NodeUtils {
             descendant = descendant.getParent();
         }
         return false;
+    }
+
+    public static void addStyleClass(TableColumn<?, ?> c, String styleClass, String... excludes) {
+        Objects.requireNonNull(c);
+        Objects.requireNonNull(styleClass);
+
+        if (excludes != null && excludes.length > 0) {
+            c.getStyleClass().removeAll(excludes);
+        }
+        c.getStyleClass().add(styleClass);
     }
 }

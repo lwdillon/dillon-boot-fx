@@ -5,6 +5,7 @@ import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.ObjectUtil;
 import com.lw.fx.client.domain.SysPost;
+import com.lw.fx.client.util.NodeUtils;
 import com.lw.fx.client.view.control.PagingControl;
 import com.lw.fx.client.view.control.WFXGenericDialog;
 import de.saxsys.mvvmfx.*;
@@ -96,9 +97,8 @@ public class PostView implements FxmlView<PostViewModel>, Initializable {
 
     private RingProgressIndicator loading;
 
-   private WFXGenericDialog dialog;
+    private WFXGenericDialog dialog;
 
-     
 
     private PagingControl pagingControl;
 
@@ -201,7 +201,6 @@ public class PostView implements FxmlView<PostViewModel>, Initializable {
         });
 
 
-
         optCol.setCellFactory(col -> {
             return new TableCell<>() {
                 @Override
@@ -252,7 +251,7 @@ public class PostView implements FxmlView<PostViewModel>, Initializable {
         tableView.setItems(postViewModel.getSysPosts());
         tableView.getSelectionModel().setCellSelectionEnabled(false);
         for (TableColumn<?, ?> c : tableView.getColumns()) {
-            addStyleClass(c, ALIGN_CENTER, ALIGN_LEFT, ALIGN_RIGHT);
+            NodeUtils.addStyleClass(c, ALIGN_CENTER, ALIGN_LEFT, ALIGN_RIGHT);
         }
 
 
@@ -262,11 +261,10 @@ public class PostView implements FxmlView<PostViewModel>, Initializable {
 
     public WFXGenericDialog getDialogContent() {
         if (dialog == null) {
-            dialog =new  WFXGenericDialog();
+            dialog = new WFXGenericDialog();
         }
         return dialog;
     }
-
 
 
     private void showPostInfoDialog(Long userId) {
@@ -282,15 +280,13 @@ public class PostView implements FxmlView<PostViewModel>, Initializable {
                 }
             }).onException(e -> e.printStackTrace()).run();
         }));
-        
-        
+
 
         getDialogContent().setHeaderIcon(FontIcon.of(Feather.INFO));
         getDialogContent().setHeaderText(ObjectUtil.isNotEmpty(userId) ? "编辑岗位" : "添加岗位");
         getDialogContent().setContent(load.getView());
-         getDialogContent().show(rootPane.getScene());
+        getDialogContent().show(rootPane.getScene());
     }
-
 
 
     private void showDelDialog(List<Long> postIds) {
@@ -306,23 +302,13 @@ public class PostView implements FxmlView<PostViewModel>, Initializable {
                 postViewModel.queryPostList();
             }).onException(e -> e.printStackTrace()).run();
         }));
-        
-        
+
 
         getDialogContent().setHeaderIcon(FontIcon.of(Feather.INFO));
         getDialogContent().setHeaderText("系统揭示");
         getDialogContent().setContent(new Label("是否确认删除编号为" + postIds + "的岗位吗？"));
-         getDialogContent().show(rootPane.getScene());
+        getDialogContent().show(rootPane.getScene());
     }
 
 
-    private static void addStyleClass(TableColumn<?, ?> c, String styleClass, String... excludes) {
-        Objects.requireNonNull(c);
-        Objects.requireNonNull(styleClass);
-
-        if (excludes != null && excludes.length > 0) {
-            c.getStyleClass().removeAll(excludes);
-        }
-        c.getStyleClass().add(styleClass);
-    }
 }

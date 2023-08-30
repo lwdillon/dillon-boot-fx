@@ -63,10 +63,10 @@ public class UserInfoView implements FxmlView<UserInfoViewModel>, Initializable 
         email.textProperty().bind(userInfoViewModel.emailProperty());
         roles.textProperty().bind(userInfoViewModel.rolesProperty());
         dept.textProperty().bind(Bindings.createStringBinding(
-                () -> userInfoViewModel.deptProperty().get().getLeader()+"/"+userInfoViewModel.deptProperty().get().getDeptName(), userInfoViewModel.deptProperty())
+                () -> userInfoViewModel.deptProperty().get().getLeader() + "/" + userInfoViewModel.deptProperty().get().getDeptName(), userInfoViewModel.deptProperty())
         );
         createDate.textProperty().bind(Bindings.createStringBinding(
-                () -> DateUtil.format((Date) userInfoViewModel.createTimeProperty().getValue(),"yyyy-MM-dd HH:mm:ss"), userInfoViewModel.createTimeProperty())
+                () -> DateUtil.format((Date) userInfoViewModel.createTimeProperty().getValue(), "yyyy-MM-dd HH:mm:ss"), userInfoViewModel.createTimeProperty())
         );
 
         iconBut.getStylesheets().addAll(BUTTON_CIRCLE, ACCENT);

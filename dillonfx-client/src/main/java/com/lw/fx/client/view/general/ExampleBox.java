@@ -51,8 +51,8 @@ public final class ExampleBox extends VBox {
         HBox.setMargin(stateToggle, new Insets(0, 0, 0, 10));
 
         var tabs = new HBox(
-            previewTab, codeTab,
-            new Spacer(), copyBtn, stateToggle
+                previewTab, codeTab,
+                new Spacer(), copyBtn, stateToggle
         );
         tabs.getStyleClass().add("tabs");
         tabs.setAlignment(Pos.CENTER_LEFT);

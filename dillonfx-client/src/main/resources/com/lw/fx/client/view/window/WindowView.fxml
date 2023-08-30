@@ -2,14 +2,18 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.*?>
-<StackPane fx:id="rootPane" prefHeight="455.0" prefWidth="539.0" styleClass="window-view" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lw.fx.client.view.window.WindowView">
-   <children>
-      <Pane fx:id="backgroundPane" prefHeight="200.0" prefWidth="200.0" />
-      <Pane fx:id="backgroundImgPane" prefHeight="200.0" prefWidth="200.0" />
-      <StackPane fx:id="contentPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="150.0" prefWidth="200.0" />
-      <VBox fx:id="messagePane" alignment="TOP_CENTER" mouseTransparent="true" spacing="10.0">
-         <padding>
-            <Insets top="100.0" />
-         </padding></VBox>
-   </children>
+<StackPane fx:id="rootPane" prefHeight="455.0" prefWidth="539.0" styleClass="window-view"
+           xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.lw.fx.client.view.window.WindowView">
+    <children>
+        <Pane fx:id="backgroundPane" prefHeight="200.0" prefWidth="200.0"/>
+        <Pane fx:id="backgroundImgPane" prefHeight="200.0" prefWidth="200.0"/>
+        <StackPane fx:id="contentPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                   prefHeight="150.0" prefWidth="200.0"/>
+        <VBox fx:id="messagePane" alignment="TOP_CENTER" mouseTransparent="true" spacing="10.0">
+            <padding>
+                <Insets top="100.0"/>
+            </padding>
+        </VBox>
+    </children>
 </StackPane>

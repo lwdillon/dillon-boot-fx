@@ -6,6 +6,7 @@ import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.ObjectUtil;
 import com.lw.fx.client.domain.SysDictData;
 import com.lw.fx.client.domain.SysDictType;
+import com.lw.fx.client.util.NodeUtils;
 import com.lw.fx.client.view.control.PagingControl;
 import com.lw.fx.client.view.control.WFXGenericDialog;
 import de.saxsys.mvvmfx.*;
@@ -101,9 +102,8 @@ public class DictDataView implements FxmlView<DictDataViewModel>, Initializable 
 
     private RingProgressIndicator loading;
 
-   private  WFXGenericDialog dialog;
+    private WFXGenericDialog dialog;
 
-     
 
     private PagingControl pagingControl;
 
@@ -137,7 +137,7 @@ public class DictDataView implements FxmlView<DictDataViewModel>, Initializable 
                 MvvmFX.getNotificationCenter().publish("message", 500, "请选择一条记录");
                 return;
             }
-            showDictDataInfoDialog(tableView.getSelectionModel().getSelectedItem().getDictCode(),tableView.getSelectionModel().getSelectedItem().getDictType());
+            showDictDataInfoDialog(tableView.getSelectionModel().getSelectedItem().getDictCode(), tableView.getSelectionModel().getSelectedItem().getDictType());
         });
         delBut.setOnAction(event -> {
             List<Long> delIds = new ArrayList<>();
@@ -237,7 +237,7 @@ public class DictDataView implements FxmlView<DictDataViewModel>, Initializable 
                     } else {
 
                         Button editBut = new Button("修改");
-                        editBut.setOnAction(event -> showDictDataInfoDialog(getTableRow().getItem().getDictCode(),getTableRow().getItem().getDictType()));
+                        editBut.setOnAction(event -> showDictDataInfoDialog(getTableRow().getItem().getDictCode(), getTableRow().getItem().getDictType()));
                         editBut.setGraphic(FontIcon.of(Feather.EDIT));
                         editBut.getStyleClass().addAll(FLAT, ACCENT);
                         Button remBut = new Button("删除");
@@ -279,11 +279,11 @@ public class DictDataView implements FxmlView<DictDataViewModel>, Initializable 
         tableView.setItems(dictDataViewModel.getSysDictDatas());
         tableView.getSelectionModel().setCellSelectionEnabled(false);
         for (TableColumn<?, ?> c : tableView.getColumns()) {
-            addStyleClass(c, ALIGN_CENTER, ALIGN_LEFT, ALIGN_RIGHT);
+            NodeUtils.addStyleClass(c, ALIGN_CENTER, ALIGN_LEFT, ALIGN_RIGHT);
         }
 
 
-        addBut.setOnAction(event -> showDictDataInfoDialog(null,dictDataViewModel.getSelectDictType().getDictType()));
+        addBut.setOnAction(event -> showDictDataInfoDialog(null, dictDataViewModel.getSelectDictType().getDictType()));
 
         dictDataViewModel.selectDictTypeProperty().addListener((observable, oldValue, newValue) -> {
             dictNameCombo.getSelectionModel().select(newValue);
@@ -295,18 +295,17 @@ public class DictDataView implements FxmlView<DictDataViewModel>, Initializable 
 
     public WFXGenericDialog getDialogContent() {
         if (dialog == null) {
-            dialog =new  WFXGenericDialog();
+            dialog = new WFXGenericDialog();
         }
         return dialog;
     }
 
 
-
-    private void showDictDataInfoDialog(Long userId,String dictType) {
+    private void showDictDataInfoDialog(Long userId, String dictType) {
 
         ViewTuple<DictDataInfoView, DictDataInfoViewModel> load = FluentViewLoader.fxmlView(DictDataInfoView.class).load();
         getDialogContent().clearActions();
-        load.getViewModel().updateSysDictDataInfo(userId,dictType);
+        load.getViewModel().updateSysDictDataInfo(userId, dictType);
         getDialogContent().addActions(Map.entry(new Button("取消"), event -> dialog.close()), Map.entry(new Button("确定"), event -> {
             ProcessChain.create().addSupplierInExecutor(() -> load.getViewModel().save(ObjectUtil.isNotEmpty(userId))).addConsumerInPlatformThread(r -> {
                 if (r) {
@@ -315,13 +314,12 @@ public class DictDataView implements FxmlView<DictDataViewModel>, Initializable 
                 }
             }).onException(e -> e.printStackTrace()).run();
         }));
-        
-        
+
 
         getDialogContent().setHeaderIcon(FontIcon.of(Feather.INFO));
         getDialogContent().setHeaderText(ObjectUtil.isNotEmpty(userId) ? "编辑字典数据" : "添加字典数据");
         getDialogContent().setContent(load.getView());
-         getDialogContent().show(rootPane.getScene());
+        getDialogContent().show(rootPane.getScene());
     }
 
 
@@ -338,23 +336,13 @@ public class DictDataView implements FxmlView<DictDataViewModel>, Initializable 
                 dictDataViewModel.updateData();
             }).onException(e -> e.printStackTrace()).run();
         }));
-        
-        
+
 
         getDialogContent().setHeaderIcon(FontIcon.of(Feather.INFO));
         getDialogContent().setHeaderText("系统揭示");
         getDialogContent().setContent(new Label("是否确认删除编号为" + dictIds + "的字典数据吗？"));
-         getDialogContent().show(rootPane.getScene());
+        getDialogContent().show(rootPane.getScene());
     }
 
 
-    private static void addStyleClass(TableColumn<?, ?> c, String styleClass, String... excludes) {
-        Objects.requireNonNull(c);
-        Objects.requireNonNull(styleClass);
-
-        if (excludes != null && excludes.length > 0) {
-            c.getStyleClass().removeAll(excludes);
-        }
-        c.getStyleClass().add(styleClass);
-    }
 }

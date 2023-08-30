@@ -72,12 +72,15 @@ public class DeptDialogViewModel implements ViewModel, SceneLifecycle {
     public StringProperty deptNameProperty() {
         return wrapper.field("deptName", SysDept::getDeptName, SysDept::setDeptName, "");
     }
+
     public StringProperty leaderProperty() {
         return wrapper.field("leader", SysDept::getLeader, SysDept::setLeader, "");
     }
+
     public StringProperty phoneProperty() {
         return wrapper.field("phone", SysDept::getPhone, SysDept::setPhone, "");
     }
+
     public StringProperty emailProperty() {
         return wrapper.field("email", SysDept::getEmail, SysDept::setEmail, "");
     }
@@ -144,7 +147,7 @@ public class DeptDialogViewModel implements ViewModel, SceneLifecycle {
             result = Request.connector(SysDeptFeign.class).add(wrapper.get());
         }
 
-        return ObjectUtil.equals(result.get(AjaxResult.CODE_TAG).getAsString(),"200");
+        return ObjectUtil.equals(result.get(AjaxResult.CODE_TAG).getAsString(), "200");
     }
 
     /**

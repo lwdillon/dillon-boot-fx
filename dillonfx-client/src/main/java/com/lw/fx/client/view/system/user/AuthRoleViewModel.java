@@ -31,7 +31,7 @@ public class AuthRoleViewModel implements ViewModel {
 
     private ObservableList<SysRole> roles = FXCollections.observableArrayList();
 
-    private Long userId=null;
+    private Long userId = null;
 
     private Command getAuthRoleCommand;
 
@@ -85,14 +85,14 @@ public class AuthRoleViewModel implements ViewModel {
         return roles;
     }
 
-    public void selectAll(boolean sel){
+    public void selectAll(boolean sel) {
 
         for (SysRole sysRole : getRoles()) {
             sysRole.setFlag(sel);
         }
     }
 
-    public boolean save(){
+    public boolean save() {
         List<Long> roleIds = new ArrayList<>();
         for (SysRole sysRole : getRoles()) {
             if (sysRole.isSelect()) {
@@ -100,10 +100,11 @@ public class AuthRoleViewModel implements ViewModel {
             }
         }
         Map<String, Object> putMap = new HashMap<>();
-        putMap.put("userId",userId);
-        putMap.put("roleIds",CollUtil.join(roleIds, ","));
+        putMap.put("userId", userId);
+        putMap.put("roleIds", CollUtil.join(roleIds, ","));
 
-        JsonObject result=  Request.connector(SysUserFeign.class).insertAuthRole(putMap);;
+        JsonObject result = Request.connector(SysUserFeign.class).insertAuthRole(putMap);
+        ;
 
         return ObjectUtil.equals(result.get(AjaxResult.CODE_TAG).getAsString(), "200");
 

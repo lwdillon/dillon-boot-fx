@@ -65,7 +65,7 @@ final class ColorPaletteBlock extends VBox {
 
         colorRectangle = new AnchorPane();
         colorRectangle.setStyle(
-            String.format("-fx-background-color:%s;-fx-border-color:%s;", bgColorName, borderColorName)
+                String.format("-fx-background-color:%s;-fx-border-color:%s;", bgColorName, borderColorName)
         );
         colorRectangle.getStyleClass().add("rectangle");
         colorRectangle.getChildren().setAll(contrastRatioText, contrastLevelLabel, editIcon);
@@ -79,7 +79,7 @@ final class ColorPaletteBlock extends VBox {
 
             toggleHover(true);
             editIcon.setFill(getColorLuminance(flattenColor(bgBaseColor.get(), bgFill)) < LUMINANCE_THRESHOLD
-                ? Color.WHITE : Color.BLACK
+                    ? Color.WHITE : Color.BLACK
             );
         });
         colorRectangle.setOnMouseExited(e -> toggleHover(false));
@@ -90,10 +90,10 @@ final class ColorPaletteBlock extends VBox {
         });
 
         getChildren().addAll(
-            colorRectangle,
-            colorNameText(fgColorName),
-            colorNameText(bgColorName),
-            colorNameText(borderColorName)
+                colorRectangle,
+                colorNameText(fgColorName),
+                colorNameText(bgColorName),
+                colorNameText(borderColorName)
         );
         getStyleClass().add("block");
     }
@@ -118,7 +118,7 @@ final class ColorPaletteBlock extends VBox {
 
         contrastRatioText.setText(String.format("%.2f", contrastRatio));
         contrastLevelIcon.setIconCode(
-            ContrastLevel.AA_NORMAL.satisfies(contrastRatio) ? Material2AL.CHECK : Material2AL.CLOSE
+                ContrastLevel.AA_NORMAL.satisfies(contrastRatio) ? Material2AL.CHECK : Material2AL.CLOSE
         );
         contrastLevelLabel.setVisible(true);
         contrastLevelLabel.setText(ContrastLevel.AAA_NORMAL.satisfies(contrastRatio) ? "AAA" : "AA");
@@ -130,7 +130,7 @@ final class ColorPaletteBlock extends VBox {
 
     public Color getBgColor() {
         return colorRectangle.getBackground() != null && !colorRectangle.getBackground().isEmpty()
-            ? (Color) colorRectangle.getBackground().getFills().get(0).getFill() : null;
+                ? (Color) colorRectangle.getBackground().getFills().get(0).getFill() : null;
     }
 
     public String getFgColorName() {

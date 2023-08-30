@@ -73,14 +73,14 @@ final class ContrastChecker extends GridPane {
 
         this.bgBaseColor = bgBaseColor;
         this.contrastRatio = Bindings.createDoubleBinding(
-            () -> getContrastRatioOpacityAware(
-                bgColor.getColor(),
-                fgColor.getColor(),
-                bgBaseColor.get()
-            ),
-            bgColor.colorProperty(),
-            fgColor.colorProperty(),
-            bgBaseColor
+                () -> getContrastRatioOpacityAware(
+                        bgColor.getColor(),
+                        fgColor.getColor(),
+                        bgBaseColor.get()
+                ),
+                bgColor.colorProperty(),
+                fgColor.colorProperty(),
+                bgBaseColor
         );
 
         createView();
@@ -130,7 +130,7 @@ final class ContrastChecker extends GridPane {
     public Color getSafeFgColor() {
         if (contrastRatio.get() <= CONTRAST_RATIO_THRESHOLD) {
             return getColorLuminance(flattenColor(bgBaseColor.get(), bgColor.getColor())) < LUMINANCE_THRESHOLD
-                ? Color.WHITE : Color.BLACK;
+                    ? Color.WHITE : Color.BLACK;
         } else {
             return fgColor.getColor();
         }
@@ -143,7 +143,7 @@ final class ContrastChecker extends GridPane {
         var contrastRatioLabel = new Label("0.0");
         contrastRatioLabel.getStyleClass().add("ratio");
         contrastRatioLabel.textProperty().bind(Bindings.createStringBinding(
-            () -> String.format("%.2f", contrastRatio.get()), contrastRatio
+                () -> String.format("%.2f", contrastRatio.get()), contrastRatio
         ));
 
         var contrastRatioBox = new HBox(20, largeFontLabel, contrastRatioLabel);
@@ -187,7 +187,7 @@ final class ContrastChecker extends GridPane {
         bgTextField.setEditable(false);
         bgTextField.setLeft(new FontIcon(Feather.HASH));
         bgTextField.textProperty().bind(Bindings.createStringBinding(
-            () -> bgColor.getColorHexWithAlpha().substring(1), bgColor.colorProperty()
+                () -> bgColor.getColorHexWithAlpha().substring(1), bgColor.colorProperty()
         ));
         bgTextField.setContextMenu(new RightClickMenu(bgColor));
 
@@ -199,7 +199,7 @@ final class ContrastChecker extends GridPane {
         fgTextField.setEditable(false);
         fgTextField.setLeft(new FontIcon(Feather.HASH));
         fgTextField.textProperty().bind(Bindings.createStringBinding(
-            () -> fgColor.getColorHexWithAlpha().substring(1), fgColor.colorProperty()
+                () -> fgColor.getColorHexWithAlpha().substring(1), fgColor.colorProperty()
         ));
         fgTextField.setContextMenu(new RightClickMenu(fgColor));
 
@@ -211,7 +211,7 @@ final class ContrastChecker extends GridPane {
         });
         var bgHueLabel = new Label("Hue °");
         bgHueLabel.textProperty().bind(Bindings.createStringBinding(
-            () -> String.format("Hue %.0f °", bgHueSlider.getValue()), bgHueSlider.valueProperty())
+                () -> String.format("Hue %.0f °", bgHueSlider.getValue()), bgHueSlider.valueProperty())
         );
 
         bgSaturationSlider = slider(0, 1, 0, 0.01);
@@ -222,7 +222,7 @@ final class ContrastChecker extends GridPane {
         });
         var bgSaturationLabel = new Label("Saturation");
         bgSaturationLabel.textProperty().bind(Bindings.createStringBinding(
-            () -> String.format("Saturation %.2f", bgSaturationSlider.getValue()), bgSaturationSlider.valueProperty())
+                () -> String.format("Saturation %.2f", bgSaturationSlider.getValue()), bgSaturationSlider.valueProperty())
         );
 
         bgLightnessSlider = slider(0, 1, 0, 0.01);
@@ -233,7 +233,7 @@ final class ContrastChecker extends GridPane {
         });
         var bgLightnessLabel = new Label("Lightness");
         bgLightnessLabel.textProperty().bind(Bindings.createStringBinding(
-            () -> String.format("Lightness %.2f", bgLightnessSlider.getValue()), bgLightnessSlider.valueProperty())
+                () -> String.format("Lightness %.2f", bgLightnessSlider.getValue()), bgLightnessSlider.valueProperty())
         );
 
         bgAlphaSlider = slider(0, 1, 0, 0.01);
@@ -244,7 +244,7 @@ final class ContrastChecker extends GridPane {
         });
         var bgAlphaLabel = new Label("Alpha");
         bgAlphaLabel.textProperty().bind(Bindings.createStringBinding(
-            () -> String.format("Alpha %.2f", bgAlphaSlider.getValue()), bgAlphaSlider.valueProperty())
+                () -> String.format("Alpha %.2f", bgAlphaSlider.getValue()), bgAlphaSlider.valueProperty())
         );
 
         // ~
@@ -257,7 +257,7 @@ final class ContrastChecker extends GridPane {
         });
         var fgHueLabel = new Label("Hue °");
         fgHueLabel.textProperty().bind(Bindings.createStringBinding(
-            () -> String.format("Hue %.0f °", fgHueSlider.getValue()), fgHueSlider.valueProperty())
+                () -> String.format("Hue %.0f °", fgHueSlider.getValue()), fgHueSlider.valueProperty())
         );
 
         fgSaturationSlider = slider(0, 1, 0, 0.01);
@@ -268,7 +268,7 @@ final class ContrastChecker extends GridPane {
         });
         var fgSaturationLabel = new Label("Saturation");
         fgSaturationLabel.textProperty().bind(Bindings.createStringBinding(
-            () -> String.format("Saturation %.2f", fgSaturationSlider.getValue()), fgSaturationSlider.valueProperty())
+                () -> String.format("Saturation %.2f", fgSaturationSlider.getValue()), fgSaturationSlider.valueProperty())
         );
 
         fgLightnessSlider = slider(0, 1, 0, 0.01);
@@ -279,7 +279,7 @@ final class ContrastChecker extends GridPane {
         });
         var fgLightnessLabel = new Label("Lightness");
         fgLightnessLabel.textProperty().bind(Bindings.createStringBinding(
-            () -> String.format("Lightness %.2f", fgLightnessSlider.getValue()), fgLightnessSlider.valueProperty())
+                () -> String.format("Lightness %.2f", fgLightnessSlider.getValue()), fgLightnessSlider.valueProperty())
         );
 
         fgAlphaSlider = slider(0, 1, 0, 0.01);
@@ -290,7 +290,7 @@ final class ContrastChecker extends GridPane {
         });
         var fgAlphaLabel = new Label("Alpha");
         fgAlphaLabel.textProperty().bind(Bindings.createStringBinding(
-            () -> String.format("Alpha %.2f", fgAlphaSlider.getValue()), fgAlphaSlider.valueProperty())
+                () -> String.format("Alpha %.2f", fgAlphaSlider.getValue()), fgAlphaSlider.valueProperty())
         );
 
         // ~
@@ -306,8 +306,8 @@ final class ContrastChecker extends GridPane {
 
         var applyBtn = new Button("Apply");
         applyBtn.setOnAction(e -> ThemeManager.getInstance().setNamedColors(Map.of(
-            getBgColorName(), bgColor.getColor(),
-            getFgColorName(), fgColor.getColor()
+                getBgColorName(), bgColor.getColor(),
+                getFgColorName(), fgColor.getColor()
         )));
 
         var actionsBox = new HBox(20, new Spacer(), flattenBtn, applyBtn);
@@ -363,8 +363,8 @@ final class ContrastChecker extends GridPane {
 
     private void updateStyle() {
         setStyle(String.format("-color-contrast-checker-bg:%s;-color-contrast-checker-fg:%s;",
-            toHexWithAlpha(bgColor.getColor()),
-            toHexWithAlpha(getSafeFgColor())
+                toHexWithAlpha(bgColor.getColor()),
+                toHexWithAlpha(getSafeFgColor())
         ));
     }
 
@@ -483,18 +483,18 @@ final class ContrastChecker extends GridPane {
         }
 
         public float[] getRgbaArithmeticColor() {
-            float[] hsl = new float[] { getHue(), getSaturation(), getLightness() };
+            float[] hsl = new float[]{getHue(), getSaturation(), getLightness()};
             var color = JColor.color(hsl, getAlpha());
-            return new float[] {
-                color.getRedArithmetic(),
-                color.getGreenArithmetic(),
-                color.getBlueArithmetic(),
-                getAlpha()
+            return new float[]{
+                    color.getRedArithmetic(),
+                    color.getGreenArithmetic(),
+                    color.getBlueArithmetic(),
+                    getAlpha()
             };
         }
 
         public String getColorHexWithAlpha() {
-            float[] hsl = new float[] { getHue(), getSaturation(), getLightness() };
+            float[] hsl = new float[]{getHue(), getSaturation(), getLightness()};
             return JColor.color(hsl, getAlpha()).getColorHexWithAlpha();
         }
     }
@@ -515,39 +515,39 @@ final class ContrastChecker extends GridPane {
             var hexItem = new MenuItem("Copy as HEX");
             hexItem.setOnAction(e -> {
                 var c = JColor.color(
-                    new float[] { color.getHue(), color.getSaturation(), color.getLightness(), color.getAlpha() });
+                        new float[]{color.getHue(), color.getSaturation(), color.getLightness(), color.getAlpha()});
                 PlatformUtils.copyToClipboard(color.getAlpha() < 1
-                    ? toHexWithAlpha(color.getColor()) : c.getColorHex()
+                        ? toHexWithAlpha(color.getColor()) : c.getColorHex()
                 );
             });
 
             var rgbItem = new MenuItem("Copy as RGB");
             rgbItem.setOnAction(e -> {
                 var c = JColor.color(
-                    new float[] { color.getHue(), color.getSaturation(), color.getLightness(), color.getAlpha() });
+                        new float[]{color.getHue(), color.getSaturation(), color.getLightness(), color.getAlpha()});
                 PlatformUtils.copyToClipboard(color.getAlpha() < 1
-                        ? String.format(
-                        "rgba(%d,%d,%d, %.1f)", c.getGreen(), c.getGreen(), c.getBlue(), c.getAlphaArithmetic()
-                    )
-                        : String.format("rgb(%d,%d,%d)", c.getGreen(), c.getGreen(), c.getBlue())
+                                ? String.format(
+                                "rgba(%d,%d,%d, %.1f)", c.getGreen(), c.getGreen(), c.getBlue(), c.getAlphaArithmetic()
+                        )
+                                : String.format("rgb(%d,%d,%d)", c.getGreen(), c.getGreen(), c.getBlue())
                 );
             });
 
             var hslItem = new MenuItem("Copy as HSL");
             hslItem.setOnAction(e -> {
-                var c = JColor.color(new float[] {
-                    color.getHue(), color.getSaturation(), color.getLightness(), color.getAlpha()
+                var c = JColor.color(new float[]{
+                        color.getHue(), color.getSaturation(), color.getLightness(), color.getAlpha()
                 });
                 PlatformUtils.copyToClipboard(
-                    color.getAlpha() < 1
-                        ? String.format(
-                        "hsla(%.0f,%.2f,%.2f, %.1f)",
-                        c.getHue(), c.getSaturation(), c.getLightness(), c.getAlphaArithmetic()
-                    )
-                        : String.format(
-                        "hsl(%.0f,%.2f,%.2f)",
-                        c.getHue(), c.getSaturation(), c.getLightness()
-                    )
+                        color.getAlpha() < 1
+                                ? String.format(
+                                "hsla(%.0f,%.2f,%.2f, %.1f)",
+                                c.getHue(), c.getSaturation(), c.getLightness(), c.getAlphaArithmetic()
+                        )
+                                : String.format(
+                                "hsl(%.0f,%.2f,%.2f)",
+                                c.getHue(), c.getSaturation(), c.getLightness()
+                        )
                 );
             });
 

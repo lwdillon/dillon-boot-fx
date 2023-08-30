@@ -4,7 +4,8 @@ javafx权限管理系统UI
 
 ## 简介
 
-本项目是一套权限管理系统的用户界面(UI)实现，采用 JavaFX 技术开发。该系统的用户界面参考了若依前端框架基于 RuoYi-Vue 的设计风格，旨在提供一套免费使用的权限管理系统。
+本项目是一套权限管理系统的用户界面(UI)实现，采用 JavaFX 技术开发。该系统的用户界面参考了若依前端框架基于 RuoYi-Vue
+的设计风格，旨在提供一套免费使用的权限管理系统。
 
 以下是本项目使用的技术栈和相关组件：
 
@@ -20,7 +21,8 @@ javafx权限管理系统UI
 
 HTTP库：使用 OpenFeign HTTP库，该库提供了方便的 HTTP 请求和响应处理功能，用于与后端服务器进行通信和数据交互。
 
-本项目的目标是提供一套完整的、易于使用的权限管理系统UI，适用于个人用户和企业用户。界面设计参考了若依前端基于 RuoYi-Vue 的设计，以提供现代化、直观的用户界面。同时，使用了多种技术和组件来增强用户体验，包括数据绑定、主题化、图标和动画等方面。
+本项目的目标是提供一套完整的、易于使用的权限管理系统UI，适用于个人用户和企业用户。界面设计参考了若依前端基于 RuoYi-Vue
+的设计，以提供现代化、直观的用户界面。同时，使用了多种技术和组件来增强用户体验，包括数据绑定、主题化、图标和动画等方面。
 
 请注意，本项目仅提供用户界面(UI)部分的实现，后端采用了若依/RuoYi-Cloud 框架作为后台支持。如果需要完整的权限管理系统，需要结合后端框架使用。
 
@@ -57,7 +59,6 @@ HTTP库：使用 OpenFeign HTTP库，该库提供了方便的 HTTP 请求和响�
 
 ![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/home-light.png)
 
-
 ### 用户管理
 
 ![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/user-dark.jpg)
@@ -65,60 +66,71 @@ HTTP库：使用 OpenFeign HTTP库，该库提供了方便的 HTTP 请求和响�
 ![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/user-light.jpg)
 
 ### 角色管理
+
 ![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/role-dark.jpg)
 
 ![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/role-light.jpg)
 
 ### 菜单管理
+
 ![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/menu-dark.jpg)
 
 ![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/menu-light.jpg)
 
 ### 部门管理
+
 ![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/dept-dark.jpg)
 
 ![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/dept-light.jpg)
 
 ### 岗位管理
+
 ![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/post-dark.jpg)
 
 ![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/post-light.jpg)
 
 ### 字典类型
+
 ![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/dict-type-dark.jpg)
 
 ![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/dict-type-light.jpg)
 
 ### 字典数据
+
 ![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/dict-data-dark.jpg)
 
 ![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/dict-data-light.jpg)
 
 ### 参数管理
+
 ![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/config-dark.jpg)
 
 ![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/config-light.jpg)
 
 ### 通知公告
+
 ![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/notice-dark.jpg)
 
 ![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/notice-light.jpg)
 
 ### 操作日志
+
 ![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/operlog-dark.jpg)
 
 ![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/operlog-light.jpg)
 
 ### 登录日志
+
 ![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/logininfo-dark.jpg)
 
 ![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/logininfo-light.jpg)
 
 ### 服务监控
+
 ![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/monit-dark.jpg)
 
 ![Image text](https://gitee.com/lwdillon/dillon-boot-fx/raw/main/readme/moint-light.jpg)
 
-
 ## 交流群
+
 ## QQ群：114697782 QQ2群：808309284 QQ群：518914410

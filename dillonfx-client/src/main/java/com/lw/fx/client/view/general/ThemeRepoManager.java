@@ -159,10 +159,10 @@ final class ThemeRepoManager extends VBox {
                         previewBox.getStyleClass().add("preview");
                         previewBox.setStyle(style.toString());
                         previewBox.getChildren().setAll(
-                            previewLabel("A", "-color-bg-default", "-color-fg-default"),
-                            previewLabel("B", "-color-accent-emphasis", "-color-fg-emphasis"),
-                            previewLabel("C", "-color-success-emphasis", "-color-fg-emphasis"),
-                            previewLabel("D", "-color-danger-emphasis", "-color-fg-emphasis")
+                                previewLabel("A", "-color-bg-default", "-color-fg-default"),
+                                previewLabel("B", "-color-accent-emphasis", "-color-fg-emphasis"),
+                                previewLabel("C", "-color-success-emphasis", "-color-fg-emphasis"),
+                                previewLabel("D", "-color-danger-emphasis", "-color-fg-emphasis")
                         );
 
                         getChildren().set(2, previewBox);
@@ -171,8 +171,8 @@ final class ThemeRepoManager extends VBox {
             });
 
             task.setOnFailed(
-                e -> System.err.println("[ERROR] Unable to parse \"" + theme.getName()
-                    + "\" theme colors. Either CSS not valid or file isn't readable.")
+                    e -> System.err.println("[ERROR] Unable to parse \"" + theme.getName()
+                            + "\" theme colors. Either CSS not valid or file isn't readable.")
             );
 
             THREAD_POOL.execute(task);

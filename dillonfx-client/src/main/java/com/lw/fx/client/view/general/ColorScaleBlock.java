@@ -35,8 +35,8 @@ final class ColorScaleBlock extends VBox {
             if (c instanceof Label label) {
                 String colorName = (String) label.getUserData();
                 label.setStyle(String.format("-fx-background-color:%s;-fx-text-fill:%s;",
-                    colorName,
-                    JColorUtils.toHexWithAlpha(getSafeFgColor(label))
+                        colorName,
+                        JColorUtils.toHexWithAlpha(getSafeFgColor(label))
                 ));
             }
         });
@@ -68,7 +68,7 @@ final class ColorScaleBlock extends VBox {
 
     private Color getBgColor(Label label) {
         return label.getBackground() != null && !label.getBackground().isEmpty()
-            ? (Color) label.getBackground().getFills().get(0).getFill() : Color.WHITE;
+                ? (Color) label.getBackground().getFills().get(0).getFill() : Color.WHITE;
     }
 
     ///////////////////////////////////////////////////////////////////////////

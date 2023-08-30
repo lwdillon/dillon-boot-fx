@@ -1,8 +1,5 @@
 package com.lw.fx.client.domain;
 
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
-
 /**
  * 岗位表 sys_post
  *

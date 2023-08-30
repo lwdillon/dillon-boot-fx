@@ -39,7 +39,6 @@ public class DictTypeInfoView implements FxmlView<DictTypeInfoViewModel>, Initia
     private TextArea remarksTextArea;
 
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -57,7 +56,7 @@ public class DictTypeInfoView implements FxmlView<DictTypeInfoViewModel>, Initia
         initListeners();
     }
 
-    private void initListeners(){
+    private void initListeners() {
 
         dictTypeInfoViewModel.statusProperty().addListener((observable, oldValue, newValue) -> {
             if (ObjectUtil.contains("0", newValue)) {

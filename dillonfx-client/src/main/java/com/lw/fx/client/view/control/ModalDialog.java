@@ -22,7 +22,7 @@ public abstract class ModalDialog extends ModalBox {
     protected final Tile header = new Tile();
 
     public ModalDialog() {
-        super("#modal-pane" );
+        super("#modal-pane");
         createView();
     }
 

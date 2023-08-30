@@ -41,12 +41,12 @@ public class NoticeInfoView implements FxmlView<NoticeInfoViewModel>, Initializa
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         noticeTitleField.textProperty().bindBidirectional(noticeInfoViewModel.noticeTitleProperty());
-        noticeTypeCombo.valueProperty().bindBidirectional( noticeInfoViewModel.noticeTypeProperty());
+        noticeTypeCombo.valueProperty().bindBidirectional(noticeInfoViewModel.noticeTypeProperty());
         noticeTypeCombo.setItems(noticeInfoViewModel.getNoticeDataObservableList());
         noticeInfoViewModel.noticeContentProperty().addListener((observable, oldValue, newValue) -> {
             noticeContentHtmlEd.setHtmlText(newValue);
         });
-        noticeInfoViewModel.subscribe("commitHtmlText",(key, payload) -> {
+        noticeInfoViewModel.subscribe("commitHtmlText", (key, payload) -> {
             noticeInfoViewModel.noticeContentProperty().setValue(noticeContentHtmlEd.getHtmlText());
         });
         normalRadioBut.setSelected(true);
@@ -57,7 +57,7 @@ public class NoticeInfoView implements FxmlView<NoticeInfoViewModel>, Initializa
         initListeners();
     }
 
-    private void initListeners(){
+    private void initListeners() {
 
         noticeInfoViewModel.statusProperty().addListener((observable, oldValue, newValue) -> {
             if (ObjectUtil.contains("0", newValue)) {
@@ -74,7 +74,7 @@ public class NoticeInfoView implements FxmlView<NoticeInfoViewModel>, Initializa
 
     }
 
-    public void saveHtmlText(){
+    public void saveHtmlText() {
         noticeInfoViewModel.noticeContentProperty().setValue(noticeContentHtmlEd.getHtmlText());
     }
 

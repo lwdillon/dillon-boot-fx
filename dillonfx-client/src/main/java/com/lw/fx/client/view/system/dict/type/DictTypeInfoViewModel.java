@@ -41,7 +41,6 @@ public class DictTypeInfoViewModel implements ViewModel {
     }
 
 
-
     public StringProperty statusProperty() {
         return sysDictTypeWrapper.field("status", SysDictType::getStatus, SysDictType::setStatus, "0");
     }

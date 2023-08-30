@@ -13,31 +13,31 @@ import java.util.regex.Pattern;
 // https://github.com/FXMisc/RichTextFX/blob/master/richtextfx-demos
 public final class BBSyntaxHighlighter {
 
-    private static final String[] KEYWORDS = new String[] {
-        "abstract", "assert", "boolean", "break", "byte",
-        "case", "catch", "char", "class", "const",
-        "continue", "default", "do", "double", "else",
-        "enum", "extends", "final", "finally", "float",
-        "for", "if", "implements", "import",
-        "instanceof", "int", "interface", "long", "native",
-        "new", "package", "private", "protected", "public",
-        "return", "short", "static", "super",
-        "switch", "synchronized", "this", "throw", "throws",
-        "transient", "try", "void", "volatile", "while",
-        "var", "record", "with", "yield", "sealed", "non-sealed"
+    private static final String[] KEYWORDS = new String[]{
+            "abstract", "assert", "boolean", "break", "byte",
+            "case", "catch", "char", "class", "const",
+            "continue", "default", "do", "double", "else",
+            "enum", "extends", "final", "finally", "float",
+            "for", "if", "implements", "import",
+            "instanceof", "int", "interface", "long", "native",
+            "new", "package", "private", "protected", "public",
+            "return", "short", "static", "super",
+            "switch", "synchronized", "this", "throw", "throws",
+            "transient", "try", "void", "volatile", "while",
+            "var", "record", "with", "yield", "sealed", "non-sealed"
     };
 
     private static final String KEYWORD_PATTERN = "\\b(" + String.join("|", KEYWORDS) + ")\\b";
     private static final String PAREN_PATTERN = "\\(|\\)";
     private static final String STRING_PATTERN = "\"([^\"\\\\]|\\\\.)*\"";
     private static final String COMMENT_PATTERN = "//[^\n]*" + "|" + "/\\*(.|\\R)*?\\*/"
-        + "|" + "/\\*[^\\v]*" + "|" + "^\\h*\\*([^\\v]*|/)";
+            + "|" + "/\\*[^\\v]*" + "|" + "^\\h*\\*([^\\v]*|/)";
 
     private static final Pattern PATTERN = Pattern.compile(
-        "(?<KEYWORD>" + KEYWORD_PATTERN + ")"
-            + "|(?<STRING>" + STRING_PATTERN + ")"
-            + "|(?<PAREN>" + PAREN_PATTERN + ")"
-            + "|(?<COMMENT>" + COMMENT_PATTERN + ")"
+            "(?<KEYWORD>" + KEYWORD_PATTERN + ")"
+                    + "|(?<STRING>" + STRING_PATTERN + ")"
+                    + "|(?<PAREN>" + PAREN_PATTERN + ")"
+                    + "|(?<COMMENT>" + COMMENT_PATTERN + ")"
     );
 
     // Enclose keywords to BBCode tags.
@@ -48,18 +48,18 @@ public final class BBSyntaxHighlighter {
 
         while (m.find()) {
             String styleClass =
-                m.group("KEYWORD") != null ? "keyword" :
-                    m.group("PAREN") != null ? "paren" :
-                        m.group("STRING") != null ? "string" :
-                            m.group("COMMENT") != null ? "comment" :
-                                null;
+                    m.group("KEYWORD") != null ? "keyword" :
+                            m.group("PAREN") != null ? "paren" :
+                                    m.group("STRING") != null ? "string" :
+                                            m.group("COMMENT") != null ? "comment" :
+                                                    null;
 
             sb.append(text, lastKwEnd, m.start())
-                .append("[span='")
-                .append(Objects.requireNonNullElse(styleClass, "absent"))
-                .append("']")
-                .append(text, m.start(), m.end())
-                .append("[/span]");
+                    .append("[span='")
+                    .append(Objects.requireNonNullElse(styleClass, "absent"))
+                    .append("']")
+                    .append(text, m.start(), m.end())
+                    .append("[/span]");
             lastKwEnd = m.end();
         }
         sb.append(text, lastKwEnd, text.length());

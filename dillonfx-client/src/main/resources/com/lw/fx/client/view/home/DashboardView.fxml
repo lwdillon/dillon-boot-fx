@@ -1,55 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import atlantafx.base.controls.Spacer?>
-<?import java.lang.String?>
-<?import javafx.geometry.Insets?>
+<?import atlantafx.base.controls.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Hyperlink?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
-<?import org.kordamp.ikonli.javafx.FontIcon?>
-
-<ScrollPane fitToWidth="true" prefHeight="1444.0" prefWidth="1076.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lw.fx.client.view.home.DashboardView">
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import org.kordamp.ikonli.javafx.*?>
+<?import java.lang.*?>
+<ScrollPane fitToWidth="true" prefHeight="1444.0" prefWidth="1076.0" xmlns="http://javafx.com/javafx/20.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lw.fx.client.view.home.DashboardView">
     <content>
         <StackPane prefHeight="1444.0" prefWidth="678.0">
             <children>
-                <GridPane hgap="15.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="tab-center-pane" vgap="15.0">
+                <GridPane hgap="15.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                          styleClass="tab-center-pane" vgap="15.0">
                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                     </columnConstraints>
                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="198.0" vgrow="ALWAYS" />
-                        <RowConstraints minHeight="10.0" prefHeight="350.0" vgrow="ALWAYS" />
-                        <RowConstraints minHeight="10.0" prefHeight="515.0" vgrow="ALWAYS" />
-                        <RowConstraints minHeight="10.0" prefHeight="515.0" vgrow="ALWAYS" />
+                        <RowConstraints minHeight="10.0" prefHeight="198.0" vgrow="ALWAYS"/>
+                        <RowConstraints minHeight="10.0" prefHeight="350.0" vgrow="ALWAYS"/>
+                        <RowConstraints minHeight="10.0" prefHeight="515.0" vgrow="ALWAYS"/>
+                        <RowConstraints minHeight="10.0" prefHeight="515.0" vgrow="ALWAYS"/>
                     </rowConstraints>
                     <children>
                         <VBox prefHeight="200.0" prefWidth="100.0" styleClass="sample">
                             <children>
                                 <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="281.0" spacing="10.0">
                                     <children>
-                                        <Label maxWidth="1.7976931348623157E308" styleClass="title-3" text="利润总额" HBox.hgrow="ALWAYS" />
+                                        <Label maxWidth="1.7976931348623157E308" styleClass="title-3" text="利润总额"
+                                               HBox.hgrow="ALWAYS"/>
                                         <Label styleClass="success" text="+16.24 %">
                                             <graphic>
-                                                <FontIcon iconLiteral="fth-trending-up" styleClass="success" />
+                                                <FontIcon iconLiteral="fth-trending-up" styleClass="success"/>
                                             </graphic>
                                         </Label>
                                     </children>
@@ -58,56 +47,62 @@
                                     <children>
                                         <VBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
                                             <children>
-                                                <Label maxHeight="1.7976931348623157E308" styleClass="title-1" text="\$559.25k" VBox.vgrow="ALWAYS" />
-                                                <Hyperlink text="查看所有老用户" />
+                                                <Label maxHeight="1.7976931348623157E308" styleClass="title-1"
+                                                       text="\$559.25k" VBox.vgrow="ALWAYS"/>
+                                                <Hyperlink text="查看所有老用户"/>
                                             </children>
                                         </VBox>
-                                        <Button mnemonicParsing="false" prefHeight="62.0" prefWidth="62.0" text="Button">
+                                        <Button mnemonicParsing="false" prefHeight="62.0" prefWidth="62.0"
+                                                text="Button">
                                             <styleClass>
-                                                <String fx:value="success" />
-                                                <String fx:value="button-icon" />
+                                                <String fx:value="success"/>
+                                                <String fx:value="button-icon"/>
                                             </styleClass>
                                             <graphic>
-                                                <FontIcon iconLiteral="fth-slack" />
+                                                <FontIcon iconLiteral="fth-slack"/>
                                             </graphic>
                                         </Button>
                                     </children>
                                 </HBox>
                             </children>
                             <padding>
-                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
                             </padding>
                         </VBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" styleClass="sample" GridPane.columnIndex="1">
+                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" styleClass="sample"
+                              GridPane.columnIndex="1">
                             <children>
                                 <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="281.0" spacing="10.0">
                                     <children>
-                                        <Label maxWidth="1.7976931348623157E308" styleClass="title-3" text="利润总额" HBox.hgrow="ALWAYS" />
+                                        <Label maxWidth="1.7976931348623157E308" styleClass="title-3" text="利润总额"
+                                               HBox.hgrow="ALWAYS"/>
                                         <Label styleClass="success" text="+16.24 %">
                                             <graphic>
-                                                <FontIcon iconLiteral="fth-trending-up" styleClass="success" />
+                                                <FontIcon iconLiteral="fth-trending-up" styleClass="success"/>
                                             </graphic>
                                         </Label>
                                     </children>
                                 </HBox>
                                 <HBox alignment="CENTER_LEFT" VBox.vgrow="ALWAYS">
                                     <children>
-                                        <VBox fx:id="smoothAreaBox" alignment="CENTER_LEFT" HBox.hgrow="ALWAYS" />
+                                        <VBox fx:id="smoothAreaBox" alignment="CENTER_LEFT" HBox.hgrow="ALWAYS"/>
                                     </children>
                                 </HBox>
                             </children>
                             <padding>
-                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
                             </padding>
                         </VBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" styleClass="sample" GridPane.columnIndex="3">
+                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" styleClass="sample"
+                              GridPane.columnIndex="3">
                             <children>
                                 <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="281.0" spacing="10.0">
                                     <children>
-                                        <Label maxWidth="1.7976931348623157E308" styleClass="title-3" text="利润总额" HBox.hgrow="ALWAYS" />
+                                        <Label maxWidth="1.7976931348623157E308" styleClass="title-3" text="利润总额"
+                                               HBox.hgrow="ALWAYS"/>
                                         <Label styleClass="success" text="+16.24 %">
                                             <graphic>
-                                                <FontIcon iconLiteral="fth-trending-up" styleClass="success" />
+                                                <FontIcon iconLiteral="fth-trending-up" styleClass="success"/>
                                             </graphic>
                                         </Label>
                                     </children>
@@ -116,575 +111,624 @@
                                     <children>
                                         <VBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
                                             <children>
-                                                <Label maxHeight="1.7976931348623157E308" styleClass="title-1" text="\$559.25k" VBox.vgrow="ALWAYS" />
-                                                <Hyperlink text="查看所有老用户" />
+                                                <Label maxHeight="1.7976931348623157E308" styleClass="title-1"
+                                                       text="\$559.25k" VBox.vgrow="ALWAYS"/>
+                                                <Hyperlink text="查看所有老用户"/>
                                             </children>
                                         </VBox>
-                                        <Button mnemonicParsing="false" prefHeight="62.0" prefWidth="62.0" text="Button">
+                                        <Button mnemonicParsing="false" prefHeight="62.0" prefWidth="62.0"
+                                                text="Button">
                                             <styleClass>
-                                                <String fx:value="success" />
-                                                <String fx:value="button-icon" />
+                                                <String fx:value="success"/>
+                                                <String fx:value="button-icon"/>
                                             </styleClass>
                                             <graphic>
-                                                <FontIcon iconLiteral="fth-slack" />
+                                                <FontIcon iconLiteral="fth-slack"/>
                                             </graphic>
                                         </Button>
                                     </children>
                                 </HBox>
                             </children>
                             <padding>
-                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
                             </padding>
                         </VBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" styleClass="sample" GridPane.columnIndex="2">
+                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" styleClass="sample"
+                              GridPane.columnIndex="2">
                             <children>
                                 <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="281.0" spacing="10.0">
                                     <children>
-                                        <Label maxWidth="1.7976931348623157E308" styleClass="title-3" text="利润总额" HBox.hgrow="ALWAYS" />
+                                        <Label maxWidth="1.7976931348623157E308" styleClass="title-3" text="利润总额"
+                                               HBox.hgrow="ALWAYS"/>
                                         <Label styleClass="success" text="+16.24 %">
                                             <graphic>
-                                                <FontIcon iconLiteral="fth-trending-up" styleClass="success" />
+                                                <FontIcon iconLiteral="fth-trending-up" styleClass="success"/>
                                             </graphic>
                                         </Label>
                                     </children>
                                 </HBox>
                                 <HBox alignment="CENTER_LEFT" VBox.vgrow="ALWAYS">
                                     <children>
-                                        <VBox fx:id="smoothCharBox2" alignment="CENTER_LEFT" HBox.hgrow="ALWAYS" />
+                                        <VBox fx:id="smoothCharBox2" alignment="CENTER_LEFT" HBox.hgrow="ALWAYS"/>
                                     </children>
                                 </HBox>
                             </children>
                             <padding>
-                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
                             </padding>
                         </VBox>
-                        <VBox prefWidth="100.0" spacing="10.0" styleClass="sample" GridPane.columnSpan="2" GridPane.rowIndex="1">
+                        <VBox prefWidth="100.0" spacing="10.0" styleClass="sample" GridPane.columnSpan="2"
+                              GridPane.rowIndex="1">
                             <children>
                                 <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="281.0" spacing="10.0">
                                     <children>
-                                        <Label maxWidth="1.7976931348623157E308" styleClass="title-3" text="概述" HBox.hgrow="ALWAYS" />
-                              <HBox alignment="CENTER">
-                                 <children>
-                                    <Button mnemonicParsing="false">
-                                       <graphic>
-                                          <FontIcon iconLiteral="fth-loader" />
-                                       </graphic>
-                                       <styleClass>
-                                          <String fx:value="button-icon" />
-                                          <String fx:value="flat" />
-                                       </styleClass>
-                                    </Button>
-                                    <Button mnemonicParsing="false">
-                                       <graphic>
-                                          <FontIcon iconLiteral="fth-image" />
-                                       </graphic>
-                                       <styleClass>
-                                          <String fx:value="button-icon" />
-                                          <String fx:value="flat" />
-                                       </styleClass>
-                                    </Button>
-                                    <Button mnemonicParsing="false">
-                                       <graphic>
-                                          <FontIcon iconLiteral="fth-more-vertical" />
-                                       </graphic>
-                                       <styleClass>
-                                          <String fx:value="button-icon" />
-                                          <String fx:value="flat" />
-                                       </styleClass>
-                                    </Button>
-                                 </children>
-                              </HBox>
+                                        <Label maxWidth="1.7976931348623157E308" styleClass="title-3" text="概述"
+                                               HBox.hgrow="ALWAYS"/>
+                                        <HBox alignment="CENTER">
+                                            <children>
+                                                <Button mnemonicParsing="false">
+                                                    <graphic>
+                                                        <FontIcon iconLiteral="fth-loader"/>
+                                                    </graphic>
+                                                    <styleClass>
+                                                        <String fx:value="button-icon"/>
+                                                        <String fx:value="flat"/>
+                                                    </styleClass>
+                                                </Button>
+                                                <Button mnemonicParsing="false">
+                                                    <graphic>
+                                                        <FontIcon iconLiteral="fth-image"/>
+                                                    </graphic>
+                                                    <styleClass>
+                                                        <String fx:value="button-icon"/>
+                                                        <String fx:value="flat"/>
+                                                    </styleClass>
+                                                </Button>
+                                                <Button mnemonicParsing="false">
+                                                    <graphic>
+                                                        <FontIcon iconLiteral="fth-more-vertical"/>
+                                                    </graphic>
+                                                    <styleClass>
+                                                        <String fx:value="button-icon"/>
+                                                        <String fx:value="flat"/>
+                                                    </styleClass>
+                                                </Button>
+                                            </children>
+                                        </HBox>
                                     </children>
                                 </HBox>
                                 <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                                     <children>
-                                        <VBox fx:id="circularProgressTileBox" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
+                                        <VBox fx:id="circularProgressTileBox" prefHeight="200.0" prefWidth="100.0"
+                                              HBox.hgrow="ALWAYS"/>
                                         <VBox prefHeight="279.0" prefWidth="207.0" spacing="10.0">
                                             <children>
                                                 <Label text="Total Revenue:">
                                                     <styleClass>
-                                                        <String fx:value="text-muted" />
-                                                        <String fx:value="text-caption" />
+                                                        <String fx:value="text-muted"/>
+                                                        <String fx:value="text-caption"/>
                                                     </styleClass>
                                                 </Label>
-                                                <Label styleClass="title-4" text="\$9,542.00" />
+                                                <Label styleClass="title-4" text="\$9,542.00"/>
                                                 <HBox>
                                                     <children>
-                                                        <Label nodeOrientation="RIGHT_TO_LEFT" text="+ 0.0012.23 ( 0.2 % ) ">
+                                                        <Label nodeOrientation="RIGHT_TO_LEFT"
+                                                               text="+ 0.0012.23 ( 0.2 % ) ">
                                                             <styleClass>
-                                                                <String fx:value="text-muted" />
-                                                                <String fx:value="text-caption" />
+                                                                <String fx:value="text-muted"/>
+                                                                <String fx:value="text-caption"/>
                                                             </styleClass>
                                                         </Label>
                                                         <Label>
                                                             <graphic>
-                                                                <FontIcon iconLiteral="fth-arrow-up" styleClass="success" />
+                                                                <FontIcon iconLiteral="fth-arrow-up"
+                                                                          styleClass="success"/>
                                                             </graphic>
                                                         </Label>
                                                     </children>
                                                 </HBox>
                                                 <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                                                     <children>
-                                                        <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                                                        <VBox alignment="CENTER_LEFT" prefHeight="200.0"
+                                                              prefWidth="100.0" spacing="10.0">
                                                             <children>
                                                                 <Label text="Income">
                                                                     <styleClass>
-                                                                        <String fx:value="text-muted" />
-                                                                        <String fx:value="text-caption" />
+                                                                        <String fx:value="text-muted"/>
+                                                                        <String fx:value="text-caption"/>
                                                                     </styleClass>
                                                                 </Label>
-                                                                <Label styleClass="title-4" text="\$ 2632.46" />
+                                                                <Label styleClass="title-4" text="\$ 2632.46"/>
                                                             </children>
                                                         </VBox>
-                                                        <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                                                        <VBox alignment="CENTER_LEFT" prefHeight="200.0"
+                                                              prefWidth="100.0" spacing="10.0">
                                                             <children>
                                                                 <Label text="Expenses">
                                                                     <styleClass>
-                                                                        <String fx:value="text-muted" />
-                                                                        <String fx:value="text-caption" />
+                                                                        <String fx:value="text-muted"/>
+                                                                        <String fx:value="text-caption"/>
                                                                     </styleClass>
                                                                 </Label>
-                                                                <Label styleClass="title-4" text="\$ 924.38" />
+                                                                <Label styleClass="title-4" text="\$ 924.38"/>
                                                             </children>
                                                         </VBox>
                                                     </children>
                                                 </HBox>
-                                                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="accent" text="View more" />
+                                                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                                                        styleClass="accent" text="View more"/>
                                             </children>
                                             <padding>
-                                                <Insets bottom="20.0" right="20.0" />
+                                                <Insets bottom="20.0" right="20.0"/>
                                             </padding>
                                         </VBox>
                                     </children>
                                 </HBox>
                             </children>
                         </VBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" styleClass="sample" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="1">
+                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" styleClass="sample"
+                              GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="1">
                             <children>
                                 <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="281.0" spacing="10.0">
                                     <children>
-                                        <Label maxWidth="1.7976931348623157E308" styleClass="title-3" text="Revenue" HBox.hgrow="ALWAYS" />
-                              <Button mnemonicParsing="false">
-                                 <graphic>
-                                    <FontIcon iconLiteral="fth-more-vertical" />
-                                 </graphic>
-                                 <styleClass>
-                                    <String fx:value="button-icon" />
-                                    <String fx:value="flat" />
-                                 </styleClass>
-                              </Button>
+                                        <Label maxWidth="1.7976931348623157E308" styleClass="title-3" text="Revenue"
+                                               HBox.hgrow="ALWAYS"/>
+                                        <Button mnemonicParsing="false">
+                                            <graphic>
+                                                <FontIcon iconLiteral="fth-more-vertical"/>
+                                            </graphic>
+                                            <styleClass>
+                                                <String fx:value="button-icon"/>
+                                                <String fx:value="flat"/>
+                                            </styleClass>
+                                        </Button>
                                     </children>
                                 </HBox>
                                 <BarChart id="revenue-bar-chart" fx:id="barChart" VBox.vgrow="ALWAYS">
                                     <xAxis>
-                                        <CategoryAxis side="BOTTOM" />
+                                        <CategoryAxis side="BOTTOM"/>
                                     </xAxis>
                                     <yAxis>
-                                        <NumberAxis side="LEFT" />
+                                        <NumberAxis side="LEFT"/>
                                     </yAxis>
                                 </BarChart>
                             </children>
                         </VBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" styleClass="sample" GridPane.columnSpan="3" GridPane.rowIndex="2">
+                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" styleClass="sample"
+                              GridPane.columnSpan="3" GridPane.rowIndex="2">
                             <children>
                                 <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="281.0" spacing="10.0">
                                     <children>
-                                        <Label maxWidth="1.7976931348623157E308" styleClass="title-3" text="Active Projects" HBox.hgrow="ALWAYS" />
-                              <HBox alignment="CENTER">
-                                 <children>
-                                    <Button mnemonicParsing="false">
-                                       <graphic>
-                                          <FontIcon iconLiteral="fth-clock" />
-                                       </graphic>
-                                       <styleClass>
-                                          <String fx:value="button-icon" />
-                                          <String fx:value="flat" />
-                                          <String fx:value="accent" />
-                                       </styleClass>
-                                    </Button>
-                                    <Button mnemonicParsing="false">
-                                       <graphic>
-                                          <FontIcon iconLiteral="fth-send" />
-                                       </graphic>
-                                       <styleClass>
-                                          <String fx:value="button-icon" />
-                                          <String fx:value="flat" />
-                                          <String fx:value="accent" />
-                                       </styleClass>
-                                    </Button>
-                                    <Button mnemonicParsing="false">
-                                       <graphic>
-                                          <FontIcon iconLiteral="fth-rotate-ccw" />
-                                       </graphic>
-                                       <styleClass>
-                                          <String fx:value="button-icon" />
-                                          <String fx:value="flat" />
-                                          <String fx:value="accent" />
-                                       </styleClass>
-                                    </Button>
-                                    <Button mnemonicParsing="false">
-                                       <graphic>
-                                          <FontIcon iconLiteral="fth-more-vertical" />
-                                       </graphic>
-                                       <styleClass>
-                                          <String fx:value="button-icon" />
-                                          <String fx:value="flat" />
-                                       </styleClass>
-                                    </Button>
-                                 </children>
-                              </HBox>
+                                        <Label maxWidth="1.7976931348623157E308" styleClass="title-3"
+                                               text="Active Projects" HBox.hgrow="ALWAYS"/>
+                                        <HBox alignment="CENTER">
+                                            <children>
+                                                <Button mnemonicParsing="false">
+                                                    <graphic>
+                                                        <FontIcon iconLiteral="fth-clock"/>
+                                                    </graphic>
+                                                    <styleClass>
+                                                        <String fx:value="button-icon"/>
+                                                        <String fx:value="flat"/>
+                                                        <String fx:value="accent"/>
+                                                    </styleClass>
+                                                </Button>
+                                                <Button mnemonicParsing="false">
+                                                    <graphic>
+                                                        <FontIcon iconLiteral="fth-send"/>
+                                                    </graphic>
+                                                    <styleClass>
+                                                        <String fx:value="button-icon"/>
+                                                        <String fx:value="flat"/>
+                                                        <String fx:value="accent"/>
+                                                    </styleClass>
+                                                </Button>
+                                                <Button mnemonicParsing="false">
+                                                    <graphic>
+                                                        <FontIcon iconLiteral="fth-rotate-ccw"/>
+                                                    </graphic>
+                                                    <styleClass>
+                                                        <String fx:value="button-icon"/>
+                                                        <String fx:value="flat"/>
+                                                        <String fx:value="accent"/>
+                                                    </styleClass>
+                                                </Button>
+                                                <Button mnemonicParsing="false">
+                                                    <graphic>
+                                                        <FontIcon iconLiteral="fth-more-vertical"/>
+                                                    </graphic>
+                                                    <styleClass>
+                                                        <String fx:value="button-icon"/>
+                                                        <String fx:value="flat"/>
+                                                    </styleClass>
+                                                </Button>
+                                            </children>
+                                        </HBox>
                                     </children>
                                 </HBox>
-                                <TableView fx:id="activeProjectsTableView" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                <TableView fx:id="activeProjectsTableView" prefHeight="200.0" prefWidth="200.0"
+                                           VBox.vgrow="ALWAYS">
                                     <columns>
-                                        <TableColumn fx:id="projectNameCol" prefWidth="75.0" text="Project Name" />
-                                        <TableColumn fx:id="projectLeadCol" prefWidth="75.0" text="Project Lead" />
-                                        <TableColumn fx:id="progressCol" prefWidth="75.0" text="Progress" />
-                                        <TableColumn fx:id="assigneeCol" prefWidth="75.0" text="Assignee     " />
-                                        <TableColumn fx:id="statusCol" prefWidth="75.0" text="Status" />
-                                        <TableColumn fx:id="dueDateCol" prefWidth="75.0" text="Due Date" />
+                                        <TableColumn fx:id="projectNameCol" prefWidth="75.0" text="Project Name"/>
+                                        <TableColumn fx:id="projectLeadCol" prefWidth="75.0" text="Project Lead"/>
+                                        <TableColumn fx:id="progressCol" prefWidth="75.0" text="Progress"/>
+                                        <TableColumn fx:id="assigneeCol" prefWidth="75.0" text="Assignee     "/>
+                                        <TableColumn fx:id="statusCol" prefWidth="75.0" text="Status"/>
+                                        <TableColumn fx:id="dueDateCol" prefWidth="75.0" text="Due Date"/>
                                     </columns>
                                     <columnResizePolicy>
-                                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
                                     </columnResizePolicy>
                                 </TableView>
                             </children>
                         </VBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" styleClass="sample" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" styleClass="sample"
+                              GridPane.columnIndex="3" GridPane.rowIndex="2">
                             <children>
                                 <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="281.0" spacing="10.0">
                                     <children>
-                                        <Label maxWidth="1.7976931348623157E308" styleClass="title-3" text="Current Statistic" HBox.hgrow="ALWAYS" />
-                              <Button mnemonicParsing="false">
-                                 <graphic>
-                                    <FontIcon iconLiteral="fth-more-vertical" />
-                                 </graphic>
-                                 <styleClass>
-                                    <String fx:value="button-icon" />
-                                    <String fx:value="flat" />
-                                 </styleClass>
-                              </Button>
+                                        <Label maxWidth="1.7976931348623157E308" styleClass="title-3"
+                                               text="Current Statistic" HBox.hgrow="ALWAYS"/>
+                                        <Button mnemonicParsing="false">
+                                            <graphic>
+                                                <FontIcon iconLiteral="fth-more-vertical"/>
+                                            </graphic>
+                                            <styleClass>
+                                                <String fx:value="button-icon"/>
+                                                <String fx:value="flat"/>
+                                            </styleClass>
+                                        </Button>
                                     </children>
                                 </HBox>
-                                <VBox fx:id="currentStaticsticBox" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS" />
+                                <VBox fx:id="currentStaticsticBox" prefHeight="200.0" prefWidth="100.0"
+                                      VBox.vgrow="ALWAYS"/>
                                 <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="200.0" spacing="10.0">
                                     <children>
                                         <Label text="Income">
                                             <graphic>
-                                                <FontIcon iconLiteral="fth-disc" styleClass="accent" />
+                                                <FontIcon iconLiteral="fth-disc" styleClass="accent"/>
                                             </graphic>
                                         </Label>
                                         <Label styleClass="accent" text="43.29%">
                                             <graphic>
-                                                <FontIcon iconLiteral="fth-trending-up" styleClass="accent" />
+                                                <FontIcon iconLiteral="fth-trending-up" styleClass="accent"/>
                                             </graphic>
                                         </Label>
-                                        <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" styleClass="title-4" text="\$161,466.24" HBox.hgrow="ALWAYS" />
+                                        <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308"
+                                               styleClass="title-4" text="\$161,466.24" HBox.hgrow="ALWAYS"/>
                                     </children>
                                 </HBox>
                                 <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="200.0" spacing="10.0">
                                     <children>
                                         <Label text="Income">
                                             <graphic>
-                                                <FontIcon iconLiteral="fth-disc" styleClass="success" />
+                                                <FontIcon iconLiteral="fth-disc" styleClass="success"/>
                                             </graphic>
                                         </Label>
                                         <Label styleClass="success" text="43.29%">
                                             <graphic>
-                                                <FontIcon iconLiteral="fth-trending-up" styleClass="success" />
+                                                <FontIcon iconLiteral="fth-trending-up" styleClass="success"/>
                                             </graphic>
                                         </Label>
-                                        <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" styleClass="title-4" text="\$161,466.24" HBox.hgrow="ALWAYS" />
+                                        <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308"
+                                               styleClass="title-4" text="\$161,466.24" HBox.hgrow="ALWAYS"/>
                                     </children>
                                 </HBox>
                                 <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="200.0" spacing="10.0">
                                     <children>
                                         <Label text="Income">
                                             <graphic>
-                                                <FontIcon iconLiteral="fth-disc" styleClass="danger" />
+                                                <FontIcon iconLiteral="fth-disc" styleClass="danger"/>
                                             </graphic>
                                         </Label>
                                         <Label styleClass="danger" text="43.29%">
                                             <graphic>
-                                                <FontIcon iconLiteral="fth-trending-up" styleClass="danger" />
+                                                <FontIcon iconLiteral="fth-trending-up" styleClass="danger"/>
                                             </graphic>
                                         </Label>
-                                        <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" styleClass="title-4" text="\$161,466.24" HBox.hgrow="ALWAYS" />
+                                        <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308"
+                                               styleClass="title-4" text="\$161,466.24" HBox.hgrow="ALWAYS"/>
                                     </children>
                                 </HBox>
                                 <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="200.0" spacing="10.0">
                                     <children>
                                         <Label text="Income">
                                             <graphic>
-                                                <FontIcon iconLiteral="fth-disc" styleClass="warning" />
+                                                <FontIcon iconLiteral="fth-disc" styleClass="warning"/>
                                             </graphic>
                                         </Label>
                                         <Label styleClass="warning" text="43.29%">
                                             <graphic>
-                                                <FontIcon iconLiteral="fth-trending-up" styleClass="warning" />
+                                                <FontIcon iconLiteral="fth-trending-up" styleClass="warning"/>
                                             </graphic>
                                         </Label>
-                                        <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" styleClass="title-4" text="\$161,466.24" HBox.hgrow="ALWAYS" />
+                                        <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308"
+                                               styleClass="title-4" text="\$161,466.24" HBox.hgrow="ALWAYS"/>
                                     </children>
                                 </HBox>
                             </children>
                         </VBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" styleClass="sample" GridPane.rowIndex="3">
+                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" styleClass="sample"
+                              GridPane.rowIndex="3">
                             <children>
                                 <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="281.0" spacing="10.0">
                                     <children>
-                                        <Label maxWidth="1.7976931348623157E308" styleClass="title-3" text="Inbox" HBox.hgrow="ALWAYS" />
-                              <HBox alignment="CENTER">
-                                 <children>
-                                    <Button mnemonicParsing="false">
-                                       <graphic>
-                                          <FontIcon iconLiteral="fth-heart" />
-                                       </graphic>
-                                       <styleClass>
-                                          <String fx:value="button-icon" />
-                                          <String fx:value="flat" />
-                                          <String fx:value="danger" />
-                                       </styleClass>
-                                    </Button>
-                                    <Button mnemonicParsing="false">
-                                       <graphic>
-                                          <FontIcon iconLiteral="fth-more-vertical" />
-                                       </graphic>
-                                       <styleClass>
-                                          <String fx:value="button-icon" />
-                                          <String fx:value="flat" />
-                                       </styleClass>
-                                    </Button>
-                                 </children>
-                              </HBox>
+                                        <Label maxWidth="1.7976931348623157E308" styleClass="title-3" text="Inbox"
+                                               HBox.hgrow="ALWAYS"/>
+                                        <HBox alignment="CENTER">
+                                            <children>
+                                                <Button mnemonicParsing="false">
+                                                    <graphic>
+                                                        <FontIcon iconLiteral="fth-heart"/>
+                                                    </graphic>
+                                                    <styleClass>
+                                                        <String fx:value="button-icon"/>
+                                                        <String fx:value="flat"/>
+                                                        <String fx:value="danger"/>
+                                                    </styleClass>
+                                                </Button>
+                                                <Button mnemonicParsing="false">
+                                                    <graphic>
+                                                        <FontIcon iconLiteral="fth-more-vertical"/>
+                                                    </graphic>
+                                                    <styleClass>
+                                                        <String fx:value="button-icon"/>
+                                                        <String fx:value="flat"/>
+                                                    </styleClass>
+                                                </Button>
+                                            </children>
+                                        </HBox>
                                     </children>
                                 </HBox>
                                 <VBox VBox.vgrow="ALWAYS">
                                     <children>
-                                        <HBox alignment="CENTER_LEFT" spacing="10.0" style="-fx-border-width: 0 0 1 0; -fx-border-color: -color-border-default;">
+                                        <HBox alignment="CENTER_LEFT" spacing="10.0"
+                                              style="-fx-border-width: 0 0 1 0; -fx-border-color: -color-border-default;">
                                             <children>
-                                                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true"
+                                                           preserveRatio="true">
                                                     <image>
-                                                        <Image url="@/com/lw/fx/client/images/avatars/avatar4.png" />
+                                                        <Image url="@/com/lw/fx/client/images/avatars/avatar4.png"/>
                                                     </image>
                                                 </ImageView>
-                                                <Label text="Gethin Peters" />
-                                                <Spacer />
+                                                <Label text="Gethin Peters"/>
+                                                <Spacer/>
                                                 <MenuButton mnemonicParsing="false" styleClass="flat" text="Editor">
                                                     <items>
-                                                        <MenuItem mnemonicParsing="false" text="Ediutor" />
-                                                        <MenuItem mnemonicParsing="false" text="Viewer" />
+                                                        <MenuItem mnemonicParsing="false" text="Ediutor"/>
+                                                        <MenuItem mnemonicParsing="false" text="Viewer"/>
                                                     </items>
                                                 </MenuButton>
                                             </children>
                                             <padding>
-                                                <Insets bottom="5.0" top="5.0" />
+                                                <Insets bottom="5.0" top="5.0"/>
                                             </padding>
                                         </HBox>
-                                        <HBox alignment="CENTER_LEFT" spacing="10.0" style="-fx-border-width: 0 0 1 0; -fx-border-color: -color-border-default;">
+                                        <HBox alignment="CENTER_LEFT" spacing="10.0"
+                                              style="-fx-border-width: 0 0 1 0; -fx-border-color: -color-border-default;">
                                             <children>
-                                                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true"
+                                                           preserveRatio="true">
                                                     <image>
-                                                        <Image url="@/com/lw/fx/client/images/avatars/avatar5.png" />
+                                                        <Image url="@/com/lw/fx/client/images/avatars/avatar5.png"/>
                                                     </image>
                                                 </ImageView>
-                                                <Label text="Gerard Gallagher" />
-                                                <Spacer />
+                                                <Label text="Gerard Gallagher"/>
+                                                <Spacer/>
                                                 <MenuButton mnemonicParsing="false" styleClass="flat" text="Viewer">
                                                     <items>
-                                                        <MenuItem mnemonicParsing="false" text="Editor" />
-                                                        <MenuItem mnemonicParsing="false" text="Viewer" />
+                                                        <MenuItem mnemonicParsing="false" text="Editor"/>
+                                                        <MenuItem mnemonicParsing="false" text="Viewer"/>
                                                     </items>
                                                 </MenuButton>
                                             </children>
                                             <padding>
-                                                <Insets bottom="5.0" top="5.0" />
+                                                <Insets bottom="5.0" top="5.0"/>
                                             </padding>
                                         </HBox>
-                                        <HBox alignment="CENTER_LEFT" spacing="10.0" style="-fx-border-width: 0 0 1 0; -fx-border-color: -color-border-default;">
+                                        <HBox alignment="CENTER_LEFT" spacing="10.0"
+                                              style="-fx-border-width: 0 0 1 0; -fx-border-color: -color-border-default;">
                                             <children>
-                                                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true"
+                                                           preserveRatio="true">
                                                     <image>
-                                                        <Image url="@/com/lw/fx/client/images/avatars/avatar6.png" />
+                                                        <Image url="@/com/lw/fx/client/images/avatars/avatar6.png"/>
                                                     </image>
                                                 </ImageView>
-                                                <Label text="Betty Lopez" />
-                                                <Spacer />
+                                                <Label text="Betty Lopez"/>
+                                                <Spacer/>
                                                 <MenuButton mnemonicParsing="false" styleClass="flat" text="Viewer">
                                                     <items>
-                                                        <MenuItem mnemonicParsing="false" text="Editor" />
-                                                        <MenuItem mnemonicParsing="false" text="Viewer" />
+                                                        <MenuItem mnemonicParsing="false" text="Editor"/>
+                                                        <MenuItem mnemonicParsing="false" text="Viewer"/>
                                                     </items>
                                                 </MenuButton>
                                             </children>
                                             <padding>
-                                                <Insets bottom="5.0" top="5.0" />
+                                                <Insets bottom="5.0" top="5.0"/>
                                             </padding>
                                         </HBox>
-                                        <HBox alignment="CENTER_LEFT" spacing="10.0" style="-fx-border-width: 0 0 1 0; -fx-border-color: -color-border-default;">
+                                        <HBox alignment="CENTER_LEFT" spacing="10.0"
+                                              style="-fx-border-width: 0 0 1 0; -fx-border-color: -color-border-default;">
                                             <children>
-                                                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true"
+                                                           preserveRatio="true">
                                                     <image>
-                                                        <Image url="@/com/lw/fx/client/images/avatars/avatar5.png" />
+                                                        <Image url="@/com/lw/fx/client/images/avatars/avatar5.png"/>
                                                     </image>
                                                 </ImageView>
-                                                <Label text="Gerard Gallagher" />
-                                                <Spacer />
+                                                <Label text="Gerard Gallagher"/>
+                                                <Spacer/>
                                                 <MenuButton mnemonicParsing="false" styleClass="flat" text="Viewer">
                                                     <items>
-                                                        <MenuItem mnemonicParsing="false" text="Editor" />
-                                                        <MenuItem mnemonicParsing="false" text="Viewer" />
+                                                        <MenuItem mnemonicParsing="false" text="Editor"/>
+                                                        <MenuItem mnemonicParsing="false" text="Viewer"/>
                                                     </items>
                                                 </MenuButton>
                                             </children>
                                             <padding>
-                                                <Insets bottom="5.0" top="5.0" />
+                                                <Insets bottom="5.0" top="5.0"/>
                                             </padding>
                                         </HBox>
-                                        <HBox alignment="CENTER_LEFT" spacing="10.0" style="-fx-border-width: 0 0 1 0; -fx-border-color: -color-border-default;">
+                                        <HBox alignment="CENTER_LEFT" spacing="10.0"
+                                              style="-fx-border-width: 0 0 1 0; -fx-border-color: -color-border-default;">
                                             <children>
-                                                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true"
+                                                           preserveRatio="true">
                                                     <image>
-                                                        <Image url="@/com/lw/fx/client/images/avatars/avatar5.png" />
+                                                        <Image url="@/com/lw/fx/client/images/avatars/avatar5.png"/>
                                                     </image>
                                                 </ImageView>
-                                                <Label text="Gerard Gallagher" />
-                                                <Spacer />
+                                                <Label text="Gerard Gallagher"/>
+                                                <Spacer/>
                                                 <MenuButton mnemonicParsing="false" styleClass="flat" text="Viewer">
                                                     <items>
-                                                        <MenuItem mnemonicParsing="false" text="Editor" />
-                                                        <MenuItem mnemonicParsing="false" text="Viewer" />
+                                                        <MenuItem mnemonicParsing="false" text="Editor"/>
+                                                        <MenuItem mnemonicParsing="false" text="Viewer"/>
                                                     </items>
                                                 </MenuButton>
                                             </children>
                                             <padding>
-                                                <Insets bottom="5.0" top="5.0" />
+                                                <Insets bottom="5.0" top="5.0"/>
                                             </padding>
                                         </HBox>
-                                        <HBox alignment="CENTER_LEFT" spacing="10.0" style="-fx-border-width: 0 0 1 0; -fx-border-color: -color-border-default;">
+                                        <HBox alignment="CENTER_LEFT" spacing="10.0"
+                                              style="-fx-border-width: 0 0 1 0; -fx-border-color: -color-border-default;">
                                             <children>
-                                                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true"
+                                                           preserveRatio="true">
                                                     <image>
-                                                        <Image url="@/com/lw/fx/client/images/avatars/avatar4.png" />
+                                                        <Image url="@/com/lw/fx/client/images/avatars/avatar4.png"/>
                                                     </image>
                                                 </ImageView>
-                                                <Label text="Gethin Peters" />
-                                                <Spacer />
+                                                <Label text="Gethin Peters"/>
+                                                <Spacer/>
                                                 <MenuButton mnemonicParsing="false" styleClass="flat" text="Editor">
                                                     <items>
-                                                        <MenuItem mnemonicParsing="false" text="Ediutor" />
-                                                        <MenuItem mnemonicParsing="false" text="Viewer" />
+                                                        <MenuItem mnemonicParsing="false" text="Ediutor"/>
+                                                        <MenuItem mnemonicParsing="false" text="Viewer"/>
                                                     </items>
                                                 </MenuButton>
                                             </children>
                                             <padding>
-                                                <Insets bottom="5.0" top="5.0" />
+                                                <Insets bottom="5.0" top="5.0"/>
                                             </padding>
                                         </HBox>
-                                        <HBox alignment="CENTER_LEFT" spacing="10.0" style="-fx-border-width: 0 0 1 0; -fx-border-color: -color-border-default;">
+                                        <HBox alignment="CENTER_LEFT" spacing="10.0"
+                                              style="-fx-border-width: 0 0 1 0; -fx-border-color: -color-border-default;">
                                             <children>
-                                                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true"
+                                                           preserveRatio="true">
                                                     <image>
-                                                        <Image url="@/com/lw/fx/client/images/avatars/avatar5.png" />
+                                                        <Image url="@/com/lw/fx/client/images/avatars/avatar5.png"/>
                                                     </image>
                                                 </ImageView>
-                                                <Label text="Gerard Gallagher" />
-                                                <Spacer />
+                                                <Label text="Gerard Gallagher"/>
+                                                <Spacer/>
                                                 <MenuButton mnemonicParsing="false" styleClass="flat" text="Viewer">
                                                     <items>
-                                                        <MenuItem mnemonicParsing="false" text="Editor" />
-                                                        <MenuItem mnemonicParsing="false" text="Viewer" />
+                                                        <MenuItem mnemonicParsing="false" text="Editor"/>
+                                                        <MenuItem mnemonicParsing="false" text="Viewer"/>
                                                     </items>
                                                 </MenuButton>
                                             </children>
                                             <padding>
-                                                <Insets bottom="5.0" top="5.0" />
+                                                <Insets bottom="5.0" top="5.0"/>
                                             </padding>
                                         </HBox>
-                                        <HBox alignment="CENTER_LEFT" spacing="10.0" style="-fx-border-width: 0 0 1 0; -fx-border-color: -color-border-default;">
+                                        <HBox alignment="CENTER_LEFT" spacing="10.0"
+                                              style="-fx-border-width: 0 0 1 0; -fx-border-color: -color-border-default;">
                                             <children>
-                                                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true"
+                                                           preserveRatio="true">
                                                     <image>
-                                                        <Image url="@/com/lw/fx/client/images/avatars/avatar4.png" />
+                                                        <Image url="@/com/lw/fx/client/images/avatars/avatar4.png"/>
                                                     </image>
                                                 </ImageView>
-                                                <Label text="Gethin Peters" />
-                                                <Spacer />
+                                                <Label text="Gethin Peters"/>
+                                                <Spacer/>
                                                 <MenuButton mnemonicParsing="false" styleClass="flat" text="Editor">
                                                     <items>
-                                                        <MenuItem mnemonicParsing="false" text="Ediutor" />
-                                                        <MenuItem mnemonicParsing="false" text="Viewer" />
+                                                        <MenuItem mnemonicParsing="false" text="Ediutor"/>
+                                                        <MenuItem mnemonicParsing="false" text="Viewer"/>
                                                     </items>
                                                 </MenuButton>
                                             </children>
                                             <padding>
-                                                <Insets bottom="5.0" top="5.0" />
+                                                <Insets bottom="5.0" top="5.0"/>
                                             </padding>
                                         </HBox>
-                                        <HBox alignment="CENTER_LEFT" spacing="10.0" style="-fx-border-width: 0 0 1 0; -fx-border-color: -color-border-default;">
+                                        <HBox alignment="CENTER_LEFT" spacing="10.0"
+                                              style="-fx-border-width: 0 0 1 0; -fx-border-color: -color-border-default;">
                                             <children>
-                                                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true"
+                                                           preserveRatio="true">
                                                     <image>
-                                                        <Image url="@/com/lw/fx/client/images/avatars/avatar4.png" />
+                                                        <Image url="@/com/lw/fx/client/images/avatars/avatar4.png"/>
                                                     </image>
                                                 </ImageView>
-                                                <Label text="Gethin Peters" />
-                                                <Spacer />
+                                                <Label text="Gethin Peters"/>
+                                                <Spacer/>
                                                 <MenuButton mnemonicParsing="false" styleClass="flat" text="Editor">
                                                     <items>
-                                                        <MenuItem mnemonicParsing="false" text="Ediutor" />
-                                                        <MenuItem mnemonicParsing="false" text="Viewer" />
+                                                        <MenuItem mnemonicParsing="false" text="Ediutor"/>
+                                                        <MenuItem mnemonicParsing="false" text="Viewer"/>
                                                     </items>
                                                 </MenuButton>
                                             </children>
                                             <padding>
-                                                <Insets bottom="5.0" top="5.0" />
+                                                <Insets bottom="5.0" top="5.0"/>
                                             </padding>
                                         </HBox>
                                     </children>
                                 </VBox>
                             </children>
                         </VBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" styleClass="sample" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="3">
+                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" styleClass="sample"
+                              GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="3">
                             <children>
                                 <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="281.0" spacing="10.0">
                                     <children>
-                                        <Label maxWidth="1.7976931348623157E308" styleClass="title-3" text="Roects" HBox.hgrow="ALWAYS" />
-                              <HBox alignment="CENTER">
-                                 <children>
-                                    <Button mnemonicParsing="false">
-                                       <graphic>
-                                          <FontIcon iconLiteral="fth-mail" />
-                                       </graphic>
-                                       <styleClass>
-                                          <String fx:value="button-icon" />
-                                          <String fx:value="flat" />
-                                       </styleClass>
-                                    </Button>
-                                    <Button mnemonicParsing="false">
-                                       <graphic>
-                                          <FontIcon iconLiteral="fth-more-vertical" />
-                                       </graphic>
-                                       <styleClass>
-                                          <String fx:value="button-icon" />
-                                          <String fx:value="flat" />
-                                       </styleClass>
-                                    </Button>
-                                 </children>
-                              </HBox>
+                                        <Label maxWidth="1.7976931348623157E308" styleClass="title-3" text="Roects"
+                                               HBox.hgrow="ALWAYS"/>
+                                        <HBox alignment="CENTER">
+                                            <children>
+                                                <Button mnemonicParsing="false">
+                                                    <graphic>
+                                                        <FontIcon iconLiteral="fth-mail"/>
+                                                    </graphic>
+                                                    <styleClass>
+                                                        <String fx:value="button-icon"/>
+                                                        <String fx:value="flat"/>
+                                                    </styleClass>
+                                                </Button>
+                                                <Button mnemonicParsing="false">
+                                                    <graphic>
+                                                        <FontIcon iconLiteral="fth-more-vertical"/>
+                                                    </graphic>
+                                                    <styleClass>
+                                                        <String fx:value="button-icon"/>
+                                                        <String fx:value="flat"/>
+                                                    </styleClass>
+                                                </Button>
+                                            </children>
+                                        </HBox>
                                     </children>
                                 </HBox>
-                                <TableView fx:id="roectsTableView" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                <TableView fx:id="roectsTableView" prefHeight="200.0" prefWidth="200.0"
+                                           VBox.vgrow="ALWAYS">
                                     <columns>
-                                        <TableColumn fx:id="noCol" prefWidth="42.0" text="№" />
-                                        <TableColumn fx:id="roectProjectNameCol" minWidth="100.0" prefWidth="179.0" text="Project Name" />
-                                        <TableColumn fx:id="roectsStartDateCol" minWidth="30.0" prefWidth="128.5" text="Start Date" />
-                                        <TableColumn fx:id="roectsDueDateCol" prefWidth="143.5" text="Due Date" />
-                                        <TableColumn fx:id="roectsStatusCol" prefWidth="144.0" text="Status" />
-                                        <TableColumn fx:id="clientsCol" prefWidth="167.0" text="Clients" />
+                                        <TableColumn fx:id="noCol" prefWidth="42.0" text="№"/>
+                                        <TableColumn fx:id="roectProjectNameCol" minWidth="100.0" prefWidth="179.0"
+                                                     text="Project Name"/>
+                                        <TableColumn fx:id="roectsStartDateCol" minWidth="30.0" prefWidth="128.5"
+                                                     text="Start Date"/>
+                                        <TableColumn fx:id="roectsDueDateCol" prefWidth="143.5" text="Due Date"/>
+                                        <TableColumn fx:id="roectsStatusCol" prefWidth="144.0" text="Status"/>
+                                        <TableColumn fx:id="clientsCol" prefWidth="167.0" text="Clients"/>
                                     </columns>
                                     <columnResizePolicy>
-                                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
                                     </columnResizePolicy>
                                     <!--                                    <items>-->
                                     <!--                                        <FXCollections fx:factory="observableArrayList">-->
@@ -722,9 +766,9 @@
                     </children>
                 </GridPane>
             </children>
-         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </padding>
+            <padding>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+            </padding>
         </StackPane>
     </content>
 </ScrollPane>

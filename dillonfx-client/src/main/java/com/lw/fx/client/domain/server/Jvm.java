@@ -4,12 +4,11 @@ import lombok.Data;
 
 /**
  * JVM相关信息
- * 
+ *
  * @author ruoyi
  */
 @Data
-public class Jvm
-{
+public class Jvm {
     /**
      * 当前JVM占用的内存总数(M)
      */

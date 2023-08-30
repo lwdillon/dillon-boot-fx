@@ -19,8 +19,8 @@ public final class BrowseEvent extends Event {
     @Override
     public String toString() {
         return "BrowseEvent{"
-            + "uri=" + uri
-            + "} " + super.toString();
+                + "uri=" + uri
+                + "} " + super.toString();
     }
 
     public static void fire(String url) {

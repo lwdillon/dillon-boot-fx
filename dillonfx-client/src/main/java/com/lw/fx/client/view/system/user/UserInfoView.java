@@ -107,7 +107,7 @@ public class UserInfoView implements FxmlView<UserInfoViewModel>, Initializable 
         roleListView.setCellFactory(CheckBoxListCell.forListView(new Callback<SysRole, ObservableValue<Boolean>>() {
             @Override
             public ObservableValue<Boolean> call(SysRole param) {
-                SimpleBooleanProperty booleanProperty=  new SimpleBooleanProperty(param.isSelect());
+                SimpleBooleanProperty booleanProperty = new SimpleBooleanProperty(param.isSelect());
                 booleanProperty.addListener((observable, oldValue, newValue) -> {
                     param.setSelect(newValue);
                     if (newValue) {
@@ -136,7 +136,7 @@ public class UserInfoView implements FxmlView<UserInfoViewModel>, Initializable 
         postListView.setCellFactory(CheckBoxListCell.forListView(new Callback<SysPost, ObservableValue<Boolean>>() {
             @Override
             public ObservableValue<Boolean> call(SysPost param) {
-                SimpleBooleanProperty booleanProperty=  new SimpleBooleanProperty(param.isSelect());
+                SimpleBooleanProperty booleanProperty = new SimpleBooleanProperty(param.isSelect());
                 booleanProperty.addListener((observable, oldValue, newValue) -> {
                     param.setSelect(newValue);
                     if (newValue) {
@@ -231,7 +231,6 @@ public class UserInfoView implements FxmlView<UserInfoViewModel>, Initializable 
             rootNode.getInternalChildren().add(child);
 
         });
-
 
 
         return rootNode;

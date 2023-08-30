@@ -4,7 +4,7 @@
   -fx-background-color: -color-bg-default;
   -fx-alignment: TOP_CENTER;
 
-  >.scroll-pane {
+  > .scroll-pane {
     -fx-padding: 50px 50px 50px 50px;
 
     .user-content {
@@ -19,31 +19,31 @@
   -fx-background-color: -color-bg-default;
   -fx-alignment: TOP_CENTER;
 
-  >.body {
-    >.scroll-pane {
+  > .body {
+    > .scroll-pane {
       -fx-padding: 30px 0 50px 30px;
 
       .user-content {
         -fx-spacing: 20px;
 
-        >.header {
+        > .header {
           -fx-padding: 0 0 10px 0;
         }
       }
 
-      .tab-pane>.tab-content-area>* {
+      .tab-pane > .tab-content-area > * {
         -fx-padding: 20px 0 0 0;
       }
 
       .example-box {
         -fx-spacing: 20px;
 
-        >.tabs {
+        > .tabs {
           -fx-alignment: CENTER_LEFT;
           -fx-background-insets: 0, 0 0 1 0;
           -fx-background-color: -color-border-default, -color-bg-default;
 
-          >.label {
+          > .label {
             -fx-padding: 8 12 8 12;
             -fx-background-insets: 0, 0 0 1 0;
             -fx-background-color: -color-border-default, -color-bg-default;
@@ -68,7 +68,7 @@
   .outline {
     -fx-spacing: 10px;
 
-    >.label {
+    > .label {
       -fx-text-fill: -color-fg-muted;
       -fx-cursor: hand;
 
@@ -92,7 +92,7 @@
     -fx-border-color: -color-accent-muted;
   }
 
-  >TextFlow {
+  > TextFlow {
     -fx-padding: 10px;
     -fx-background-color: -color-bg-inset;
     -fx-background-radius: 8px;

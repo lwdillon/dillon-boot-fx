@@ -4,7 +4,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
-<StackPane fx:id="rootPane" prefHeight="454.0" prefWidth="1060.0" styleClass="tab-center-pane" xmlns="http://javafx.com/javafx/19"
+<StackPane fx:id="rootPane" prefHeight="454.0" prefWidth="1060.0" styleClass="tab-center-pane"
+           xmlns="http://javafx.com/javafx/19"
            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lw.fx.client.view.system.role.AuthUserView">
     <children>
         <HBox fx:id="contentPane" prefHeight="100.0" prefWidth="200.0" spacing="10.0" styleClass="sample">

@@ -13,10 +13,10 @@
   -color-accent-7: #512a97;
   -color-accent-8: #3e1f79;
   -color-accent-9: #2e1461;
-  -color-accent-fg:       #8250df;
+  -color-accent-fg: #8250df;
   -color-accent-emphasis: #8250df;
-  -color-accent-muted:    color.change(#c297ff, $alpha: 0.4);
-  -color-accent-subtle:   #fbefff;
+  -color-accent-muted: color.change(#c297ff, $alpha: 0.4);
+  -color-accent-subtle: #fbefff;
 }
 
 @mixin primerPinkLight() {
@@ -30,10 +30,10 @@
   -color-accent-7: #772057;
   -color-accent-8: #611347;
   -color-accent-9: #4d0336;
-  -color-accent-fg:       #bf3989;
+  -color-accent-fg: #bf3989;
   -color-accent-emphasis: #bf3989;
-  -color-accent-muted:    color.change(#ff80c8, $alpha: 0.4);
-  -color-accent-subtle:   #ffeff7;
+  -color-accent-muted: color.change(#ff80c8, $alpha: 0.4);
+  -color-accent-subtle: #ffeff7;
 }
 
 @mixin primerCoralLight() {
@@ -47,10 +47,10 @@
   -color-accent-7: #801f0f;
   -color-accent-8: #691105;
   -color-accent-9: #510901;
-  -color-accent-fg:       #c4432b;
+  -color-accent-fg: #c4432b;
   -color-accent-emphasis: #c4432b;
-  -color-accent-muted:    color.change(#fd8c73, $alpha: 0.4);
-  -color-accent-subtle:   #fff0eb;
+  -color-accent-muted: color.change(#fd8c73, $alpha: 0.4);
+  -color-accent-subtle: #fff0eb;
 }
 
 @mixin primerPurpleDark() {
@@ -64,10 +64,10 @@
   -color-accent-7: #553098;
   -color-accent-8: #3c1e70;
   -color-accent-9: #271052;
-  -color-accent-fg:       #bc8cff;
+  -color-accent-fg: #bc8cff;
   -color-accent-emphasis: #8957e5;
-  -color-accent-muted:    color.change(#a371f7, $alpha: 0.4);
-  -color-accent-subtle:   color.change(#a371f7, $alpha: 0.15);
+  -color-accent-muted: color.change(#a371f7, $alpha: 0.4);
+  -color-accent-subtle: color.change(#a371f7, $alpha: 0.15);
 }
 
 @mixin primerPinkDark() {
@@ -81,10 +81,10 @@
   -color-accent-7: #7d2457;
   -color-accent-8: #5e103e;
   -color-accent-9: #42062a;
-  -color-accent-fg:       #f778ba;
+  -color-accent-fg: #f778ba;
   -color-accent-emphasis: #bf4b8a;
-  -color-accent-muted:    color.change(#db61a2, $alpha: 0.4);
-  -color-accent-subtle:   color.change(#db61a2, $alpha: 0.15);
+  -color-accent-muted: color.change(#db61a2, $alpha: 0.4);
+  -color-accent-subtle: color.change(#db61a2, $alpha: 0.15);
 }
 
 @mixin primerCoralDark() {
@@ -98,8 +98,8 @@
   -color-accent-7: #872012;
   -color-accent-8: #640d04;
   -color-accent-9: #460701;
-  -color-accent-fg:       #f78166;
+  -color-accent-fg: #f78166;
   -color-accent-emphasis: #cf462d;
-  -color-accent-muted:    color.change(#ea6045, $alpha: 0.4);
-  -color-accent-subtle:   color.change(#ea6045, $alpha: 0.15);
+  -color-accent-muted: color.change(#ea6045, $alpha: 0.4);
+  -color-accent-subtle: color.change(#ea6045, $alpha: 0.15);
 }

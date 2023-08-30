@@ -1,9 +1,6 @@
 package com.lw.fx.client.domain;
 
 
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
-
 /**
  * 参数配置表 sys_config
  *

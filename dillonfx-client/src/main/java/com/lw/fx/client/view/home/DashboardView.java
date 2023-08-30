@@ -8,12 +8,14 @@ import com.lw.fx.client.event.DefaultEventBus;
 import com.lw.fx.client.event.EventBus;
 import com.lw.fx.client.event.ThemeEvent;
 import com.lw.fx.client.theme.ThemeManager;
+import com.lw.fx.client.util.NodeUtils;
 import de.saxsys.mvvmfx.FxmlView;
 import de.saxsys.mvvmfx.InjectViewModel;
 import eu.hansolo.tilesfx.Tile;
 import eu.hansolo.tilesfx.TileBuilder;
 import eu.hansolo.tilesfx.chart.ChartData;
 import eu.hansolo.tilesfx.tools.Helper;
+import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -33,9 +35,14 @@ import javafx.scene.paint.Color;
 import net.datafaker.Faker;
 
 import java.net.URL;
+import java.time.Duration;
+import java.time.Instant;
+import java.util.List;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.stream.IntStream;
+
+import static atlantafx.base.theme.Tweaks.*;
 
 
 public class DashboardView implements FxmlView<DashboardViewModel>, Initializable {
@@ -106,17 +113,35 @@ public class DashboardView implements FxmlView<DashboardViewModel>, Initializabl
     private ChartData chartData2;
     private ChartData chartData3;
     private ChartData chartData4;
-    private ChartData chartData5;
 
     private ChartData smoothChartData1;
     private ChartData smoothChartData2;
     private ChartData smoothChartData3;
     private ChartData smoothChartData4;
+    private ChartData smoothChartData5;
+    private ChartData smoothChartData6;
+    private ChartData smoothChartData7;
+    private ChartData smoothChartData8;
+
+    private XYChart.Series<String, Number> january;
+    private XYChart.Series<String, Number> february;
+    private XYChart.Series<String, Number> march;
     @InjectViewModel
     private DashboardViewModel dashboardViewModel;
 
+    private long lastTimerCall;
+
+    private List<String> countries;
+
+    private AnimationTimer timer;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        final var faker = new Faker();
+        countries = IntStream.range(0, 5).boxed()
+                .map(i -> faker.country().countryCode3().toUpperCase())
+                .toList();
 
         circularProgressTile = TileBuilder.create()
                 .skinType(Tile.SkinType.CIRCULAR_PROGRESS)
@@ -295,6 +320,11 @@ public class DashboardView implements FxmlView<DashboardViewModel>, Initializabl
         smoothChartData3 = new ChartData("Item 3", random.nextDouble() * 90, Color.web("#3B82F6"));
         smoothChartData4 = new ChartData("Item 4", random.nextDouble() * 90, Color.web("#3B82F6"));
 
+        smoothChartData5 = new ChartData("Item 1", random.nextDouble() * 90, Color.web("#3B82F6"));
+        smoothChartData6 = new ChartData("Item 2", random.nextDouble() * 90, Color.web("#3B82F6"));
+        smoothChartData7 = new ChartData("Item 3", random.nextDouble() * 90, Color.web("#3B82F6"));
+        smoothChartData8 = new ChartData("Item 4", random.nextDouble() * 90, Color.web("#3B82F6"));
+
         smoothAreaChartTile = TileBuilder.create().skinType(Tile.SkinType.SMOOTH_AREA_CHART)
                 .prefSize(150.0, 150.0)
                 .minValue(0)
@@ -320,7 +350,7 @@ public class DashboardView implements FxmlView<DashboardViewModel>, Initializabl
                 .backgroundColor(Color.TRANSPARENT)
                 .valueColor(ThemeManager.getInstance().getTheme().isDarkMode() ? Color.web("#ffffff") : Color.web("#475569"))
 
-                .chartData( new ChartData("Item 1", random.nextDouble() * 100, Color.web("#22C55E")),  new ChartData("Item 1", random.nextDouble() * 100,  Color.web("#22C55E")),  new ChartData("Item 1", random.nextDouble() * 100,  Color.web("#22C55E")),  new ChartData("Item 1", random.nextDouble() * 100,  Color.web("#22C55E")))
+                .chartData(smoothChartData5, smoothChartData6, smoothChartData7, smoothChartData8)
                 .tooltipText("")
                 .animated(true)
                 .build();
@@ -351,43 +381,86 @@ public class DashboardView implements FxmlView<DashboardViewModel>, Initializabl
         });
         Styles.toggleStyleClass(activeProjectsTableView, Styles.STRIPED);
         Styles.toggleStyleClass(roectsTableView, Styles.STRIPED);
+
+        for (TableColumn<?, ?> c : activeProjectsTableView.getColumns()) {
+            NodeUtils.addStyleClass(c, ALIGN_CENTER, ALIGN_LEFT, ALIGN_RIGHT);
+        }
+        for (TableColumn<?, ?> c : roectsTableView.getColumns()) {
+            NodeUtils.addStyleClass(c, ALIGN_CENTER, ALIGN_LEFT, ALIGN_RIGHT);
+        }
+
+
+        lastTimerCall = System.nanoTime();
+        timer = new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                if (now > lastTimerCall + 3_500_000_000L) {
+
+                    chartData1.setValue(random.nextDouble() * 50);
+                    chartData2.setValue(random.nextDouble() * 50);
+                    chartData3.setValue(random.nextDouble() * 50);
+                    chartData4.setValue(random.nextDouble() * 50);
+
+
+                    circularProgressTile.setValue(random.nextDouble() * 100);
+
+
+                    smoothChartData1.setValue(random.nextDouble() * 90);
+                    smoothChartData2.setValue(random.nextDouble() * 80);
+                    smoothChartData3.setValue(random.nextDouble() * 40);
+                    smoothChartData4.setValue(random.nextDouble() * 25);
+
+                    smoothChartData5.setValue(smoothChartData6.getValue());
+                    smoothChartData6.setValue(smoothChartData7.getValue());
+                    smoothChartData7.setValue(smoothChartData8.getValue());
+                    smoothChartData8.setValue(random.nextDouble() * 50);
+
+
+                    for (int i = 0; i < january.getData().size(); i++) {
+                        january.getData().get(i).setYValue(random.nextInt(10, 80));
+                    }
+                    for (int i = 0; i < february.getData().size(); i++) {
+                        february.getData().get(i).setYValue(random.nextInt(10, 80));
+                    }
+                    for (int i = 0; i < march.getData().size(); i++) {
+                        march.getData().get(i).setYValue(random.nextInt(10, 80));
+                    }
+
+
+                    lastTimerCall = now;
+                }
+            }
+        };
+        timer.start();
     }
 
     private void barChart() {
         //snippet_3:start
-        final var rnd = new Random();
-        final var faker = new Faker();
-        final var countries = IntStream.range(0, 5).boxed()
-                .map(i -> faker.country().countryCode3().toUpperCase())
-                .toList();
 
-        var x = new CategoryAxis();
-        x.setLabel("Country");
 
-        var y = new NumberAxis(0, 80, 10);
-        y.setLabel("Value");
-
-        var january = new XYChart.Series<String, Number>();
+        january = new XYChart.Series<String, Number>();
         january.setName("January");
         IntStream.range(0, countries.size()).forEach(i -> january.getData().add(
-                new XYChart.Data<>(countries.get(i), rnd.nextInt(10, 80))
+                new XYChart.Data<>(countries.get(i), random.nextInt(10, 80))
         ));
+        january.getNode();
 
-
-        var february = new XYChart.Series<String, Number>();
+        february = new XYChart.Series<String, Number>();
         february.setName("February");
         IntStream.range(0, countries.size()).forEach(i -> february.getData().add(
-                new XYChart.Data<>(countries.get(i), rnd.nextInt(10, 80))
+                new XYChart.Data<>(countries.get(i), random.nextInt(10, 80))
         ));
 
-        var march = new XYChart.Series<String, Number>();
+        march = new XYChart.Series<String, Number>();
         march.setName("March");
         IntStream.range(0, countries.size()).forEach(i -> march.getData().add(
-                new XYChart.Data<>(countries.get(i), rnd.nextInt(10, 80))
+                new XYChart.Data<>(countries.get(i), random.nextInt(10, 80))
         ));
 
 
-        barChart.getData().addAll(january, february, march);
+
+        barChart.getData().clear();
+        barChart.getData().setAll(january, february, march);
 
 
     }

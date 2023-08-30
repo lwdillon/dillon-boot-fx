@@ -5,12 +5,11 @@ import lombok.Data;
 
 /**
  * CPU相关信息
- * 
+ *
  * @author ruoyi
  */
 @Data
-public class Cpu
-{
+public class Cpu {
     /**
      * 核心数
      */
@@ -40,8 +39,6 @@ public class Cpu
      * CPU当前空闲率
      */
     private double free;
-
-
 
 
 }

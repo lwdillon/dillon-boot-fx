@@ -5,31 +5,32 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import java.lang.*?>
-<VBox prefHeight="505.0" prefWidth="465.0" spacing="10.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lw.fx.client.view.system.role.AuthDataView">
+<VBox prefHeight="505.0" prefWidth="465.0" spacing="10.0" xmlns="http://javafx.com/javafx/19"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lw.fx.client.view.system.role.AuthDataView">
     <children>
         <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="433.0" spacing="10.0">
             <children>
-                <Label alignment="CENTER_RIGHT" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" text="角色名称:" />
-                <TextField fx:id="roleNameTextField" disable="true" HBox.hgrow="ALWAYS" />
+                <Label alignment="CENTER_RIGHT" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" text="角色名称:"/>
+                <TextField fx:id="roleNameTextField" disable="true" HBox.hgrow="ALWAYS"/>
             </children>
         </HBox>
         <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="433.0" spacing="10.0">
             <children>
-                <Label alignment="CENTER_RIGHT" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" text="权限字符:" />
-                <TextField fx:id="roleKeyTextField" disable="true" HBox.hgrow="ALWAYS" />
+                <Label alignment="CENTER_RIGHT" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" text="权限字符:"/>
+                <TextField fx:id="roleKeyTextField" disable="true" HBox.hgrow="ALWAYS"/>
             </children>
         </HBox>
         <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="433.0" spacing="10.0">
             <children>
-                <Label alignment="CENTER_RIGHT" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" text="权限范围:" />
+                <Label alignment="CENTER_RIGHT" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" text="权限范围:"/>
                 <ComboBox fx:id="authCombox" maxWidth="1.7976931348623157E308" prefWidth="150.0" HBox.hgrow="ALWAYS">
                     <items>
                         <FXCollections fx:factory="observableArrayList">
-                            <String fx:value="全部数据权限" />
-                            <String fx:value="自定数据权限" />
-                            <String fx:value="本部门数据权限" />
-                            <String fx:value="本部门及以下数据权限" />
-                            <String fx:value="仅本人数据权限" />
+                            <String fx:value="全部数据权限"/>
+                            <String fx:value="自定数据权限"/>
+                            <String fx:value="本部门数据权限"/>
+                            <String fx:value="本部门及以下数据权限"/>
+                            <String fx:value="仅本人数据权限"/>
                         </FXCollections>
                     </items>
                 </ComboBox>
@@ -39,20 +40,21 @@
             <children>
                 <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="433.0" spacing="10.0">
                     <children>
-                        <Label alignment="CENTER_RIGHT" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" text="数据权限:" />
-                        <CheckBox fx:id="expansionCheckBox" mnemonicParsing="false" text="展开/折叠" />
-                        <CheckBox fx:id="selectAllCheckBox" mnemonicParsing="false" text="全选/全不选" />
+                        <Label alignment="CENTER_RIGHT" maxWidth="80.0" minWidth="80.0" prefWidth="80.0"
+                               text="数据权限:"/>
+                        <CheckBox fx:id="expansionCheckBox" mnemonicParsing="false" text="展开/折叠"/>
+                        <CheckBox fx:id="selectAllCheckBox" mnemonicParsing="false" text="全选/全不选"/>
                     </children>
                 </HBox>
                 <TreeView fx:id="treeView" prefHeight="287.0" prefWidth="365.0" VBox.vgrow="ALWAYS">
                     <VBox.margin>
-                        <Insets left="80.0" />
+                        <Insets left="80.0"/>
                     </VBox.margin>
                 </TreeView>
             </children>
         </VBox>
     </children>
     <padding>
-        <Insets bottom="10.0" right="10.0" top="10.0" />
+        <Insets bottom="10.0" right="10.0" top="10.0"/>
     </padding>
 </VBox>

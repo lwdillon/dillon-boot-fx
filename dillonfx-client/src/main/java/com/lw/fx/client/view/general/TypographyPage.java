@@ -47,11 +47,11 @@ public final class TypographyPage extends OutlinePage {
 
         addPageHeader();
         addFormattedText("""
-                Because AtlantaFX is also distributed as a single CSS file, it does not come \
-                with any fonts. However, it does support several utility classes demonstrated \
-                below that can be used to manipulate font properties. If you need a formatted \
-                text support have a look at [url=local://general.BBCodePage]BBCodeParser[/url].""",
-            true
+                        Because AtlantaFX is also distributed as a single CSS file, it does not come \
+                        with any fonts. However, it does support several utility classes demonstrated \
+                        below that can be used to manipulate font properties. If you need a formatted \
+                        text support have a look at [url=local://general.BBCodePage]BBCodeParser[/url].""",
+                true
         );
         addSection("Font Size", fontSizeExample());
         addSection("Font Weight", fontWeightExample());
@@ -81,10 +81,10 @@ public final class TypographyPage extends OutlinePage {
         }
 
         Map<String, Node> map = fontSizeGridPane.getChildren().stream()
-            .collect(Collectors.toMap(
-                n -> GridPane.getColumnIndex(n).toString() + GridPane.getRowIndex(n).toString(),
-                n -> n
-            ));
+                .collect(Collectors.toMap(
+                        n -> GridPane.getColumnIndex(n).toString() + GridPane.getRowIndex(n).toString(),
+                        n -> n
+                ));
         ((Label) map.get("10")).setText(String.format("=%.0fpx", getFontSize(map.get("00"))));
         ((Label) map.get("11")).setText(String.format("=%.0fpx", getFontSize(map.get("01"))));
         ((Label) map.get("12")).setText(String.format("=%.0fpx", getFontSize(map.get("02"))));
@@ -127,16 +127,16 @@ public final class TypographyPage extends OutlinePage {
         grid.setHgap(HGAP_20);
         grid.setVgap(VGAP_20);
         grid.addRow(0,
-            title1Text, createFontSizeLabel(),
-            captionText, createFontSizeLabel()
+                title1Text, createFontSizeLabel(),
+                captionText, createFontSizeLabel()
         );
         grid.addRow(1,
-            title2Text, createFontSizeLabel(),
-            defaultText, createFontSizeLabel()
+                title2Text, createFontSizeLabel(),
+                defaultText, createFontSizeLabel()
         );
         grid.addRow(2,
-            title3Text, createFontSizeLabel(),
-            smallText, createFontSizeLabel()
+                title3Text, createFontSizeLabel(),
+                smallText, createFontSizeLabel()
         );
         grid.addRow(3, title4Text, createFontSizeLabel());
         grid.setAlignment(Pos.BASELINE_LEFT);
@@ -173,23 +173,23 @@ public final class TypographyPage extends OutlinePage {
         lighterText.getStyleClass().addAll(Styles.TEXT_LIGHTER);
 
         var sample1 = new HBox(
-            HGAP_20, boldText, bolderText, normalText, lighterText
+                HGAP_20, boldText, bolderText, normalText, lighterText
         );
         sample1.setAlignment(Pos.BASELINE_LEFT);
 
         // ~
         var sample2 = new HBox(
-            HGAP_20,
-            new StyledText("900", "-fx-font-weight:900;"),
-            new StyledText("800", "-fx-font-weight:800;"),
-            new StyledText("700", "-fx-font-weight:700;"),
-            new StyledText("600", "-fx-font-weight:600;"),
-            new StyledText("500", "-fx-font-weight:500;"),
-            new StyledText("400", "-fx-font-weight:400;"),
-            new StyledText("300", "-fx-font-weight:300;"),
-            new StyledText("200", "-fx-font-weight:200;"),
-            new StyledText("100", "-fx-font-weight:100;"),
-            new Text("🡠 no difference")
+                HGAP_20,
+                new StyledText("900", "-fx-font-weight:900;"),
+                new StyledText("800", "-fx-font-weight:800;"),
+                new StyledText("700", "-fx-font-weight:700;"),
+                new StyledText("600", "-fx-font-weight:600;"),
+                new StyledText("500", "-fx-font-weight:500;"),
+                new StyledText("400", "-fx-font-weight:400;"),
+                new StyledText("300", "-fx-font-weight:300;"),
+                new StyledText("200", "-fx-font-weight:200;"),
+                new StyledText("100", "-fx-font-weight:100;"),
+                new Text("🡠 no difference")
         );
         sample2.setAlignment(Pos.BASELINE_LEFT);
 
@@ -198,17 +198,17 @@ public final class TypographyPage extends OutlinePage {
         // Workaround:
         // https://edencoding.com/resources/css_properties/fx-font-weight/
         var sample3 = new HBox(
-            HGAP_20,
-            new StyledText("900", "-fx-font-family:'Inter Black';"),
-            new StyledText("800", "-fx-font-family:'Inter Extra Bold';"),
-            new StyledText("700", "-fx-font-family:'Inter Bold';"),
-            new StyledText("600", "-fx-font-family:'Inter Semi Bold';"),
-            new StyledText("500", "-fx-font-family:'Inter Medium';"),
-            new StyledText("400", "-fx-font-family:'Inter Regular';"),
-            new StyledText("300", "-fx-font-family:'Inter Light';"),
-            new StyledText("200", "-fx-font-family:'Inter Extra Light';"),
-            new StyledText("100", "-fx-font-family:'Inter Thin';"),
-            new Text("🡠 workaround")
+                HGAP_20,
+                new StyledText("900", "-fx-font-family:'Inter Black';"),
+                new StyledText("800", "-fx-font-family:'Inter Extra Bold';"),
+                new StyledText("700", "-fx-font-family:'Inter Bold';"),
+                new StyledText("600", "-fx-font-family:'Inter Semi Bold';"),
+                new StyledText("500", "-fx-font-family:'Inter Medium';"),
+                new StyledText("400", "-fx-font-family:'Inter Regular';"),
+                new StyledText("300", "-fx-font-family:'Inter Light';"),
+                new StyledText("200", "-fx-font-family:'Inter Extra Light';"),
+                new StyledText("100", "-fx-font-family:'Inter Thin';"),
+                new Text("🡠 workaround")
         );
         sample3.setAlignment(Pos.BASELINE_LEFT);
         //snippet_2:end
@@ -217,8 +217,8 @@ public final class TypographyPage extends OutlinePage {
         box.setAlignment(Pos.CENTER_LEFT);
 
         var description = BBCodeParser.createFormattedText("""
-            JavaFX [color="-color-danger-fg"]only supports Bold or Regular[/color] font weight. \
-            See the source code for workaround."""
+                JavaFX [color="-color-danger-fg"]only supports Bold or Regular[/color] font weight. \
+                See the source code for workaround."""
         );
 
         var example = new ExampleBox(box, new Snippet(getClass(), 2), description);
@@ -231,28 +231,28 @@ public final class TypographyPage extends OutlinePage {
         //snippet_3:start
         var italicText = new Text("Italic");
         italicText.getStyleClass().addAll(
-            Styles.TEXT, Styles.TEXT_ITALIC
+                Styles.TEXT, Styles.TEXT_ITALIC
         );
 
         var obliqueText = new Text("Oblique");
         obliqueText.getStyleClass().addAll(
-            Styles.TEXT, Styles.TEXT_OBLIQUE
+                Styles.TEXT, Styles.TEXT_OBLIQUE
         );
 
         var underlinedText = new Text("Underlined");
         underlinedText.getStyleClass().addAll(
-            Styles.TEXT, Styles.TEXT_UNDERLINED
+                Styles.TEXT, Styles.TEXT_UNDERLINED
         );
 
         var strikethroughText = new Text("Strikethrough");
         strikethroughText.getStyleClass().addAll(
-            Styles.TEXT, Styles.TEXT_STRIKETHROUGH
+                Styles.TEXT, Styles.TEXT_STRIKETHROUGH
         );
         //snippet_3:end
 
         var box = new FlowPane(
-            HGAP_20, VGAP_20,
-            italicText, obliqueText, underlinedText, strikethroughText
+                HGAP_20, VGAP_20,
+                italicText, obliqueText, underlinedText, strikethroughText
         );
         box.setAlignment(Pos.BASELINE_LEFT);
 
@@ -284,8 +284,8 @@ public final class TypographyPage extends OutlinePage {
         //snippet_4:end
 
         var box = new FlowPane(
-            HGAP_20, VGAP_20,
-            accentText, successText, warningText, dangerText, mutedText, subtleText
+                HGAP_20, VGAP_20,
+                accentText, successText, warningText, dangerText, mutedText, subtleText
         );
         box.setAlignment(Pos.BASELINE_LEFT);
 
@@ -314,15 +314,15 @@ public final class TypographyPage extends OutlinePage {
         //snippet_5:end
 
         var box = new FlowPane(
-            HGAP_20, VGAP_20,
-            linkNormal, linkVisited, linkBroken, linkDisabled
+                HGAP_20, VGAP_20,
+                linkNormal, linkVisited, linkBroken, linkDisabled
         );
         box.setAlignment(Pos.BASELINE_LEFT);
 
         var description = BBCodeParser.createFormattedText("""
-            An HTML like label which can be a graphic and/or text which responds to \
-            rollovers and clicks. When a hyperlink is clicked/pressed [code]#isVisited[/code] \
-            becomes "true".  A Hyperlink behaves just like a [i]Button[/i]."""
+                An HTML like label which can be a graphic and/or text which responds to \
+                rollovers and clicks. When a hyperlink is clicked/pressed [code]#isVisited[/code] \
+                becomes "true".  A Hyperlink behaves just like a [i]Button[/i]."""
         );
 
         var example = new ExampleBox(box, new Snippet(getClass(), 5), description);
@@ -355,23 +355,23 @@ public final class TypographyPage extends OutlinePage {
         //snippet_6:end
 
         var box = new FlowPane(
-            20, 20,
-            defaultLabel,
-            accentLabel,
-            successLabel,
-            warningLabel,
-            dangerLabel,
-            mutedLabel,
-            subtleLabel
+                20, 20,
+                defaultLabel,
+                accentLabel,
+                successLabel,
+                warningLabel,
+                dangerLabel,
+                mutedLabel,
+                subtleLabel
         );
 
         var description = BBCodeParser.createFormattedText("""
-            Label is a non-editable text control. A [i]Label[/i] is useful for displaying text \
-            that is required to fit within a specific space, and thus may need to use an ellipsis \
-            or truncation to size the string to fit.
-                        
-            You can use pseudo-classes to set the [i]Label[/i] color. Note that icon \
-            inherits label color by default."""
+                Label is a non-editable text control. A [i]Label[/i] is useful for displaying text \
+                that is required to fit within a specific space, and thus may need to use an ellipsis \
+                or truncation to size the string to fit.
+                            
+                You can use pseudo-classes to set the [i]Label[/i] color. Note that icon \
+                inherits label color by default."""
         );
 
         var example = new ExampleBox(box, new Snippet(getClass(), 6), description);

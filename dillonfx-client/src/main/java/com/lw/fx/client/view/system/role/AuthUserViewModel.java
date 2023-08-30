@@ -106,7 +106,7 @@ public class AuthUserViewModel implements ViewModel {
         map.put("roleId", getRoleId());
         map.put("userName", userName.getValue());
         map.put("phonenumber", phone.getValue());
-        map.put("pageNum", pageNum.getValue()+1);
+        map.put("pageNum", pageNum.getValue() + 1);
         map.put("pageSize", pageSize.getValue());
         ProcessChain.create().addSupplierInExecutor(() -> {
                     TableDataInfo tableDataInfo = Request.connector(SysRoleFeign.class).allocatedList(map);

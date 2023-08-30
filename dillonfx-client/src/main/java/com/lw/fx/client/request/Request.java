@@ -40,7 +40,7 @@ public class Request {
         final String commandConfigKey = connectorClass.getSimpleName() + readTimeOut;
 
         return (T) CONNECTORS.computeIfAbsent(commandConfigKey, k -> {
-            return Feign.builder()  .queryMapEncoder(new BeanQueryMapEncoder())
+            return Feign.builder().queryMapEncoder(new BeanQueryMapEncoder())
                     .client(new OkHttpClient(createOkHttpClient()))
                     .decoder(getGsonDecoder())
                     .encoder(getGsonEncoder())
@@ -59,8 +59,6 @@ public class Request {
         return connector(connectorClass, READ_TIME_OUT_MILLIS);
 
     }
-
-
 
 
     private static okhttp3.OkHttpClient createOkHttpClient() {

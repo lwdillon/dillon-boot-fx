@@ -20,12 +20,12 @@ final class ColorScale extends FlowPane {
         super();
 
         blocks = Arrays.asList(
-            ColorScaleBlock.forColorPrefix(bgBaseColor, "-color-base-", 10),
-            ColorScaleBlock.forColorPrefix(bgBaseColor, "-color-accent-", 10),
-            ColorScaleBlock.forColorPrefix(bgBaseColor, "-color-success-", 10),
-            ColorScaleBlock.forColorPrefix(bgBaseColor, "-color-warning-", 10),
-            ColorScaleBlock.forColorPrefix(bgBaseColor, "-color-danger-", 10),
-            ColorScaleBlock.forColorName(bgBaseColor, "-color-dark", "-color-light")
+                ColorScaleBlock.forColorPrefix(bgBaseColor, "-color-base-", 10),
+                ColorScaleBlock.forColorPrefix(bgBaseColor, "-color-accent-", 10),
+                ColorScaleBlock.forColorPrefix(bgBaseColor, "-color-success-", 10),
+                ColorScaleBlock.forColorPrefix(bgBaseColor, "-color-warning-", 10),
+                ColorScaleBlock.forColorPrefix(bgBaseColor, "-color-danger-", 10),
+                ColorScaleBlock.forColorName(bgBaseColor, "-color-dark", "-color-light")
         );
 
         setId("color-scale");

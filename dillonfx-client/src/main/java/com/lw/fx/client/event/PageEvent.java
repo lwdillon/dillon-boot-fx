@@ -24,7 +24,7 @@ public final class PageEvent extends Event {
     @Override
     public String toString() {
         return "ActionEvent{"
-            + "action=" + action
-            + "} " + super.toString();
+                + "action=" + action
+                + "} " + super.toString();
     }
 }

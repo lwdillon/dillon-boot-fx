@@ -7,6 +7,7 @@ import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.lw.fx.client.domain.SysDictData;
 import com.lw.fx.client.domain.SysNotice;
+import com.lw.fx.client.util.NodeUtils;
 import com.lw.fx.client.view.control.PagingControl;
 import com.lw.fx.client.view.control.WFXGenericDialog;
 import de.saxsys.mvvmfx.*;
@@ -94,9 +95,8 @@ public class NoticeView implements FxmlView<NoticeViewModel>, Initializable {
 
     private RingProgressIndicator loading;
 
-   private  WFXGenericDialog dialog;
+    private WFXGenericDialog dialog;
 
-     
 
     private PagingControl pagingControl;
 
@@ -183,13 +183,13 @@ public class NoticeView implements FxmlView<NoticeViewModel>, Initializable {
                         setText(null);
                         setGraphic(null);
                     } else {
-                        Label state = new Label("",new FontIcon(Material2AL.LABEL));
+                        Label state = new Label("", new FontIcon(Material2AL.LABEL));
                         if (item) {
                             state.setText("正常");
                             state.getStyleClass().addAll(SUCCESS);
                         } else {
                             state.setText("关闭");
-                            state.getStyleClass().addAll( DANGER);
+                            state.getStyleClass().addAll(DANGER);
                         }
                         HBox box = new HBox(state);
                         box.setPadding(new Insets(7, 7, 7, 7));
@@ -209,7 +209,7 @@ public class NoticeView implements FxmlView<NoticeViewModel>, Initializable {
                         setText(null);
                         setGraphic(null);
                     } else {
-                        Label state = new Label("",new FontIcon(Material2AL.LABEL));
+                        Label state = new Label("", new FontIcon(Material2AL.LABEL));
                         SysDictData sysDictData = noticeViewModel.getSysDictDataMap().get(item);
                         if (sysDictData != null) {
                             state.setText(sysDictData.getDictLabel());
@@ -282,7 +282,7 @@ public class NoticeView implements FxmlView<NoticeViewModel>, Initializable {
         tableView.setItems(noticeViewModel.getSysNotices());
         tableView.getSelectionModel().setCellSelectionEnabled(false);
         for (TableColumn<?, ?> c : tableView.getColumns()) {
-            addStyleClass(c, ALIGN_CENTER, ALIGN_LEFT, ALIGN_RIGHT);
+            NodeUtils.addStyleClass(c, ALIGN_CENTER, ALIGN_LEFT, ALIGN_RIGHT);
         }
 
 
@@ -292,11 +292,10 @@ public class NoticeView implements FxmlView<NoticeViewModel>, Initializable {
 
     public WFXGenericDialog getDialogContent() {
         if (dialog == null) {
-            dialog =new  WFXGenericDialog();
+            dialog = new WFXGenericDialog();
         }
         return dialog;
     }
-
 
 
     private void showDictDataInfoDialog(Long noticeTypeId, SysDictData sysDictData) {
@@ -315,12 +314,12 @@ public class NoticeView implements FxmlView<NoticeViewModel>, Initializable {
                         }
                     }).onException(e -> e.printStackTrace()).run();
         }));
-        
-        
+
+
         getDialogContent().setHeaderIcon(FontIcon.of(Feather.INFO));
         getDialogContent().setHeaderText(ObjectUtil.isNotEmpty(noticeTypeId) ? "编辑公告" : "添加公告");
         getDialogContent().setContent(load.getView());
-         getDialogContent().show(rootPane.getScene());
+        getDialogContent().show(rootPane.getScene());
     }
 
 
@@ -337,23 +336,13 @@ public class NoticeView implements FxmlView<NoticeViewModel>, Initializable {
                 noticeViewModel.updateData();
             }).onException(e -> e.printStackTrace()).run();
         }));
-        
-        
+
 
         getDialogContent().setHeaderIcon(FontIcon.of(Feather.INFO));
         getDialogContent().setHeaderText("系统揭示");
         getDialogContent().setContent(new Label("是否确认删除编号为" + noticeIds + "的公告吗？"));
-         getDialogContent().show(rootPane.getScene());
+        getDialogContent().show(rootPane.getScene());
     }
 
 
-    private static void addStyleClass(TableColumn<?, ?> c, String styleClass, String... excludes) {
-        Objects.requireNonNull(c);
-        Objects.requireNonNull(styleClass);
-
-        if (excludes != null && excludes.length > 0) {
-            c.getStyleClass().removeAll(excludes);
-        }
-        c.getStyleClass().add(styleClass);
-    }
 }

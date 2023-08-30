@@ -34,8 +34,8 @@ public abstract class Event {
     @Override
     public String toString() {
         return "Event{"
-            + "id=" + id
-            + '}';
+                + "id=" + id
+                + '}';
     }
 
     public static <E extends Event> void publish(E event) {

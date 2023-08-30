@@ -68,8 +68,6 @@
   }
 
 
-
-
   .modal-dialog {
     -fx-background-color: transparent;
     -fx-border-width: 1;
@@ -253,6 +251,17 @@
     -fx-alignment: CENTER;
     -fx-padding: 0 0.5em 0 0.5em;
   }
+
+  .default-color0.chart-bar{
+    -fx-bar-fill: #3B82F6
+  }
+  .default-color1.chart-bar{
+    -fx-bar-fill: #EAB308
+  }
+  .default-color2.chart-bar{
+    -fx-bar-fill: #22c55e
+  }
+
 
 
 }

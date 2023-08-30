@@ -16,9 +16,9 @@ import java.util.Map;
  * @author ruoyi
  */
 public interface SysOperlogFeign extends FeignAPI {
-//    @RequestLine("GET /system/operlog/list")
+    //    @RequestLine("GET /system/operlog/list")
     @RequestLine("GET /monitor/operlog/list")
-    TableDataInfo list(@QueryMap Map<String,Object> map);
+    TableDataInfo list(@QueryMap Map<String, Object> map);
 
     @RequestLine("POST /system/operlog/export")
     void export(SysOperLog operLog);

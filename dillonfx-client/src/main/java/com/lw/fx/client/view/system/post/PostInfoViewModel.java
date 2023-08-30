@@ -22,7 +22,6 @@ public class PostInfoViewModel implements ViewModel {
     private ModelWrapper<SysPost> sysPostWrapper = new ModelWrapper<>();
 
 
-
     public PostInfoViewModel() {
         setSysPost(new SysPost());
 
@@ -60,9 +59,6 @@ public class PostInfoViewModel implements ViewModel {
     }
 
 
-
-
-
     /**
      * 保存
      *
@@ -85,8 +81,6 @@ public class PostInfoViewModel implements ViewModel {
     }
 
 
-
-
     public void updateSysPostInfo(Long sysPostId) {
 
         //add
@@ -105,9 +99,6 @@ public class PostInfoViewModel implements ViewModel {
         SysPost sysPost = objects.get(AjaxResult.DATA_TAG, SysPost.class);
         return sysPost;
     }
-
-
-
 
 
 }

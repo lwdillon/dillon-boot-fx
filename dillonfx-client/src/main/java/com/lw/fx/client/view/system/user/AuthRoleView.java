@@ -2,6 +2,7 @@ package com.lw.fx.client.view.system.user;
 
 import cn.hutool.core.date.DateUtil;
 import com.lw.fx.client.domain.SysRole;
+import com.lw.fx.client.util.NodeUtils;
 import de.saxsys.mvvmfx.FxmlView;
 import de.saxsys.mvvmfx.InjectViewModel;
 import javafx.fxml.FXML;
@@ -13,7 +14,6 @@ import javafx.util.Callback;
 
 import java.net.URL;
 import java.util.Date;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 import static atlantafx.base.theme.Tweaks.*;
@@ -73,7 +73,7 @@ public class AuthRoleView implements FxmlView<AuthRoleViewModel>, Initializable 
         createTimeCol.setCellFactory(new Callback<TableColumn<SysRole, Date>, TableCell<SysRole, Date>>() {
             @Override
             public TableCell<SysRole, Date> call(TableColumn<SysRole, Date> param) {
-                return new TableCell<>(){
+                return new TableCell<>() {
                     @Override
                     protected void updateItem(Date item, boolean empty) {
                         super.updateItem(item, empty);
@@ -93,18 +93,9 @@ public class AuthRoleView implements FxmlView<AuthRoleViewModel>, Initializable 
 
         tableView.setItems(authRoleViewModel.getRoles());
         for (TableColumn<?, ?> c : tableView.getColumns()) {
-            addStyleClass(c, ALIGN_CENTER, ALIGN_LEFT, ALIGN_RIGHT);
+            NodeUtils.addStyleClass(c, ALIGN_CENTER, ALIGN_LEFT, ALIGN_RIGHT);
         }
     }
 
-    private static void addStyleClass(TableColumn<?, ?> c, String styleClass, String... excludes) {
-        Objects.requireNonNull(c);
-        Objects.requireNonNull(styleClass);
-
-        if (excludes != null && excludes.length > 0) {
-            c.getStyleClass().removeAll(excludes);
-        }
-        c.getStyleClass().add(styleClass);
-    }
 
 }

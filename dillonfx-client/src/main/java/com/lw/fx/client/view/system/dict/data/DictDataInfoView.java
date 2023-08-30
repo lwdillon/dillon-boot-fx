@@ -47,7 +47,6 @@ public class DictDataInfoView implements FxmlView<DictDataInfoViewModel>, Initia
     private TextArea remarksTextArea;
 
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -69,7 +68,7 @@ public class DictDataInfoView implements FxmlView<DictDataInfoViewModel>, Initia
         initListeners();
     }
 
-    private void initListeners(){
+    private void initListeners() {
         dictDataInfoViewModel.dictSortProperty().addListener((observable, oldValue, newValue) -> {
             dictSortSortSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, Integer.MAX_VALUE, newValue.intValue()));
         });
@@ -90,7 +89,6 @@ public class DictDataInfoView implements FxmlView<DictDataInfoViewModel>, Initia
 
 
     }
-
 
 
 }

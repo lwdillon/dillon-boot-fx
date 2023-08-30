@@ -215,7 +215,7 @@ public class MenuDialogViewModel implements ViewModel, SceneLifecycle {
             result = Request.connector(SysMenuFeign.class).add(wrapper.get());
         }
 
-        return ObjectUtil.equals(result.get(AjaxResult.CODE_TAG).getAsString(),"200");
+        return ObjectUtil.equals(result.get(AjaxResult.CODE_TAG).getAsString(), "200");
     }
 
     /**

@@ -5,7 +5,6 @@ import animatefx.animation.AnimationFX;
 import animatefx.animation.FadeIn;
 import animatefx.animation.FadeOut;
 import animatefx.util.ParallelAnimationFX;
-import atlantafx.base.theme.Styles;
 import atlantafx.base.theme.Tweaks;
 import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONObject;
@@ -76,7 +75,7 @@ public class SideMenu extends StackPane {
                             String iconStr = item.getJSONObject("meta").getStr("icon");
                             label.setMaxWidth(Double.MAX_VALUE);
                             FontIcon icon = FontIcon.of(Feather.CHEVRON_DOWN);
-                            label.setGraphic(FontIcon.of(WIcon.findByDescription("lw-" + iconStr),24, Color.CYAN));
+                            label.setGraphic(FontIcon.of(WIcon.findByDescription("lw-" + iconStr), 24, Color.CYAN));
                             label.setGraphicTextGap(10);
                             HBox box = new HBox(label, icon);
                             HBox.setHgrow(label, Priority.ALWAYS);
@@ -119,7 +118,7 @@ public class SideMenu extends StackPane {
             String iconStr = obj.getJSONObject("meta").getStr("icon");
             MenuButton menuButton = new MenuButton();
             menuButton.setPopupSide(Side.RIGHT);
-            menuButton.setGraphic(FontIcon.of(WIcon.findByDescription("lw-" + iconStr),32));
+            menuButton.setGraphic(FontIcon.of(WIcon.findByDescription("lw-" + iconStr), 32));
             menuButton.getStyleClass().addAll(FLAT, Tweaks.NO_ARROW);
             menuButton.setId("side-menu-button");
 
@@ -170,7 +169,7 @@ public class SideMenu extends StackPane {
                 String iconStr = ((JSONObject) obj).getJSONObject("meta").getStr("icon");
                 if (childObj != null) {
                     var child = new Menu(text);
-                    child.setGraphic(FontIcon.of(WIcon.findByDescription("lw-" + iconStr),24));
+                    child.setGraphic(FontIcon.of(WIcon.findByDescription("lw-" + iconStr), 24));
                     generateMenu2(child, childObj);
 
                     Platform.runLater(() -> {
@@ -179,7 +178,7 @@ public class SideMenu extends StackPane {
                     });
                 } else {
                     var child = new MenuItem(text);
-                    child.setGraphic(FontIcon.of(WIcon.findByDescription("lw-" + iconStr),32));
+                    child.setGraphic(FontIcon.of(WIcon.findByDescription("lw-" + iconStr), 32));
                     child.setOnAction(event -> mainViewModel.addTab((JSONObject) obj));
                     Platform.runLater(() -> {
                         parent.getItems().add(child);
@@ -200,7 +199,7 @@ public class SideMenu extends StackPane {
                 var childObj = ((JSONObject) obj).getJSONArray("children");
                 if (childObj != null) {
                     var child = new Menu(text);
-                    child.setGraphic(FontIcon.of(WIcon.findByDescription("lw-" + iconStr),24));
+                    child.setGraphic(FontIcon.of(WIcon.findByDescription("lw-" + iconStr), 24));
                     generateMenu2(child, childObj);
 
                     Platform.runLater(() -> {

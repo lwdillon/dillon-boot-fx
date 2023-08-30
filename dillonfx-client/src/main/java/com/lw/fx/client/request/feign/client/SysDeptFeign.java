@@ -21,7 +21,7 @@ public interface SysDeptFeign extends FeignAPI {
      * 获取部门列表
      */
     @RequestLine("GET /system/dept/list")
-    JsonObject list(@QueryMap Map<String,Object> map);
+    JsonObject list(@QueryMap Map<String, Object> map);
 
     /**
      * 查询部门列表（排除节点）

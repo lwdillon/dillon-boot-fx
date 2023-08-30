@@ -56,6 +56,7 @@ public class UserInfoViewModel implements ViewModel {
     public ObjectProperty createTimeProperty() {
         return wrapper.field("createTime", SysUser::getCreateTime, SysUser::setCreateTime, null);
     }
+
     public ObjectProperty<SysDept> deptProperty() {
         return wrapper.field("dept", SysUser::getDept, SysUser::setDept, null);
     }
@@ -78,7 +79,7 @@ public class UserInfoViewModel implements ViewModel {
         SysUser sysUser = BeanUtil.toBeanIgnoreCase(map, SysUser.class, true);
         Platform.runLater(() -> {
             setPerson(sysUser);
-            roles.setValue(ajaxResult.get("roles")+"");
+            roles.setValue(ajaxResult.get("roles") + "");
         });
 
     }

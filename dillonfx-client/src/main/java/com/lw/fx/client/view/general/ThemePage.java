@@ -3,8 +3,6 @@
 package com.lw.fx.client.view.general;
 
 import atlantafx.base.theme.Styles;
-import atlantafx.base.util.BBCodeParser;
-import com.lw.fx.client.Resources;
 import com.lw.fx.client.event.DefaultEventBus;
 import com.lw.fx.client.event.ThemeEvent;
 import com.lw.fx.client.theme.SamplerTheme;
@@ -14,8 +12,6 @@ import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -84,14 +80,13 @@ public final class ThemePage extends OutlinePage {
         });
 
 
-
         colorPalette = new ColorPalette(colorBlock -> {
             ContrastCheckerDialog dialog = contrastCheckerDialog.get();
             dialog.getContent().setValues(
-                colorBlock.getFgColorName(),
-                colorBlock.getFgColor(),
-                colorBlock.getBgColorName(),
-                colorBlock.getBgColor()
+                    colorBlock.getFgColorName(),
+                    colorBlock.getFgColor(),
+                    colorBlock.getBgColorName(),
+                    colorBlock.getBgColor()
             );
             dialog.show(getScene());
         }, bgBaseColor);
@@ -113,10 +108,10 @@ public final class ThemePage extends OutlinePage {
         // mandatory base bg for flatten color calc
         Styles.appendStyle(this, "-fx-background-color", "-color-bg-default");
         backgroundProperty().addListener(
-            (obs, old, val) -> bgBaseColor.set(val != null && !val.getFills().isEmpty()
-                ? (Color) val.getFills().get(0).getFill()
-                : Color.WHITE
-            ));
+                (obs, old, val) -> bgBaseColor.set(val != null && !val.getFills().isEmpty()
+                        ? (Color) val.getFills().get(0).getFill()
+                        : Color.WHITE
+                ));
 
         addPageHeader();
         addNode(createThemeManagementSection());
@@ -158,23 +153,22 @@ public final class ThemePage extends OutlinePage {
     }
 
 
-
     private Node createColorPaletteSection() {
         var description = createFormattedText("""
-            AtlantaFX follows [url=https://primer.style/design/foundations/color]GitHub \
-            Primer interface guidelines[/url] and color system.
-                        
-            Color contrast between text and its background must meet \
-            [url=https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html]required WCAG standards[/url]:
-                        
-            [ul]
-            [li]4.5:1 for normal text[/li]
-            [li]3:1 for large text (>24px)[/li]
-            [li]3:1 for UI elements and graphics[/li]
-            [li]no contrast requirement for decorative and disabled elements[/li][/ul]
-                        
-            Click on any color block to observe and modify color combination via built-in contrast checker.
-            """, true
+                AtlantaFX follows [url=https://primer.style/design/foundations/color]GitHub \
+                Primer interface guidelines[/url] and color system.
+                            
+                Color contrast between text and its background must meet \
+                [url=https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html]required WCAG standards[/url]:
+                            
+                [ul]
+                [li]4.5:1 for normal text[/li]
+                [li]3:1 for large text (>24px)[/li]
+                [li]3:1 for UI elements and graphics[/li]
+                [li]no contrast requirement for decorative and disabled elements[/li][/ul]
+                            
+                Click on any color block to observe and modify color combination via built-in contrast checker.
+                """, true
         );
 
         return new VBox(VGAP_10, description, colorPalette);
@@ -182,9 +176,9 @@ public final class ThemePage extends OutlinePage {
 
     private Node createColorScaleSection() {
         var description = createFormattedText("""
-            Avoid referencing scale variables directly when building UI that needs \
-            to adapt to different color themes. Instead, use the functional variables \
-            listed above.""", false
+                Avoid referencing scale variables directly when building UI that needs \
+                to adapt to different color themes. Instead, use the functional variables \
+                listed above.""", false
         );
 
         return new VBox(VGAP_10, description, colorScale);
@@ -199,9 +193,9 @@ public final class ThemePage extends OutlinePage {
         // set initial value
         var currentTheme = Objects.requireNonNullElse(TM.getTheme(), TM.getDefaultTheme());
         themes.stream()
-            .filter(t -> Objects.equals(currentTheme.getName(), t.getName()))
-            .findFirst()
-            .ifPresent(t -> choiceBox.getSelectionModel().select(t));
+                .filter(t -> Objects.equals(currentTheme.getName(), t.getName()))
+                .findFirst()
+                .ifPresent(t -> choiceBox.getSelectionModel().select(t));
 
         // must be after setting the initial value
         choiceBox.getSelectionModel().selectedItemProperty().addListener((obs, old, val) -> {
@@ -220,9 +214,9 @@ public final class ThemePage extends OutlinePage {
             @Override
             public SamplerTheme fromString(String themeName) {
                 return TM.getRepository().getAll().stream()
-                    .filter(t -> Objects.equals(themeName, t.getName()))
-                    .findFirst()
-                    .orElse(null);
+                        .filter(t -> Objects.equals(themeName, t.getName()))
+                        .findFirst()
+                        .orElse(null);
             }
         });
 
@@ -250,9 +244,9 @@ public final class ThemePage extends OutlinePage {
 
     private Spinner<Integer> createFontSizeSpinner() {
         var spinner = new Spinner<Integer>(
-            ThemeManager.SUPPORTED_FONT_SIZE.get(0),
-            ThemeManager.SUPPORTED_FONT_SIZE.get(ThemeManager.SUPPORTED_FONT_SIZE.size() - 1),
-            TM.getFontSize()
+                ThemeManager.SUPPORTED_FONT_SIZE.get(0),
+                ThemeManager.SUPPORTED_FONT_SIZE.get(ThemeManager.SUPPORTED_FONT_SIZE.size() - 1),
+                TM.getFontSize()
         );
         spinner.setPrefWidth(100);
 
@@ -275,9 +269,9 @@ public final class ThemePage extends OutlinePage {
     private void selectCurrentTheme() {
         if (TM.getTheme() != null) {
             themeSelector.getItems().stream()
-                .filter(t -> Objects.equals(TM.getTheme().getName(), t.getName()))
-                .findFirst()
-                .ifPresent(t -> themeSelector.getSelectionModel().select(t));
+                    .filter(t -> Objects.equals(TM.getTheme().getName(), t.getName()))
+                    .findFirst()
+                    .ifPresent(t -> themeSelector.getSelectionModel().select(t));
         }
     }
 }

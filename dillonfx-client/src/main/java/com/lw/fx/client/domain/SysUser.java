@@ -11,7 +11,7 @@ import java.util.List;
 public class SysUser extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
-    private  boolean select = false;
+    private boolean select = false;
     /**
      * 用户ID
      */

@@ -10,6 +10,7 @@ import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.extra.pinyin.PinyinUtil;
 import com.lw.fx.client.domain.SysUser;
 import com.lw.fx.client.domain.vo.TreeSelect;
+import com.lw.fx.client.util.NodeUtils;
 import com.lw.fx.client.view.control.FilterableTreeItem;
 import com.lw.fx.client.view.control.PagingControl;
 import com.lw.fx.client.view.control.TreeItemPredicate;
@@ -293,7 +294,7 @@ public class UserView implements FxmlView<UserViewModel>, Initializable {
         tableView.setItems(viewModel.getUserList());
         tableView.getSelectionModel().setCellSelectionEnabled(false);
         for (TableColumn<?, ?> c : tableView.getColumns()) {
-            addStyleClass(c, ALIGN_CENTER, ALIGN_LEFT, ALIGN_RIGHT);
+            NodeUtils.addStyleClass(c, ALIGN_CENTER, ALIGN_LEFT, ALIGN_RIGHT);
         }
 
 
@@ -500,13 +501,5 @@ public class UserView implements FxmlView<UserViewModel>, Initializable {
         }).addRunnableInPlatformThread(() -> treeView.setRoot(createDeptTreeRoot())).withFinal(() -> loading.setVisible(false)).onException(e -> e.printStackTrace()).run();
     }
 
-    private static void addStyleClass(TableColumn<?, ?> c, String styleClass, String... excludes) {
-        Objects.requireNonNull(c);
-        Objects.requireNonNull(styleClass);
 
-        if (excludes != null && excludes.length > 0) {
-            c.getStyleClass().removeAll(excludes);
-        }
-        c.getStyleClass().add(styleClass);
-    }
 }

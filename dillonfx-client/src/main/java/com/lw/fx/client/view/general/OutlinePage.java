@@ -61,8 +61,8 @@ public abstract class OutlinePage extends StackPane implements Page {
 
         // scroll spy
         scrollPane.vvalueProperty().addListener((obs, old, val) ->
-            // we need a little gap between changing vValue and fetching header bounds
-            Platform.runLater(() -> outline.select(getFirstVisibleHeader()))
+                // we need a little gap between changing vValue and fetching header bounds
+                Platform.runLater(() -> outline.select(getFirstVisibleHeader()))
         );
 
         var pageBody = new StackPane();

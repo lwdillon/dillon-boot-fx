@@ -1,82 +1,78 @@
 package com.lw.fx.client.domain;
 
 
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
-
 /**
  * 通知公告表 sys_notice
- * 
+ *
  * @author ruoyi
  */
-public class SysNotice extends BaseEntity
-{
+public class SysNotice extends BaseEntity {
     private static final long serialVersionUID = 1L;
-    private  boolean select = false;
+    private boolean select = false;
 
 
-    /** 公告ID */
+    /**
+     * 公告ID
+     */
     private Long noticeId;
 
-    /** 公告标题 */
+    /**
+     * 公告标题
+     */
     private String noticeTitle;
 
-    /** 公告类型（1通知 2公告） */
+    /**
+     * 公告类型（1通知 2公告）
+     */
     private String noticeType;
 
-    /** 公告内容 */
+    /**
+     * 公告内容
+     */
     private String noticeContent;
 
-    /** 公告状态（0正常 1关闭） */
+    /**
+     * 公告状态（0正常 1关闭）
+     */
     private String status;
 
-    public Long getNoticeId()
-    {
+    public Long getNoticeId() {
         return noticeId;
     }
 
-    public void setNoticeId(Long noticeId)
-    {
+    public void setNoticeId(Long noticeId) {
         this.noticeId = noticeId;
     }
 
-    public void setNoticeTitle(String noticeTitle)
-    {
+    public void setNoticeTitle(String noticeTitle) {
         this.noticeTitle = noticeTitle;
     }
 
-    public String getNoticeTitle()
-    {
+    public String getNoticeTitle() {
         return noticeTitle;
     }
 
-    public void setNoticeType(String noticeType)
-    {
+    public void setNoticeType(String noticeType) {
         this.noticeType = noticeType;
     }
 
-    public String getNoticeType()
-    {
+    public String getNoticeType() {
         return noticeType;
     }
 
-    public void setNoticeContent(String noticeContent)
-    {
+    public void setNoticeContent(String noticeContent) {
         this.noticeContent = noticeContent;
     }
 
-    public String getNoticeContent()
-    {
+    public String getNoticeContent() {
         return noticeContent;
     }
 
-    public void setStatus(String status)
-    {
+    public void setStatus(String status) {
         this.status = status;
     }
 
-    public String getStatus()
-    {
+    public String getStatus() {
         return status;
     }
 
