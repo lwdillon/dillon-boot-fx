@@ -1,0 +1,829 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Arc?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Path?>
+<?import javafx.scene.shape.Rectangle?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<StackPane prefHeight="871.0" prefWidth="1573.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lw.fx.client.view.dashboard.CountryDashboardView">
+   <children>
+      <GridPane hgap="20.0" styleClass="tab-center-pane" vgap="20.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.0" minWidth="250.0" prefWidth="250.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="384.0" minWidth="384.0" prefWidth="384.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.0" minWidth="250.0" prefWidth="250.0" />
+          <ColumnConstraints hgrow="SOMETIMES" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="213.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="208.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="100.0" prefHeight="100.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <VBox spacing="10.0" styleClass="sample" GridPane.rowSpan="3">
+               <children>
+                  <Label maxWidth="1.7976931348623157E308" text="Total earning" />
+                  <HBox alignment="CENTER_LEFT" spacing="10.0">
+                     <children>
+                        <Label styleClass="title-1" text="\$12,875" />
+                        <Label text="10%">
+                           <graphic>
+                              <FontIcon iconLiteral="fth-arrow-up" />
+                           </graphic>
+                           <styleClass>
+                              <String fx:value="title-3" />
+                              <String fx:value="success" />
+                           </styleClass>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Label styleClass="text-muted" text="Compared to $21,490 last year" />
+                  <HBox alignment="BOTTOM_CENTER" maxHeight="1.7976931348623157E308" minHeight="170.0" prefHeight="170.0" prefWidth="294.0" spacing="10.0">
+                     <children>
+                        <VBox alignment="BOTTOM_CENTER" spacing="10.0" style="-fx-background-color: #05050f; -fx-background-radius: 8;">
+                           <children>
+                              <HBox maxWidth="8.0" minWidth="8.0" VBox.vgrow="ALWAYS" />
+                              <HBox maxWidth="8.0" minHeight="40.0" minWidth="8.0" style="-fx-background-color: #01f1e3; -fx-background-radius: 8;" VBox.vgrow="ALWAYS" />
+                              <HBox maxWidth="8.0" minHeight="90.0" minWidth="8.0" style="-fx-background-color: #991bFA; -fx-background-radius: 8;" VBox.vgrow="ALWAYS" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="BOTTOM_CENTER" spacing="10.0" style="-fx-background-color: #05050f; -fx-background-radius: 8;">
+                           <children>
+                              <HBox maxWidth="8.0" minWidth="8.0" VBox.vgrow="ALWAYS" />
+                              <HBox maxWidth="8.0" minHeight="40.0" minWidth="8.0" style="-fx-background-color: #01f1e3; -fx-background-radius: 8;" VBox.vgrow="ALWAYS" />
+                              <HBox maxWidth="8.0" minHeight="70.0" minWidth="8.0" style="-fx-background-color: #991bFA; -fx-background-radius: 8;" VBox.vgrow="ALWAYS" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="BOTTOM_CENTER" spacing="10.0" style="-fx-background-color: #05050f; -fx-background-radius: 8;">
+                           <children>
+                              <HBox maxWidth="8.0" minWidth="8.0" VBox.vgrow="ALWAYS" />
+                              <HBox maxWidth="8.0" minHeight="50.0" minWidth="8.0" style="-fx-background-color: #01f1e3; -fx-background-radius: 8;" VBox.vgrow="ALWAYS" />
+                              <HBox maxWidth="8.0" minHeight="50.0" minWidth="8.0" style="-fx-background-color: #991bFA; -fx-background-radius: 8;" VBox.vgrow="ALWAYS" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="BOTTOM_CENTER" spacing="10.0" style="-fx-background-color: #05050f; -fx-background-radius: 8;">
+                           <children>
+                              <HBox maxWidth="8.0" minWidth="8.0" VBox.vgrow="ALWAYS" />
+                              <HBox maxWidth="8.0" minHeight="20.0" minWidth="8.0" style="-fx-background-color: #01f1e3; -fx-background-radius: 8;" VBox.vgrow="ALWAYS" />
+                              <HBox maxWidth="8.0" minHeight="60.0" minWidth="8.0" style="-fx-background-color: #991bFA; -fx-background-radius: 8;" VBox.vgrow="ALWAYS" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="BOTTOM_CENTER" spacing="10.0" style="-fx-background-color: #05050f; -fx-background-radius: 8;">
+                           <children>
+                              <HBox maxWidth="8.0" minWidth="8.0" VBox.vgrow="ALWAYS" />
+                              <HBox maxWidth="8.0" minHeight="40.0" minWidth="8.0" style="-fx-background-color: #01f1e3; -fx-background-radius: 8;" VBox.vgrow="ALWAYS" />
+                              <HBox maxWidth="8.0" minHeight="89.0" minWidth="8.0" style="-fx-background-color: #991bFA; -fx-background-radius: 8;" VBox.vgrow="ALWAYS" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="BOTTOM_CENTER" spacing="10.0" style="-fx-background-color: #05050f; -fx-background-radius: 8;">
+                           <children>
+                              <HBox maxWidth="8.0" minWidth="8.0" VBox.vgrow="ALWAYS" />
+                              <HBox maxWidth="8.0" minHeight="56.0" minWidth="8.0" style="-fx-background-color: #01f1e3; -fx-background-radius: 8;" VBox.vgrow="ALWAYS" />
+                              <HBox maxWidth="8.0" minHeight="40.0" minWidth="8.0" style="-fx-background-color: #991bFA; -fx-background-radius: 8;" VBox.vgrow="ALWAYS" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="BOTTOM_CENTER" spacing="10.0" style="-fx-background-color: #05050f; -fx-background-radius: 8;">
+                           <children>
+                              <HBox maxWidth="8.0" minWidth="8.0" VBox.vgrow="ALWAYS" />
+                              <HBox maxWidth="8.0" minHeight="70.0" minWidth="8.0" style="-fx-background-color: #01f1e3; -fx-background-radius: 8;" VBox.vgrow="ALWAYS" />
+                              <HBox maxWidth="8.0" minHeight="30.0" minWidth="8.0" style="-fx-background-color: #991bFA; -fx-background-radius: 8;" VBox.vgrow="ALWAYS" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="BOTTOM_CENTER" spacing="10.0" style="-fx-background-color: #05050f; -fx-background-radius: 8;">
+                           <children>
+                              <HBox maxWidth="8.0" minWidth="8.0" VBox.vgrow="ALWAYS" />
+                              <HBox maxWidth="8.0" minHeight="30.0" minWidth="8.0" style="-fx-background-color: #01f1e3; -fx-background-radius: 8;" VBox.vgrow="ALWAYS" />
+                              <HBox maxWidth="8.0" minHeight="50.0" minWidth="8.0" style="-fx-background-color: #991bFA; -fx-background-radius: 8;" VBox.vgrow="ALWAYS" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="BOTTOM_CENTER" spacing="10.0" style="-fx-background-color: #05050f; -fx-background-radius: 8;">
+                           <children>
+                              <HBox maxWidth="8.0" minWidth="8.0" VBox.vgrow="ALWAYS" />
+                              <HBox maxWidth="8.0" minHeight="80.0" minWidth="8.0" style="-fx-background-color: #01f1e3; -fx-background-radius: 8;" VBox.vgrow="ALWAYS" />
+                              <HBox maxWidth="8.0" minHeight="39.0" minWidth="8.0" style="-fx-background-color: #991bFA; -fx-background-radius: 8;" VBox.vgrow="ALWAYS" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="BOTTOM_CENTER" spacing="10.0" style="-fx-background-color: #05050f; -fx-background-radius: 8;">
+                           <children>
+                              <HBox maxWidth="8.0" minWidth="8.0" VBox.vgrow="ALWAYS" />
+                              <HBox maxWidth="8.0" minHeight="20.0" minWidth="8.0" style="-fx-background-color: #01f1e3; -fx-background-radius: 8;" VBox.vgrow="ALWAYS" />
+                              <HBox maxWidth="8.0" minHeight="50.0" minWidth="8.0" style="-fx-background-color: #991bFA; -fx-background-radius: 8;" VBox.vgrow="ALWAYS" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="BOTTOM_CENTER" spacing="10.0" style="-fx-background-color: #05050f; -fx-background-radius: 8;">
+                           <children>
+                              <HBox maxWidth="8.0" minWidth="8.0" VBox.vgrow="ALWAYS" />
+                              <HBox maxWidth="8.0" minHeight="20.0" minWidth="8.0" style="-fx-background-color: #01f1e3; -fx-background-radius: 8;" VBox.vgrow="ALWAYS" />
+                              <HBox maxWidth="8.0" minHeight="90.0" minWidth="8.0" style="-fx-background-color: #991bFA; -fx-background-radius: 8;" VBox.vgrow="ALWAYS" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="BOTTOM_CENTER" spacing="10.0" style="-fx-background-color: #05050f; -fx-background-radius: 8;">
+                           <children>
+                              <HBox maxWidth="8.0" minWidth="8.0" VBox.vgrow="ALWAYS" />
+                              <HBox maxWidth="8.0" minHeight="40.0" minWidth="8.0" style="-fx-background-color: #01f1e3; -fx-background-radius: 8;" VBox.vgrow="ALWAYS" />
+                              <HBox maxWidth="8.0" minHeight="100.0" minWidth="8.0" style="-fx-background-color: #991bFA; -fx-background-radius: 8;" VBox.vgrow="ALWAYS" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="BOTTOM_CENTER" spacing="10.0" style="-fx-background-color: #05050f; -fx-background-radius: 8;">
+                           <children>
+                              <HBox maxWidth="8.0" minWidth="8.0" VBox.vgrow="ALWAYS" />
+                              <HBox maxWidth="8.0" minHeight="35.0" minWidth="8.0" style="-fx-background-color: #01f1e3; -fx-background-radius: 8;" VBox.vgrow="ALWAYS" />
+                              <HBox maxWidth="8.0" minHeight="40.0" minWidth="8.0" style="-fx-background-color: #991bFA; -fx-background-radius: 8;" VBox.vgrow="ALWAYS" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="BOTTOM_CENTER" spacing="10.0" style="-fx-background-color: #05050f; -fx-background-radius: 8;">
+                           <children>
+                              <HBox maxWidth="8.0" minWidth="8.0" VBox.vgrow="ALWAYS" />
+                              <HBox maxWidth="8.0" minHeight="10.0" minWidth="8.0" style="-fx-background-color: #01f1e3; -fx-background-radius: 8;" VBox.vgrow="ALWAYS" />
+                              <HBox maxWidth="8.0" minHeight="60.0" minWidth="8.0" style="-fx-background-color: #991bFA; -fx-background-radius: 8;" VBox.vgrow="ALWAYS" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="BOTTOM_CENTER" spacing="10.0" style="-fx-background-color: #05050f; -fx-background-radius: 8;">
+                           <children>
+                              <HBox maxWidth="8.0" minWidth="8.0" VBox.vgrow="ALWAYS" />
+                              <HBox maxWidth="8.0" minHeight="15.0" minWidth="8.0" style="-fx-background-color: #01f1e3; -fx-background-radius: 8;" VBox.vgrow="ALWAYS" />
+                              <HBox maxWidth="8.0" minHeight="70.0" minWidth="8.0" style="-fx-background-color: #991bFA; -fx-background-radius: 8;" VBox.vgrow="ALWAYS" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="BOTTOM_CENTER" spacing="10.0" style="-fx-background-color: #05050f; -fx-background-radius: 8;">
+                           <children>
+                              <HBox maxWidth="8.0" minWidth="8.0" VBox.vgrow="ALWAYS" />
+                              <HBox maxWidth="8.0" minHeight="40.0" minWidth="8.0" style="-fx-background-color: #01f1e3; -fx-background-radius: 8;" VBox.vgrow="ALWAYS" />
+                              <HBox maxWidth="8.0" minHeight="90.0" minWidth="8.0" style="-fx-background-color: #991bFA; -fx-background-radius: 8;" VBox.vgrow="ALWAYS" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <VBox alignment="CENTER" prefHeight="283.0" prefWidth="251.0" spacing="15.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <HBox spacing="30.0">
+                           <children>
+                              <Label maxWidth="1.7976931348623157E308" text="Presentation" HBox.hgrow="ALWAYS" />
+                              <Label styleClass="text-muted" text="760" />
+                              <Label text="2450" />
+                              <FontIcon iconLiteral="fth-arrow-down" styleClass="danger" />
+                           </children>
+                        </HBox>
+                        <HBox spacing="30.0">
+                           <children>
+                              <Label maxWidth="1.7976931348623157E308" text="Travel" HBox.hgrow="ALWAYS" />
+                              <Label styleClass="text-muted" text="760" />
+                              <Label text="2450" />
+                              <FontIcon iconLiteral="fth-arrow-up" styleClass="success" />
+                           </children>
+                        </HBox>
+                        <HBox spacing="30.0">
+                           <children>
+                              <Label maxWidth="1.7976931348623157E308" text="Presentation" HBox.hgrow="ALWAYS" />
+                              <Label styleClass="text-muted" text="760" />
+                              <Label text="2450" />
+                              <FontIcon iconLiteral="fth-arrow-down" styleClass="danger" />
+                           </children>
+                        </HBox>
+                        <HBox spacing="30.0">
+                           <children>
+                              <Label maxWidth="1.7976931348623157E308" text="Travel" HBox.hgrow="ALWAYS" />
+                              <Label styleClass="text-muted" text="760" />
+                              <Label text="2450" />
+                              <FontIcon iconLiteral="fth-arrow-up" styleClass="success" />
+                           </children>
+                        </HBox>
+                        <HBox spacing="30.0">
+                           <children>
+                              <Label maxWidth="1.7976931348623157E308" text="Presentation" HBox.hgrow="ALWAYS" />
+                              <Label styleClass="text-muted" text="760" />
+                              <Label text="2450" />
+                              <FontIcon iconLiteral="fth-arrow-down" styleClass="danger" />
+                           </children>
+                        </HBox>
+                        <HBox spacing="30.0">
+                           <children>
+                              <Label maxWidth="1.7976931348623157E308" text="Travel" HBox.hgrow="ALWAYS" />
+                              <Label styleClass="text-muted" text="760" />
+                              <Label text="2450" />
+                              <FontIcon iconLiteral="fth-arrow-up" styleClass="success" />
+                           </children>
+                        </HBox>
+                        <HBox spacing="30.0">
+                           <children>
+                              <Label maxWidth="1.7976931348623157E308" text="Presentation" HBox.hgrow="ALWAYS" />
+                              <Label styleClass="text-muted" text="760" />
+                              <Label text="2450" />
+                              <FontIcon iconLiteral="fth-arrow-down" styleClass="danger" />
+                           </children>
+                        </HBox>
+                        <HBox spacing="30.0">
+                           <children>
+                              <Label maxWidth="1.7976931348623157E308" text="Travel" HBox.hgrow="ALWAYS" />
+                              <Label styleClass="text-muted" text="760" />
+                              <Label text="2450" />
+                              <FontIcon iconLiteral="fth-arrow-up" styleClass="success" />
+                           </children>
+                        </HBox>
+                        <HBox spacing="30.0">
+                           <children>
+                              <Label maxWidth="1.7976931348623157E308" text="Presentation" HBox.hgrow="ALWAYS" />
+                              <Label styleClass="text-muted" text="760" />
+                              <Label text="2450" />
+                              <FontIcon iconLiteral="fth-arrow-down" styleClass="danger" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0" styleClass="sample" GridPane.rowIndex="3" GridPane.rowSpan="2">
+               <children>
+                  <Label text="Projects" />
+                  <VBox spacing="10.0">
+                     <children>
+                        <Label text="Total earning" />
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                           <children>
+                              <Label styleClass="title-1" text="\$12,875" />
+                              <Label text="10%">
+                                 <graphic>
+                                    <FontIcon iconLiteral="fth-arrow-up" />
+                                 </graphic>
+                                 <styleClass>
+                                    <String fx:value="title-3" />
+                                    <String fx:value="success" />
+                                 </styleClass>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <Label styleClass="text-muted" text="Compared to $21,490 last year" />
+                     </children>
+                  </VBox>
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                           <children>
+                              <Label text="Product">
+                                 <styleClass>
+                                    <String fx:value="text-muted" />
+                                    <String fx:value="text-caption" />
+                                 </styleClass>
+                              </Label>
+                              <Label styleClass="title-4" text="540" textFill="#fcfafa" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                           <children>
+                              <Label text="Views">
+                                 <styleClass>
+                                    <String fx:value="text-muted" />
+                                    <String fx:value="text-caption" />
+                                 </styleClass>
+                              </Label>
+                              <Label styleClass="title-4" text="1 924.38" textFill="#fcfafa" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children></VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" styleClass="sample" GridPane.columnIndex="4" GridPane.rowSpan="2">
+               <children>
+                  <HBox alignment="CENTER" minHeight="130.0" prefHeight="130.0">
+                     <children>
+                        <Group fx:id="chartBar2" />
+                     </children>
+                  </HBox>
+                  <VBox spacing="5.0">
+                     <children>
+                        <Label text="Total earning" />
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                           <children>
+                              <Label styleClass="title-1" text="\$12,875" />
+                              <Label text="10%">
+                                 <graphic>
+                                    <FontIcon iconLiteral="fth-arrow-up" />
+                                 </graphic>
+                                 <styleClass>
+                                    <String fx:value="title-3" />
+                                    <String fx:value="success" />
+                                 </styleClass>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <Label styleClass="text-muted" text="Compared to $21,490 last year" />
+                     </children>
+                  </VBox>
+                  <GridPane vgap="10.0" VBox.vgrow="ALWAYS">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                           <children>
+                              <Circle fill="#1f93ff00" radius="12.0" strokeType="INSIDE" strokeWidth="3.0">
+                                 <stroke>
+                                    <LinearGradient endX="1.0" endY="1.0">
+                                       <stops>
+                                          <Stop>
+                                             <color>
+                                                <Color red="0.3019607961177826" green="1.0" blue="0.8745098114013672" />
+                                             </color>
+                                          </Stop>
+                                          <Stop offset="0.006711409395973154">
+                                             <color>
+                                                <Color red="0.3019607961177826" green="1.0" blue="0.8745098114013672" />
+                                             </color>
+                                          </Stop>
+                                          <Stop offset="1.0">
+                                             <color>
+                                                <Color red="0.3019607961177826" green="0.6313725709915161" blue="1.0" />
+                                             </color>
+                                          </Stop>
+                                       </stops>
+                                    </LinearGradient>
+                                 </stroke>
+                              </Circle>
+                              <Label prefWidth="80.0" text="Sales" />
+                              <ProgressBar id="w-progress-bar1" maxWidth="1.7976931348623157E308" prefHeight="12.0" prefWidth="129.0" progress="0.68" HBox.hgrow="ALWAYS" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.rowIndex="1">
+                           <children>
+                              <Circle fill="#1f93ff00" radius="12.0" strokeType="INSIDE" strokeWidth="3.0">
+                                 <stroke>
+                                    <LinearGradient endX="1.0" endY="1.0">
+                                       <stops>
+                                          <Stop>
+                                             <color>
+                                                <Color red="0.3019607961177826" green="1.0" blue="0.8745098114013672" />
+                                             </color>
+                                          </Stop>
+                                          <Stop offset="0.006711409395973154">
+                                             <color>
+                                                <Color red="0.8901960849761963" green="0.13725490868091583" blue="1.0" />
+                                             </color>
+                                          </Stop>
+                                          <Stop offset="1.0">
+                                             <color>
+                                                <Color red="0.4588235318660736" green="0.09019608050584793" blue="0.9725490212440491" />
+                                             </color>
+                                          </Stop>
+                                       </stops>
+                                    </LinearGradient>
+                                 </stroke>
+                              </Circle>
+                              <Label prefWidth="80.0" text="Product" />
+                              <ProgressBar id="w-progress-bar2" maxWidth="1.7976931348623157E308" prefHeight="12.0" prefWidth="129.0" progress="0.79" HBox.hgrow="ALWAYS" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.rowIndex="2">
+                           <children>
+                              <Circle fill="#1f93ff00" radius="12.0" strokeType="INSIDE" strokeWidth="3.0">
+                                 <stroke>
+                                    <LinearGradient endX="1.0" endY="1.0">
+                                       <stops>
+                                          <Stop>
+                                             <color>
+                                                <Color red="0.3019607961177826" green="1.0" blue="0.8745098114013672" />
+                                             </color>
+                                          </Stop>
+                                          <Stop offset="0.006711409395973154">
+                                             <color>
+                                                <Color red="1.0" green="0.8313725590705872" blue="0.13333334028720856" />
+                                             </color>
+                                          </Stop>
+                                          <Stop offset="1.0">
+                                             <color>
+                                                <Color red="1.0" green="0.4901960790157318" blue="0.019607843831181526" />
+                                             </color>
+                                          </Stop>
+                                       </stops>
+                                    </LinearGradient>
+                                 </stroke>
+                              </Circle>
+                              <Label prefWidth="80.0" text="Sales" />
+                              <ProgressBar id="w-progress-bar3" maxWidth="1.7976931348623157E308" prefHeight="12.0" prefWidth="129.0" progress="0.92" HBox.hgrow="ALWAYS" />
+                           </children>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets left="10.0" right="10.0" />
+                     </padding>
+                  </GridPane>
+               </children></VBox>
+            <GridPane styleClass="sample" GridPane.columnIndex="4" GridPane.rowIndex="2">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="10.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="280.0" spacing="10.0">
+                     <children>
+                        <Pane maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" prefHeight="80.0" prefWidth="80.0">
+                           <children>
+                              <Circle centerX="40.0" centerY="40.0" fill="#1f93ff00" radius="40.0" stroke="#05050f" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="7.0" />
+                              <Arc centerX="40.0" centerY="40.0" fill="#1f93ff00" length="90.0" radiusX="40.0" radiusY="40.0" startAngle="107.4" stroke="#02c751" strokeLineCap="ROUND" strokeWidth="7.0" />
+                              <Arc centerX="40.0" centerY="40.0" fill="#1f93ff00" length="80.0" radiusX="40.0" radiusY="40.0" startAngle="-149.0" stroke="#ffd422" strokeLineCap="ROUND" strokeWidth="7.0" />
+                              <Arc centerX="40.0" centerY="40.0" fill="#1f93ff00" length="150.0" radiusX="40.0" radiusY="40.0" startAngle="-56.0" stroke="#e323ff" strokeLineCap="ROUND" strokeWidth="7.0" />
+                              <Label layoutX="22.0" layoutY="37.0" styleClass="title-2" text="32" />
+                              <Label layoutX="54.0" layoutY="34.0" text="\%" />
+                              <FontIcon iconLiteral="fth-calendar" layoutX="28.0" layoutY="30.0" />
+                           </children>
+                        </Pane>
+                        <VBox alignment="CENTER_LEFT" spacing="10.0">
+                           <children>
+                              <Label text="Sales Plan" />
+                              <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                 <children>
+                                    <Label styleClass="title-1" text="\$12,875" />
+                                    <Label text="10%">
+                                       <graphic>
+                                          <FontIcon iconLiteral="fth-arrow-up" styleClass="success" />
+                                       </graphic>
+                                       <styleClass>
+                                          <String fx:value="title-3" />
+                                          <String fx:value="success" />
+                                       </styleClass>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="280.0" spacing="10.0" GridPane.rowIndex="2">
+                     <children>
+                        <Pane maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" prefHeight="80.0" prefWidth="80.0">
+                           <children>
+                              <Circle centerX="40.0" centerY="40.0" fill="#1f93ff00" radius="40.0" stroke="#05050f" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="7.0" />
+                              <Arc centerX="40.0" centerY="40.0" fill="#1f93ff00" length="90.0" radiusX="40.0" radiusY="40.0" startAngle="-44.5" stroke="#ffd422" strokeLineCap="ROUND" strokeWidth="7.0" />
+                              <Arc centerX="40.0" centerY="40.0" fill="#1f93ff00" length="230.0" radiusX="40.0" radiusY="40.0" startAngle="65.7" stroke="#01f1e3" strokeLineCap="ROUND" strokeWidth="7.0" />
+                              <Label layoutX="22.0" layoutY="37.0" styleClass="title-2" text="89" />
+                              <Label layoutX="54.0" layoutY="34.0" text="\%" />
+                              <FontIcon iconLiteral="fth-calendar" layoutX="28.0" layoutY="30.0" />
+                           </children>
+                        </Pane>
+                        <VBox alignment="CENTER_LEFT" spacing="10.0">
+                           <children>
+                              <Label text="Total earning" />
+                              <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                 <children>
+                                    <Label styleClass="title-1" text="\$43,875" />
+                                    <Label text="10%">
+                                       <graphic>
+                                          <FontIcon iconLiteral="fth-arrow-up" styleClass="success" />
+                                       </graphic>
+                                       <styleClass>
+                                          <String fx:value="title-3" />
+                                          <String fx:value="success" />
+                                       </styleClass>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <Separator prefWidth="200.0" GridPane.rowIndex="1" />
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </GridPane>
+            <VBox prefHeight="200.0" prefWidth="100.0" styleClass="sample" GridPane.columnIndex="4" GridPane.rowIndex="3">
+               <children>
+                  <VBox spacing="10.0">
+                     <children>
+                        <Label text="Total earning" />
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                           <children>
+                              <Label styleClass="title-1" text="\$12,875" />
+                              <Label text="10%">
+                                 <graphic>
+                                    <FontIcon iconLiteral="fth-arrow-up" />
+                                 </graphic>
+                                 <styleClass>
+                                    <String fx:value="title-3" />
+                                    <String fx:value="success" />
+                                 </styleClass>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <Label styleClass="text-muted" text="Compared to $21,490 last year" />
+                     </children>
+                  </VBox>
+               </children></VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" styleClass="sample" GridPane.columnIndex="4" GridPane.rowIndex="4">
+               <children>
+                  <GridPane vgap="10.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                           <children>
+                              <Label prefWidth="80.0" text="Presentation" />
+                              <Label styleClass="text-muted" text="765" />
+                              <HBox fx:id="chartBox3" alignment="CENTER" minWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Path fill="DODGERBLUE" stroke="BLACK" strokeType="INSIDE" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </HBox>
+                        <HBox fx:id="chattBar4" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.rowIndex="1">
+                           <children>
+                              <Label prefWidth="80.0" text="Development" />
+                              <Label styleClass="text-muted" text="456" />
+                              <HBox fx:id="chartBox4" alignment="CENTER" minWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Path fill="DODGERBLUE" stroke="BLACK" strokeType="INSIDE" HBox.hgrow="ALWAYS" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.rowIndex="2">
+                           <children>
+                              <Label prefWidth="80.0" text="Research" />
+                              <Label styleClass="text-muted" text="340" />
+                              <HBox fx:id="chartBox5" alignment="CENTER" minWidth="150.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Path fill="DODGERBLUE" stroke="BLACK" strokeType="INSIDE" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets left="10.0" right="10.0" />
+                     </padding>
+                  </GridPane>
+               </children></VBox>
+            <HBox alignment="CENTER_LEFT" minWidth="230.0" styleClass="sample" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <children>
+                  <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" text="Button">
+                     <graphic>
+                        <FontIcon iconLiteral="fth-compass" />
+                     </graphic>
+                     <styleClass>
+                        <String fx:value="button-icon" />
+                        <String fx:value="button-outlined" />
+                        <String fx:value="accent" />
+                     </styleClass>
+                  </Button>
+                  <VBox alignment="CENTER" minWidth="70.0" spacing="10.0">
+                     <children>
+                        <Label text="Balance" />
+                        <Label alignment="CENTER" styleClass="title-1" text="438" VBox.vgrow="ALWAYS" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" spacing="10.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <ProgressBar id="w-progress-bar" prefWidth="200.0" progress="0.7" />
+                        <ProgressBar id="w-progress-bar" prefWidth="200.0" progress="0.49" />
+                        <ProgressBar id="w-progress-bar" prefWidth="200.0" progress="0.89" />
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </HBox>
+            <VBox fx:id="countryBox" spacing="10.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowSpan="4">
+               <children>
+                  <HBox alignment="CENTER">
+                     <children>
+                        <Label styleClass="title-1" text="Global Statistics" />
+                     </children>
+                  </HBox>
+                  <StackPane fx:id="countryStackPane" VBox.vgrow="ALWAYS" />
+               </children>
+            </VBox>
+            <HBox alignment="CENTER_LEFT" spacing="10.0" styleClass="sample" GridPane.columnIndex="2" GridPane.rowIndex="4">
+               <children>
+                  <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" text="Button">
+                     <graphic>
+                        <FontIcon iconLiteral="fth-grid" />
+                     </graphic>
+                     <styleClass>
+                        <String fx:value="button-icon" />
+                        <String fx:value="button-outlined" />
+                        <String fx:value="accent" />
+                     </styleClass>
+                  </Button>
+                  <VBox alignment="CENTER" maxWidth="70.0" minWidth="70.0" spacing="10.0">
+                     <children>
+                        <Label text="Prediction" />
+                        <Label alignment="CENTER" styleClass="title-1" text="895" VBox.vgrow="ALWAYS" />
+                     </children>
+                  </VBox>
+                  <HBox fx:id="chartBox1" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Path fx:id="ndicatorsPath" stroke="#6a6a9f" strokeType="INSIDE" strokeWidth="5.0" HBox.hgrow="ALWAYS" />
+                        <Path fx:id="predictPath" stroke="#6a6a9f" strokeType="INSIDE" strokeWidth="5.0" />
+                     </children></HBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="10.0" styleClass="sample" GridPane.columnIndex="3" GridPane.rowIndex="4">
+               <children>
+                  <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" text="Button">
+                     <graphic>
+                        <FontIcon iconLiteral="fth-target" />
+                     </graphic>
+                     <styleClass>
+                        <String fx:value="button-icon" />
+                        <String fx:value="button-outlined" />
+                        <String fx:value="accent" />
+                     </styleClass>
+                  </Button>
+                  <VBox alignment="CENTER" minWidth="70.0" spacing="10.0">
+                     <children>
+                        <Label text="Pulse" />
+                        <Label alignment="CENTER" styleClass="title-1" text="785" VBox.vgrow="ALWAYS" />
+                     </children>
+                  </VBox>
+                  <HBox alignment="CENTER" spacing="5.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Rectangle arcHeight="10.0" arcWidth="10.0" height="60.0" strokeType="INSIDE" width="10.0">
+                           <fill>
+                              <LinearGradient endX="1.0" endY="1.0">
+                                 <stops>
+                                    <Stop>
+                                       <color>
+                                          <Color red="0.3019607961177826" green="0.6313725709915161" blue="1.0" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="1.0">
+                                       <color>
+                                          <Color red="0.3019607961177826" green="1.0" blue="0.8745098114013672" />
+                                       </color>
+                                    </Stop>
+                                 </stops>
+                              </LinearGradient>
+                           </fill>
+                        </Rectangle>
+                        <Rectangle arcHeight="10.0" arcWidth="10.0" height="40.0" strokeType="INSIDE" width="10.0">
+                           <fill>
+                              <LinearGradient endX="1.0" endY="1.0">
+                                 <stops>
+                                    <Stop>
+                                       <color>
+                                          <Color red="0.3019607961177826" green="0.6313725709915161" blue="1.0" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="1.0">
+                                       <color>
+                                          <Color red="0.3019607961177826" green="1.0" blue="0.8745098114013672" />
+                                       </color>
+                                    </Stop>
+                                 </stops>
+                              </LinearGradient>
+                           </fill>
+                        </Rectangle>
+                        <Rectangle arcHeight="10.0" arcWidth="10.0" height="50.0" strokeType="INSIDE" width="10.0">
+                           <fill>
+                              <LinearGradient endX="1.0" endY="1.0">
+                                 <stops>
+                                    <Stop>
+                                       <color>
+                                          <Color red="0.3019607961177826" green="0.6313725709915161" blue="1.0" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="1.0">
+                                       <color>
+                                          <Color red="0.3019607961177826" green="1.0" blue="0.8745098114013672" />
+                                       </color>
+                                    </Stop>
+                                 </stops>
+                              </LinearGradient>
+                           </fill>
+                        </Rectangle>
+                        <Rectangle arcHeight="10.0" arcWidth="10.0" height="30.0" strokeType="INSIDE" width="10.0">
+                           <fill>
+                              <LinearGradient endX="1.0" endY="1.0">
+                                 <stops>
+                                    <Stop>
+                                       <color>
+                                          <Color red="0.3019607961177826" green="0.6313725709915161" blue="1.0" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="1.0">
+                                       <color>
+                                          <Color red="0.3019607961177826" green="1.0" blue="0.8745098114013672" />
+                                       </color>
+                                    </Stop>
+                                 </stops>
+                              </LinearGradient>
+                           </fill>
+                        </Rectangle>
+                        <Rectangle arcHeight="10.0" arcWidth="10.0" height="60.0" strokeType="INSIDE" width="10.0">
+                           <fill>
+                              <LinearGradient endX="1.0" endY="1.0">
+                                 <stops>
+                                    <Stop>
+                                       <color>
+                                          <Color red="0.3019607961177826" green="0.6313725709915161" blue="1.0" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="1.0">
+                                       <color>
+                                          <Color red="0.3019607961177826" green="1.0" blue="0.8745098114013672" />
+                                       </color>
+                                    </Stop>
+                                 </stops>
+                              </LinearGradient>
+                           </fill>
+                        </Rectangle>
+                        <Rectangle arcHeight="10.0" arcWidth="10.0" height="30.0" strokeType="INSIDE" width="10.0">
+                           <fill>
+                              <LinearGradient endX="1.0" endY="1.0">
+                                 <stops>
+                                    <Stop>
+                                       <color>
+                                          <Color red="0.3019607961177826" green="0.6313725709915161" blue="1.0" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="1.0">
+                                       <color>
+                                          <Color red="0.3019607961177826" green="1.0" blue="0.8745098114013672" />
+                                       </color>
+                                    </Stop>
+                                 </stops>
+                              </LinearGradient>
+                           </fill>
+                        </Rectangle>
+                        <Rectangle arcHeight="10.0" arcWidth="10.0" height="30.0" strokeType="INSIDE" width="10.0">
+                           <fill>
+                              <LinearGradient endX="1.0" endY="1.0">
+                                 <stops>
+                                    <Stop>
+                                       <color>
+                                          <Color red="0.3019607961177826" green="0.6313725709915161" blue="1.0" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="1.0">
+                                       <color>
+                                          <Color red="0.3019607961177826" green="1.0" blue="0.8745098114013672" />
+                                       </color>
+                                    </Stop>
+                                 </stops>
+                              </LinearGradient>
+                           </fill>
+                        </Rectangle>
+                        <Rectangle arcHeight="10.0" arcWidth="10.0" height="60.0" strokeType="INSIDE" width="10.0">
+                           <fill>
+                              <LinearGradient endX="1.0" endY="1.0">
+                                 <stops>
+                                    <Stop>
+                                       <color>
+                                          <Color red="0.3019607961177826" green="0.6313725709915161" blue="1.0" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="1.0">
+                                       <color>
+                                          <Color red="0.3019607961177826" green="1.0" blue="0.8745098114013672" />
+                                       </color>
+                                    </Stop>
+                                 </stops>
+                              </LinearGradient>
+                           </fill>
+                        </Rectangle>
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+         </children>
+      </GridPane>
+   </children>
+</StackPane>

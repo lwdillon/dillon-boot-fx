@@ -7,6 +7,7 @@ import com.goxr3plus.fxborderlessscene.borderless.BorderlessScene;
 import com.lw.fx.client.icon.WIcon;
 import com.lw.fx.client.util.Lazy;
 import com.lw.fx.client.view.config.UserInfoView;
+import com.lw.fx.client.view.dashboard.CountryDashboardView;
 import com.lw.fx.client.view.general.ThemePage;
 import com.lw.fx.client.view.home.DashboardView;
 import com.lw.fx.client.view.monitor.MonitorView;
@@ -165,7 +166,7 @@ public class MainView implements FxmlView<MainViewModel>, Initializable {
         menuButton.getStyleClass().addAll(FLAT, BUTTON_CIRCLE);
         initListeners();
 
-        loddTab("主页", "home", FluentViewLoader.fxmlView(DashboardView.class).load().getView());
+        loddTab("主页", "home", FluentViewLoader.fxmlView(CountryDashboardView.class).load().getView());
 
 
         FadeTransition fadeTransition = new FadeTransition(Duration.millis(400), rootPane);
@@ -244,7 +245,7 @@ public class MainView implements FxmlView<MainViewModel>, Initializable {
             } else if (StrUtil.equals("服务监控", title)) {
                 clazz = MonitorView.class;
             } else if (StrUtil.equals("若依官网", title)) {
-                title = "主页";
+                title = "主页2";
                 iconStr = "home";
                 clazz = DashboardView.class;
             } else {
@@ -306,7 +307,6 @@ public class MainView implements FxmlView<MainViewModel>, Initializable {
         tabPane.getTabs().add(tab);
         tab.setContent(node);
         tabPane.getSelectionModel().select(tab);
-
         FadeTransition fadeTransition = new FadeTransition(Duration.millis(400), tab.getContent());
         fadeTransition.setFromValue(0);
         fadeTransition.setToValue(1);

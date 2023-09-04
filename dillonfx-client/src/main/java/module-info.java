@@ -23,10 +23,10 @@ open module com.lw.fx.client {
     requires logback.classic;
 
     requires eu.hansolo.tilesfx;
-    requires eu.hansolo.fx.countries;
     requires eu.hansolo.fx.heatmap;
     requires eu.hansolo.toolboxfx;
     requires eu.hansolo.toolbox;
+    requires eu.hansolo.fx.countries ;
 
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.ikonli.feather;
@@ -50,5 +50,5 @@ open module com.lw.fx.client {
     requires AnimateFX;
     requires com.kitfox.svg;
     requires cn.hutool;
-
+    exports com.lw.fx.client;
 }

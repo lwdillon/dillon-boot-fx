@@ -252,16 +252,34 @@
     -fx-padding: 0 0.5em 0 0.5em;
   }
 
-  .default-color0.chart-bar{
+  .default-color0.chart-bar {
     -fx-bar-fill: #3B82F6
   }
-  .default-color1.chart-bar{
+
+  .default-color1.chart-bar {
     -fx-bar-fill: #EAB308
   }
-  .default-color2.chart-bar{
+
+  .default-color2.chart-bar {
     -fx-bar-fill: #22c55e
   }
 
+  #w-progress-bar .bar {
+    -fx-background-color: linear-gradient(to right, #4DA1FF, #4DFFDF);
+  }
+
+  #w-progress-bar1 .bar {
+    -fx-background-color: linear-gradient(to right,#4da1ff, #4dffdf );
+  }
+
+  #w-progress-bar2 .bar {
+    -fx-background-color: linear-gradient(to right,  #7517F8 ,#E323FF);
+  }
+
+
+  #w-progress-bar3 .bar {
+    -fx-background-color: linear-gradient(to right,#FF7D05, #FFD422);
+  }
 
 
 }

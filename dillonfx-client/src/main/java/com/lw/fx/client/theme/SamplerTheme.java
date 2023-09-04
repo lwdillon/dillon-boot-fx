@@ -4,7 +4,7 @@ package com.lw.fx.client.theme;
 
 import atlantafx.base.theme.Theme;
 import com.lw.fx.client.FileResource;
-import com.lw.fx.client.Launcher;
+import com.lw.fx.client.AppStart;
 import com.lw.fx.client.Resources;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -19,7 +19,7 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static com.lw.fx.client.Launcher.IS_DEV_MODE;
+import static com.lw.fx.client.AppStart.IS_DEV_MODE;
 import static com.lw.fx.client.Resources.resolve;
 import static com.lw.fx.client.theme.ThemeManager.*;
 import static java.nio.charset.StandardCharsets.UTF_8;
@@ -178,7 +178,7 @@ public final class SamplerTheme implements Theme {
 
         try {
             FileResource testTheme = FileResource.createInternal(
-                    Resources.resolve("theme-test/" + filename), Launcher.class
+                    Resources.resolve("theme-test/" + filename), AppStart.class
             );
             if (!testTheme.exists()) {
                 throw new IOException();
