@@ -10,6 +10,7 @@ import com.lw.fx.client.view.config.UserInfoView;
 import com.lw.fx.client.view.dashboard.CountryDashboardView;
 import com.lw.fx.client.view.general.ThemePage;
 import com.lw.fx.client.view.home.DashboardView;
+import com.lw.fx.client.view.home.HomeView;
 import com.lw.fx.client.view.monitor.MonitorView;
 import com.lw.fx.client.view.system.config.ConfigView;
 import com.lw.fx.client.view.system.dept.DeptManageView;
@@ -166,7 +167,7 @@ public class MainView implements FxmlView<MainViewModel>, Initializable {
         menuButton.getStyleClass().addAll(FLAT, BUTTON_CIRCLE);
         initListeners();
 
-        loddTab("主页", "home", FluentViewLoader.fxmlView(CountryDashboardView.class).load().getView());
+        loddTab("主页", "home", FluentViewLoader.fxmlView(DashboardView.class).load().getView());
 
 
         FadeTransition fadeTransition = new FadeTransition(Duration.millis(400), rootPane);
@@ -247,7 +248,7 @@ public class MainView implements FxmlView<MainViewModel>, Initializable {
             } else if (StrUtil.equals("若依官网", title)) {
                 title = "主页2";
                 iconStr = "home";
-                clazz = DashboardView.class;
+                clazz = CountryDashboardView.class;
             } else {
 
                 if (component.contains("/")) {

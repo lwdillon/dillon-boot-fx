@@ -19,14 +19,14 @@ open module com.lw.fx.client {
     requires java.sql;
     requires datafaker;
     requires org.slf4j;
-    requires logback.core;
-    requires logback.classic;
+    requires ch.qos.logback.classic;
 
     requires eu.hansolo.tilesfx;
     requires eu.hansolo.fx.heatmap;
     requires eu.hansolo.toolboxfx;
     requires eu.hansolo.toolbox;
     requires eu.hansolo.fx.countries ;
+    requires eu.hansolo.fx.charts;
 
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.ikonli.feather;

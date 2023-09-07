@@ -1,5 +1,7 @@
+import com.lw.fx.client.CanvasTest;
+
 public class Test {
     public static void main(String[] args) {
-        SmoothCurveDemo.main(args);
+        CanvasTest.main(args);
     }
 }
