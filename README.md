@@ -36,6 +36,16 @@ HTTP库：使用 OpenFeign HTTP库，该库提供了方便的 HTTP 请求和响�
     * 动画库 [AnimateFX](https://github.com/Typhon0/AnimateFX) ([文档](https://github.com/Typhon0/AnimateFX/wiki))
     * http库 [OpenFeign](https://github.com/OpenFeign/feign)
 
+## mvvmfx包找不到的话请使用Sonatype快照存储库，将此存储库添加到 pom.xml 的 <repositorys> 部分
+```agsl
+<repository>
+		<id>sonatype-snapshots</id>
+		<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+		<snapshots>
+			<enabled>true</enabled>
+		</snapshots>
+</repository>
+```
 ## 启动说明
 
 ```agsl

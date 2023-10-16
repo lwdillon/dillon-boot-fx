@@ -21,6 +21,7 @@ import java.awt.image.BufferedImage;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.concurrent.Callable;
 
 import static atlantafx.base.theme.Styles.STATE_DANGER;
 import static com.lw.fx.client.view.loginregister.LoginRegisterViewModel.ON_VIEW_ADDEDA;
@@ -115,16 +116,13 @@ public class LoginRegisterView implements FxmlView<LoginRegisterViewModel>, Init
         msg.managedProperty().bind(msg.visibleProperty());
 
         msg.textProperty().bind(loginRegisterViewModel.msgProperty());
-        Rectangle innerBounds = new Rectangle();
-        rootPane.heightProperty().addListener((observable, oldHeight, newHeight) -> {
-            innerBounds.relocate(rootPane.layoutBoundsProperty().get().getMinX(), rootPane.layoutBoundsProperty().get().getMinY());
-            innerBounds.setWidth(rootPane.layoutBoundsProperty().get().getWidth());
-            innerBounds.setHeight(rootPane.layoutBoundsProperty().get().getHeight());
-            innerBounds.setArcWidth(20);
-            innerBounds.setArcHeight(20);
-            rootPane.setClip(innerBounds);
 
-        });
+        Rectangle innerBounds = new Rectangle();
+        innerBounds.widthProperty().bind(Bindings.createObjectBinding(() -> rootPane.getLayoutBounds().getWidth(), rootPane.layoutBoundsProperty()));
+        innerBounds.heightProperty().bind(Bindings.createObjectBinding(() -> rootPane.getLayoutBounds().getHeight(), rootPane.layoutBoundsProperty()));
+        innerBounds.setArcWidth(20);
+        innerBounds.setArcHeight(20);
+        rootPane.setClip(innerBounds);
 
 
         loginRegisterViewModel.subscribe(ON_VIEW_ADDEDA, (s, objects) -> {

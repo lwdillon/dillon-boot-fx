@@ -19,7 +19,7 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static com.lw.fx.client.AppStart.IS_DEV_MODE;
+import static com.lw.fx.client.AppUI.IS_DEV_MODE;
 import static com.lw.fx.client.Resources.resolve;
 import static com.lw.fx.client.theme.ThemeManager.*;
 import static java.nio.charset.StandardCharsets.UTF_8;

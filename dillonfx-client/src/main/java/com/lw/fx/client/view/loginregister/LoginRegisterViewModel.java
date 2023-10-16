@@ -234,7 +234,7 @@ public class LoginRegisterViewModel implements ViewModel, SceneLifecycle {
                 AppStore.setToken(objects.getStr("token"));
             } else {
                 JSONObject parsedObj = JSONUtil.parseObj(objects.getStr(AjaxResult.DATA_TAG));
-                AppStore.setToken(parsedObj.getStr("access_token"));
+                AppStore.setToken(objects.getStr("token"));
             }
 
             success.setValue(true);
